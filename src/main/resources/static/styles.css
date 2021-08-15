@@ -5,3 +5,35 @@ header {
     background-position: center;
     background-attachment: fixed;
 }
+
+.login-card {
+    background-color: #f4f4f4;
+    position: absolute;
+    width: 30%;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 5px;
+}
+
+.register-card {
+    background-color: #f4f4f4;
+    position: absolute;
+    width: 45%;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    border-radius: 5px;
+}
+
+.login-card input,
+.register-card input {
+    margin: 7px 0;
+}
+
+.login-card button,
+.register-card button {
+    margin-top: 20px;
+}
