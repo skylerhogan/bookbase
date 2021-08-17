@@ -1,8 +1,5 @@
-package com.liftoff.libraryapp.controllers;
+package com.liftoff.libraryapp.registration;
 
-import com.liftoff.libraryapp.services.RegistrationRequest;
-import com.liftoff.libraryapp.services.RegistrationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 // **** Description *** //
@@ -11,11 +8,11 @@ import org.springframework.web.bind.annotation.*;
 // **** ********** *** //
 
 @RestController
-@RequestMapping("api/v1/registration")
+@RequestMapping("registration")
 public class RegistrationController {
 
     // Field
-    private RegistrationService registrationService;
+    private final RegistrationService registrationService;
 
     // Constructor
     public RegistrationController(RegistrationService registrationService) {
@@ -26,5 +23,10 @@ public class RegistrationController {
     @PostMapping
     public String processRegistration(@RequestBody RegistrationRequest request) {
         return registrationService.register(request);
+    }
+
+    @GetMapping(path = "confirm")
+    public String confirmRegistration(@RequestParam("token") String token) {
+        return registrationService.confirmToken(token);
     }
 }

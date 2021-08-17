@@ -1,10 +1,8 @@
 package com.liftoff.libraryapp.models;
 
-import com.sun.istack.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -15,41 +13,50 @@ import java.util.Objects;
     public class User implements UserDetails {
 
         // User Fields
+        @SequenceGenerator(
+                name = "user_sequence",
+                sequenceName = "user_sequence",
+                allocationSize = 1
+        )
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(
+                strategy = GenerationType.AUTO,
+                generator = "user_sequence"
+        )
         private Long id;
 
-        private String userName;
+        private String firstName;
+        private String lastName;
+        private String email;
         private String password;
         @Enumerated(EnumType.STRING)
         private UserRoles role;
-        private String email;
-        private boolean active;
-        private boolean locked;
+        private boolean active = false;  // not active until email confirmed
+        private boolean locked = false;
 
         // User Constructors
 
 
-    public User(Long id, String userName, String password, UserRoles role, String email, boolean active, boolean locked) {
+    public User(Long id, String firstName, String lastName, String email, String password, UserRoles role) {
         this.id = id;
-        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
         this.password = password;
         this.role = role;
-        this.email = email;
-        this.active = active;
-        this.locked = locked;
     }
 
-    public User(String userName, String password, UserRoles role, String email, boolean active, boolean locked) {
-        this.userName = userName;
+    public User(String firstName, String lastName, String email, String password, UserRoles role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
         this.password = password;
         this.role = role;
-        this.email = email;
-        this.active = active;
-        this.locked = locked;
     }
 
     public User() {}
+
+
 
     // UserDetails Parent Methods We Must Override
     @Override
@@ -65,7 +72,7 @@ import java.util.Objects;
 
     @Override
     public String getUsername() {
-        return userName;
+        return email;
     }
 
     @Override
@@ -91,7 +98,10 @@ import java.util.Objects;
     // User Getters & Setters
 
     public Long getId() { return id; }
-    public void setUserName(String userName) { this.userName = userName; }
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
     public void setPassword(String password) { this.password = password; }
     public UserRoles getRole() { return role; }
     public void setRole(UserRoles role) { this.role = role; }
@@ -109,12 +119,12 @@ import java.util.Objects;
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return active == user.active && locked == user.locked && id.equals(user.id) && Objects.equals(userName, user.userName) && Objects.equals(password, user.password) && role == user.role && Objects.equals(email, user.email);
+        return active == user.active && locked == user.locked && id.equals(user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(password, user.password) && role == user.role && Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userName, password, role, email, active, locked);
+        return Objects.hash(id, firstName, password, role, email, active, locked);
     }
 }
 

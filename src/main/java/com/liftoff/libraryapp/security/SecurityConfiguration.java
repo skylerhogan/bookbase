@@ -1,6 +1,6 @@
 package com.liftoff.libraryapp.security;
 
-import com.liftoff.libraryapp.services.MyUserDetailsService;
+import com.liftoff.libraryapp.models.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 // **** Description *** //
@@ -36,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable() // can send post without being rejected, just temporary.
                 .authorizeRequests()
-                    .antMatchers("/api/v1/registration/**")
+                    .antMatchers("/registration/**")
                     .permitAll()
                 .anyRequest()
                 .authenticated().and()
