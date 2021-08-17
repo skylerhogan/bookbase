@@ -4,7 +4,6 @@ package com.liftoff.libraryapp.registration.token;
 import com.liftoff.libraryapp.models.User;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 // **** Description *** //

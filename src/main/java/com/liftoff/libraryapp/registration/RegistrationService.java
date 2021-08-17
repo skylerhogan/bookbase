@@ -11,7 +11,6 @@ import com.liftoff.libraryapp.models.User;
 import com.liftoff.libraryapp.models.UserRoles;
 import com.liftoff.libraryapp.registration.token.ConfirmationToken;
 import com.liftoff.libraryapp.registration.token.ConfirmationTokenService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
