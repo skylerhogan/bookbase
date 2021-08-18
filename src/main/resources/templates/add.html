@@ -1,10 +1,85 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-   <meta charset="UTF-8">
-   <title>Title</title>
+<head th:replace="fragments :: head">
 </head>
 <body>
+<header>
+   <nav th:replace="fragments :: navigation-user"></nav>
+</header>
+
+<div class="card mx-auto" style="width: 25rem; height: 30rem; top: 30%">
+   <div class="card-body">
+      <form class="row gy-2 gx-3 align-items-center">
+         <div class="col-auto" style="width: 20rem;">
+            <label class="visually-hidden" for="titleGroup">Title</label>
+            <div class="input-group">
+               <div class="input-group-text">Title</div>
+               <input type="text" class="form-control" id="titleGroup" placeholder="Dune">
+            </div>
+         </div>
+         <div class="col-auto" style="width: 20rem;">
+            <label class="visually-hidden" for="authorGroup">Author</label>
+            <div class="input-group">
+               <div class="input-group-text">Author</div>
+               <input type="text" class="form-control" id="authorGroup" placeholder="Frank Herbert">
+            </div>
+         </div>
+         <div class="col-auto" style="width: 12rem;">
+            <label class="visually-hidden" for="isbnGroup">ISBN</label>
+            <div class="input-group">
+               <div class="input-group-text">ISBN</div>
+               <input type="text" class="form-control" id="isbnGroup" placeholder="0441172717">
+            </div>
+         </div>
+         <div class="col-auto" style="width: 9rem;">
+            <label class="visually-hidden" for="pagesGroup">Pages</label>
+            <div class="input-group">
+               <div class="input-group-text">Pages</div>
+               <input type="text" class="form-control" id="pagesGroup" placeholder="896">
+            </div>
+         </div>
+         <div class="col-auto">
+            <label class="visually-hidden" for="genreSelect">Genre</label>
+            <select class="form-select" id="genreSelect">
+               <option selected>Genre</option>
+               <option value="1">Memoir</option>
+               <option value="2">Biography</option>
+               <option value="3">Self-Help</option>
+               <option value="4">Religion and Spirituality</option>
+               <option value="5">Health and Fitness</option>
+               <option value="6">Politics and Social Sciences</option>
+               <option value="6">Business and Money</option>
+               <option value="7">Tech</option>
+               <option value="8">Sci-Fi and Fantasy</option>
+               <option value="8">Mystery, Thriller, and Suspense</option>
+               <option value="8">Romance</option>
+               <option value="7">Fiction (General)</option>
+               <option value="8">Non-Fiction (Other)</option>
+            </select>
+         </div>
+         <div class="col-auto">
+            <label class="visually-hidden" for="statusSelect">Status</label>
+            <select class="form-select" id="statusSelect">
+               <option selected>Status</option>
+               <option value="1">Currently Reading</option>
+               <option value="2">Want to Read</option>
+               <option value="3">Completed</option>
+            </select>
+         </div>
+         <div class="col-auto" >
+            <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
+         </div>
+         <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Add Book</button>
+         </div>
+      </form>
+   </div>
+</div>
+
+// Script for feather icons
+<script>
+      feather.replace()
+    </script>
 
 </body>
 </html>
