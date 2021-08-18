@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<head th:fragment="head">
+
+   <!-- Bootstrap stylesheets and script -->
+   <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+   <link th:href="@{/css/librarymanager.css}" rel="stylesheet" />
+   <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+
+   <title th:text="'Library Manager' + ${title == null ? '' : ' :: ' + title}">Library Manager</title>
+</head>
+
+<body>
+
+<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
+   <div class="container-fluid">
+      <div class="navbar-header">
+         <a th:href="@{/}" class="navbar-brand" href="#"><span class="glyphicon glyphicon-book"></span>Library</a>
+         <button class = "navbar-toggle" type = "button"
+                 Data-target = "navbar-collapse" data-toggle = "collapse">
+            menu
+         </button>
+      </div>
+      <ul class="nav navbar-nav navbar-collapse ">
+         <li><a th:href="@{/list}">Home</a></li>
+         <li><a th:href="@{/search}">Search</a></li>
+         <li><a th:href="@{/add}">Add Book</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right navbar-collapse">
+         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+   </div>
+</div>
+
+
+</body>
+</html>
+
