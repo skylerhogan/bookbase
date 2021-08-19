@@ -1,7 +1,7 @@
-package com.liftoff.librarymanager.controllers;
+package com.liftoff.libraryapp.controllers;
 
-import com.liftoff.librarymanager.models.Book;
-import com.liftoff.librarymanager.repositories.BookRepository;
+import com.liftoff.libraryapp.models.Book;
+import com.liftoff.libraryapp.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.Date;
-import java.util.Optional;
 
 
 @Controller

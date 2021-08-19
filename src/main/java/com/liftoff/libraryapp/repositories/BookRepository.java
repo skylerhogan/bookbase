@@ -1,6 +1,6 @@
-package com.liftoff.librarymanager.repositories;
+package com.liftoff.libraryapp.repositories;
 
-import com.liftoff.librarymanager.models.Book;
+import com.liftoff.libraryapp.models.Book;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
