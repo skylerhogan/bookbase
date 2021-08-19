@@ -70,8 +70,8 @@
          <div class="col-auto" >
             <div class="rating"> <input th:field="${book.rating}" type="radio" name="rating" value="5" id="5" required><label th:for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label th:for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label th:for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label th:for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label th:for="1">☆</label> </div>
          </div>
-         <div class="col-auto mx-auto">
-            <button type="submit" class="btn btn-primary btn-lg mt-5">Add Book</button>
+         <div class="col-auto mx-auto p-2 bg-white rounded">
+            <button type="submit" class="btn btn-primary btn-lg mt-4">Add Book</button>
          </div>
       </form>
    </div>
@@ -79,7 +79,7 @@
 
 <!--hidden search bar below book form-->
 <div class="mt-5">
-   <form class="d-none mx-auto" style="width:25rem; margin-top: 18rem; display:flex; justify-content:center">
+   <form class="d-flex mx-auto" style="width:25rem; margin-top: 18rem; display:flex; justify-content:center">
       <input class="form-control me-2" type="search" placeholder="Search for a book" aria-label="Search">
       <button class="btn btn-primary me-2" type="submit">Search</button>
    </form>
