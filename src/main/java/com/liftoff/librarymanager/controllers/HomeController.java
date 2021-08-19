@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Date;
+import java.util.Optional;
 
 
 @Controller
@@ -41,6 +43,8 @@ public class HomeController {
         model.addAttribute("genre", genre);
         model.addAttribute("status", status);
         model.addAttribute("rating", rating);
+        Date date = new Date();
+        model.addAttribute("date", date);
 
 
 
@@ -51,6 +55,7 @@ public class HomeController {
         newBook.setGenre(genre);
         newBook.setStatus(status);
         newBook.setRating(rating);
+        newBook.setDate(date);
 
         bookRepository.save(newBook);
 

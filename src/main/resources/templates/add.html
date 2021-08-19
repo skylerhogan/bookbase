@@ -7,40 +7,41 @@
    <nav th:replace="fragments :: navigation-user"></nav>
 </header>
 
-<div class="card mx-auto" style="width: 25rem; height: 25rem; top: 30%">
+<!--form to manually add books to database-->
+<div class="card mx-auto" style="width: 25rem; height: 20.5rem; top: 30%">
    <div class="card-body">
       <form method="post" class="row gy-2 gx-3 align-items-center">
          <div class="col-auto" style="width: 100%;">
             <label class="visually-hidden" th:for="title">Title</label>
             <div class="input-group">
                <div class="input-group-text">Title</div>
-               <input th:field="${book.title}" type="text" class="form-control" id="title" placeholder="Dune">
+               <input th:field="${book.title}" type="text" class="form-control" id="title" placeholder="Dune" required>
             </div>
          </div>
          <div class="col-auto" style="width: 100%;">
             <label class="visually-hidden" th:for="author">Author</label>
             <div class="input-group">
                <div class="input-group-text">Author</div>
-               <input th:field="${book.author}" type="text" class="form-control" id="author" placeholder="Frank Herbert">
+               <input th:field="${book.author}" type="text" class="form-control" id="author" placeholder="Frank Herbert" required>
             </div>
          </div>
-         <div class="col-auto" style="width: 50%;">
+         <div class="col-auto" style="width: 60%;">
             <label class="visually-hidden" th:for="isbn">ISBN</label>
             <div class="input-group">
                <div class="input-group-text">ISBN</div>
-               <input th:field="${book.isbn}" type="text" class="form-control" id="isbn" placeholder="0441172717">
+               <input th:field="${book.isbn}" type="text" class="form-control" id="isbn" placeholder="0441172717" required>
             </div>
          </div>
-         <div class="col-auto" style="width: 50%;">
+         <div class="col-auto" style="width: 40%;">
             <label class="visually-hidden" th:for="pages">Pages</label>
             <div class="input-group">
                <div class="input-group-text">Pages</div>
-               <input th:field="${book.pages}" type="text" class="form-control" id="pages" placeholder="896">
+               <input th:field="${book.pages}" type="text" class="form-control" id="pages" placeholder="896" required>
             </div>
          </div>
          <div class="col-auto">
             <label class="visually-hidden" th:for="genre">Genre</label>
-            <select th:field="*{book.genre}" class="form-select" id="genre" value="">
+            <select th:field="*{book.genre}" class="form-select" id="genre" required>
                <option selected value="">Genre</option>
                <option value="1">Memoir</option>
                <option value="2">Biography</option>
@@ -59,7 +60,7 @@
          </div>
          <div class="col-auto">
             <label class="visually-hidden" th:for="status">Status</label>
-            <select th:field="${book.status}" class="form-select" id="status">
+            <select th:field="${book.status}" class="form-select" id="status" required>
                <option selected value="">Status</option>
                <option value="1">Currently Reading</option>
                <option value="2">Want to Read</option>
@@ -67,7 +68,7 @@
             </select>
          </div>
          <div class="col-auto" >
-            <div class="rating"> <input th:field="${book.rating}" type="radio" name="rating" value="5" id="5"><label th:for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label th:for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label th:for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label th:for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label th:for="1">☆</label> </div>
+            <div class="rating"> <input th:field="${book.rating}" type="radio" name="rating" value="5" id="5" required><label th:for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label th:for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label th:for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label th:for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label th:for="1">☆</label> </div>
          </div>
          <div class="col-auto mx-auto">
             <button type="submit" class="btn btn-primary btn-lg mt-5">Add Book</button>
@@ -76,10 +77,13 @@
    </div>
 </div>
 
-// Script for feather icons
-<script>
-      feather.replace()
-    </script>
+<!--hidden search bar below book form-->
+<div class="mt-5">
+   <form class="d-none mx-auto" style="width:25rem; margin-top: 18rem; display:flex; justify-content:center">
+      <input class="form-control me-2" type="search" placeholder="Search for a book" aria-label="Search">
+      <button class="btn btn-primary me-2" type="submit">Search</button>
+   </form>
+</div>
 
 </body>
 </html>

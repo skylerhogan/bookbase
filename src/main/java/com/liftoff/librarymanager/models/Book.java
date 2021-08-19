@@ -1,6 +1,10 @@
 package com.liftoff.librarymanager.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.Optional;
 
 @Entity
 public class Book {
@@ -16,8 +20,8 @@ public class Book {
             strategy = GenerationType.AUTO,
             generator = "user_sequence"
     )
-    private Long id;
 
+    private Long id;
     private String title;
     private String author;
     private String isbn;
@@ -25,6 +29,7 @@ public class Book {
     private String genre;
     private String status;
     private String rating;
+    private Date date;
 
     public Long getId() {
         return id;
@@ -33,7 +38,7 @@ public class Book {
     public Book() {}
     
     public Book(Long id, String title, String author, String isbn,
-                String pages, String genre, String status, String rating) {
+                String pages, String genre, String status, String rating, Date date) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -42,6 +47,7 @@ public class Book {
         this.genre = genre;
         this.status = status;
         this.rating = rating;
+        this.date = date;
     }
 
     public String getTitle() {
@@ -92,7 +98,7 @@ public class Book {
         this.status = status;
     }
 
-    public String getRating() {
+    public String getRating(){
         return rating;
     }
 
@@ -100,4 +106,11 @@ public class Book {
         this.rating = rating;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

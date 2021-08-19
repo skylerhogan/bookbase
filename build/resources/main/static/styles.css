@@ -6,12 +6,6 @@ body {
     background-attachment: fixed;
 }
 
-.navbar-nav>li {             /* <- this affects all navbars */
-    float: none;
-    text-align: center;
-    display: inline-block;
-}
-
 .login-card {
     background-color: #f4f4f4;
     position: absolute;
@@ -44,14 +38,7 @@ body {
     margin-top: 20px;
 }
 
-.add-card {
-    background-color: #f4f4f4;
-    position: absolute;
-    top: 50%;
-    padding: 30px;
-    border-radius: 5px;
-}
-
+/* responsive star rating */
 .rating {
     display: flex;
     flex-direction: row-reverse;
@@ -103,4 +90,11 @@ body {
 
 .rating-submit:hover {
     color: #fff
+}
+
+/* aligns bootstrap icons with text */
+.bi {
+    position: relative;
+    bottom: 2px;
+    right: .25rem;
 }
