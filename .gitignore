@@ -12,7 +12,6 @@ build/
 .project
 .settings
 .springBeans
-<<<<<<< HEAD
 .sts4-cache
 
 ### IntelliJ IDEA ###
@@ -32,5 +31,4 @@ out/
 ### VS Code ###
 .vscode/
 =======
-.sts4-cache
->>>>>>> 71637e75abdf1fca063584d83d94468678e8758d
+/bin/
