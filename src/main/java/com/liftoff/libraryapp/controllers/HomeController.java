@@ -6,16 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Date;
 
 
 @Controller
+@RequestMapping("user")
 public class HomeController {
 
     @Autowired
@@ -24,7 +22,7 @@ public class HomeController {
     @GetMapping("add")
     public String displayAddBookForm(Model model) {
         model.addAttribute(new Book());
-        return "add";
+        return "/add";
     }
 
     @PostMapping("add")
@@ -32,7 +30,7 @@ public class HomeController {
                                     Errors errors, Model model, @RequestParam String title, @RequestParam String author, @RequestParam String isbn,
                                      @RequestParam String pages, @RequestParam String genre, @RequestParam String status, @RequestParam String rating) {
         if (errors.hasErrors()) {
-            return "add";
+            return "/add";
         }
 
         model.addAttribute("title", title);
