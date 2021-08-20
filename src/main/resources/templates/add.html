@@ -43,28 +43,28 @@
             <label class="visually-hidden" th:for="genre">Genre</label>
             <select th:field="*{book.genre}" class="form-select" id="genre" required>
                <option selected value="">Genre</option>
-               <option value="1">Memoir</option>
-               <option value="2">Biography</option>
-               <option value="3">Self-Help</option>
-               <option value="4">Religion and Spirituality</option>
-               <option value="5">Health and Fitness</option>
-               <option value="6">Politics and Social Sciences</option>
-               <option value="7">Business and Money</option>
-               <option value="8">Tech</option>
-               <option value="9">Sci-Fi and Fantasy</option>
-               <option value="10">Mystery, Thriller, and Suspense</option>
-               <option value="11">Romance</option>
-               <option value="12">Fiction (General)</option>
-               <option value="13">Non-Fiction (Other)</option>
+               <option value="Memoir">Memoir</option>
+               <option value="Biography">Biography</option>
+               <option value="Self-Help">Self-Help</option>
+               <option value="Religion and Spirituality">Religion and Spirituality</option>
+               <option value="Health and Fitness">Health and Fitness</option>
+               <option value="Politics and Social Sciences">Politics and Social Sciences</option>
+               <option value="Business and Money">Business and Money</option>
+               <option value="Tech">Tech</option>
+               <option value="Sci-Fi and Fantasy">Sci-Fi and Fantasy</option>
+               <option value="Mystery, Thriller, and Suspense">Mystery, Thriller, and Suspense</option>
+               <option value="Romance">Romance</option>
+               <option value="Fiction (General)">Fiction (General)</option>
+               <option value="Non-Fiction (Other)">Non-Fiction (Other)</option>
             </select>
          </div>
          <div class="col-auto">
             <label class="visually-hidden" th:for="status">Status</label>
             <select th:field="${book.status}" class="form-select" id="status" required>
                <option selected value="">Status</option>
-               <option value="1">Currently Reading</option>
-               <option value="2">Want to Read</option>
-               <option value="3">Completed</option>
+               <option value="Currently Reading">Currently Reading</option>
+               <option value="Want to Read">Want to Read</option>
+               <option value="Completed">Completed</option>
             </select>
          </div>
          <div class="col-auto" >
@@ -80,7 +80,7 @@
 <!--hidden search bar below book form-->
 <div class="mt-5">
    <form class="d-flex mx-auto" style="width:25rem; margin-top: 18rem; display:flex; justify-content:center">
-      <input class="form-control me-2" type="search" placeholder="Search for a book" aria-label="Search">
+      <input class="form-control me-2" type="search" placeholder="Title / Author / ISBN" aria-label="Search">
       <button class="btn btn-primary me-2" type="submit">Search</button>
    </form>
 </div>

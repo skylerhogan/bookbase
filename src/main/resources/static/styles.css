@@ -98,3 +98,14 @@ body {
     bottom: 2px;
     right: .25rem;
 }
+
+.nav-search {
+    width:50%;
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+    .nav-search {
+        width: 100%;
+    }
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<header>
+   <nav th:replace="fragments :: navigation-user"></nav>
+</header>
+<body>
+   <div class="card mx-auto" style="width: 20rem; height: 24rem; top: 30%">
+      <div class="card-body">
+         <h4 th:text="${book.title}" class="text-primary"></h4>
+         <h5 th:text="${book.author}" class="text-secondary"></h5>
+         <p th:text="${'ISBN: ' + book.isbn}" class="text-dark"></p>
+         <p th:text="${'Pages: ' + book.pages}" class="text-dark"></p>
+         <p th:text="${'Genre: ' + book.genre}" class="text-dark"></p>
+         <p th:text="${'Shelf: ' + book.status}" class="text-dark"></p>
+         <p th:text="${'Rating: ' + book.rating + '/5'}" class="text-dark"></p>
+      </div>
+      <div class="card-footer">
+         <small class="text-muted" th:text="${'Date Added: ' + book.date}"></small>
+      </div>
+   </div>
+</body>
+</html>

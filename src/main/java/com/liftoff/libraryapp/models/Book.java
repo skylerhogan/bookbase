@@ -1,7 +1,6 @@
 package com.liftoff.libraryapp.models;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 public class Book {
@@ -15,10 +14,10 @@ public class Book {
     @Id
     @GeneratedValue(
             strategy = GenerationType.AUTO,
-            generator = "user_sequence"
+            generator = "book_sequence"
     )
 
-    private Long id;
+    private int id;
     private String title;
     private String author;
     private String isbn;
@@ -26,16 +25,16 @@ public class Book {
     private String genre;
     private String status;
     private String rating;
-    private Date date;
+    private String date;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
     public Book() {}
     
-    public Book(Long id, String title, String author, String isbn,
-                String pages, String genre, String status, String rating, Date date) {
+    public Book(int id, String title, String author, String isbn,
+                String pages, String genre, String status, String rating, String date) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -103,11 +102,11 @@ public class Book {
         this.rating = rating;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

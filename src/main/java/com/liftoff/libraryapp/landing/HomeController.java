@@ -1,11 +1,11 @@
-package com.liftoff.libraryapp.controllers;
+package com.liftoff.libraryapp.landing;
 
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class HelloController {
+public class HomeController {
 
     @GetMapping
     public String hello() {

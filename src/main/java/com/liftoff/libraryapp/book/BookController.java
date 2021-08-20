@@ -1,4 +1,4 @@
-package com.liftoff.libraryapp.controllers;
+package com.liftoff.libraryapp.book;
 
 import com.liftoff.libraryapp.models.Book;
 import com.liftoff.libraryapp.repositories.BookRepository;
@@ -9,12 +9,15 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 
 @Controller
 @RequestMapping("user")
-public class HomeController {
+public class BookController {
 
     @Autowired
     private BookRepository bookRepository;
@@ -40,10 +43,11 @@ public class HomeController {
         model.addAttribute("genre", genre);
         model.addAttribute("status", status);
         model.addAttribute("rating", rating);
-        Date date = new Date();
-        model.addAttribute("date", date);
 
-
+        DateFormat Date = DateFormat.getDateInstance();
+        Calendar cals = Calendar.getInstance();
+        String currentDate = Date.format(cals.getTime());
+        model.addAttribute("date", currentDate);
 
         newBook.setTitle(title);
         newBook.setAuthor(author);
@@ -52,10 +56,28 @@ public class HomeController {
         newBook.setGenre(genre);
         newBook.setStatus(status);
         newBook.setRating(rating);
-        newBook.setDate(date);
+        newBook.setDate(currentDate);
 
         bookRepository.save(newBook);
 
         return "redirect:add";
+    }
+
+    @RequestMapping("shelf")
+    public String displayBookshelf(Model model) {
+        model.addAttribute("books", bookRepository.findAll());
+        return "/shelf";
+    }
+
+    @GetMapping("view/{bookId}")
+    public String displayViewBook(Model model, @PathVariable int bookId) {
+        Optional<Book> optBook = bookRepository.findById(bookId);
+        if (optBook.isPresent()) {
+            Book book = (Book) optBook.get();
+            model.addAttribute("book", book);
+            return "/view";
+        } else {
+            return "redirect:../shelf";
+        }
     }
 }
