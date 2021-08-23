@@ -23,60 +23,58 @@
 </nav>
 
 <!-- Header/showcase -->
-<section id="showcase" class="text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
+<header class="text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
     <div class="container pt-5 py-lg-5">
-        <!--        <p class="lead py-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni saepe qui fugiat-->
-        <!--            recusandae-->
-        <!--            aperiam laudantium corrupti minima iste veniam, vel aspernatur, iusto quasi eligendi praesentium quos-->
-        <!--            sed officiis, culpa id ut eius fugit expedita temporibus sint. Saepe corrupti facilis id fugiat-->
-        <!--            aspernatur,-->
-        <!--            ut, dignissimos deleniti voluptates libero totam fugit cupiditate natus tenetur, asperiores tempore-->
-        <!--            maiores-->
-        <!--            repellendus explicabo eum enim animi error. Facilis corporis consequuntur similique quibusdam-->
-        <!--            praesentium adipisci. Inventore, minus natus eum corrupti tempora quis. Saepe, unde autem rem similique-->
-        <!--            distinctio-->
-        <!--            facere eaque dicta nisi commodi veniam atque pariatur quae natus sint provident illo id doloremque,-->
-        <!--            ipsam, et ea.</p>-->
-        <div class="row justify-content-evenly text-dark py-3 g-5">
-            <div class="col-md-5">
+        <div class="header-text-box">
+            <h1 class="fw-bolder text-sm-center text-lg-end">Library App</h1>
+            <h3 class="fw-light text-sm-center text-lg-end">Manage Your Own Personal Library</h3>
+        </div>
+    </div>
+</header>
+
+<!-- Feature Cards -->
+<section id="features" class="bg-secondary bg-opacity-25 p-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-md-6 col-xxl-3 d-flex">
                 <div class="card bg-light pb-3">
-                    <div class="card-body text-center">
+                    <div class="card-body flex-fill text-center">
                         <div class="h1 mb-3">
                             <i class="bi bi-book"></i>
                         </div>
                         <h3 class="card-title mb-3">Manage Your Personal Library</h3>
-                        <p class="card-text px-3 px-lg-5">Keep an ongoing list of books you've read, are currently
+                        <p class="card-text px-3">Keep an ongoing list of books you've read, are currently
                             reading, and want to read in the future.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6 col-xxl-3 d-flex">
                 <div class="card bg-light pb-3">
-                    <div class="card-body text-center">
+                    <div class="card-body flex-fill text-center">
                         <div class="h1 mb-3">
                             <i class="bi bi-bookmark"></i>
                         </div>
                         <h3 class="card-title mb-3">Create Digital Bookmarks</h3>
-                        <p class="card-text px-3 px-lg-5">Save all of your favorite quotes, passages, and ideas in
+                        <p class="card-text px-3">Save all of your favorite quotes, passages, and ideas in
                             one convenient place.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6 col-xxl-3 d-flex">
                 <div class="card bg-light pb-3">
-                    <div class="card-body text-center">
+                    <div class="card-body flex-fill text-center">
                         <div class="h1 mb-3">
                             <i class="bi bi-search"></i>
                         </div>
                         <h3 class="card-title mb-3">Browse Millions of Titles</h3>
-                        <p class="card-text px-3 px-lg-5">Use the integrated Google Books search to find and
+                        <p class="card-text px-3">Use the integrated Google Books search to find and
                             add titles to your own library.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6 col-xxl-3 d-flex">
                 <div class="card bg-light pb-3">
-                    <div class="card-body text-center">
+                    <div class="card-body flex-fill text-center">
                         <div class="h1 mb-3">
                             <i class="bi bi-star-fill"></i>
                             <i class="bi bi-star-fill"></i>
@@ -85,21 +83,20 @@
                             <i class="bi bi-star-half"></i>
                         </div>
                         <h3 class="card-title mb-3">Rate, Review, and Favorite</h3>
-                        <p class="card-text px-3 px-lg-5">Share your thoughts with other readers and optionally
+                        <p class="card-text px-3">Share your thoughts with other readers and optionally
                             set reminders to revisit your favorite books.</p>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 
 <!-- Carousel -->
-<section id="carousel" class="bg-dark p-5 d-none d-lg-block">
+<section id="carousel" class="bg-light p-5 d-none d-lg-block">
     <div class="container">
-        <p class="lead text-light pb-5">Choose from millions of books to add to your library, including these
-            bestsellers:</p>
+        <p class="fw-normal lead text-dark pb-5">Choose from millions of books to add to your library, including
+            these bestsellers:</p>
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <!-- <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -165,16 +162,16 @@
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
+            <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
+                data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
-            </button>
+            </button> -->
         </div>
 
     </div>
