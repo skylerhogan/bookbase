@@ -60,7 +60,7 @@ public class SearchController {
                                      @RequestParam String author, @RequestParam String isbn, @RequestParam String pages,
                                      @RequestParam String genre, @RequestParam String status, @RequestParam String rating,@PathVariable String bookId) {
         if(errors.hasErrors()) {
-            return "search/view";
+            return "search/view/{bookId}";
         }
         model.addAttribute("title", title);
         model.addAttribute("author", author);
