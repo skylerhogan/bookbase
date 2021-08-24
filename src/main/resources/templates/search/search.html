@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th='http://www.thymeleaf.org/'>
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab&family=Oswald&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/search.css}">
+
+    <title>Search</title>
+
+</head>
+<body>
+<div class="page-container">
+
+    <div id="top-nav" class="nav-bar">
+
+        <div id="page-heading" class="nav-item">
+            <h1 class="heading">page title</h1>
+        </div>
+
+    </div>
+
+    <div id="search-form-container" class="section">
+        <form method="post" id="search-form" name="search-form">
+            <label class="form-text">
+                <input type="text" name="searchQuery" placeholder="search . . ." id="search-field" class="form-text">
+            </label>
+            <label class="form-text">
+                <select name="searchParameter" class="form-text">
+                    <option value="all">all</option>
+                    <option value="intitle">title</option>
+                    <option value="inauthor">author</option>
+                    <option value="subject">genre</option>
+                    <option value="isbn">isbn</option>
+                </select>
+            </label>
+            <input type="submit" value="search" class="form-button">
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+
+<!doctype html>
+<html lang="en" xmlns:th='http://www.thymeleaf.org/'>
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab&family=Oswald&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/view.css}">
+
+    <title>Search</title>
+
+</head>
+<body>
+<div class="page-container">
+
+    <div id="top-nav" class="nav-bar">
+
+        <div id="page-heading" class="nav-item">
+            <h1 class="heading">page title</h1>
+        </div>
+
+    </div>
+
+    <div class="section">
+        <div id="book-container">
+            <div id="cover-and-rating" class="column">
+                <img id="book-cover" alt="book cover image">
+            </div>
+            <div id="book-details" class="column"></div>
+            <div id="buttons" class="column">
+                <div>
+                    <button id="add-button">Add Book</button>
+                </div>
+            </div>
+        </div>
+        <div id="book-description"></div>
+    </div>
+
+    <div id="add-book-form-container">
+
+        <form id="add-book-form" method="post">
+            <label>Title:
+                <input th:field="${book.title}" id="title">
+            </label>
+            <label>Author:
+                <input th:field="${book.author}" id="author">
+            </label>
+            <label>ISBN:
+                <input th:field="${book.isbn}" id="isbn">
+            </label>
+            <label>Pages:
+                <input th:field="${book.pages}" id="pages">
+            </label>
+            <label>Genre:
+                <input th:field="${book.genre}" id="genre">
+            </label>
+            <label>Status:
+                <select th:field="${book.status}" id="status">
+                    <option selected value="">Status</option>
+                    <option value="Currently Reading">Currently Reading</option>
+                    <option value="Want to Read">Want to Read</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </label>
+            <label>Rating:
+                <select th:field="${book.rating}" id="rating">
+                    <<option selected value="">Select One</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </label>
+            <button type="submit">Add Book</button>
+        </form>
+    </div>
+
+</div>
+<script>
+    let bookId = '[[${bookId}]]'
+</script>
+<script type="module" th:src="@{/script/search/view.js}" th:inline="javascript"></script>
+
+</body>
+</html>
