@@ -1,123 +1,284 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:fragment="head">
-  <meta charset="UTF-8" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-  <link rel="stylesheet" th:href="@{/styles.css}" />
-  <link rel="stylesheet" th:href="@{/shelf.css}" />
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <title>Library App</title>
-</head>
-<body>
-
-<!-- Navbar(guest) -->
-<nav th:fragment="navigation-guest" class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand me-2" href="#">Library App</a>
-      <div class="d-flex">
-        <ul class="navbar-nav px-3 me-2">
-          <li class="nav-item">
-            <a href="#" class="nav-link" style="color: #0d6efd">Register</a>
-          </li>
-        </ul>
-        <button type="button" class="btn btn-primary">Log In</button>
+  <head th:fragment="head">
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <link rel="stylesheet" th:href="@{/shelf.css}" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <title>Library App</title>
+  </head>
+  <body>
+    <!-- Navbar(guest) -->
+    <nav
+      th:fragment="navigation-guest"
+      class="navbar fixed-top navbar-expand-lg navbar-light bg-light"
+    >
+      <div class="container">
+        <a class="navbar-brand me-2" href="#">Library App</a>
+        <div class="d-flex">
+          <ul class="navbar-nav px-3 me-2">
+            <li class="nav-item">
+              <a href="#" class="nav-link" style="color: #0d6efd">Register</a>
+            </li>
+          </ul>
+          <button type="button" class="btn btn-primary">Log In</button>
+        </div>
       </div>
-  </div>
-</nav>
+    </nav>
 
-<!-- Navbar(logged-in user pages) -->
-<nav th:fragment="navigation-user" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand me-2" id="logo" href="http://localhost:8080">
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-exclude" viewBox="0 0 16 16">
-        <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z"/>
-      </svg>
-      library</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    <div class="navbar-collapse collapse ms-auto" id="navbarText">
-      <ul class="navbar-nav ms-auto align-items-end">
+    <!-- Navbar(logged-in user pages) -->
+    <nav
+      th:fragment="navigation-user"
+      class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand me-2" id="logo" href="http://localhost:8080">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            fill="currentColor"
+            class="bi bi-exclude"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z"
+            />
+          </svg>
+          library</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse ms-auto" id="navbarText">
+          <ul class="navbar-nav ms-auto align-items-end">
+            <li class="nav-item mx-1 nav-search">
+              <form class="nav-link">
+                <input
+                  class="form-control"
+                  type="search"
+                  placeholder="Title / Author / ISBN"
+                  aria-label="Search"
+                />
+              </form>
+            </li>
+            <li
+              th:unless="${#httpServletRequest.requestURI == '/user/shelf'}"
+              class="nav-item-btn"
+            >
+              <a
+                href="http://localhost:8080/user/shelf"
+                class="nav-link icon-btn my-2"
+                style="currentColor"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="5%"
+                  class="bi bi-bookshelf"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2.5 0a.5.5 0 0 1 .5.5V2h10V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-1 0V15H3v.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zM3 14h10v-3H3v3zm0-4h10V7H3v3zm0-4h10V3H3v3z"
+                  /></svg
+              ></a>
+            </li>
 
-        <li class="nav-item mx-1 nav-search">
-          <form class="nav-link">
-            <input class="form-control" type="search" placeholder="Title / Author / ISBN" aria-label="Search">
+            <li
+              th:unless="${#httpServletRequest.requestURI == '/user/add'}"
+              class="nav-item-btn"
+            >
+              <a
+                href="http://localhost:8080/user/add"
+                class="nav-link icon-btn active my-2"
+                aria-current="page"
+                style="color: #20c997"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="currentColor"
+                  class="bi bi-plus-lg"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"
+                  /></svg
+              ></a>
+            </li>
+            <li
+              th:if="${#httpServletRequest.requestURI == '/user/shelf'}"
+              class="nav-item-btn"
+            >
+              <a
+                th:href="@{|/user/delete|}"
+                class="btn icon-btn nav-link my-2"
+                aria-current="page"
+                style="color: #ffc107"
+                ;
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="currentColor"
+                  stroke="#ffc107"
+                  stroke-width="3%"
+                  class="bi bi-pencil-square"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                  /></svg
+              ></a>
+            </li>
 
-          </form>
-        </li>
-        <li th:unless="${#httpServletRequest.requestURI == '/user/shelf'}" class="nav-item-btn">
-          <a href="http://localhost:8080/user/shelf" class="nav-link icon-btn my-2" style="currentColor">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" stroke="currentColor" stroke-width="5%" class="bi bi-bookshelf" viewBox="0 0 16 16">
-              <path d="M2.5 0a.5.5 0 0 1 .5.5V2h10V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-1 0V15H3v.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zM3 14h10v-3H3v3zm0-4h10V7H3v3zm0-4h10V3H3v3z"/>
-            </svg></a>
-        </li>
+            <li
+              th:if="${#httpServletRequest.requestURI == '/user/delete'}"
+              class="nav-item-btn"
+            >
+              <a
+                th:href="@{|/user/delete|}"
+                class="btn icon-btn nav-link my-2"
+                aria-current="page"
+                style="color: #dc3545"
+                ;
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="#dc3545"
+                  class="bi bi-x-lg"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"
+                  /></svg
+              ></a>
+            </li>
 
-        <li th:unless="${#httpServletRequest.requestURI == '/user/add'}" class="nav-item-btn">
-          <a href="http://localhost:8080/user/add" class="nav-link icon-btn active my-2" aria-current="page" style="color: #20c997">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-              <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
-            </svg></a>
-        </li>
-        <li th:if="${#httpServletRequest.requestURI == '/user/shelf'}" class="nav-item-btn">
-          <a th:href="@{|/user/delete|}" class="btn icon-btn nav-link my-2" aria-current="page"  style="color: #ffc107"; ><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" stroke="#ffc107" stroke-width="3%" class="bi bi-pencil-square" viewBox="0 0 16 16">
-            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-          </svg></a>
-        </li>
-
-        <li th:if="${#httpServletRequest.requestURI == '/user/delete'}" class="nav-item-btn">
-          <a th:href="@{|/user/delete|}" class="btn icon-btn nav-link my-2" aria-current="page"  style="color: #dc3545"; ><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#dc3545" class="bi bi-x-lg" viewBox="0 0 16 16">
-            <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
-          </svg></a>
-        </li>
-
-        <li class="nav-item-btn" >
-          <button href="http://localhost:8080"  class="btn btn-danger nav-link my-2" id="logout-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-right" stroke="currentColor" stroke-width="3%" viewBox="0 0 16 16" id="logout-svg">
-              <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
-              <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-            </svg></button>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div th:fragment="bookshelf-grid" style="margin-left:-1rem">
-  <div class=" row row-cols-3 row-cols-xs-3 row-cols-md-4 row-cols-lg-5" style="position: relative; top: 125px;">
-    <div th:each="book : ${books}" class="cols-3">
-      <div  class="card bg-transparent flex-lg-row mx-auto mb-3">
-        <a th:if="${#httpServletRequest.requestURI == '/user/shelf'}" th:href="@{|/user/view/${book.id}|}" class="container d-flex">
-          <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" class="bookcover mx-auto" z-index="1" margin-top="-2" height="200"  alt="cover">
-        </a>
-
-<!--        <div th:if="${#httpServletRequest.requestURI == '/user/delete'}" class="form-check">-->
-<!--          <input name="bookIds" type="checkbox" id="selectBooks" />-->
-<!--          <label for="selectBooks">-->
-<!--            <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" class="bookcover mx-auto" z-index="1" margin-top="-2" height="200"  alt="cover">-->
-<!--          </label>-->
-<!--        </div>-->
-
-
-
-
-        <div th:if="${#httpServletRequest.requestURI == '/user/delete'}">
-          <ul>
-            <li>
-              <div class="form-check" style="width:133px; height:200px;">
-                <input class="form-check" name="bookIds" th:value="${book.id}" type="checkbox" id="${book.id}">
-                <label class="form-check" style="width:133px; height:200px;" for="${book.id}"><img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" class="bookcover mx-auto" z-index="1" margin-top="-2" height="200"  alt="cover"></label>
-              </div>
+            <li class="nav-item-btn">
+              <button
+                href="http://localhost:8080"
+                class="btn btn-danger nav-link my-2"
+                id="logout-button"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="25"
+                  height="25"
+                  fill="currentColor"
+                  class="bi bi-box-arrow-right"
+                  stroke="currentColor"
+                  stroke-width="3%"
+                  viewBox="0 0 16 16"
+                  id="logout-svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
+                  />
+                </svg>
+              </button>
             </li>
           </ul>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+    </nav>
 
-</body>
+    <div th:fragment="bookshelf-grid" style="margin-left: -1rem">
+      <div
+        class="row row-cols-3 row-cols-xs-3 row-cols-md-4 row-cols-lg-5"
+        style="position: relative; top: 125px"
+      >
+        <div th:each="book : ${books}" class="cols-3">
+          <div class="card bg-transparent flex-lg-row mx-auto mb-3">
+            <a
+              th:if="${#httpServletRequest.requestURI == '/user/shelf'}"
+              th:href="@{|/user/view/${book.id}|}"
+              class="container d-flex"
+            >
+              <img
+                th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}"
+                class="bookcover mx-auto"
+                z-index="1"
+                margin-top="-2"
+                height="200"
+                alt="cover"
+              />
+            </a>
+
+            <!--        <div th:if="${#httpServletRequest.requestURI == '/user/delete'}" class="form-check">-->
+            <!--          <input name="bookIds" type="checkbox" id="selectBooks" />-->
+            <!--          <label for="selectBooks">-->
+            <!--            <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" class="bookcover mx-auto" z-index="1" margin-top="-2" height="200"  alt="cover">-->
+            <!--          </label>-->
+            <!--        </div>-->
+
+            <div th:if="${#httpServletRequest.requestURI == '/user/delete'}">
+              <ul>
+                <li>
+                  <div class="form-check" style="width: 133px; height: 200px">
+                    <input
+                      class="form-check"
+                      name="bookIds"
+                      th:value="${book.id}"
+                      type="checkbox"
+                      id="${book.id}"
+                    />
+                    <label
+                      class="form-check"
+                      style="width: 133px; height: 200px"
+                      for="${book.id}"
+                      ><img
+                        th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}"
+                        class="bookcover mx-auto"
+                        z-index="1"
+                        margin-top="-2"
+                        height="200"
+                        alt="cover"
+                    /></label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

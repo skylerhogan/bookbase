@@ -2,6 +2,7 @@ HELP.md
 .gradle
 build/
 build 2/
+bin/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
@@ -31,4 +32,3 @@ out/
 
 ### VS Code ###
 .vscode/
-=======

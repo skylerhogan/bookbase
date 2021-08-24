@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
 
 body {
@@ -231,3 +232,61 @@ label img {
   box-shadow: 0 0 5px #333;
   z-index: -1;*/
 }
+=======
+header {
+	height: 100vh;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+		url("/images/library.jpg");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+header h1 {
+	letter-spacing: 1px;
+	word-spacing: 4px;
+}
+
+header .header-text-box {
+	position: absolute;
+	width: 1140px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-transform: uppercase;
+}
+
+.opening-heading h2 {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-bottom: 30px;
+}
+
+.opening-heading h2:after {
+	display: block;
+	height: 3px;
+	background-color: #212529;
+	content: " ";
+	width: 300px;
+	margin: 25px auto;
+}
+
+.book {
+	max-height: 178px;
+}
+
+.carousel-control-prev {
+	margin-left: -10%;
+}
+
+.carousel-control-next {
+	margin-right: -10%;
+}
+
+@media only screen and (max-width: 1200px) {
+	header .header-text-box {
+		width: 100%;
+		padding: 0 2%;
+	}
+}
+>>>>>>> e18ec1aa93f1b3958562ba75f91a0b30936b5734
