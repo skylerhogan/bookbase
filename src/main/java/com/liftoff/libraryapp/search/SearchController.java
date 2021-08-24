@@ -5,8 +5,10 @@ import com.liftoff.libraryapp.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.text.DateFormat;
@@ -26,13 +28,16 @@ public class SearchController {
 
     @PostMapping("search")
     public String processSearchForm(Model model, String searchQuery, String searchParameter) {
+
+        model.addAttribute("searchQuery", searchQuery);
+        model.addAttribute("searchParameter", searchParameter);
         String query = "";
-        searchQuery = searchQuery.toLowerCase().replace(' ', '+');
+        String searchQueryPathVariable = searchQuery.toLowerCase().replace(' ', '+');
         if (!searchParameter.equals("all")) {
             searchParameter += ':';
-            query += "q=" + searchParameter + searchQuery;
+            query += "q=" + searchParameter + searchQueryPathVariable;
         } else {
-            query += "q=" + searchQuery;
+            query += "q=" + searchQueryPathVariable;
         }
         int pageNumber = 1;
         String currentPage = "&page=" + pageNumber;
@@ -42,6 +47,7 @@ public class SearchController {
 
     @GetMapping("search/results/{query}&page={currentPage}")
     public String displaySearchResults(Model model, @PathVariable String query, @PathVariable int currentPage) {
+
         model.addAttribute("query", query);
         model.addAttribute("pageNumber", currentPage);
         model.addAttribute("startIndex", (currentPage-1) * 10);

@@ -77,5 +77,49 @@
   </div>
 </nav>
 
+
+<!-- searchForm -->
+<div th:fragment="search-form" id="search-form-container" class="section">
+  <form method="post" id="search-form" name="search-form">
+
+    <div class="form-section">
+      <label class="form-text">
+        <input type="text" name="searchQuery" th:value="${searchQuery}" placeholder="search . . ." id="search-field" class="form-text">
+      </label>
+    </div>
+
+    <div class="form-section">
+      <label class="form-text">by:
+        <select name="searchParameter" th:value="${searchParameter}" class="form-text">
+          <option value="all">all</option>
+          <option value="intitle">title</option>
+          <option value="inauthor">author</option>
+          <option value="subject">genre</option>
+          <option value="isbn">isbn</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="form-section">
+      <label class="form-text">results per page:
+        <label class="form-text">
+          <input type="radio" name="resultsPerPage" value="10" checked>10
+        </label>
+        <label class="form-text">
+          <input selected type="radio" name="resultsPerPage" value="20">20
+        </label>
+        <label class="form-text">
+          <input selected type="radio" name="resultsPerPage" value="30">30
+        </label>
+      </label>
+    </div>
+
+    <div class="form-section">
+      <input type="submit" value="search" class="form-button">
+    </div>
+  </form>
+</div>
+
+
 </body>
 </html>
