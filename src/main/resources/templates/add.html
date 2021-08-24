@@ -8,10 +8,10 @@
 </header>
 
 <!--form to manually add books to database-->
-<div class="card mx-auto" style="width: 25rem; height: 20.5rem; top: 30%">
+<div class="card mx-auto bg-dark card-shadow" style="width: 26rem; height: 22rem; top: 30%">
    <div class="card-body">
       <form method="post" class="row gy-2 gx-3 align-items-center">
-         <div class="col-auto" style="width: 100%;">
+         <div class="col-auto mt-3" style="width: 100%;">
             <label class="visually-hidden" th:for="title">Title</label>
             <div class="input-group">
                <div class="input-group-text">Title</div>
@@ -29,7 +29,7 @@
             <label class="visually-hidden" th:for="isbn">ISBN</label>
             <div class="input-group">
                <div class="input-group-text">ISBN</div>
-               <input th:field="${book.isbn}" type="text" class="form-control" id="isbn" placeholder="0441172717" required>
+               <input th:field="${book.isbn}" type="text" class="form-control" id="isbn" placeholder="978-0441013593" required>
             </div>
          </div>
          <div class="col-auto" style="width: 40%;">
@@ -60,30 +60,46 @@
          </div>
          <div class="col-auto">
             <label class="visually-hidden" th:for="status">Status</label>
-            <select th:field="${book.status}" class="form-select" id="status" required>
+            <select th:field="${book.status}" class="form-select status-selector" id="status" required>
                <option selected value="">Status</option>
                <option value="Currently Reading">Currently Reading</option>
                <option value="Want to Read">Want to Read</option>
-               <option value="Completed">Completed</option>
+               <option id="completed" value="Completed">Completed</option>
             </select>
          </div>
-         <div class="col-auto" >
-            <div class="rating"> <input th:field="${book.rating}" type="radio" name="rating" value="5" id="5" required><label th:for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label th:for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label th:for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label th:for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label th:for="1">☆</label> </div>
+         <div>
+            <div class="rating mt-2 mb-1" id="starRating"> <input th:field="${book.rating}" type="radio" name="rating" value="5" id="5"><label th:for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label th:for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label th:for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label th:for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label th:for="1">☆</label><input type="radio" name="rating" value="" checked="checked"></div>
          </div>
-         <div class="col-auto mx-auto p-2 bg-white rounded">
-            <button type="submit" class="btn btn-primary btn-lg mt-4">Add Book</button>
+         <div class="col-auto mx-auto">
+            <button type="submit" class="btn btn-primary btn-lg card-shadow">Add Book</button>
          </div>
       </form>
    </div>
 </div>
 
 <!--hidden search bar below book form-->
-<div class="mt-5">
-   <form class="d-flex mx-auto" style="width:25rem; margin-top: 18rem; display:flex; justify-content:center">
-      <input class="form-control me-2" type="search" placeholder="Title / Author / ISBN" aria-label="Search">
-      <button class="btn btn-primary me-2" type="submit">Search</button>
-   </form>
-</div>
+<!--<div class="mt-5">-->
+<!--   <form class="d-flex mx-auto" style="width:25rem; margin-top: 18rem; display:flex; justify-content:center">-->
+<!--      <input class="form-control me-2 card-shadow" type="search" placeholder="Title / Author / ISBN" aria-label="Search">-->
+<!--      <button class="btn btn-primary me-2 card-shadow" type="submit">Search</button>-->
+<!--   </form>-->
+<!--</div>-->
+<script type="text/javascript">
+<!--   let pages = [[${book.pages}]];-->
+   let rating = document.getElementById("starRating");
+   let selectStatus = document.querySelector('.status-selector');
+   selectStatus.addEventListener('change', (event) => {
+      if(`${event.target.value}` == 'Completed') {
+         rating.style.visibility = 'visible';
+      } else {
+         rating.style.visibility = 'hidden';
+      }
+      console.log(`${event.target.value}`);
+   });
+
+   completed.addEventListener("click", function test() {
+   alert("SUCCESS");
+   });</script>
 
 </body>
 </html>

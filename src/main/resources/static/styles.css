@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
+
 body {
     height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/library.jpg");
@@ -43,6 +45,7 @@ body {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center
+
 }
 
 .rating>input {
@@ -100,7 +103,14 @@ body {
 }
 
 .nav-search {
-    width:50%;
+    width:100%;
+}
+
+#logo {
+    font-family: 'Dosis', sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-left: 1em;
 }
 
 /* Small devices (landscape phones, less than 768px) */
@@ -108,4 +118,116 @@ body {
     .nav-search {
         width: 100%;
     }
+
+}
+
+.navbar {
+   box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+   -webkit-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+   -moz-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+}
+
+.nav-item-btn {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+
+#btn-view-delete-corner {
+    position: absolute;
+      top:14rem;
+      right:-1rem;
+      z-index: 9;
+      background-color: whitesmoke;
+      border-radius: 50%;
+}
+
+#logout-button {
+    width:4.25rem !important;
+    text-align: center;
+}
+
+.delete-toggle {
+    position: absolute;
+      top:0rem;
+      right:25%;
+      z-index: 9;
+}
+
+#logout-button, #logout-button svg  {
+    width:4rem;
+}
+
+#starRating {
+    visibility: hidden;
+}
+
+input[type="checkbox"][id^="cb"] {
+  display: none;
+}
+
+/*ul {
+  list-style-type: none;
+}
+
+li {
+  display: inline-block;
+}
+
+label {
+  padding: 10px;
+  display: block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+label::before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label img {
+  height: 200px;
+  width: 133px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+:checked+label {
+  border-color: #ddd;
+}
+
+:checked+label::before {
+  content: "✓";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked+label img {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px #333;
+  z-index: -1;*/
 }

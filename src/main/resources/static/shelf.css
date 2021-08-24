@@ -1,0 +1,35 @@
+.bookcover {
+    box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
+    -webkit-box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
+    -moz-box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
+    min-width: 133px;
+    max-width: 133px;
+}
+
+.card-shadow {
+    box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+    -webkit-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+    -moz-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+}
+
+.form-switch .form-check-input:focus {
+
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%FF0000'/%3e%3c/svg%3e");
+}
+
+.custom-control-input:checked {
+    height:1.5rem;
+    width:3rem;
+    border-color: darkgray !important;
+    background-color: darkgray !important;
+}
+
+.custom-control-input:not(:checked) {
+    height:1.5rem;
+    width:3rem;
+
+}
+
+bookshelf {
+    margin: 0 auto;
+}
