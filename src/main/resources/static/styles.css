@@ -1,111 +1,56 @@
-body {
-    height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./images/library.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+header {
+	height: 100vh;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+		url("/images/library.jpg");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
 }
 
-.login-card {
-    background-color: #f4f4f4;
-    position: absolute;
-    width: 30%;
-    top: 50%;
-    left: 75%;
-    transform: translate(-50%, -50%);
-    padding: 30px;
-    border-radius: 5px;
+header h1 {
+	letter-spacing: 1px;
+	word-spacing: 4px;
 }
 
-.register-card {
-    background-color: #f4f4f4;
-    position: absolute;
-    width: 45%;
-    top: 50%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    padding: 30px;
-    border-radius: 5px;
+header .header-text-box {
+	position: absolute;
+	width: 1140px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-transform: uppercase;
 }
 
-.login-card input,
-.register-card input {
-    margin: 7px 0;
+.opening-heading h2 {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-bottom: 30px;
 }
 
-.login-card button,
-.register-card button {
-    margin-top: 20px;
+.opening-heading h2:after {
+	display: block;
+	height: 3px;
+	background-color: #212529;
+	content: " ";
+	width: 300px;
+	margin: 25px auto;
 }
 
-/* responsive star rating */
-.rating {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center
+.book {
+	max-height: 178px;
 }
 
-.rating>input {
-    display: none
+.carousel-control-prev {
+	margin-left: -10%;
 }
 
-.rating>label {
-    position: relative;
-    width: 1em;
-    font-size: 30px;
-    font-weight: 300;
-    color: #0d6efd;
-    cursor: pointer
+.carousel-control-next {
+	margin-right: -10%;
 }
 
-.rating>label::before {
-    content: "\2605";
-    position: absolute;
-    opacity: 0
-}
-
-.rating>label:hover:before,
-.rating>label:hover~label:before {
-    opacity: 1 !important
-}
-
-.rating>input:checked~label:before {
-    opacity: 1
-}
-
-.rating:hover>input:checked~label:before {
-    opacity: 0.4
-}
-
-.buttons {
-    top: 36px;
-    position: relative
-}
-
-.rating-submit {
-    border-radius: 15px;
-    color: #fff;
-    height: 49px
-}
-
-.rating-submit:hover {
-    color: #fff
-}
-
-/* aligns bootstrap icons with text */
-.bi {
-    position: relative;
-    bottom: 2px;
-    right: .25rem;
-}
-
-.nav-search {
-    width:50%;
-}
-
-/* Small devices (landscape phones, less than 768px) */
-@media (max-width: 767.98px) {
-    .nav-search {
-        width: 100%;
-    }
+@media only screen and (max-width: 1200px) {
+	header .header-text-box {
+		width: 100%;
+		padding: 0 2%;
+	}
 }
