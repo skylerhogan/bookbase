@@ -3,6 +3,7 @@ package com.liftoff.libraryapp.search;
 import com.liftoff.libraryapp.models.Book;
 import com.liftoff.libraryapp.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,31 +28,62 @@ public class SearchController {
     }
 
     @PostMapping("search")
-    public String processSearchForm(Model model, String searchQuery, String searchParameter) {
+    public String processSearchForm(Model model, String searchQuery, String searchParameter, String resultsPerPage) {
 
-        model.addAttribute("searchQuery", searchQuery);
-        model.addAttribute("searchParameter", searchParameter);
         String query = "";
         String searchQueryPathVariable = searchQuery.toLowerCase().replace(' ', '+');
         if (!searchParameter.equals("all")) {
             searchParameter += ':';
-            query += "q=" + searchParameter + searchQueryPathVariable;
+            query += searchParameter + searchQueryPathVariable;
         } else {
-            query += "q=" + searchQueryPathVariable;
+            query += searchQueryPathVariable;
         }
         int pageNumber = 1;
         String currentPage = "&page=" + pageNumber;
+        String maxResults = "&maxResults=" + resultsPerPage;
 
-        return "redirect:search/results/" + query + currentPage;
+        return "redirect:search/results/q=" + query + maxResults + currentPage;
     }
 
-    @GetMapping("search/results/{query}&page={currentPage}")
-    public String displaySearchResults(Model model, @PathVariable String query, @PathVariable int currentPage) {
+    @GetMapping("search/results/q={query}&maxResults={maxResults}&page={currentPage}")
+    public String displaySearchResults(Model model, @PathVariable String query, @PathVariable int currentPage, @PathVariable int maxResults) {
+        String searchQuery = "";
+        String searchParameter = "";
+        if (query.contains(":")) {
+            String[] queryArray = query.split(":");
+            searchParameter = queryArray[0];
+            searchQuery = queryArray[1].replaceAll("[+]", " ");
+//            model.addAttribute("queryArray", queryArray);
+        } else {
+            searchQuery = query.replaceAll("[+]", " ");
+            searchParameter = "all";
+        }
 
+        model.addAttribute("maxResults", maxResults);
+        model.addAttribute("searchQuery", searchQuery);
+        model.addAttribute("searchParameter", searchParameter);
         model.addAttribute("query", query);
         model.addAttribute("pageNumber", currentPage);
         model.addAttribute("startIndex", (currentPage-1) * 10);
         return "search/results";
+    }
+
+    @PostMapping("search/results/q={currentQuery}&maxResults={maxResults}&page={currentPage}")
+    public String processSearchFormFromResultsPage(Model model, @PathVariable String currentQuery, @PathVariable int currentPage,
+                                                   String searchQuery, String searchParameter, String resultsPerPage) {
+        String newQuery = "";
+        String searchQueryPathVariable = searchQuery.toLowerCase().replace(' ', '+');
+        if (!searchParameter.equals("all")) {
+            searchParameter += ':';
+            newQuery += searchParameter + searchQueryPathVariable;
+        } else {
+            newQuery += searchQueryPathVariable;
+        }
+        int pageNumber = 1;
+        String newCurrentPage = "&page=" + pageNumber;
+        String newMaxResults = "&maxResults=" + resultsPerPage;
+
+        return "redirect:" + "q=" + newQuery + newMaxResults + newCurrentPage;
     }
 
     @GetMapping("search/results/view/{bookId}")
