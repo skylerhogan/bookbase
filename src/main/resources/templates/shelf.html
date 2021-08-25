@@ -1,33 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body>
+<head th:replace="fragments :: head" ></head>
+<body class="container">
 <header>
    <nav th:replace="fragments :: navigation-user"></nav>
 </header>
-<body>
-<div class="card-group" style="margin-top: 10rem">
-   <div th:each="book : ${books}" class="card mx-auto d-flex rounded" style="max-width: 18rem; min-width: 18rem; height: 24rem; top: 30%">
-      <div class="card-body">
-         <h4 th:text="${book.title}" class="text-primary"></h4>
-         <h5 th:text="${book.author}" class="text-secondary"></h5>
-         <p th:text="${'ISBN: ' + book.isbn}" class="text-dark"></p>
-         <p th:text="${'Pages: ' + book.pages}" class="text-dark"></p>
-         <p th:text="${'Genre: ' + book.genre}" class="text-dark"></p>
-         <p th:text="${'Shelf: ' + book.status}" class="text-dark"></p>
-         <p th:text="${'Rating: ' + book.rating + '/5'}" class="text-dark"></p>
-         <div class="d-flex mx-auto">
-            <a class="btn btn-primary btn-md mx-auto" th:href="@{|/user/view/${book.id}|}">
-               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-               <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-               <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-            </svg>Edit</a>
-         </div>
-      </div>
-      <div class="card-footer">
-         <small class="text-muted" th:text="${'Date Added: ' + book.date}"></small>
-      </div>
-   </div>
-</div>
+<div th:replace="fragments :: bookshelf-grid"></div>
+<script type="text/javascript">$(window).scroll(function() {
+  $(".top").css("opacity", 5 - $(window).scrollTop() / 500);
+});</script>
 </body>
 </html>
