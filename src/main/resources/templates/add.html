@@ -8,7 +8,7 @@
 </header>
 
 <!--form to manually add books to database-->
-<div class="card mx-auto bg-dark card-shadow" style="width: 26rem; height: 22rem; top: 30%">
+<div class="card mx-auto bg-dark card-shadow" style="width: 26rem; height: 22rem; margin-top:15rem;">
    <div class="card-body">
       <form method="post" class="row gy-2 gx-3 align-items-center">
          <div class="col-auto mt-3" style="width: 100%;">
@@ -61,9 +61,9 @@
          <div class="col-auto">
             <label class="visually-hidden" th:for="status">Status</label>
             <select th:field="${book.status}" class="form-select status-selector" id="status" required>
-               <option selected value="">Status</option>
-               <option value="Currently Reading">Currently Reading</option>
+               <option selected value="">Shelf</option>
                <option value="Want to Read">Want to Read</option>
+               <option value="Currently Reading">Currently Reading</option>
                <option id="completed" value="Completed">Completed</option>
             </select>
          </div>

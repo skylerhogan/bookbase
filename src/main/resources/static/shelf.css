@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
 
 body {
-	height: 100vh;
+
 	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
 		url("/images/library.jpg");
 	background-size: cover;
@@ -9,12 +9,18 @@ body {
 	background-attachment: fixed;
 }
 
-.bookcover {
-    box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
-    -webkit-box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
-    -moz-box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
-    min-width: 133px;
-    max-width: 133px;
+.top {
+  margin: 0;
+  position: relative;
+  width: 100%;
+  background-color: #aaa;
+  height: 300px;
+  opacity: 1;
+  text-align: center;
+  font-family: 'helvetica';
+  font-size: 80px;
+  font-weight: 100;
+  color: #fff;
 }
 
 .card-shadow {
@@ -141,19 +147,22 @@ bookshelf {
     margin-right: .5rem;
 }
 
+#profile-btn {
+     display: inline;
+      margin: 0 0.125em;
+      padding: 0;
+      vertical-align: baseline;
+}
+
 #btn-view-delete-corner {
     position: absolute;
-      top:14rem;
+      top:-1rem;
       right:-1rem;
       z-index: 9;
       background-color: whitesmoke;
       border-radius: 50%;
 }
 
-#logout-button {
-    width:4.25rem !important;
-    text-align: center;
-}
 
 .delete-toggle {
     position: absolute;
@@ -162,9 +171,6 @@ bookshelf {
       z-index: 9;
 }
 
-#logout-button, #logout-button svg  {
-    width:4rem;
-}
 
 #starRating {
     visibility: hidden;
