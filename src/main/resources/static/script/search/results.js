@@ -1,19 +1,7 @@
-import returnBookObjectFromJson from './modules/bookFunctions.js';
-
-function returnObjectFieldsAsHtml(object) {
-    let baseLink = /*[[@{}]]*/'';
-    let linkName = `view/${object.googleId}`;
-    let viewLink = baseLink + linkName;
-    return `
-            <a href="${viewLink}" class="viewLink">
-                <img class="book" src="${object.thumbnail}">
-            </a>
-            <div class="book-info">
-                <p class="title">${object.title}</p>
-                <p class="author">${object.author}</p>
-            </div>
-    `;
-}
+import {
+    returnBookObjectFromJson,
+    returnObjectFieldsAsHtml
+} from './modules/bookFunctions.js';
 
 let promises = [];
 let totalResults = 0;
@@ -41,6 +29,8 @@ const printBooks = async (query, startIndex, maxResults) => {
     await retrieveBooks(query, startIndex, maxResults);
 
     let books = promises[0].items;
+    let totalResultsReturned = document.getElementById('totalResultsReturned');
+    totalResultsReturned.innerHTML = totalResults;
 
     books.forEach(book => {
         book = returnBookObjectFromJson(book);
@@ -50,7 +40,7 @@ const printBooks = async (query, startIndex, maxResults) => {
         results.appendChild(result);
     })
 
-    let pages = ((totalResults - (totalResults % maxResults)) / maxResults) + 1;
+    const pages = ((totalResults - (totalResults % maxResults)) / maxResults) + 1;
     await renderPageNumbers(pages, currentPage);
 
 }
@@ -69,23 +59,49 @@ const renderPageNumbers = async (pages, currentPage) => {
 
     pageNumbersContainer.innerHTML = '';
 
-    let previousPage = document.createElement('a');
-    previousPage.id = 'previous-page';
-    previousPage.innerHTML = '⇦ previous';
-    previousPage.classList.add('page-number');
+    let previousPageButton = document.createElement('a');
+    previousPageButton.id = 'previous-page';
+    previousPageButton.innerHTML = '⇦ previous';
+    previousPageButton.classList.add('page-number');
     if(Number(currentPage) === 1) {
-        previousPage.classList.add('disabled');
+        previousPageButton.classList.add('disabled');
     } else {
-        previousPage.href = `q=${query}&maxResults=${maxResults}&page=${Number(currentPage) - 1}`;
+        previousPageButton.href = `q=${query}&maxResults=${maxResults}&page=${Number(currentPage) - 1}`;
     }
 
-    pageNumbersContainer.appendChild(previousPage);
+    pageNumbersContainer.appendChild(previousPageButton);
 
-    let pageLinks = 0;
-    if (pages > 9) { pageLinks = 9; }
-    else { pageLinks = pages; }
+    let startPage = 1;
+    let endPage = pages;
 
-    for (let i = 1; i <= pageLinks; i++) {
+    if(Number(currentPage) > 6) {
+        let pageOne = document.createElement('a');
+        pageOne.id = 1;
+        pageOne.classList.add('page-number');
+        pageOne.href = `q=${query}&maxResults=${maxResults}&page=1`;
+        pageOne.innerHTML = '1';
+        pageNumbersContainer.appendChild(pageOne);
+
+        let pageNumberBreak = document.createElement('a');
+        pageNumberBreak.classList.add('page-number');
+        pageNumberBreak.classList.add('disabled');
+        pageNumberBreak.innerHTML = '. . .';
+        pageNumbersContainer.appendChild(pageNumberBreak);
+
+        startPage = Number(currentPage) - 3;
+        endPage = Number(currentPage) + 3;
+        if (endPage > pages) {
+            startPage = Number(currentPage) - (6 - (3 - (endPage - pages)));
+            endPage = pages;
+        }
+    } else {
+        startPage = 1;
+        if (pages > 9) {
+            endPage = 9;
+        }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
         let pageNumber = document.createElement('a');
         pageNumber.id = i;
         pageNumber.classList.add('page-number');
@@ -97,16 +113,16 @@ const renderPageNumbers = async (pages, currentPage) => {
         pageNumbersContainer.appendChild(pageNumber);
     }
 
-    let nextPage = document.createElement('a');
-    nextPage.id = 'next-page';
-    nextPage.innerHTML = '⇨ next';
-    nextPage.classList.add('page-number');
-    if(Number(currentPage) === pageLinks) {
-        nextPage.classList.add('disabled');
+    let nextPageButton = document.createElement('a');
+    nextPageButton.id = 'next-page';
+    nextPageButton.innerHTML = '⇨ next';
+    nextPageButton.classList.add('page-number');
+    if(Number(currentPage) === pages) {
+        nextPageButton.classList.add('disabled');
     } else {
-        nextPage.href = `q=${query}&maxResults=${maxResults}&page=${Number(currentPage) + 1}`;
+        nextPageButton.href = `q=${query}&maxResults=${maxResults}&page=${Number(currentPage) + 1}`;
     }
-    pageNumbersContainer.appendChild(nextPage)
+    pageNumbersContainer.appendChild(nextPageButton)
 
 }
 

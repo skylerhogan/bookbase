@@ -13,7 +13,8 @@ function getThumbnail(jsonItem) {
     return thumbnail;
 }
 
-export default function returnBookObjectFromJson(jsonItem) {
+// EXPORT FUNCTION
+function returnBookObjectFromJson(jsonItem) {
 
     let isbn = '';
     if (jsonItem.volumeInfo.industryIdentifiers === undefined) {
@@ -38,4 +39,26 @@ export default function returnBookObjectFromJson(jsonItem) {
         ratingsCount: jsonItem.volumeInfo.ratingsCount
     }
     return bookObject;
+}
+
+
+// EXPORT FUNCTION
+function returnObjectFieldsAsHtml(object) {
+    let baseLink = /*[[@{}]]*/'';
+    let linkName = `view/${object.googleId}`;
+    let viewLink = baseLink + linkName;
+    return `
+        <a href="${viewLink}" class="viewLink">
+            <img class="book" src="${object.thumbnail}">
+        </a>
+        <div class="book-info">
+            <p class="title">${object.title}</p>
+            <p class="author">${object.author}</p>
+        </div>
+    `;
+}
+
+export {
+    returnBookObjectFromJson,
+    returnObjectFieldsAsHtml
 }

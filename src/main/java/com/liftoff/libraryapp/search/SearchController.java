@@ -64,7 +64,7 @@ public class SearchController {
         model.addAttribute("searchParameter", searchParameter);
         model.addAttribute("query", query);
         model.addAttribute("pageNumber", currentPage);
-        model.addAttribute("startIndex", (currentPage-1) * 10);
+        model.addAttribute("startIndex", (currentPage-1) * maxResults);
         return "search/results";
     }
 
