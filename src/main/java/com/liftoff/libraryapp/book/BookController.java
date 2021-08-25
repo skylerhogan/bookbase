@@ -64,23 +64,6 @@ public class BookController {
         return "redirect:shelf";
     }
 
-    //    @GetMapping("edit/{eventId}")
-//    public String displayEditForm(Model model, @PathVariable int eventId) {
-//        Event selectedEvent = EventData.getById(eventId);
-//        model.addAttribute("selectedEvent",selectedEvent);
-//        String title = "Edit Event - " + selectedEvent.getName();
-//        model.addAttribute("title", title);
-//        return "events/edit";
-//    }
-//
-//    @PostMapping("edit")
-//    public String processEditForm(int eventId, String name, String description) {
-//        Event selectedEvent = EventData.getById(eventId);
-//        selectedEvent.setName(name);
-//        selectedEvent.setDescription(description);
-//        return "redirect:";
-//    }
-
     @RequestMapping("shelf")
     public String displayBookshelf(Model model) {
         model.addAttribute("books", bookRepository.findAll());
