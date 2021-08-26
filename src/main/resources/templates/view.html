@@ -5,10 +5,9 @@
 <header>
    <nav th:replace="fragments :: navigation-user"></nav>
 </header>
-<body>
 <div class="card mx-auto" style="width: 30rem; margin-top:15rem;">
    <a th:href="@{|/user/shelf|}">
-      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="grey" class="bi bi-x-square-fill shadow" id="btn-view-delete-corner" viewBox="0 0 16 16">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="grey" class="bi bi-x-square-fill shadow" id="close-view-corner-button" viewBox="0 0 16 16">
          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
       </svg>
    </a>
@@ -18,7 +17,6 @@
          <div class="row align-items-start">
             <h4 th:text="${book.title}" class="text-primary mb-3"></h4>
             <div class="col">
-
                <h6 th:text="${'by ' + book.author}" class="text-dark mb-3"></h6>
                <ul class="list-unstyled">
                   <li><p th:text="${book.genre}" class="text-secondary small"></p></li>
@@ -28,7 +26,7 @@
                </ul>
             </div>
             <div class="col">
-               <img class="bookcover d-flex mx-auto" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" width="70%" alt="cover">
+               <img class="d-flex mx-auto" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" width="70%" alt="cover">
             </div>
          </div>
       </div>
@@ -37,11 +35,5 @@
       </div>
    </div>
 </div>
-<script type="text/javascript">
-   let pages = [[${book.pages}]];
-   document.getElementById("viewPages").addEventListener("click", function test() {
-   prompt("", pages);
-   });
-</script>
 </body>
 </html>

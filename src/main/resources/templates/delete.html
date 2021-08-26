@@ -5,21 +5,23 @@
 
 <header><nav th:replace="fragments :: navigation-user"></nav></header>
 <form method="POST">
-
-   <div th:replace="fragments :: bookshelf-grid"></div>
-
-   <div class="container-fluid d-flex flex-row-reverse my-0 py-0">
-      <input th:href="@{|/user/delete|}" id="deleteBtn" type="submit" value="Remove" class="btn btn-danger" style="margin-top:5rem"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
-   </svg>
-      </input>
+   <div class="form-group">
+      <div class="row row-cols-3 row-cols-xs-3 row-cols-md-4 row-cols-lg-5" style="position: relative; top: 125px">
+         <div th:each="book : ${books}" class="cols-3">
+            <div class="card bg-transparent flex-lg-row mx-auto mb-3">
+               <label class="container d-flex" style="max-width:133px">
+                  <div class="flex-lg-row mx-auto">
+                     <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" class="mx-auto" z-index="1" margin-top="-2" height="200" alt="cover" th:field="${book.id}"/>
+                     <input id="deleteCheckbox" type="checkbox" name="bookIds" th:value="${book.id}" class="form-group">
+                  </div>
+               </label>
+            </div>
+         </div>
+      </div>
    </div>
-
+   <div class="d-flex justify-content-center" style="position:relative; margin-top:10rem; margin-bottom:10rem">
+      <input th:href="@{|/user/delete|}" type="submit" value="Delete" class="btn btn-lg btn-danger">
+   </div>
 </form>
-<script type="text/javascript">
-document.getElementById("deleteBtn").addEventListener("click", function test() {
-    confirm("Remove these books from your Shelf?");
-});
-</script>
 </body>
 </html>

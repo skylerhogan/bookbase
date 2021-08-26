@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
 <header>
    <nav th:replace="fragments :: navigation-user"></nav>
@@ -77,15 +76,7 @@
    </div>
 </div>
 
-<!--hidden search bar below book form-->
-<!--<div class="mt-5">-->
-<!--   <form class="d-flex mx-auto" style="width:25rem; margin-top: 18rem; display:flex; justify-content:center">-->
-<!--      <input class="form-control me-2 card-shadow" type="search" placeholder="Title / Author / ISBN" aria-label="Search">-->
-<!--      <button class="btn btn-primary me-2 card-shadow" type="submit">Search</button>-->
-<!--   </form>-->
-<!--</div>-->
 <script type="text/javascript">
-<!--   let pages = [[${book.pages}]];-->
    let rating = document.getElementById("starRating");
    let selectStatus = document.querySelector('.status-selector');
    selectStatus.addEventListener('change', (event) => {
@@ -96,10 +87,5 @@
       }
       console.log(`${event.target.value}`);
    });
-
-   completed.addEventListener("click", function test() {
-   alert("SUCCESS");
-   });</script>
-
 </body>
 </html>

@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head" ></head>
-<body class="container">
-<header>
-   <nav th:replace="fragments :: navigation-user"></nav>
-</header>
-<div th:replace="fragments :: bookshelf-grid"></div>
-<script type="text/javascript">$(window).scroll(function() {
-  $(".top").css("opacity", 5 - $(window).scrollTop() / 500);
-});</script>
-</body>
+   <body class="container">
+      <header>
+         <nav th:replace="fragments :: navigation-user"></nav>
+      </header>
+      <div th:replace="fragments :: bookshelf-grid"></div>
+   </body>
 </html>
