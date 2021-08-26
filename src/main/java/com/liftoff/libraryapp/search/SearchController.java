@@ -13,7 +13,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("user")
@@ -47,8 +50,8 @@ public class SearchController {
 
     @GetMapping("search/results/q={query}&maxResults={maxResults}&page={currentPage}")
     public String displaySearchResults(Model model, @PathVariable String query, @PathVariable int currentPage, @PathVariable int maxResults) {
-        String searchQuery = "";
-        String searchParameter = "";
+        String searchQuery;
+        String searchParameter;
         if (query.contains(":")) {
             String[] queryArray = query.split(":");
             searchParameter = queryArray[0];
@@ -90,6 +93,15 @@ public class SearchController {
     public String displayViewBook(Model model, @PathVariable String bookId) {
         model.addAttribute("bookId", bookId);
         model.addAttribute(new Book());
+
+        List<Book> allBooksInRepo = new ArrayList<>();
+        List<String> bookRepositoryIsbns;
+
+        bookRepository.findAll().forEach(allBooksInRepo::add);
+        bookRepositoryIsbns = allBooksInRepo.stream().map(Book::getIsbn).collect(Collectors.toList());
+
+        model.addAttribute("bookRepositoryIsbns", bookRepositoryIsbns);
+
         return "search/view";
     }
 
@@ -100,6 +112,7 @@ public class SearchController {
         if(errors.hasErrors()) {
             return "search/view/{bookId}";
         }
+
         model.addAttribute("title", title);
         model.addAttribute("author", author);
         model.addAttribute("isbn", isbn);
@@ -107,6 +120,7 @@ public class SearchController {
         model.addAttribute("genre", genre);
         model.addAttribute("status", status);
         model.addAttribute("rating", rating);
+
 
         DateFormat Date = DateFormat.getDateInstance();
         Calendar cals = Calendar.getInstance();

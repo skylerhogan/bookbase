@@ -1,4 +1,7 @@
-import returnBookObjectFromJson from './modules/bookFunctions.js';
+import {
+    returnBookObjectFromJson,
+    returnObjectFieldsAsHtml
+} from './modules/bookFunctions.js';
 
 const API_ENDPOINT = 'https://www.googleapis.com'
 const API_KEY = 'AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg'
@@ -9,6 +12,9 @@ let bookCover = document.getElementById('book-cover');
 let bookDetails = document.getElementById('book-details');
 let coverAndRating = document.getElementById('cover-and-rating');
 let bookDescription = document.getElementById('book-description');
+
+bookIsbns = bookIsbns.replaceAll("[", "").replaceAll("]", "").replaceAll(" ", "");
+bookIsbns = bookIsbns.split(",");
 
 function fillAddBookForm(bookObject) {
     let title = document.getElementById('title');
@@ -24,6 +30,30 @@ function fillAddBookForm(bookObject) {
     genre.value = bookObject.categories;
 }
 
+function renderAddBookButton(alreadyInBookshelf) {
+    const addButton = document.getElementById('add-button');
+    let addBookForm = document.getElementById('add-book-form-container');
+
+    if(alreadyInBookshelf === true) {
+        addButton.innerHTML = `
+            <a href="/user/shelf">
+                <button>view in bookshelf</button>
+            </a>
+        `;
+    } else {
+        addButton.innerHTML = `<button>add book</button>`
+        addButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            addBookForm.classList.add('active')
+        })
+
+        addBookForm.addEventListener('click', e => {
+            if (e.target !== e.currentTarget) return
+            addBookForm.classList.remove('active')
+        })
+    }
+}
+
 const go = async () => {
     await printBook(bookId);
 }
@@ -32,10 +62,21 @@ const printBook = async (bookId) => {
     await retrieveBook(bookId);
 
     let bookObject = returnBookObjectFromJson(promise[0]);
+    console.log(bookObject.industryIdentifiers);
+
+    let alreadyInBookshelf = false;
+
+    for (let i = 0; i < bookIsbns.length; i++) {
+        if (bookIsbns[i] === bookObject.industryIdentifiers) {
+            alreadyInBookshelf = true;
+        }
+    }
 
     await renderPage(bookObject);
 
     fillAddBookForm(bookObject);
+
+    renderAddBookButton(alreadyInBookshelf);
 }
 
 const retrieveBook = async (bookId) => {
@@ -79,17 +120,23 @@ const renderPage = async (bookObject) => {
 window.addEventListener('load', () => {
     go();
 
-    const addButton = document.getElementById('add-button');
-    let addBookForm = document.getElementById('add-book-form-container');
-
-    addButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        addBookForm.classList.add('active')
-    })
-
-    addBookForm.addEventListener('click', e => {
-      if (e.target !== e.currentTarget) return
-      addBookForm.classList.remove('active')
-    })
+    console.log(bookIsbns[0]);
+//    const addButton = document.getElementById('add-button');
+//    let addBookForm = document.getElementById('add-book-form-container');
+//
+//    if(alreadyInBookshelf === true) {
+//        addButton.innerHTML = 'view in bookshelf'
+//    } else {
+//        addButton.innerHTML = 'add book'
+//        addButton.addEventListener('click', (event) => {
+//            event.preventDefault();
+//            addBookForm.classList.add('active')
+//        })
+//
+//        addBookForm.addEventListener('click', e => {
+//          if (e.target !== e.currentTarget) return
+//          addBookForm.classList.remove('active')
+//        })
+//    }
 
 });
