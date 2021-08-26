@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Optional;
 
 
@@ -36,31 +35,33 @@ public class BookController {
             return "/add";
         }
 
-        model.addAttribute("title", title);
-        model.addAttribute("author", author);
-        model.addAttribute("isbn", isbn);
-        model.addAttribute("pages", pages);
-        model.addAttribute("genre", genre);
-        model.addAttribute("status", status);
-        model.addAttribute("rating", rating);
-
         DateFormat Date = DateFormat.getDateInstance();
         Calendar cals = Calendar.getInstance();
         String currentDate = Date.format(cals.getTime());
         model.addAttribute("date", currentDate);
 
-        newBook.setTitle(title);
-        newBook.setAuthor(author);
-        newBook.setIsbn(isbn);
-        newBook.setPages(pages);
-        newBook.setGenre(genre);
-        newBook.setStatus(status);
-        newBook.setRating(rating);
         newBook.setDate(currentDate);
 
         bookRepository.save(newBook);
 
-        return "redirect:add";
+        return "redirect:shelf";
+    }
+
+    @GetMapping("delete")
+    public String displayDeleteBooksForm(Model model) {
+        model.addAttribute("title", "Delete Events");
+        model.addAttribute("books", bookRepository.findAll());
+        return "/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteBooksForm(@RequestParam(required = false) int[] bookIds) {
+        if (bookIds != null) {
+            for (int id : bookIds) {
+                bookRepository.deleteById(id);
+            }
+        }
+        return "redirect:shelf";
     }
 
     @RequestMapping("shelf")

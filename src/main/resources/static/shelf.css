@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
+
+body {
+
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+		url("/images/library.jpg");
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.top {
+  margin: 0;
+  position: relative;
+  width: 100%;
+  background-color: #aaa;
+  height: 300px;
+  opacity: 1;
+  text-align: center;
+  font-family: 'helvetica';
+  font-size: 80px;
+  font-weight: 100;
+  color: #fff;
+}
+
+.card-shadow {
+    box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+    -webkit-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+    -moz-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+}
+
+.form-switch .form-check-input:focus {
+
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%FF0000'/%3e%3c/svg%3e");
+}
+
+.custom-control-input:checked {
+    height:1.5rem;
+    width:3rem;
+    border-color: darkgray !important;
+    background-color: darkgray !important;
+}
+
+.custom-control-input:not(:checked) {
+    height:1.5rem;
+    width:3rem;
+
+}
+
+bookshelf {
+    margin: 0 auto;
+}
+
+/* responsive star rating */
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center
+
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 1em;
+    font-size: 30px;
+    font-weight: 300;
+    color: #0d6efd;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+
+.buttons {
+    top: 36px;
+    position: relative
+}
+
+.rating-submit {
+    border-radius: 15px;
+    color: #fff;
+    height: 49px
+}
+
+.rating-submit:hover {
+    color: #fff
+}
+
+/* aligns bootstrap icons with text */
+.bi {
+    position: relative;
+    bottom: 2px;
+    right: .25rem;
+}
+
+.nav-search {
+    width:100%;
+}
+
+#logo {
+    font-family: 'Dosis', sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-left: 1em;
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+    .nav-search {
+        width: 100%;
+    }
+
+}
+
+.navbar {
+   box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+   -webkit-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+   -moz-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+}
+
+.nav-item-btn {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+
+#profile-btn {
+     display: inline;
+      margin: 0 0.125em;
+      padding: 0;
+      vertical-align: baseline;
+}
+
+#btn-view-delete-corner {
+    position: absolute;
+      top:-1rem;
+      right:-1rem;
+      z-index: 9;
+      background-color: whitesmoke;
+      border-radius: 50%;
+}
+
+
+.delete-toggle {
+    position: absolute;
+      top:0rem;
+      right:25%;
+      z-index: 9;
+}
+
+
+#starRating {
+    visibility: hidden;
+}
+
+input[type="checkbox"][id^="cb"] {
+  display: none;
+}
+
+/*ul {
+  list-style-type: none;
+}
+
+li {
+  display: inline-block;
+}
+
+label {
+  padding: 10px;
+  display: block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+label::before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label img {
+  height: 200px;
+  width: 133px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+:checked+label {
+  border-color: #ddd;
+}
+
+:checked+label::before {
+  content: "✓";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked+label img {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px #333;
+  z-index: -1;*/
+}
