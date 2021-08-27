@@ -37,7 +37,7 @@ public class SearchController {
         int pageNumber = 1;
         String currentPage = "&page=" + pageNumber;
 
-        return "redirect:search/results/" + query + currentPage;
+        return "redirect:results/" + query + currentPage;
     }
 
     @GetMapping("search/results/{query}&page={currentPage}")

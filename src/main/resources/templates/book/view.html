@@ -11,7 +11,7 @@
          <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
       </svg>
    </a>
-
+   <form action="">
    <div class="card mx-auto card-shadow" style="width: 30rem; height: 25rem; top: 30%; background-color:whitesmoke;">
       <div class="card-body">
          <div class="row align-items-start">
@@ -20,7 +20,7 @@
                <h6 th:text="${'by ' + book.author}" class="text-dark mb-3"></h6>
                <ul class="list-unstyled">
                   <li><p th:text="${book.genre}" class="text-secondary small"></p></li>
-                  <li><p th:text="${book.pages + ' pages'}" id="viewPages" class="text-secondary small"></p></li>
+                  <li><p th:text="${book.pages + ' pages'}" class="text-secondary small"></p></li>
                   <li><p th:text="${'ISBN: ' + book.isbn}" class="text-secondary small"></p></li>
                   <li><p th:text="${book.status}" class="text-secondary small"><div th:if="${book.status} == 'Completed'" class="rating"> <input th:field="${book.rating}" type="radio" name="rating" value="5" id="5" required><label th:for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label th:for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label th:for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label th:for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label th:for="1">☆</label> </div></p></li>
                </ul>
@@ -34,6 +34,7 @@
          <small class="text-muted" th:text="${'Date Added: ' + book.date}"></small>
       </div>
    </div>
+   </form>
 </div>
 </body>
 </html>

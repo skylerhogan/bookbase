@@ -49,8 +49,9 @@
             <!--nav search bar-->
 
             <li class="nav-item mx-1 nav-search">
-              <form method="GET" class="nav-link">
-                <input class="form-control" type="search" placeholder="Title / Author / ISBN" aria-label="Search" />
+              <form method="POST" th:action="@{search/}" class="nav-link">
+                <input class="form-control" name="searchQuery" type="search" placeholder="Title / Author / ISBN" aria-label="Search" />
+                <input class="form-control" name="searchParameter" type="hidden" value="all" aria-label="Search" />
               </form>
             </li>
 
@@ -94,13 +95,84 @@
     <div th:fragment="bookshelf-grid">
       <div class="row row-cols-3 row-cols-xs-3 row-cols-md-4 row-cols-lg-5" style="position: relative; top: 125px">
         <div th:each="book : ${books}" class="cols-3">
-          <div class="card bg-transparent flex-lg-row mx-auto mb-3">
+          <div class="card bg-transparent flex-lg-row mx-auto mb-5">
             <a th:if="${#httpServletRequest.requestURI == '/user/shelf'}" th:href="@{|/user/view/${book.id}|}" class="container d-flex">
-              <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" class="mx-auto" z-index="1" margin-top="-2" height="200" alt="cover"/>
+              <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" class="mx-auto" z-index="1" margin-top="-2" width="133" height="200" alt="cover"/>
             </a>
           </div>
         </div>
       </div>
     </div>
+
+
+<!--form to manually add books to database-->
+<div th:fragment="add-book" class="card mx-auto bg-dark card-shadow" style="width: 26rem; height: 22rem; margin-top:15rem;">
+  <div class="card-body">
+    <form method="post" class="row gy-2 gx-3 align-items-center">
+      <div class="col-auto mt-3" style="width: 100%;">
+        <label class="visually-hidden" th:for="title">Title</label>
+        <div class="input-group">
+          <div class="input-group-text">Title</div>
+          <input th:field="${book.title}" type="text" class="form-control" id="title" placeholder="Dune" required>
+        </div>
+      </div>
+      <div class="col-auto" style="width: 100%;">
+        <label class="visually-hidden" th:for="author">Author</label>
+        <div class="input-group">
+          <div class="input-group-text">Author</div>
+          <input th:field="${book.author}" type="text" class="form-control" id="author" placeholder="Frank Herbert" required>
+        </div>
+      </div>
+      <div class="col-auto" style="width: 60%;">
+        <label class="visually-hidden" th:for="isbn">ISBN</label>
+        <div class="input-group">
+          <div class="input-group-text">ISBN</div>
+          <input th:field="${book.isbn}" type="text" class="form-control" id="isbn" placeholder="978-0441013593" required>
+        </div>
+      </div>
+      <div class="col-auto" style="width: 40%;">
+        <label class="visually-hidden" th:for="pages">Pages</label>
+        <div class="input-group">
+          <div class="input-group-text">Pages</div>
+          <input th:field="${book.pages}" type="text" class="form-control" id="pages" placeholder="896" required>
+        </div>
+      </div>
+      <div class="col-auto">
+        <label class="visually-hidden" th:for="genre">Genre</label>
+        <select th:field="*{book.genre}" class="form-select" id="genre" required>
+          <option selected value="">Genre</option>
+          <option value="Memoir">Memoir</option>
+          <option value="Biography">Biography</option>
+          <option value="Self-Help">Self-Help</option>
+          <option value="Religion and Spirituality">Religion and Spirituality</option>
+          <option value="Health and Fitness">Health and Fitness</option>
+          <option value="Politics and Social Sciences">Politics and Social Sciences</option>
+          <option value="Business and Money">Business and Money</option>
+          <option value="Tech">Tech</option>
+          <option value="Sci-Fi and Fantasy">Sci-Fi and Fantasy</option>
+          <option value="Mystery, Thriller, and Suspense">Mystery, Thriller, and Suspense</option>
+          <option value="Romance">Romance</option>
+          <option value="Fiction (General)">Fiction (General)</option>
+          <option value="Non-Fiction (Other)">Non-Fiction (Other)</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <label class="visually-hidden" th:for="status">Status</label>
+        <select th:field="${book.status}" class="form-select status-selector" id="status" required>
+          <option selected value="">Shelf</option>
+          <option value="Want to Read">Want to Read</option>
+          <option value="Currently Reading">Currently Reading</option>
+          <option id="completed" value="Completed">Completed</option>
+        </select>
+      </div>
+      <div>
+        <div class="rating mt-2 mb-1" id="starRating"> <input th:field="${book.rating}" type="radio" name="rating" value="5" id="5"><label th:for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label th:for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label th:for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label th:for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label th:for="1">☆</label><input type="radio" name="rating" value="" checked="checked"></div>
+      </div>
+      <div class="col-auto mx-auto">
+        <button type="submit" class="btn btn-primary btn-lg card-shadow">Add Book</button>
+      </div>
+    </form>
+  </div>
+</div>
   </body>
 </html>

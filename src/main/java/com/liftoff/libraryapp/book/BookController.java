@@ -24,7 +24,7 @@ public class BookController {
     @GetMapping("add")
     public String displayAddBookForm(Model model) {
         model.addAttribute(new Book());
-        return "/add";
+        return "book/add";
     }
 
     @PostMapping("add")
@@ -49,9 +49,8 @@ public class BookController {
 
     @GetMapping("delete")
     public String displayDeleteBooksForm(Model model) {
-        model.addAttribute("title", "Delete Events");
         model.addAttribute("books", bookRepository.findAll());
-        return "/delete";
+        return "book/delete";
     }
 
     @PostMapping("delete")
@@ -64,10 +63,26 @@ public class BookController {
         return "redirect:shelf";
     }
 
+    @GetMapping("edit/{bookId}")
+    public String displayEditForm(Model model, @PathVariable int bookId) {
+        Optional<Book> selectedBook = bookRepository.findById(bookId);
+        model.addAttribute("selectedBook",selectedBook);
+
+        return "redirect:";
+    }
+
+    /*@PostMapping("edit")
+    public String processEditForm(String name, String description) {
+        Event selectedEvent = EventData.getById(eventId);
+        selectedEvent.setName(name);
+        selectedEvent.setDescription(description);
+        return "redirect:";
+    }*/
+
     @RequestMapping("shelf")
     public String displayBookshelf(Model model) {
         model.addAttribute("books", bookRepository.findAll());
-        return "/shelf";
+        return "book/shelf";
     }
 
     @GetMapping("view/{bookId}")
@@ -76,7 +91,7 @@ public class BookController {
         if (optBook.isPresent()) {
             Book book = (Book) optBook.get();
             model.addAttribute("book", book);
-            return "/view";
+            return "book/view";
         } else {
             return "redirect:../shelf";
         }

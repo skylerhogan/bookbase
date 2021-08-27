@@ -152,4 +152,5 @@ body {
 #deleteCheckbox {
     position: absolute;
     margin-left: -1rem;
+    visibility: hidden;
 }
