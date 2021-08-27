@@ -34,7 +34,9 @@
                 </div>
             </div>
         </div>
-        <div id="book-description"></div>
+        <div id="book-description">
+            <h3>description</h3>
+        </div>
     </div>
 
     <div id="add-book-form-container">
@@ -73,6 +75,9 @@
                     <option value="5">5</option>
                 </select>
             </label>
+            <label>
+                <input th:field="${book.thumbnail}" id="thumbnail" hidden>
+            </label>
             <button type="submit">add book</button>
 
         </form>
@@ -82,6 +87,7 @@
 <script>
     const bookId = '[[${bookId}]]';
     let bookIsbns = '[[${bookRepositoryIsbns}]]';
+    let bookIds = '[[${bookRepositoryIds}]]';
 </script>
 <script type="module" th:src="@{/script/search/view.js}" th:inline="javascript"></script>
 

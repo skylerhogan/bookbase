@@ -27,6 +27,9 @@ public class Book {
     private String rating;
     private String date;
 
+    @Column(columnDefinition="TEXT")
+    private String thumbnail;
+
     public int getId() {
         return id;
     }
@@ -34,7 +37,7 @@ public class Book {
     public Book() {}
     
     public Book(int id, String title, String author, String isbn,
-                String pages, String genre, String status, String rating, String date) {
+                String pages, String genre, String status, String rating, String date, String thumbnail) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -44,6 +47,7 @@ public class Book {
         this.status = status;
         this.rating = rating;
         this.date = date;
+        this.thumbnail = thumbnail;
     }
 
     public String getTitle() {
@@ -109,4 +113,10 @@ public class Book {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public String getThumbnail() { return thumbnail; }
+
+    public void setThumbnail(String thumbnail) { this.thumbnail = thumbnail; }
+    
+
 }

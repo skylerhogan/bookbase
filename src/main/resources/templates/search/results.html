@@ -21,13 +21,13 @@
 
     </div>
 
-    <div th:replace="fragments :: search-form"></div>
+    <div th:replace="search/fragments :: search-form"></div>
 
     <div id="results-container" class="section">
         <div id="results-heading">
-            <h3 class="heading" style="color: rgba(64,110,88,1);">search for <span th:text="${searchQuery}"></span></h3>
-            <h3 class="heading" style="color: rgba(64,110,88,1);"><span th:text="${searchParameter}"></span></h3>
-            <h3 class="heading" style="color: rgba(64,110,88,1);">total results: <span id="totalResultsReturned"></span></h3>
+            <div><h4 class="heading" style="color: rgba(64,110,88,1);">search for... </h4></div>
+            <div><h4 class="heading" style="color: rgba(64,110,88,1);" th:text="${displayQuery}"></h4></div>
+            <div><h4 class="heading" style="color: rgba(64,110,88,1);">total results: <span id="totalResultsReturned"></span></h4></div>
         </div>
         <div id="results"></div>
     </div>

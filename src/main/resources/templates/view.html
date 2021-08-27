@@ -28,7 +28,7 @@
                </ul>
             </div>
             <div class="col">
-               <img class="bookcover d-flex mx-auto" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" width="70%" alt="cover">
+               <img class="bookcover d-flex mx-auto" th:src="${book.thumbnail}" width="70%" alt="cover">
             </div>
          </div>
       </div>

@@ -1,6 +1,9 @@
 import {
     returnBookObjectFromJson,
-    returnObjectFieldsAsHtml
+    returnObjectFieldsAsHtml,
+    renderAddBookButton,
+    fillAddBookForm,
+    generateTagLinks
 } from './modules/bookFunctions.js';
 
 const API_ENDPOINT = 'https://www.googleapis.com'
@@ -16,43 +19,8 @@ let bookDescription = document.getElementById('book-description');
 bookIsbns = bookIsbns.replaceAll("[", "").replaceAll("]", "").replaceAll(" ", "");
 bookIsbns = bookIsbns.split(",");
 
-function fillAddBookForm(bookObject) {
-    let title = document.getElementById('title');
-    let author = document.getElementById('author');
-    let isbn = document.getElementById('isbn');
-    let pages = document.getElementById('pages');
-    let genre = document.getElementById('genre');
-
-    title.value = bookObject.title;
-    author.value = bookObject.author;
-    isbn.value = bookObject.industryIdentifiers;
-    pages.value = bookObject.pageCount;
-    genre.value = bookObject.categories;
-}
-
-function renderAddBookButton(alreadyInBookshelf) {
-    const addButton = document.getElementById('add-button');
-    let addBookForm = document.getElementById('add-book-form-container');
-
-    if(alreadyInBookshelf === true) {
-        addButton.innerHTML = `
-            <a href="/user/shelf">
-                <button>view in bookshelf</button>
-            </a>
-        `;
-    } else {
-        addButton.innerHTML = `<button>add book</button>`
-        addButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            addBookForm.classList.add('active')
-        })
-
-        addBookForm.addEventListener('click', e => {
-            if (e.target !== e.currentTarget) return
-            addBookForm.classList.remove('active')
-        })
-    }
-}
+bookIds = bookIds.replaceAll("[", "").replaceAll("]", "").replaceAll(" ", "");
+bookIds = bookIds.split(",");
 
 const go = async () => {
     await printBook(bookId);
@@ -62,13 +30,15 @@ const printBook = async (bookId) => {
     await retrieveBook(bookId);
 
     let bookObject = returnBookObjectFromJson(promise[0]);
-    console.log(bookObject.industryIdentifiers);
+    console.log(bookObject.categories);
 
     let alreadyInBookshelf = false;
+    let bookShelfId = null;
 
     for (let i = 0; i < bookIsbns.length; i++) {
         if (bookIsbns[i] === bookObject.industryIdentifiers) {
             alreadyInBookshelf = true;
+            bookShelfId = bookIds[i];
         }
     }
 
@@ -76,7 +46,7 @@ const printBook = async (bookId) => {
 
     fillAddBookForm(bookObject);
 
-    renderAddBookButton(alreadyInBookshelf);
+    renderAddBookButton(alreadyInBookshelf, bookShelfId);
 }
 
 const retrieveBook = async (bookId) => {
@@ -91,9 +61,20 @@ const renderPage = async (bookObject) => {
     let rating = document.createElement('div');
     rating.id = 'rating-details';
     rating.innerHTML = `
-        <p class="avg-rating">average rating: ${bookObject.averageRating}
-            <span class="rating-count">(${bookObject.ratingsCount})</span>
-        </p>
+//        <p class="avg-rating">average rating: ${bookObject.averageRating}
+//            <span class="rating-count">(${bookObject.ratingsCount})</span>
+//        </p>
+        <label class="rating-label"><strong>Average rating: ${bookObject.averageRating} <code>readonly</code></strong>
+          <input
+            class="rating"
+            max="5"
+            readonly
+            step="0.01"
+            style="--fill:#777;--value:${bookObject.averageRating}"
+            type="range"
+            value="${bookObject.averageRating}">
+        </label>
+
     `;
     coverAndRating.appendChild(rating);
 
@@ -104,39 +85,16 @@ const renderPage = async (bookObject) => {
             <p class="book-detail"><span style="font-weight:bold;">Pages: </span>${bookObject.pageCount}</p>
             <p class="book-detail"><span style="font-weight:bold;">Publication Date: </span>${bookObject.publishedDate}</p>
             <p class="book-detail"><span style="font-weight:bold;">ISBN: </span>${bookObject.industryIdentifiers}</p>
-            <p class="book-detail"><span style="font-weight:bold;">Genre: </span>${bookObject.categories}</p>
+            <p class="book-detail"><span style="font-weight:bold;">Genre: </span>${bookObject.genre}</p>
+            <p class="book-detail"><span style="font-weight:bold;">Tags: </span>${generateTagLinks(bookObject.tags)}</p>
         </div>
     `;
 
-    bookDescription.innerHTML = `
-        <h3>description</h3>
-        <div id="description">
-            <p>${bookObject.description}</p>
-        </div>
-    `;
+    let description = document.createElement('div');
+    description.id = 'description';
+    description.innerHTML = `<p>${bookObject.description}</p>`;
+    bookDescription.appendChild(description);
+
 }
 
-
-window.addEventListener('load', () => {
-    go();
-
-    console.log(bookIsbns[0]);
-//    const addButton = document.getElementById('add-button');
-//    let addBookForm = document.getElementById('add-book-form-container');
-//
-//    if(alreadyInBookshelf === true) {
-//        addButton.innerHTML = 'view in bookshelf'
-//    } else {
-//        addButton.innerHTML = 'add book'
-//        addButton.addEventListener('click', (event) => {
-//            event.preventDefault();
-//            addBookForm.classList.add('active')
-//        })
-//
-//        addBookForm.addEventListener('click', e => {
-//          if (e.target !== e.currentTarget) return
-//          addBookForm.classList.remove('active')
-//        })
-//    }
-
-});
+window.addEventListener('load', go);

@@ -13,24 +13,24 @@
       <link rel="stylesheet" th:href="@{/shelf.css}" />
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
       <title>Library App</title>
-    </head>
+  </head>
 
   <body>
 
-<!-- Navbar(guest) -->
-<nav th:fragment="navigation-guest" class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand me-2" href="#">Library App</a>
-      <div class="d-flex">
-        <ul class="navbar-nav px-3 me-2">
-          <li class="nav-item">
-            <a href="#" class="nav-link" style="color: #0d6efd">Register</a>
-          </li>
-        </ul>
-        <button type="button" class="btn btn-primary">Log In</button>
+    <!-- Navbar(guest) -->
+    <nav th:fragment="navigation-guest" class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand me-2" href="#">Library App</a>
+          <div class="d-flex">
+            <ul class="navbar-nav px-3 me-2">
+              <li class="nav-item">
+                <a href="#" class="nav-link" style="color: #0d6efd">Register</a>
+              </li>
+            </ul>
+            <button type="button" class="btn btn-primary">Log In</button>
+          </div>
       </div>
-  </div>
-</nav>
+    </nav>
 
     <!-- Navbar(logged-in user pages) -->
     <nav
@@ -66,8 +66,9 @@
         <div class="navbar-collapse collapse ms-auto" id="navbarText">
           <ul class="navbar-nav ms-auto align-items-end">
             <li class="nav-item mx-1 nav-search">
-              <form class="nav-link">
+              <form method="post" class="nav-link" action="search">
                 <input
+                  name="searchQuery"
                   class="form-control"
                   type="search"
                   placeholder="Title / Author / ISBN"
@@ -171,8 +172,7 @@
     </nav>
 
 
-<!--bookshelf grid-->
-
+    <!--bookshelf grid-->
     <div th:fragment="bookshelf-grid" style="margin-left: -1rem">
       <div
         class="row row-cols-3 row-cols-xs-3 row-cols-md-4 row-cols-lg-5"
@@ -186,7 +186,7 @@
               class="container d-flex"
             >
               <img
-                th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}"
+                th:src="${book.thumbnail}"
                 class="bookcover mx-auto"
                 z-index="1"
                 margin-top="-2"

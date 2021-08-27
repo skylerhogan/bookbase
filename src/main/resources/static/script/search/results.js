@@ -13,15 +13,13 @@ let results = document.getElementById('results');
 let pageNumbersContainer = document.querySelector('.page-numbers-container');
 let pageNumbers = document.querySelectorAll('page-number');
 
-// GO
 const go = async () => {
     await printBooks(query, startIndex, maxResults);
-    console.log(queryArray);
-    console.log(searchQuery);
-    console.log(searchParameter);
+    console.log(query);
+//    console.log(searchQuery);
+//    console.log(searchParameter);
 }
 
-// PRINTBOOKS
 const printBooks = async (query, startIndex, maxResults) => {
 
     results.innerHTML = '';
@@ -47,6 +45,7 @@ const printBooks = async (query, startIndex, maxResults) => {
 
 const retrieveBooks = async (query, startIndex, maxResults) => {
     promises = [];
+    console.log(query);
     let response = await fetch(`${API_ENDPOINT}/books/v1/volumes?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}&orderBy=relevance&key=${API_KEY}`);
     promises.push(await response.json());
 
@@ -61,7 +60,7 @@ const renderPageNumbers = async (pages, currentPage) => {
 
     let previousPageButton = document.createElement('a');
     previousPageButton.id = 'previous-page';
-    previousPageButton.innerHTML = '⇦ previous';
+    previousPageButton.innerHTML = '<span class="page-arrow">⇦</span> previous';
     previousPageButton.classList.add('page-number');
     if(Number(currentPage) === 1) {
         previousPageButton.classList.add('disabled');
@@ -115,7 +114,7 @@ const renderPageNumbers = async (pages, currentPage) => {
 
     let nextPageButton = document.createElement('a');
     nextPageButton.id = 'next-page';
-    nextPageButton.innerHTML = '⇨ next';
+    nextPageButton.innerHTML = 'next <span class="page-arrow">⇨</span>';
     nextPageButton.classList.add('page-number');
     if(Number(currentPage) === pages) {
         nextPageButton.classList.add('disabled');
