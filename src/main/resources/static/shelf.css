@@ -23,6 +23,14 @@ body {
   color: #fff;
 }
 
+.bookcover {
+    box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
+    -webkit-box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
+    -moz-box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
+    min-width: 135px;
+    max-width: 135px;
+}
+
 .card-shadow {
     box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
     -webkit-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
@@ -86,6 +94,10 @@ body {
 
 .rating-submit:hover {
     color: #fff
+}
+
+.noHover{
+    pointer-events: none;
 }
 
 /* aligns bootstrap icons with text */

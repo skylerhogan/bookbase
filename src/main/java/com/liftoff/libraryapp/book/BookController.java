@@ -30,7 +30,7 @@ public class BookController {
     @PostMapping("add")
     public String processAddBookForm(@ModelAttribute @Valid Book newBook,
                                     Errors errors, Model model, @RequestParam String title, @RequestParam String author, @RequestParam String isbn,
-                                     @RequestParam String pages, @RequestParam String genre, @RequestParam String status, @RequestParam String rating) {
+                                     @RequestParam String pages, @RequestParam String genre, @RequestParam String status, @RequestParam String rating, @RequestParam String description) {
         if (errors.hasErrors()) {
             return "/add";
         }
@@ -64,20 +64,39 @@ public class BookController {
     }
 
     @GetMapping("edit/{bookId}")
-    public String displayEditForm(Model model, @PathVariable int bookId) {
-        Optional<Book> selectedBook = bookRepository.findById(bookId);
-        model.addAttribute("selectedBook",selectedBook);
-
-        return "redirect:";
+    public String displayEditForm(Model model, @PathVariable Integer bookId) {
+        Optional optBook = bookRepository.findById(bookId);
+        if (optBook.isPresent()) {
+            Book book = (Book) optBook.get();
+            model.addAttribute("book", book);
+            return "book/edit";
+        } else {
+            return "redirect:../";
+        }
     }
 
-    /*@PostMapping("edit")
-    public String processEditForm(String name, String description) {
-        Event selectedEvent = EventData.getById(eventId);
-        selectedEvent.setName(name);
-        selectedEvent.setDescription(description);
-        return "redirect:";
-    }*/
+    @PostMapping("edit")
+    public String processEditForm(Model model, @RequestParam Integer bookId, String title, String author, String isbn,
+                                  String pages, String genre, String status, String rating) {
+        Optional optBook = bookRepository.findById(bookId);
+        System.out.println(optBook);
+        if (optBook.isPresent()) {
+            Book book = (Book) optBook.get();
+            model.addAttribute("book", book);
+            book.setTitle(title);
+            book.setAuthor(author);
+            book.setIsbn(isbn);
+            book.setPages(pages);
+            book.setGenre(genre);
+            book.setStatus(status);
+            book.setRating(rating);
+            book.setDate(book.getDate());
+            bookRepository.save(book);
+            return "redirect:shelf";
+        } else {
+            return "redirect:";
+        }
+    }
 
     @RequestMapping("shelf")
     public String displayBookshelf(Model model) {
@@ -86,7 +105,7 @@ public class BookController {
     }
 
     @GetMapping("view/{bookId}")
-    public String displayViewBook(Model model, @PathVariable int bookId) {
+    public String displayViewBook(Model model, @PathVariable (required = false) Integer bookId) {
         Optional<Book> optBook = bookRepository.findById(bookId);
         if (optBook.isPresent()) {
             Book book = (Book) optBook.get();
@@ -96,4 +115,6 @@ public class BookController {
             return "redirect:../shelf";
         }
     }
+
+
 }

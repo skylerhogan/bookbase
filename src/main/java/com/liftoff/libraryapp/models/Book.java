@@ -1,6 +1,7 @@
 package com.liftoff.libraryapp.models;
-
 import javax.persistence.*;
+import java.util.Objects;
+
 
 @Entity
 public class Book {
@@ -17,7 +18,7 @@ public class Book {
             generator = "book_sequence"
     )
 
-    private int id;
+    private Integer id;
     private String title;
     private String author;
     private String isbn;
@@ -25,17 +26,17 @@ public class Book {
     private String genre;
     private String status;
     private String rating;
-    private String thumbnail;
     private String date;
+    private String description;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     public Book() {}
     
-    public Book(int id, String title, String author, String isbn,
-                String pages, String genre, String status, String rating, String thumbnail, String date) {
+    public Book(Integer id, String title, String author, String isbn,
+                String pages, String genre, String status, String rating, String date, String description) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -44,8 +45,8 @@ public class Book {
         this.genre = genre;
         this.status = status;
         this.rating = rating;
-        this.thumbnail = thumbnail;
         this.date = date;
+        this.description = description;
     }
 
     public String getTitle() {
@@ -112,11 +113,25 @@ public class Book {
         this.date = date;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
+    public String getDescription() {
+        return description;
     }
 
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return id.equals(book.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
+
