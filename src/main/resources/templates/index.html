@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+<head>
+  <th:block th:replace="fragments :: head"></th:block>
+  <link rel="stylesheet" th:href="@{/styles.css}" />
+  <script defer th:src="@{/js/bestsellers.js}"></script>
+</head>
 
 <body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-light navbar-light fixed-top">
+
+<!-- Non-hamburger navbar for guests -->
+<nav class="navbar navbar-expand bg-light navbar-light fixed-top">
   <div class="container">
     <a class="navbar-brand" href="#">Library App</a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navmenu">
+    <div id="navmenu">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item px-3"><a href="#" class="nav-link">Register</a></li>
-        <li class="nav-item px-3"><a href="#" class="nav-link btn btn-primary text-light px-3">Log In</a>
+        <li class="nav-item"><a href="#" class="nav-link btn btn-primary text-light px-3">Log In</a>
         </li>
       </ul>
     </div>
@@ -23,11 +24,30 @@
 </nav>
 
 <!-- Header/showcase -->
-<header class="text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start" id="header">
-  <div class="container pt-5 py-lg-5">
-    <div class="header-text-box">
-      <h1 class="fw-bolder text-sm-center text-lg-end">Library App</h1>
-      <h3 class="fw-light text-sm-center text-lg-end">Manage Your Own Personal Library</h3>
+<header class="text-light text-center text-sm-start d-flex align-items-center justify-content-center">
+  <div class="container">
+    <div class="row align-items-center gx-5">
+      <div class="col-xl-6">
+        <div id="login-card" class="card bg-light text-dark d-none d-xl-block">
+          <div class="card-body text-center">
+            <p class="lead fw-normal py-3">Already have an account? Log in:</p>
+            <form class="px-4">
+              <div class="mb-3"><input type="email" class="form-control" placeholder="Email Address">
+              </div>
+              <div class="mb-3"><input type="password" class="form-control" placeholder="Password">
+              </div>
+              <button class="btn btn-primary w-50 my-3" type="submit">
+                <span class="fs-5">Log In</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-6 header-text-box">
+        <h1 class="fw-bolder text-sm-center text-lg-end">Library App</h1>
+        <h3 class="fw-light text-sm-center text-lg-end">Manage Your Own Personal Library</h3>
+      </div>
     </div>
   </div>
 </header>
@@ -107,65 +127,7 @@
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
           aria-label="Slide 2"></button>
   </div> -->
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="row align-items-center justify-content-evenly">
-            <div class="col-md-1">
-              <img src="http://books.google.com/books/content?id=IA7azQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-                   alt="" class="book">
-            </div>
-            <div class="col-md-1">
-              <img src="http://books.google.com/books/content?id=aPlAtgEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
-                   alt="" class="book">
-            </div>
-            <div class="col-md-1">
-              <img src="http://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
-                   alt="" class="book">
-            </div>
-            <div class="col-md-1">
-              <img src="http://books.google.com/books/content?id=kTH6zAEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
-                   alt="" class="book">
-            </div>
-            <div class="col-md-1">
-              <img src="http://books.google.com/books/content?id=PJTlydN3Mf0C&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-                   alt="" class="book">
-            </div>
-            <div class="col-md-1">
-              <img src="http://books.google.com/books/content?id=L3oXEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                   alt="" class="book">
-            </div>
-          </div>
-        </div>
-
-        <div class="carousel-item">
-          <div class="row align-items-center justify-content-evenly">
-            <div class="col-md-1">
-              <img src="http://books.google.com/books/content?id=tmmOvqV4MboC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                   alt="" class="book">
-            </div>
-            <div class="col-md-1">
-              <img src="http://books.google.com/books/content?id=vHnZCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                   alt="" class="book">
-            </div>
-            <div class="col-md-1">
-              <img src="http://books.google.com/books/content?id=OYtkbGl2j0sC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                   alt="" class="book">
-            </div>
-            <div class="col-md-1">
-              <img src="http://books.google.com/books/content?id=HestSXO362YC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-                   alt="" class="book">
-            </div>
-            <div class="col-md-1">
-              <img src="https://books.google.com/books/content?id=idpaAQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-                   alt="" class="book">
-            </div>
-            <div class="col-md-1">
-              <img src="http://books.google.com/books/content?id=SEsIPQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-                   alt="" class="book">
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="carousel-inner"></div>
       <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
           data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -184,8 +146,8 @@
 <!-- Register/Log in cards -->
 <section id="cards" class="bg-primary bg-opacity-75 p-5">
   <div class="container">
-    <div class="row align-items-center text-center g-4">
-      <div class="col-lg">
+    <div class="row text-center g-4 justify-content-center">
+      <div class="col-md-9 col-lg-6">
         <div class="card bg-dark text-light">
           <div class="card-body text-center">
             <p class="lead fw-normal py-3">Want to manage your own library? <span
@@ -203,22 +165,6 @@
               </div>
               <button class="btn btn-primary w-50 my-3" type="submit">
                 <span class="fs-5">Register</span>
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg">
-        <div class="card bg-dark text-light">
-          <div class="card-body text-center">
-            <p class="lead fw-normal py-3">Already have an account? Log in:</p>
-            <form class="px-4">
-              <div class="mb-3"><input type="email" class="form-control" placeholder="Email Address">
-              </div>
-              <div class="mb-3"><input type="password" class="form-control" placeholder="Password">
-              </div>
-              <button class="btn btn-primary w-50 my-3" type="submit">
-                <span class="fs-5">Log In</span>
               </button>
             </form>
           </div>
