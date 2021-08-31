@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head th:replace="fragments :: head" ></head>
+<head>
+   <th:block th:replace="fragments :: head"></th:block>
+   <link rel="stylesheet" th:href="@{/css/shelf.css}" />
+   <script defer th:src="@{/js/shelf.js}"></script>
+</head>
    <body class="container">
       <header>
          <nav th:replace="fragments :: navigation-user"></nav>
       </header>
       <div th:replace="fragments :: bookshelf-grid"></div>
-      <script type="module" th:src="@{/shelf.js}" th:inline="javascript"></script>
    </body>
 </html>
