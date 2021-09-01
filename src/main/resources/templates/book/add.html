@@ -11,7 +11,7 @@
 </header>
 
 <!--form to manually add books to database-->
-<div class="card mx-auto bg-dark card-shadow" style="width: 26rem; height: 22rem; margin-top:15rem;">
+<div class="card mx-auto bg-light card-shadow" style="width: 26rem; height: 27rem; margin-top:15rem;">
    <div class="card-body">
       <form method="post" class="row gy-2 gx-3 align-items-center">
          <div class="col-auto mt-3" style="width: 100%;">
@@ -61,7 +61,7 @@
                <option value="Non-Fiction (Other)">Non-Fiction (Other)</option>
             </select>
          </div>
-         <div class="col-auto">
+         <div class="col-auto" style="width: 60%;">
             <label class="visually-hidden" th:for="status">Status</label>
             <select th:field="${book.status}" class="form-select status-selector" id="status" required>
                <option selected value="">Shelf</option>
@@ -69,6 +69,19 @@
                <option value="Currently Reading">Currently Reading</option>
                <option id="completed" value="Completed">Completed</option>
             </select>
+         </div>
+         <div class="col-auto" style="width: 50%;">
+            <label class="visually-hidden" th:for="description">Description</label>
+            <div class="input-group">
+               <textarea th:field="${book.description}" type="text" class="form-control textarea" rows="3" id="description" placeholder="Description"></textarea>
+            </div>
+         </div>
+         <div class="col-auto" style="width: 50%;">
+            <label class="visually-hidden" th:for="userReview">Personal Review</label>
+            <div class="input-group">
+
+               <textarea th:field="${book.userReview}" type="text" class="form-control textarea" rows="3" id="userReview" placeholder="Review"></textarea>
+            </div>
          </div>
          <div>
             <div class="rating mt-2 mb-1" id="starRating"> <input th:field="${book.rating}" type="radio" name="rating" value="5" id="5"><label th:for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label th:for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label th:for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label th:for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label th:for="1">☆</label><input type="radio" name="rating" value="" checked="checked"></div>

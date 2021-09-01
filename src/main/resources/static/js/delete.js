@@ -1,6 +1,6 @@
-let books = document.querySelectorAll("img");
-let deleteButton = document.querySelector("#deleteButton");
-let bookIds = document.getElementsByName("bookIds");
+const books = document.querySelectorAll("img");
+const deleteButton = document.querySelector("#deleteButton");
+const bookIds = document.getElementsByName("bookIds");
 
 
 for(let i=0; i < books.length; i++) {

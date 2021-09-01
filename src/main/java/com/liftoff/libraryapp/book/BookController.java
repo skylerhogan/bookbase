@@ -9,8 +9,11 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 
 
@@ -30,7 +33,8 @@ public class BookController {
     @PostMapping("add")
     public String processAddBookForm(@ModelAttribute @Valid Book newBook,
                                     Errors errors, Model model, @RequestParam String title, @RequestParam String author, @RequestParam String isbn,
-                                     @RequestParam String pages, @RequestParam String genre, @RequestParam String status, @RequestParam String rating, @RequestParam String description) {
+                                     @RequestParam String pages, @RequestParam String genre, @RequestParam String status, @RequestParam String rating,
+                                     @RequestParam String description, @RequestParam String userReview) {
         if (errors.hasErrors()) {
             return "/add";
         }
@@ -40,7 +44,7 @@ public class BookController {
         String currentDate = Date.format(cals.getTime());
         model.addAttribute("date", currentDate);
 
-        newBook.setDate(currentDate);
+        newBook.setDateAdded(currentDate);
 
         bookRepository.save(newBook);
 
@@ -49,7 +53,7 @@ public class BookController {
 
     @GetMapping("delete")
     public String displayDeleteBooksForm(Model model) {
-        model.addAttribute("books", bookRepository.findAll());
+        model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
         return "book/delete";
     }
 
@@ -77,9 +81,8 @@ public class BookController {
 
     @PostMapping("edit")
     public String processEditForm(Model model, @RequestParam Integer bookId, String title, String author, String isbn,
-                                  String pages, String genre, String status, String rating) {
+                                  String pages, String genre, String status, String rating, String description, String userReview) {
         Optional optBook = bookRepository.findById(bookId);
-        System.out.println(optBook);
         if (optBook.isPresent()) {
             Book book = (Book) optBook.get();
             model.addAttribute("book", book);
@@ -90,7 +93,9 @@ public class BookController {
             book.setGenre(genre);
             book.setStatus(status);
             book.setRating(rating);
-            book.setDate(book.getDate());
+            book.setDescription(description);
+            book.setUserReview(userReview);
+            book.setDateAdded(book.getDateAdded());
             bookRepository.save(book);
             return "redirect:shelf";
         } else {
@@ -99,10 +104,41 @@ public class BookController {
     }
 
     @RequestMapping("shelf")
-    public String displayBookshelf(Model model) {
-        model.addAttribute("books", bookRepository.findAll());
+    public String displayMainBookshelf(Model model) {
+        model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
         return "book/shelf";
     }
+
+    @PostMapping("shelf")
+    public String displayMainBookshelf(Model model, @RequestParam String status) {
+        if (status == "") {
+            model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
+        } else {
+            model.addAttribute("books", bookRepository.findByStatus(status));
+        }
+        return "book/shelf";
+    }
+
+   /* @RequestMapping("shelf/want-to-read")
+    public String displayWantToReadBookshelf(Model model) {
+        model.addAttribute("books", bookRepository.findByStatusIgnoreCaseOrderByDateViewedDesc("want to read"));
+        *//*model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());*//*
+        return "book/shelf";
+    }
+
+    @RequestMapping("shelf/currently-reading")
+    public String displayCurrentlyReadingBookshelf(Model model) {
+        model.addAttribute("books", bookRepository.findByStatusIgnoreCaseOrderByDateViewedDesc("currently reading"));
+        *//*model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());*//*
+        return "book/shelf";
+    }
+
+    @RequestMapping("shelf/completed")
+    public String displayCompletedBookshelf(Model model) {
+        model.addAttribute("books", bookRepository.findByStatusIgnoreCaseOrderByDateViewedDesc("completed"));
+        *//*model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());*//*
+        return "book/shelf";
+    }*/
 
     @GetMapping("view/{bookId}")
     public String displayViewBook(Model model, @PathVariable (required = false) Integer bookId) {
@@ -110,6 +146,13 @@ public class BookController {
         if (optBook.isPresent()) {
             Book book = (Book) optBook.get();
             model.addAttribute("book", book);
+            Date date = new Date();
+            Timestamp ts = new Timestamp(date.getTime());
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH::mm:ss");
+            String dateViewed = formatter.format(ts);
+            model.addAttribute("dateViewed", dateViewed);
+            book.setDateViewed(dateViewed);
+            bookRepository.save(book);
             return "book/view";
         } else {
             return "redirect:../shelf";

@@ -24,11 +24,14 @@ body {
 }
 
 .bookcover {
+    min-width: 135px;
+    max-width: 135px;
+}
+
+.book-shadow {
     box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
     -webkit-box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
     -moz-box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
-    min-width: 135px;
-    max-width: 135px;
 }
 
 .card-shadow {
@@ -165,4 +168,8 @@ body {
     position: absolute;
     margin-left: -1rem;
     visibility: hidden;
+}
+
+textarea {
+   resize: none;
 }

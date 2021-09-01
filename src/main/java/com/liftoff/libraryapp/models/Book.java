@@ -26,8 +26,10 @@ public class Book {
     private String genre;
     private String status;
     private String rating;
-    private String date;
+    private String dateAdded;
+    private String dateViewed;
     private String description;
+    private String userReview;
 
     public Integer getId() {
         return id;
@@ -36,7 +38,8 @@ public class Book {
     public Book() {}
     
     public Book(Integer id, String title, String author, String isbn,
-                String pages, String genre, String status, String rating, String date, String description) {
+                String pages, String genre, String status, String rating, String dateAdded,
+                String dateViewed, String description, String userReview) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -45,8 +48,10 @@ public class Book {
         this.genre = genre;
         this.status = status;
         this.rating = rating;
-        this.date = date;
+        this.dateAdded = dateAdded;
+        this.dateViewed = dateViewed;
         this.description = description;
+        this.userReview = userReview;
     }
 
     public String getTitle() {
@@ -105,12 +110,20 @@ public class Book {
         this.rating = rating;
     }
 
-    public String getDate() {
-        return date;
+    public String getDateAdded() {
+        return dateAdded;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDateAdded(String dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public String getDateViewed() {
+        return dateViewed;
+    }
+
+    public void setDateViewed(String dateViewed) {
+        this.dateViewed = dateViewed;
     }
 
     public String getDescription() {
@@ -119,6 +132,14 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUserReview() {
+        return userReview;
+    }
+
+    public void setUserReview(String userReview) {
+        this.userReview = userReview;
     }
 
     @Override
@@ -133,5 +154,6 @@ public class Book {
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }
 
