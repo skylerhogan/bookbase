@@ -4,6 +4,7 @@ body {
 
 	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
 		url("/images/library.jpg");
+	background-color: #2B2D2F;
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -91,21 +92,9 @@ body {
 }
 
 /* aligns bootstrap icons with text */
-.bi {
-    position: relative;
-    bottom: 2px;
-    right: .25rem;
-}
 
 .nav-search {
     width:100%;
-}
-
-#logo {
-    font-family: 'Dosis', sans-serif;
-    font-size: 2rem;
-    font-weight: 300;
-    margin-left: 1em;
 }
 
 #footer-logo {
@@ -165,4 +154,10 @@ body {
 
 textarea {
    resize: none;
+}
+
+.iconbutton {
+  background: none;
+  padding: 0px;
+  border: none;
 }

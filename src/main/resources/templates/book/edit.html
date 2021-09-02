@@ -57,12 +57,14 @@
                                     <img class="d-flex book-shadow mx-auto mt-5" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" width="50%" alt="cover">
                                 </div>
                             </div>
-                            <div class="text-center">
-                                <input type="submit" value="Save" id="saveButton" class="btn btn-lg btn-primary">
-                            </div>
                         </div>
-                        <div class="card-footer">
-                            <small class="text-muted" name="date" th:field="book.date" th:text="${'Date Added: ' + book.dateAdded}"></small>
+                        <div class="d-flex card-footer justify-content-between align-items-center">
+                            <small class="text-muted" th:text="${'Date Added: ' + book.dateAdded}"></small>
+                            <button class="iconbutton">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="" fill="#0d6efd" class="bi bi-save2-fill" viewBox="0 0 16 16">
+                                    <path d="M8.5 1.5A1.5 1.5 0 0 1 10 0h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h6c-.314.418-.5.937-.5 1.5v6h-2a.5.5 0 0 0-.354.854l2.5 2.5a.5.5 0 0 0 .708 0l2.5-2.5A.5.5 0 0 0 10.5 7.5h-2v-6z"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </form>

@@ -159,5 +159,10 @@ public class BookController {
         }
     }
 
+    @GetMapping("profile")
+    public String displayUserProfile(Model model) {
+        return "user/profile";
+    }
+
 
 }
