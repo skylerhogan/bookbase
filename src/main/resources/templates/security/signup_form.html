@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body>
-<div class="container text-center">
-    <div>
-        <h1>User Registration - Sign Up</h1>
-    </div>
-    <form th:action="@{/registration}" th:object="${request}"
-          method="post" style="max-width: 600px; margin: 0 auto;">
-        <div class="m-3">
-            <div class="form-group row">
-                <label class="col-4 col-form-label">First Name: </label>
-                <div class="col-8">
-                    <input type="text" th:field="*{firstName}" class="form-control"
-                           required minlength="2" maxlength="20"/>
-                </div>
-            </div>
+<head>
+    <th:block th:replace="fragments :: head"></th:block>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body class="main-bg">
 
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Last Name: </label>
-                <div class="col-8">
-                    <input type="text" th:field="*{lastName}" class="form-control"
-                           required minlength="2" maxlength="20" />
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-4 col-form-label">E-mail: </label>
-                <div class="col-8">
-                    <input type="email" th:field="*{email}" class="form-control" required />
-                </div>
-            </div>
+<nav th:replace="fragments :: navigation-guest"></nav>
 
-            <div class="form-group row">
-                <label class="col-4 col-form-label">Password: </label>
-                <div class="col-8">
-                    <input type="password" th:field="*{password}" class="form-control"
-                           required minlength="6" maxlength="10"/>
-                </div>
-            </div>
+<div class="container d-flex align-items-center justify-content-center" style="height:100vh;">
+    <div class="col" style="max-width:620px;">
+        <div class="card bg-light text-dark">
+            <div class="card-body">
+                <p class="lead fw-normal pt-3 text-start ps-4"><span class="fw-bold">Sign up</span> to manage your
+                    own library:</p>
+                <form th:action="@{/registration}" th:object="${request}" method="post" class="px-4">
 
-            <div>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
+                    <!-- TODO: Handle errors (email already taken, passwords don't match, etc.) -->
+
+                    <div class="form-floating mb-3">
+                        <input type="text" id="firstName" th:field="*{firstName}" class="form-control" required
+                               minlength="2" maxlength="20" placeholder="First Name"/>
+                        <label for="firstName">First Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" id="lastName" th:field="*{lastName}" class="form-control" required
+                        minlength="2" maxlength="20" placeholder="Last Name"/>
+                        <label for="lastName">Last Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" id="email" th:field="*{email}" class="form-control" required placeholder="Email Address"/>
+                        <label for="email">Email Address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" id="password" th:field="*{password}" class="form-control" required
+                               minlength="6" maxlength="10" placeholder="Password"/>
+                        <label for="password">Password</label>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary w-25 my-3 float-end">Sign Up</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
 </div>
+
 </body>
 </html>
