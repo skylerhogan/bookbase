@@ -38,12 +38,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/admin").hasRole("ADMIN")
                     .antMatchers("/user").hasRole("USER")
                     .antMatchers("/registration/**", "/", "/resources/**").permitAll()
-                // .anyRequest().authenticated()
+//                 .anyRequest().authenticated()
                 .and().formLogin()
-                    .loginPage("/login")
+                    .loginPage("/security/login")
+                    .failureUrl("/login?error")
                     .permitAll()
                     .usernameParameter("email")
-                    .passwordParameter("password");
+                    .defaultSuccessUrl("/user/shelf", true);
+                // TODO: remember me
+                // TODO: forgot password
     }
 
     @Override
