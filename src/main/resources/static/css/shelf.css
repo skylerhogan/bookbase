@@ -9,19 +9,6 @@ body {
 	background-attachment: fixed;
 }
 
-.top {
-  margin: 0;
-  position: relative;
-  width: 100%;
-  background-color: #aaa;
-  height: 300px;
-  opacity: 1;
-  text-align: center;
-  font-family: 'helvetica';
-  font-size: 80px;
-  font-weight: 100;
-  color: #fff;
-}
 
 .bookcover {
     min-width: 135px;
@@ -119,6 +106,12 @@ body {
     font-size: 2rem;
     font-weight: 300;
     margin-left: 1em;
+}
+
+#footer-logo {
+    font-family: 'Dosis', sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
 }
 
 /* Small devices (landscape phones, less than 768px) */
