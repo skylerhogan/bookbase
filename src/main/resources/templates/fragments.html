@@ -14,7 +14,7 @@
 
 <body>
 
-<!-- Navbar(guest) -->
+<!-- Navbar (guest) -->
 <nav th:fragment="navigation-guest" class="navbar navbar-expand bg-light navbar-light fixed-top">
   <div class="container">
     <a class="navbar-brand" href="/">Library App</a>
@@ -33,6 +33,38 @@
     </div>
   </div>
 </nav>
+
+<!-- Login form -->
+<th:block th:fragment="login-form" class="card-body">
+  <form th:action="@{/security/login}" method="post" class="px-4">
+    <div th:if="${param.error}" class="alert alert-danger p-2 mb-4 mx-4 fw-bold text-center">
+      <i class="bi bi-exclamation-circle-fill fs-4 pe-2" style="vertical-align: sub;"></i> Invalid
+      email address or password.
+    </div>
+    <div th:if="${param.logout}" class="alert alert-success p-2 mb-4 mx-4 fw-bold text-center">
+      <i class="bi bi-check-circle-fill fs-4 pe-2" style="vertical-align: sub;"></i> You have
+      been logged out.
+    </div>
+    <div class="form-floating mb-3">
+      <input name="email" type="email" id="email" class="form-control" placeholder="Email Address"/>
+      <label for="email">Email Address</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input name="password" type="password" id="password" class="form-control"
+             placeholder="Password">
+      <label for="password">Password</label>
+    </div>
+    <div class="text-end pe-2">
+      <input type="checkbox" id="checkbox" name="remember-me">
+      <label for="checkbox">Remember me</label>
+    </div>
+    <div>
+      <a class="my-3 float-start" href="#" style="text-decoration:none;">Forgot
+        password?</a>
+      <button type="submit" class="btn btn-primary w-25 my-3 float-end">Log In</button>
+    </div>
+  </form>
+</th:block>
 
 <!-- Navbar(logged-in user pages) -->
 <nav
