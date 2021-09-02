@@ -1,6 +1,6 @@
 ### Overview 📚
 
-Bookbase is a personal library management application. Through the use of "shelves" allows users to keep track of books they have read, ones they are currently reading and those that they want to read in the future. At its core, its a true bookclub companion.
+Bookbase is a personal library management application. Through the use of "shelves" it allows users to keep track of books they have read, ones they are currently reading and those that they want to read in the future. At its core, its a true bookclub companion.
 
 ### Features ⭐
 1) User profile generation and authentication with Spring Security and email confirmation.
