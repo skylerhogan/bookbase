@@ -8,20 +8,8 @@
 
 <body>
 
-<!-- Non-hamburger navbar for guests -->
-<nav class="navbar navbar-expand bg-light navbar-light fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">Library App</a>
-
-    <div id="navmenu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item px-3"><a href="#" class="nav-link">Register</a></li>
-        <li class="nav-item"><a href="#" class="nav-link btn btn-primary text-light px-3">Log In</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<!-- Navbar -->
+<nav th:replace="fragments :: navigation-guest"></nav>
 
 <!-- Header/showcase -->
 <header class="main-bg text-light text-center text-sm-start d-flex align-items-center justify-content-center">
