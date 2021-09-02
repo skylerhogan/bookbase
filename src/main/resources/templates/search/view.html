@@ -65,13 +65,16 @@
             </label>
             <label>Rating:
                 <select th:field="${book.rating}" id="rating">
-                    <<option selected value="">Select One</option>
+                    <option selected value="">Select One</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
+            </label>
+            <label>Description:
+                <input th:field="${book.description}" id="description">
             </label>
             <button type="submit">Add Book</button>
         </form>

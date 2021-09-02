@@ -5,10 +5,37 @@
    <link rel="stylesheet" th:href="@{/css/shelf.css}" />
    <script defer th:src="@{/js/shelf.js}"></script>
 </head>
-   <body class="container">
+   <body>
+
+      <!-- User Navbar -->
       <header>
          <nav th:replace="fragments :: navigation-user"></nav>
       </header>
-      <div th:replace="fragments :: bookshelf-grid"></div>
+
+      <!-- Shelf Selector -->
+      <section>
+         <div>
+            <form method="post" id="shelfForm" class="text-center mx-auto mt-2" style="width:10rem;">
+               <label class="visually-hidden" th:for="status">Status</label>
+               <select name="status" class="form-select status-selector" id="shelfSelect" style="margin-top:10rem;" onchange="addOption()" required>
+                  <option disabled>Shelves</option>
+                  <option value="">All Books</option>
+                  <option value="Want to Read">Want to Read</option>
+                  <option value="Currently Reading">Currently Reading</option>
+                  <option value="Completed">Completed</option>
+               </select>
+            </form>
+         </div>
+      </section>
+
+      <!-- Book Grid -->
+      <section class="container">
+         <div th:replace="fragments :: bookshelf-grid"></div>
+      </section>
+
+      <!-- Footer -->
+      <section>
+         <div th:replace="fragments :: footer"></div>
+      </section>
    </body>
 </html>

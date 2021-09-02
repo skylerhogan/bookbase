@@ -9,26 +9,16 @@ body {
 	background-attachment: fixed;
 }
 
-.top {
-  margin: 0;
-  position: relative;
-  width: 100%;
-  background-color: #aaa;
-  height: 300px;
-  opacity: 1;
-  text-align: center;
-  font-family: 'helvetica';
-  font-size: 80px;
-  font-weight: 100;
-  color: #fff;
-}
 
 .bookcover {
+    min-width: 135px;
+    max-width: 135px;
+}
+
+.book-shadow {
     box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
     -webkit-box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
     -moz-box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
-    min-width: 135px;
-    max-width: 135px;
 }
 
 .card-shadow {
@@ -118,6 +108,12 @@ body {
     margin-left: 1em;
 }
 
+#footer-logo {
+    font-family: 'Dosis', sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
 /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {
     .nav-search {
@@ -165,4 +161,8 @@ body {
     position: absolute;
     margin-left: -1rem;
     visibility: hidden;
+}
+
+textarea {
+   resize: none;
 }

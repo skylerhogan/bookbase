@@ -9,8 +9,11 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 @Controller
 @RequestMapping("user")
@@ -58,7 +61,7 @@ public class SearchController {
     @PostMapping("search/results/view/{bookId}")
     public String processAddBook(@ModelAttribute @Valid Book newBook, Errors errors, Model model, @RequestParam String title,
                                      @RequestParam String author, @RequestParam String isbn, @RequestParam String pages,
-                                     @RequestParam String genre, @RequestParam String status, @RequestParam String rating,@PathVariable String bookId) {
+                                     @RequestParam String genre, @RequestParam String status, @RequestParam String rating, @PathVariable String bookId) {
         if(errors.hasErrors()) {
             return "search/view/{bookId}";
         }
@@ -75,6 +78,12 @@ public class SearchController {
         String currentDate = Date.format(cals.getTime());
         model.addAttribute("date", currentDate);
 
+        java.util.Date date = new Date();
+        Timestamp ts = new Timestamp(date.getTime());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH::mm:ss");
+        String dateViewed = formatter.format(ts);
+        model.addAttribute("dateViewed", dateViewed);
+
         newBook.setTitle(title);
         newBook.setAuthor(author);
         newBook.setIsbn(isbn);
@@ -82,7 +91,8 @@ public class SearchController {
         newBook.setGenre(genre);
         newBook.setStatus(status);
         newBook.setRating(rating);
-        newBook.setDate(currentDate);
+        newBook.setDateAdded(currentDate);
+        newBook.setDateViewed(dateViewed);
 
         bookRepository.save(newBook);
 

@@ -22,6 +22,7 @@ function fillAddBookForm(bookObject) {
     isbn.value = bookObject.industryIdentifiers;
     pages.value = bookObject.pageCount;
     genre.value = bookObject.categories;
+
 }
 
 const go = async () => {
