@@ -25,13 +25,13 @@ public class RegistrationController {
     public String showRegistration(Model model) {
         model.addAttribute("request", new RegistrationRequest());
 
-        return "signup_form";
+        return "security/signup_form";
     }
 
     @GetMapping
-    @RequestMapping("confirm_email")
+    @RequestMapping("/confirm_email")
     public String showEmailConfirm(){
-        return "confirm_email";
+        return "/security/confirm_email";
     }
     @PostMapping
     public String processRegistration(RegistrationRequest request) {

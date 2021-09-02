@@ -10,25 +10,62 @@
 <!--      <link rel="stylesheet" th:href="@{/styles.css}" />-->
 <!--      <link rel="stylesheet" th:href="@{/shelf.css}" />-->
 <!--      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
-
-      <title>Library App</title>
+      <title>Bookbase</title>
   </th:block>
-  <body>
 
-<!-- Navbar(guest) -->
-<nav th:fragment="navigation-guest" class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<body>
+
+<!-- Navbar (guest) -->
+<nav th:fragment="navigation-guest" class="navbar navbar-expand bg-light navbar-light fixed-top">
   <div class="container">
-    <a class="navbar-brand me-2" href="#">Bookbase</a>
-      <div class="d-flex">
-        <ul class="navbar-nav px-3 me-2">
-          <li class="nav-item">
-            <a href="#" class="nav-link" style="color: #0d6efd">Register</a>
-          </li>
-        </ul>
-        <button type="button" class="btn btn-primary">Log In</button>
-      </div>
+    <a class="navbar-brand" href="/">Bookbase</a>
+
+<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item px-3"><a href="/login" class="btn btn-outline-primary px-3 py-2">Log In</a></li>
+        <li class="nav-item px-3"><a href="/registration" class="btn btn-primary text-light px-3 py-2">Create
+          account</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
+
+<!-- Login form -->
+<th:block th:fragment="login-form" class="card-body">
+  <form th:action="@{/security/login}" method="post" class="px-4">
+    <div th:if="${param.error}" class="alert alert-danger p-2 mb-4 mx-4 fw-bold text-center">
+      <i class="bi bi-exclamation-circle-fill fs-4 pe-2" style="vertical-align: sub;"></i> Invalid
+      email address or password.
+    </div>
+    <div th:if="${param.logout}" class="alert alert-success p-2 mb-4 mx-4 fw-bold text-center">
+      <i class="bi bi-check-circle-fill fs-4 pe-2" style="vertical-align: sub;"></i> You have
+      been logged out.
+    </div>
+    <div class="form-floating mb-3">
+      <input name="email" type="email" id="email" class="form-control" placeholder="Email Address"/>
+      <label for="email">Email Address</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input name="password" type="password" id="password" class="form-control"
+             placeholder="Password">
+      <label for="password">Password</label>
+    </div>
+    <div class="text-end pe-2">
+      <input type="checkbox" id="checkbox" name="remember-me">
+      <label for="checkbox">Remember me</label>
+    </div>
+    <div>
+      <a class="my-3 float-start" href="#" style="text-decoration:none;">Forgot
+        password?</a>
+      <button type="submit" class="btn btn-primary w-25 my-3 float-end">Log In</button>
+    </div>
+  </form>
+</th:block>
 
     <!-- Navbar(logged-in user pages) -->
     <nav

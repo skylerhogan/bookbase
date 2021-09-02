@@ -8,44 +8,24 @@
 
 <body>
 
-<!-- Non-hamburger navbar for guests -->
-<nav class="navbar navbar-expand bg-light navbar-light fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">Library App</a>
-
-    <div id="navmenu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item px-3"><a href="#" class="nav-link">Register</a></li>
-        <li class="nav-item"><a href="#" class="nav-link btn btn-primary text-light px-3">Log In</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<!-- Navbar -->
+<nav th:replace="fragments :: navigation-guest"></nav>
 
 <!-- Header/showcase -->
-<header class="text-light text-center text-sm-start d-flex align-items-center justify-content-center">
+<header class="main-bg text-light text-center text-sm-start d-flex align-items-center justify-content-center">
   <div class="container">
     <div class="row align-items-center gx-5">
       <div class="col-xl-6">
-        <div id="login-card" class="card bg-light text-dark d-none d-xl-block">
-          <div class="card-body text-center">
-            <p class="lead fw-normal py-3">Already have an account? Log in:</p>
-            <form class="px-4">
-              <div class="mb-3"><input type="email" class="form-control" placeholder="Email Address">
-              </div>
-              <div class="mb-3"><input type="password" class="form-control" placeholder="Password">
-              </div>
-              <button class="btn btn-primary w-50 my-3" type="submit">
-                <span class="fs-5">Log In</span>
-              </button>
-            </form>
+        <div class="card bg-light text-dark d-none d-xl-grid">
+          <div class="card-body">
+            <p class="lead fw-normal py-3 ps-4">Already have an account? Log in:</p>
+            <th:block th:replace="fragments :: login-form"></th:block>
           </div>
         </div>
       </div>
 
       <div class="col-xl-6 header-text-box">
-        <h1 class="fw-bolder text-sm-center text-lg-end">Library App</h1>
+        <h1 class="fw-bolder text-sm-center text-lg-end">Bookbase</h1>
         <h3 class="fw-light text-sm-center text-lg-end">Manage Your Own Personal Library</h3>
       </div>
     </div>
@@ -139,11 +119,10 @@
           <span class="visually-hidden">Next</span>
       </button> -->
     </div>
-
   </div>
 </section>
 
-<!-- Register/Log in cards -->
+<!-- Registration card -->
 <section id="cards" class="bg-primary bg-opacity-75 p-5">
   <div class="container">
     <div class="row text-center g-4 justify-content-center">
@@ -151,8 +130,7 @@
         <div class="card bg-dark text-light">
           <div class="card-body text-center">
             <p class="lead fw-normal py-3">Want to manage your own library? <span
-                    class="text-warning">Sign
-                                    up today:</span></p>
+                    class="text-warning">Sign up today:</span></p>
             <form class="px-4">
               <div class="mb-3">
                 <input type="email" placeholder="Email Address" class="form-control">
