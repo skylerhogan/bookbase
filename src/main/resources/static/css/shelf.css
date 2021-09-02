@@ -111,28 +111,6 @@ body {
 
 }
 
-.navbar {
-   box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
-   -webkit-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
-   -moz-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
-}
-
-.nav-item-btn {
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: .5rem;
-    margin-right: .5rem;
-}
-
-#profile-btn {
-     display: inline;
-      margin: 0 0.125em;
-      padding: 0;
-      vertical-align: baseline;
-}
-
 #close-view-corner-button {
     position: absolute;
       top:-1rem;
