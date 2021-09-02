@@ -3,11 +3,11 @@
 This is a personal library management application. Through the use of "Shelves" it will allow users to keep track of books they have read, ones they are currently reading and those that they want to read in the future. At its core, its a true bookclub companion.
 
 ### Features ⭐
-1) User profile generation and authentication
-2) Allow users to add, edit, and remove books from library
-3) Filter results based on a number of different search queries e.g. ISBN, author, genre, date-added, status(read, reading, to-read), etc.
-4) Write personal reviews of books and add ratings
-5) Highlight memorable quotes
+1) User profile generation and authentication with Spring Security and email confirmation.
+2) Registered users can add, edit, and remove books from their personal library.
+3) The bookshelf is dynamically arranged and sorted based on a number of criteria e.g. ISBN, author, genre, date-added, status(read, reading, to-read), etc.
+4) Users can add and edit personal reviews of books and add ratings if they like.
+5) Memorable quotes and ideas can also be added to each book.
 
 ### Technologies 💻
 - Java 8
