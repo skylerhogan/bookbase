@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <th:block th:replace="fragments :: head"></th:block>
+    <script defer th:src="@{/js/quotes.js}"></script>
 </head>
 <body>
     <!-- User Navbar -->
@@ -9,15 +10,31 @@
         <nav th:replace="fragments :: navigation-user"></nav>
     </header>
     <div class="container py-5 mt-5">
-        <div class="p-5 mb-4 bg-light rounded-3">
-            <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">
+        <div class="p-5 mb-4 bg-light rounded-3 shadow"  style="margin-top:5rem;">
+            <div class="container-fluid py-5 row">
+                <div class="col"><h1 class="display-5 fw-bold text-dark">
                     Hello, there.
                 </h1>
-                <p class="col-md-8 fs-4">There's not a lot here right now, but feel free to poke around. We're planning on adding some sweet features soon.</p>
-                <strong class="col-md-8 fs-4"> Stay tuned.</strong>
+                    <p class="col-md-8 fs-4">There's not a lot going on here right now, but feel free to poke around. We're planning on adding some sweet features soon.</p>
+                    <strong class="col-md-8 fs-4 text-dark"> Stay tuned.</strong></div>
+                <div class="col d-flex" style="justify-content:center"><i class="bi bi-cone-striped" style="font-size:15rem; color:#FF7900; text-align:center;"></i></div>
+
             </div>
         </div>
+    </div>
+
+    <div class="container py-5 my-5 col col-xl-5 align-self-center">
+        <figure class="px-5 mb-4 bg-light rounded-3 shadow mx-auto">
+            <blockquote class="py-5">
+                <i class="bi bi-chat-right-quote-fill display-6"></i>
+                <p class="text-left mx-5 lead text-dark fs-3 lh-sm" id="quoteDisplay">
+                </p>
+                <figcaption class="pt-4 mt-4 border-top d-flex flex-wrap blockquote-footer">
+                    <p id="authorDisplay"></p>
+                    <cite id="bookDisplay" style="margin-left:1rem;"></cite>
+                </figcaption>
+            </blockquote>
+        </figure>
     </div>
 
     <!-- Footer -->

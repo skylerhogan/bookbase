@@ -21,12 +21,8 @@ for(let i=0; i < books.length; i++) {
     })
 };
 
-
-deleteButton.addEventListener('click', function (e) {
-    let r = confirm("Are you sure you want to remove these books?");
-    if (r) {
-        document.getElementById("deleteForm").submit();
-    }
-});
+const deleteBooks = () => {
+    document.getElementById('deleteForm').submit();
+}
 
 
