@@ -15,14 +15,25 @@
 
 
    <div class="container py-5 my-auto " style="position:relative; top:75px;">
-      <div class="p-5 mb-4 bg-light rounded-3 shadow">
+      <div class="p-5 bg-light rounded-3 shadow">
          <div class="container-fluid py-5 row">
-            <div class="col mb-5 text-dark align-self-center" style="min-width:10rem;">
+            <div class="col mb-5 text-dark mx-auto" align="" style="min-width:10rem;">
                <h1 class="display-5 fw-bold">
                   Hi! 👋
                </h1>
                <p class="col-md-8 fs-4 text-secondary">You can either add a book on your own or search for one below.</p>
                <p><strong class="col-md-8 fs-4"> Let's get to it!</strong></p>
+               <div class="my-5" style="max-width:20rem;">
+                  <form method="POST" th:action="@{search/}" class="d-flex">
+                     <input class="form-control shadow" name="searchQuery" type="search" placeholder="Title / Author / ISBN" aria-label="Search" required />
+                     <input class="form-control" name="searchParameter" type="hidden" value="all" aria-label="Search" />
+                     <button class="iconbutton mx-3 me-auto" type="submit" value="Search" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                     </button>
+                  </form>
+               </div>
             </div>
             <div class="col">
                <div class="card mx-auto bg-light shadow" style="width: 26rem;">
@@ -109,25 +120,6 @@
          </div>
       </div>
    </div>
-
-   <div class="container col col-lg-5 align-self-center" style="position:relative; top:75px;">
-      <div class="p-4 bg-light rounded-3 mx-auto shadow">
-         <div class="container-fluid row">
-            <div class="mx-3">
-               <form method="POST" th:action="@{search/}" class="d-flex">
-                  <input class="form-control shadow" name="searchQuery" type="search" placeholder="Title / Author / ISBN" aria-label="Search" required />
-                  <input class="form-control" name="searchParameter" type="hidden" value="all" aria-label="Search" />
-                  <button class="iconbutton mx-3 me-auto" type="submit" value="Search" aria-label="Search">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                     </svg>
-                  </button>
-               </form>
-            </div>
-         </div>
-      </div>
-   </div>
-
 
    <section>
       <div th:replace="fragments :: footer"></div>

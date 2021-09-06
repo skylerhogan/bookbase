@@ -130,3 +130,7 @@ textarea {
   padding: 0px;
   border: none;
 }
+
+.nav-item {
+    border-radius: 5px;
+}
