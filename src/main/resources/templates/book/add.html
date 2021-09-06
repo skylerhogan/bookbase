@@ -15,15 +15,15 @@
 
 
    <div class="container py-5 my-auto " style="position:relative; top:75px;">
-      <div class="p-5 bg-light rounded-3 shadow">
-         <div class="container-fluid py-5 row">
-            <div class="col mb-5 text-dark mx-auto" align="" style="min-width:10rem;">
+      <div class="p-5 bg-light rounded-3 shadow text-center">
+         <div class="container-fluid py-5 row ">
+            <div class="col mb-5 text-dark ms-5 align-self-center" align="left" style="min-width:20rem;">
                <h1 class="display-5 fw-bold">
                   Hi! 👋
                </h1>
-               <p class="col-md-8 fs-4 text-secondary">You can either add a book on your own or search for one below.</p>
-               <p><strong class="col-md-8 fs-4"> Let's get to it!</strong></p>
-               <div class="my-5" style="max-width:20rem;">
+               <p class="col-md-12 fs-4 text-secondary">You can either add a book on your own or search for one below.</p>
+               <p><strong class="col-md-12 fs-4"> Let's get to it!</strong></p>
+               <div class="my-5 mx-auto" style="max-width:20rem;">
                   <form method="POST" th:action="@{search/}" class="d-flex">
                      <input class="form-control shadow" name="searchQuery" type="search" placeholder="Title / Author / ISBN" aria-label="Search" required />
                      <input class="form-control" name="searchParameter" type="hidden" value="all" aria-label="Search" />
