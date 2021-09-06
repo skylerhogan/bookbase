@@ -1,15 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
 
-body {
-
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-		url("/images/library.jpg");
-	background-color: #2B2D2F;
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
+html, body {
+  height: 100%;
 }
-
+body {
+  display: flex;
+  flex-direction: column;
+}
 
 .bookcover {
     min-width: 135px;
@@ -133,4 +130,3 @@ textarea {
   padding: 0px;
   border: none;
 }
-.modal-backdrop.in { z-index: auto;}
