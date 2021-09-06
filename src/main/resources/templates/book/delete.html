@@ -17,9 +17,14 @@
         <div class="container">
             <form method="post" th:action="@{/user/delete}" id="deleteForm" class="me-auto">
                 <div class="d-flex pt-5 navbar fixed-top bg-white border-bottom" style="margin-top:2rem; z-index:12;">
-                        <ul class="nav mx-auto my-4 align-items-center">
+                        <ul class="nav my-4 mx-auto">
                             <li class="nav-item mx-1">
-                                <button type="button" value="Delete" id="deleteButton" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+                                <a class="btn btn-outline-secondary" style="min-width:5rem;" th:href="@{/user/shelf}" role="button">
+                                    <i class="bi bi-arrow-left"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item mx-1">
+                                <button type="button" value="Delete" id="deleteButton" class="btn btn-danger" style="min-width:5rem;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog modal-dialog-centered" style="margin-top:2rem; z-index:1;">
@@ -57,6 +62,5 @@
         <div th:insert="fragments :: footer"></div>
     </section>
 
-<!--    <script type="module" th:src="@{/delete.js}" th:inline="javascript"></script>-->
 </body>
 </html>

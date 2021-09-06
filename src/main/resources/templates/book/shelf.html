@@ -3,7 +3,6 @@
 <head>
    <th:block th:replace="fragments :: head"></th:block>
    <link rel="stylesheet" th:href="@{/css/shelf.css}" />
-   <script defer th:src="@{/js/delete.js}"></script>
 </head>
    <body style="background:white">
 
@@ -24,9 +23,9 @@
                               <i class="bi bi-bookshelf"></i> Shelf
                            </button>
                            <ul class="dropdown-menu">
-                              <li><button type="submit" class="dropdown-item" name="status" value="Want to Read"><i class="bi bi-book"></i> Want to Read</button></li>
-                              <li><button type="submit" class="dropdown-item" name="status" value="Currently Reading"><i class="bi bi-book-half"></i> Currently Reading</button></li>
-                              <li><button type="submit" class="dropdown-item" name="status" value="Completed"><i class="bi bi-book-fill"></i> Completed</button></li>
+                              <li><button type="submit" class="dropdown-item" name="status" value="Want to Read"> Want to Read</button></li>
+                              <li><button type="submit" class="dropdown-item" name="status" value="Currently Reading"> Currently Reading</button></li>
+                              <li><button type="submit" class="dropdown-item" name="status" value="Completed"> Completed</button></li>
                               <li><hr class="dropdown-divider"></li>
                               <li><button type="submit" class="dropdown-item" name="status" value="">All Books</button></li>
                            </ul>
