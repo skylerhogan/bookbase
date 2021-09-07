@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+   <th:block th:replace="fragments :: head"></th:block>
+   <link rel="stylesheet" th:href="@{/css/shelf.css}" />
+</head>
+   <body>
+
+      <!-- User Navbar -->
+      <header>
+         <nav th:replace="fragments :: navigation-user"></nav>
+      </header>
+
+      <!--View Book Card-->
+      <section>
+         <div class="container py-5 mt-5">
+            <div class="card mb-4 bg-light rounded-3 shadow"  style="margin-top:5rem;">
+               <div class="container card-body py-5 row">
+                  <div class="col col-12 col-lg-6 mb-5" align="center" style="justify-content:center">
+                     <img class="mx-auto" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" width="45%"  alt="cover">
+                     <p th:field="${book.description}" name="description" class="text-secondary small"></p>
+                  </div>
+                  <div class="col col-12 col-lg-6">
+                     <h1 class="display-6 fw-bold text-dark" th:text="${book.title}"></h1>
+                     <h4 th:text="${'by ' + book.author}"></h4>
+                     <div class="col">
+                        <ul class="list-unstyled mt-3">
+                           <li><p th:text="${book.description}" class="text-secondary"></p></li>
+                           <li><strong th:text="${book.userReview}" class="text-dark fs-5"></strong></li>
+                           <div class="row my-2">
+                              <div class="col">
+                                 <li><p th:text="${book.genre}" class="text-secondary"></p></li>
+                                 <li><p th:text="${book.pages + ' pages'}" class="text-secondary"></p></li>
+                              </div>
+                              <div class="col">
+                                 <li><p th:text="${'ISBN: ' + book.isbn}" class="text-secondary"></p></li>
+                                 <li><p th:text="${book.status}" class="text-secondary"></p></li>
+                              </div>
+                           </div>
+                           <div th:if="${book.status} == 'Completed'" class="rating noHover" style="cursor:none !important;">
+                              <input th:field="${book.rating}" type="radio" name="rating" value="5" id="5" disabled>
+                              <label th:for="5">☆</label>
+                              <input th:field="${book.rating}" type="radio" name="rating" value="4" id="4" disabled>
+                              <label th:for="4">☆</label>
+                              <input th:field="${book.rating}" type="radio" name="rating" value="3" id="3" disabled>
+                              <label th:for="3">☆</label>
+                              <input th:field="${book.rating}" type="radio" name="rating" value="2" id="2" disabled>
+                              <label th:for="2">☆</label>
+                              <input th:field="${book.rating}" type="radio" name="rating" value="1" id="1" disabled>
+                              <label th:for="1">☆</label>
+                           </div>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="d-flex card-footer justify-content-between align-items-center">
+                  <small class="text-muted" th:text="${'Date Added: ' + book.dateAdded}"></small>
+                  <button class="iconbutton">
+                     <a th:href="@{|/user/edit/${bookId}|}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc107" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                           <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                           <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                        </svg>
+                     </a>
+                  </button>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!--Footer-->
+      <section>
+         <div th:replace="fragments :: footer"></div>
+      </section>
+   </body>
+</html>

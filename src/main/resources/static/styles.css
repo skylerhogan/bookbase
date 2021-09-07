@@ -1,4 +1,4 @@
-#header {
+.main-bg {
 	height: 100vh;
 	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
 		url("/images/library.jpg");
@@ -7,17 +7,16 @@
 	background-attachment: fixed;
 }
 
+.form-floating label {
+    color: gray;
+}
+
 header h1 {
 	letter-spacing: 1px;
 	word-spacing: 4px;
 }
 
 header .header-text-box {
-	position: absolute;
-	width: 1140px;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	text-transform: uppercase;
 }
 
@@ -40,17 +39,11 @@ header .header-text-box {
 	max-height: 178px;
 }
 
+/*
 .carousel-control-prev {
 	margin-left: -10%;
 }
 
 .carousel-control-next {
 	margin-right: -10%;
-}
-
-@media only screen and (max-width: 1200px) {
-	header .header-text-box {
-		width: 100%;
-		padding: 0 2%;
-	}
-}
+}*/

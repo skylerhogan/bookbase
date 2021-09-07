@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
+
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.bookcover {
+    min-width: 135px;
+    max-width: 135px;
+}
+
+.card-shadow {
+    box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+    -webkit-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+    -moz-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
+}
+
+.card {
+    border: none;
+}
+
+/* responsive star rating */
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center
+
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 1em;
+    font-size: 30px;
+    font-weight: 300;
+    color: #0d6efd;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+
+.buttons {
+    top: 36px;
+    position: relative
+}
+
+.rating-submit {
+    border-radius: 15px;
+    color: #fff;
+    height: 49px
+}
+
+.rating-submit:hover {
+    color: #fff
+}
+
+.noHover{
+    pointer-events: none;
+}
+
+/* aligns bootstrap icons with text */
+
+.nav-search {
+    width:100%;
+}
+
+#footer-logo {
+    font-family: 'Dosis', sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+    .nav-search {
+        width: 100%;
+    }
+
+}
+
+#close-view-corner-button {
+    position: absolute;
+      top:-1rem;
+      right:-1rem;
+      z-index: 9;
+      background-color: whitesmoke;
+      border-radius: 50%;
+}
+
+#starRating {
+    visibility: hidden;
+}
+
+#deleteCheckbox {
+    position: absolute;
+    margin-left: -1rem;
+    visibility: hidden;
+}
+
+textarea {
+   resize: none;
+}
+
+.iconbutton {
+  background: none;
+  padding: 0px;
+  border: none;
+}
+
+.nav-item {
+    border-radius: 5px;
+}

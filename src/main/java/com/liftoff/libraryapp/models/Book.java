@@ -1,6 +1,7 @@
 package com.liftoff.libraryapp.models;
-
 import javax.persistence.*;
+import java.util.Objects;
+
 
 @Entity
 public class Book {
@@ -17,7 +18,7 @@ public class Book {
             generator = "book_sequence"
     )
 
-    private int id;
+    private Integer id;
     private String title;
     private String author;
     private String isbn;
@@ -25,19 +26,20 @@ public class Book {
     private String genre;
     private String status;
     private String rating;
-    private String date;
+    private String dateAdded;
+    private String dateViewed;
+    private String description;
+    private String userReview;
 
-    @Column(columnDefinition="TEXT")
-    private String thumbnail;
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     public Book() {}
     
-    public Book(int id, String title, String author, String isbn,
-                String pages, String genre, String status, String rating, String date, String thumbnail) {
+    public Book(Integer id, String title, String author, String isbn,
+                String pages, String genre, String status, String rating, String dateAdded,
+                String dateViewed, String description, String userReview) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -46,8 +48,10 @@ public class Book {
         this.genre = genre;
         this.status = status;
         this.rating = rating;
-        this.date = date;
-        this.thumbnail = thumbnail;
+        this.dateAdded = dateAdded;
+        this.dateViewed = dateViewed;
+        this.description = description;
+        this.userReview = userReview;
     }
 
     public String getTitle() {
@@ -106,17 +110,50 @@ public class Book {
         this.rating = rating;
     }
 
-    public String getDate() {
-        return date;
+    public String getDateAdded() {
+        return dateAdded;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDateAdded(String dateAdded) {
+        this.dateAdded = dateAdded;
     }
 
-    public String getThumbnail() { return thumbnail; }
+    public String getDateViewed() {
+        return dateViewed;
+    }
 
-    public void setThumbnail(String thumbnail) { this.thumbnail = thumbnail; }
-    
+    public void setDateViewed(String dateViewed) {
+        this.dateViewed = dateViewed;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUserReview() {
+        return userReview;
+    }
+
+    public void setUserReview(String userReview) {
+        this.userReview = userReview;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return id.equals(book.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
 }
+
