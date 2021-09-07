@@ -64,7 +64,7 @@ public class BookController {
                 bookRepository.deleteById(id);
             }
         }
-        return "redirect:shelf";
+        return "redirect:delete";
     }
 
     @GetMapping("edit/{bookId}")
@@ -110,35 +110,31 @@ public class BookController {
     }
 
     @PostMapping("shelf")
-    public String displayMainBookshelf(Model model, @RequestParam String status) {
-        if (status == "") {
-            model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
+    public String displayMainBookshelf(Model model, @RequestParam (required = false) String status,
+                                       @RequestParam (required = false) String title,
+                                       @RequestParam (required = false) String author,
+                                       @RequestParam (required = false) String dateAdded,
+                                       @RequestParam (required = false) String recentlyViewed,
+                                       @RequestParam (required = false) String rating) {
+        if (status != "") {
+            model.addAttribute("books", bookRepository.findByStatusOrderByDateViewedDesc(status));
         } else {
-            model.addAttribute("books", bookRepository.findByStatus(status));
+            model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
+        }
+
+        if (title != null) {
+            model.addAttribute("books", bookRepository.findAllByOrderByTitle());
+        } else if (author != null) {
+            model.addAttribute("books", bookRepository.findAllByOrderByAuthor());
+        } else if (dateAdded != null) {
+            model.addAttribute("books", bookRepository.findAllByOrderByDateAddedDesc());
+        } else if (recentlyViewed != null) {
+            model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
+        } else if (rating != null) {
+            model.addAttribute("books", bookRepository.findByRatingOrderByDateViewedDesc(rating));
         }
         return "book/shelf";
     }
-
-   /* @RequestMapping("shelf/want-to-read")
-    public String displayWantToReadBookshelf(Model model) {
-        model.addAttribute("books", bookRepository.findByStatusIgnoreCaseOrderByDateViewedDesc("want to read"));
-        *//*model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());*//*
-        return "book/shelf";
-    }
-
-    @RequestMapping("shelf/currently-reading")
-    public String displayCurrentlyReadingBookshelf(Model model) {
-        model.addAttribute("books", bookRepository.findByStatusIgnoreCaseOrderByDateViewedDesc("currently reading"));
-        *//*model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());*//*
-        return "book/shelf";
-    }
-
-    @RequestMapping("shelf/completed")
-    public String displayCompletedBookshelf(Model model) {
-        model.addAttribute("books", bookRepository.findByStatusIgnoreCaseOrderByDateViewedDesc("completed"));
-        *//*model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());*//*
-        return "book/shelf";
-    }*/
 
     @GetMapping("view/{bookId}")
     public String displayViewBook(Model model, @PathVariable (required = false) Integer bookId) {
@@ -157,6 +153,11 @@ public class BookController {
         } else {
             return "redirect:../shelf";
         }
+    }
+
+    @GetMapping("profile")
+    public String displayUserProfile(Model model) {
+        return "user/profile";
     }
 
 

@@ -3,10 +3,9 @@
 <head>
     <th:block th:replace="fragments :: head"></th:block>
     <link rel="stylesheet" th:href="@{/css/shelf.css}" />
-    <script defer th:src="@{/js/shelf.js}"></script>
     <script defer th:src="@{/js/delete.js}"></script>
 </head>
-<body>
+<body style="background:white">
 
     <!-- User Navbar -->
     <header>
@@ -14,17 +13,40 @@
     </header>
 
     <!-- Delete Book Form -->
-    <section>
-        <div>
-            <form id="deleteForm" method="POST" style="margin-bottom:20rem;">
-                <div class="d-flex justify-content-center" style="position:relative; margin-top:10rem;">
-                    <input th:href="@{|/user/delete|}" type="" value="Delete" id="deleteButton" class="btn btn-lg btn-danger">
-                </div>
-                <div class="row row-cols-3 row-cols-xs-3 row-cols-md-4 row-cols-lg-5" style="position: relative; top: 125px">
+    <div class="my-auto " style="position:relative; top:200px;">
+        <div class="container">
+            <form method="post" th:action="@{/user/delete}" id="deleteForm" class="me-auto">
+                <div class="d-flex pt-5 navbar fixed-top bg-white border-bottom" style="margin-top:2rem; z-index:12;">
+                        <ul class="nav my-4 mx-auto">
+                            <li class="nav-item mx-1">
+                                <a class="btn btn-outline-secondary" style="min-width:5rem;" th:href="@{/user/shelf}" role="button">
+                                    <i class="bi bi-arrow-left"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item mx-1">
+                                <button type="button" value="Delete" id="deleteButton" class="btn btn-danger" style="min-width:5rem;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog modal-dialog-centered" style="margin-top:2rem; z-index:1;">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                Are you sure you want to remove the selected book(s)?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No way!</button>
+                                                <button type="button" class="btn btn-danger" onclick="deleteBooks()">✌️</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                <div class="row row-cols-2 row-cols-xs-2 row-cols-md-3 row-cols-lg-5 my-5">
                     <div th:each="book : ${books}" class="cols-3" style="align: center">
                         <div class="card bg-transparent flex-lg-row mx-auto mb-5">
                             <label class="container d-flex books">
-                                <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" class="mx-auto book-shadow" z-index="1" margin-top="-2" width="135" height="200" alt="cover" th:field="${book.id}"/>
+                                <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" class="mx-auto shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover" th:field="${book.id}"/>
                                 <input id="deleteCheckbox" type="checkbox" name="bookIds" th:value="${book.id}">
                             </label>
                         </div>
@@ -32,13 +54,13 @@
                 </div>
             </form>
         </div>
-    </section>
+    </div>
+
 
     <!-- Footer -->
     <section>
-        <div th:replace="fragments :: footer"></div>
+        <div th:insert="fragments :: footer"></div>
     </section>
 
-    <script type="module" th:src="@{/delete.js}" th:inline="javascript"></script>
 </body>
 </html>

@@ -1,24 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
 
-body {
-
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-		url("/images/library.jpg");
-	background-size: cover;
-	background-position: center;
-	background-attachment: fixed;
+html, body {
+  height: 100%;
 }
-
+body {
+  display: flex;
+  flex-direction: column;
+}
 
 .bookcover {
     min-width: 135px;
     max-width: 135px;
-}
-
-.book-shadow {
-    box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
-    -webkit-box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
-    -moz-box-shadow: 4px 10px 5px 4px rgba(0,0,0,0.50);
 }
 
 .card-shadow {
@@ -91,21 +83,9 @@ body {
 }
 
 /* aligns bootstrap icons with text */
-.bi {
-    position: relative;
-    bottom: 2px;
-    right: .25rem;
-}
 
 .nav-search {
     width:100%;
-}
-
-#logo {
-    font-family: 'Dosis', sans-serif;
-    font-size: 2rem;
-    font-weight: 300;
-    margin-left: 1em;
 }
 
 #footer-logo {
@@ -120,28 +100,6 @@ body {
         width: 100%;
     }
 
-}
-
-.navbar {
-   box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
-   -webkit-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
-   -moz-box-shadow: 10px 15px 14px 3px rgba(0,0,0,1);
-}
-
-.nav-item-btn {
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: .5rem;
-    margin-right: .5rem;
-}
-
-#profile-btn {
-     display: inline;
-      margin: 0 0.125em;
-      padding: 0;
-      vertical-align: baseline;
 }
 
 #close-view-corner-button {
@@ -165,4 +123,14 @@ body {
 
 textarea {
    resize: none;
+}
+
+.iconbutton {
+  background: none;
+  padding: 0px;
+  border: none;
+}
+
+.nav-item {
+    border-radius: 5px;
 }
