@@ -128,14 +128,14 @@ function fillAddBookForm(bookObject) {
     let isbn = document.getElementById('isbn');
     let pages = document.getElementById('pages');
     let genre = document.getElementById('genre');
-    let thumbnail = document.getElementById('thumbnail');
+//    let thumbnail = document.getElementById('thumbnail');
 
     title.value = bookObject.title;
     author.value = bookObject.author;
     isbn.value = bookObject.industryIdentifiers;
     pages.value = bookObject.pageCount;
     genre.value = bookObject.categories;
-    thumbnail.value = bookObject.thumbnail;
+//    thumbnail.value = bookObject.thumbnail;
 }
 
 function generateTagLinks(categoriesArray) {

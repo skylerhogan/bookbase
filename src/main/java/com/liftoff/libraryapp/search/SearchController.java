@@ -136,7 +136,7 @@ public class SearchController {
     @PostMapping("search/results/view/{bookId}")
     public String processAddBook(@ModelAttribute @Valid Book newBook, Errors errors, Model model, @RequestParam String title,
                                      @RequestParam String author, @RequestParam String isbn, @RequestParam String pages,
-                                     @RequestParam String genre, @RequestParam String status, @RequestParam String rating, @RequestParam String thumbnail, @PathVariable String bookId) {
+                                     @RequestParam String genre, @RequestParam String status, @RequestParam String rating, @PathVariable String bookId) {
         if(errors.hasErrors()) {
             return "search/view/{bookId}";
         }
@@ -148,7 +148,7 @@ public class SearchController {
         model.addAttribute("genre", genre);
         model.addAttribute("status", status);
         model.addAttribute("rating", rating);
-        model.addAttribute("thumbnail", thumbnail);
+//        model.addAttribute("thumbnail", thumbnail);
 
 
         DateFormat Date = DateFormat.getDateInstance();
@@ -163,8 +163,8 @@ public class SearchController {
         newBook.setGenre(genre);
         newBook.setStatus(status);
         newBook.setRating(rating);
-        newBook.setDate(currentDate);
-        newBook.setThumbnail(thumbnail);
+        newBook.setDateAdded(currentDate);
+//        newBook.setThumbnail(thumbnail);
 
         bookRepository.save(newBook);
 
