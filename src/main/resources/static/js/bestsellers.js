@@ -1,8 +1,8 @@
 const printCarousel = async() => {
     try {
         let bestSellerLists = await Promise.all([
-        fetch('https://api.nytimes.com/svc/books/v3/lists.json?list-name=hardcover-fiction&api-key=xUl556gGXqPKARPggVztexuH1B80EvGJ').then(response => response.json()),
-        fetch('https://api.nytimes.com/svc/books/v3/lists.json?list-name=hardcover-nonfiction&api-key=xUl556gGXqPKARPggVztexuH1B80EvGJ').then(response => response.json())
+        fetch('https://api.nytimes.com/svc/books/v3/lists.json?list-name=combined-print-and-e-book-fiction&api-key=xUl556gGXqPKARPggVztexuH1B80EvGJ').then(response => response.json()),
+        fetch('https://api.nytimes.com/svc/books/v3/lists.json?list-name=combined-print-and-e-book-nonfiction&api-key=xUl556gGXqPKARPggVztexuH1B80EvGJ').then(response => response.json())
         ]);
 
         updateBestSellers(bestSellerLists);
@@ -21,7 +21,7 @@ const updateBestSellers = (nytimesBestSellers) => {
         let amazonUrl = '';
 
         for (let j = 0; j < 2; j++) {
-            isbn = nytimesBestSellers[j].results[i].isbns[0].isbn10;
+            isbn = nytimesBestSellers[j].results[i].book_details[0].primary_isbn10;
             amazonUrl = nytimesBestSellers[j].results[i].amazon_product_url;
             updateCover(j+i*2, isbn, amazonUrl);
         }
