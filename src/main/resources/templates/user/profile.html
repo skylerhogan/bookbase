@@ -10,6 +10,8 @@
         <nav th:replace="fragments :: navigation-user"></nav>
     </header>
 
+<div class="container">
+    <!-- Under Construction Message -->
     <div class="container py-5 mt-5">
         <div class="p-5 mb-4 bg-light rounded-3 shadow"  style="margin-top:5rem;">
             <div class="container py-5 row">
@@ -23,7 +25,9 @@
         </div>
     </div>
 
-    <div class="container py-5 my-5 col col-lg-6 align-self-center">
+    <!-- Quote Generator (requires quotes.js) -->
+    <div class="d-flex row">
+    <div class="container my-5 col col-12 col-lg-6 align-self-center" style="width:30rem;">
         <figure class="px-5 mb-4 bg-light rounded-3 shadow mx-auto">
             <blockquote class="py-5">
                 <i class="bi bi-chat-right-quote-fill display-6"></i>
@@ -36,6 +40,23 @@
             </blockquote>
         </figure>
     </div>
+
+    <div class="container my-5 col col-12 col-lg-6 col-xl-4" style="width:30rem;">
+        <div class="bg-light rounded-3 shadow">
+            <div class="container p-5 row">
+                <div class="col">
+                    <h1 class="display-5 fw-bold text-dark mb-3">Stats <i class="bi bi-clipboard-data" style="float:right"></i></h1>
+                    <hr/>
+                    <p class=" fs-4" th:text="${'Books in Library: ' + totalBooks}"></p>
+                    <p class=" fs-4" th:text="${'Books Read: ' + totalBooksRead}"></p>
+                    <p class=" fs-4" th:text="${'Total Pages Read: ' + totalPages}"></p>
+                    <p class=" fs-4" th:text="${'Favorite Genre: ' + favoriteGenre}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
 
     <!-- Footer -->
     <section>

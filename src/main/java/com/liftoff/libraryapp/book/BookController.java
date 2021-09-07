@@ -157,6 +157,14 @@ public class BookController {
 
     @GetMapping("profile")
     public String displayUserProfile(Model model) {
+        Integer totalPages = bookRepository.selectTotalPagesRead();
+        Integer totalBooks = bookRepository.selectTotalBooksInLibrary();
+        Integer totalBooksRead = bookRepository.selectTotalBooksRead();
+        String favoriteGenre = bookRepository.selectFavoriteGenre();
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("totalBooks", totalBooks);
+        model.addAttribute("totalBooksRead", totalBooksRead);
+        model.addAttribute("favoriteGenre", favoriteGenre);
         return "user/profile";
     }
 
