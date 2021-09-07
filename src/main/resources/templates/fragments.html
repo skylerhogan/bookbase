@@ -10,10 +10,6 @@
 <!--      <link rel="stylesheet" th:href="@{/styles.css}" />-->
 <!--      <link rel="stylesheet" th:href="@{/shelf.css}" />-->
 <!--      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
-<<<<<<< HEAD
-=======
-
->>>>>>> 01aa9ac6bb2f566d3fc61fba3329edbbe3d1e627
       <title>Bookbase</title>
   </th:block>
 
@@ -112,8 +108,12 @@
 
             <!-- logout nav button-->
             <li class="nav-item-btn me-1 ms-2" >
-              <a th:href="@{|/|}" class="nav-link" aria-current="page" style="color: currentColor";>
+              <a th:href="@{/logout}" class="nav-link" aria-current="page" style="color:
+              currentColor;">
                 <i class="bi bi-box-arrow-right" style="font-size:2rem;"></i>
+                <form name="logoutForm" th:action="@{/logout}" action="post" th:hidden="true">
+                  <input hidden type="submit" value="Sign Out"/>
+                </form>
               </a>
             </li>
           </ul>
