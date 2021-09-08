@@ -37,11 +37,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable() // can send post without being rejected, just temporary.
                 .authorizeRequests()
                     .antMatchers("/admin").hasRole("ADMIN")
-                    .antMatchers("/user").authenticated()
+                    .antMatchers("/user/**").authenticated()
                     .antMatchers("/registration/**", "/", "/resources/**").permitAll()
 //                 .anyRequest().authenticated()
                 .and().formLogin()
-                    .loginPage("/security/login")
+                    .loginPage("/login")
                     .failureUrl("/login?error")
                     .permitAll()
                     .usernameParameter("email")
