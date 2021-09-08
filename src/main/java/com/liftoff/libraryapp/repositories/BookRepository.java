@@ -25,7 +25,10 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> findAllByOrderByDateAddedDesc();
 
     @Query(value = "SELECT SUM(pages) FROM Book WHERE STATUS = 'Completed'", nativeQuery = true)
-    Integer selectTotalPagesRead();
+    Integer selectPagesRead();
+
+    @Query(value = "SELECT SUM(pages) FROM Book WHERE STATUS = 'Want to Read' OR STATUS = 'Currently Reading'", nativeQuery = true)
+    Integer selectPagesToRead();
 
     @Query(value = "SELECT COUNT(*) FROM Book", nativeQuery = true)
     Integer selectTotalBooksInLibrary();
@@ -33,8 +36,13 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query(value = "SELECT COUNT(*) FROM Book WHERE STATUS = 'Completed'", nativeQuery = true)
     Integer selectTotalBooksRead();
 
-    @Query(value= "SELECT COUNT(`genre`) AS `value_occurrence` FROM Book GROUP BY `genre` ORDER BY `value_occurrence` DESC LIMIT 1", nativeQuery = true)
+    @Query(value= "SELECT GENRE FROM BOOK GROUP BY GENRE ORDER BY COUNT(*) DESC LIMIT 1", nativeQuery = true)
     String selectFavoriteGenre();
+
+    @Query(value= "SELECT DATE_ADDED FROM BOOK GROUP BY DATE_ADDED ORDER BY DATE_ADDED ASC LIMIT 1", nativeQuery = true)
+    String selectDateOfFirstBookAdded();
+
+
 
 
 

@@ -25,16 +25,16 @@
                      <h4 th:text="${'by ' + book.author}"></h4>
                      <div class="col">
                         <ul class="list-unstyled mt-3">
-                           <li><p th:text="${book.description}" class="text-secondary"></p></li>
+                           <li th:unless="${book.description}==null" class="d-flex fs-5"><i class="bi bi-blockquote-left"></i><p th:text="${book.description}" class="text-secondary"></p></li>
                            <li><strong th:text="${book.userReview}" class="text-dark fs-5"></strong></li>
-                           <div class="row my-2">
+                           <div class="row my-3">
                               <div class="col">
-                                 <li><p th:text="${book.genre}" class="text-secondary"></p></li>
-                                 <li><p th:text="${book.pages + ' pages'}" class="text-secondary"></p></li>
+                                 <li class="d-flex"><i class="bi bi-stars me-2"></i><p th:text="${book.genre}" class="text-secondary"></p></li>
+                                 <li class="d-flex"><i class="bi bi-file-text me-2"></i><p th:text="${book.pages + ' pages'}" class="text-secondary"></p></li>
                               </div>
                               <div class="col">
-                                 <li><p th:text="${'ISBN: ' + book.isbn}" class="text-secondary"></p></li>
-                                 <li><p th:text="${book.status}" class="text-secondary"></p></li>
+                                 <li class="d-flex"><i class="bi bi-book me-2"></i><p th:text="${'ISBN: ' + book.isbn}" class="text-secondary"></p></li>
+                                 <li class="d-flex"><i class="bi bi-bookshelf me-2"></i><p th:text="${book.status}" class="text-secondary"></p></li>
                               </div>
                            </div>
                            <div th:if="${book.status} == 'Completed'" class="rating noHover" style="cursor:none !important;">

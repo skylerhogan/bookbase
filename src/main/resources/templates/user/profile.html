@@ -27,7 +27,7 @@
 
     <!-- Quote Generator (requires quotes.js) -->
     <div class="d-flex row">
-    <div class="container my-5 col col-12 col-lg-6 align-self-center" style="width:30rem;">
+    <div class="container my-5 col col-12 col-lg-4 align-self-center" style="width:30rem;">
         <figure class="px-5 mb-4 bg-light rounded-3 shadow mx-auto">
             <blockquote class="py-5">
                 <i class="bi bi-chat-right-quote-fill display-6"></i>
@@ -41,16 +41,19 @@
         </figure>
     </div>
 
-    <div class="container my-5 col col-12 col-lg-6 col-xl-4" style="width:30rem;">
+    <div class="container my-5 col col-12 col-lg-8 col-xl-4" style="width:35rem;">
         <div class="bg-light rounded-3 shadow">
             <div class="container p-5 row">
                 <div class="col">
                     <h1 class="display-5 fw-bold text-dark mb-3">Stats <i class="bi bi-clipboard-data" style="float:right"></i></h1>
                     <hr/>
-                    <p class=" fs-4" th:text="${'Books in Library: ' + totalBooks}"></p>
-                    <p class=" fs-4" th:text="${'Books Read: ' + totalBooksRead}"></p>
-                    <p class=" fs-4" th:text="${'Total Pages Read: ' + totalPages}"></p>
-                    <p class=" fs-4" th:text="${'Favorite Genre: ' + favoriteGenre}"></p>
+                    <ul class="fs-5 " >
+                        <li class="d-flex"><i class="bi bi-asterisk me-2"></i></i><p  th:text="${'Books in Library: ' + totalBooks}"></p></li>
+                        <li class="d-flex"><i class="bi bi-bookmark-check me-2"></i><p  th:text="${'Books Read: ' + totalBooksRead}"></p></li>
+                        <li class="d-flex"><i class="bi bi-file-earmark-text me-2"></i><p th:text="${pagesRead + ' pages down, ' + pagesToRead + ' to go.'}"></p></li>
+                        <li class="d-flex"><i class="bi bi-stars me-2"></i><p th:text="${favoriteGenre + ' is your favorite genre.'}"></p></li>
+                        <li class="d-flex"><i class="bi bi-person-plus-fill me-2"></i><p th:text="${'Member since ' + joinDate}"></p></li>
+                    </ul>
                 </div>
             </div>
         </div>
