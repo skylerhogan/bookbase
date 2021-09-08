@@ -16,58 +16,62 @@
          <div class="container">
             <form method="post" th:action="@{/user/shelf}" id="shelfForm" class="me-auto">
                <div class="d-flex pt-5 navbar fixed-top bg-white border-bottom" style="margin-top:2rem; z-index:12;">
-                  <ul class="nav mx-auto my-4 align-items-center">
-                     <li class="nav-item mx-1 shadow">
-                        <div class="btn-group">
-                           <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="bi bi-bookshelf"></i> Shelf
-                           </button>
-                           <ul class="dropdown-menu">
-                              <li><button type="submit" class="dropdown-item" name="status" value="Want to Read"> Want to Read</button></li>
-                              <li><button type="submit" class="dropdown-item" name="status" value="Currently Reading"> Currently Reading</button></li>
-                              <li><button type="submit" class="dropdown-item" name="status" value="Completed"> Completed</button></li>
-                              <li><hr class="dropdown-divider"></li>
-                              <li><button type="submit" class="dropdown-item" name="status" value="">All Books</button></li>
-                           </ul>
-                        </div>
-                     </li>
-                     <li class="nav-item mx-1 shadow">
-                        <div class="btn-group">
-                           <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="bi bi-arrow-down-up"></i> Order By
-                           </button>
-                           <ul class="dropdown-menu">
-                              <li><button type="submit" class="dropdown-item" name="title" value="Title">Title</button></li>
-                              <li><button type="submit" class="dropdown-item" name="author" value="Author">Author</button></li>
-                              <li><button type="submit" class="dropdown-item" name="dateAdded" value="Author">Date Added</button></li>
-                              <li><button type="submit" class="dropdown-item" name="recentlyViewed" value="Author">Recently Viewed</button></li>
-                           </ul>
-                        </div>
-                     </li>
-                     <li class="nav-item mx-1 shadow">
-                        <div class="btn-group">
-                           <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                              <i class="bi bi-star"></i> Rating
-                           </button>
-                           <ul class="dropdown-menu text-center">
-                              <li><button type="submit" class="dropdown-item" name="rating" value="5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>
-                              <li><button type="submit" class="dropdown-item" name="rating" value="4"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>
-                              <li><button type="submit" class="dropdown-item" name="rating" value="3"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>
-                              <li><button type="submit" class="dropdown-item" name="rating" value="2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>
-                              <li><button type="submit" class="dropdown-item" name="rating" value="1"><i class="bi bi-star-fill"></i></button></li>
-                           </ul>
-                        </div>
-                     </li>
-                     <li class="nav-item mx-1 shadow ">
-                        <a class="btn text-white" style="background: #009B77" th:href="@{/user/add}" role="button">
-                           <i class="bi bi-plus-lg"></i>
-                        </a>
-                     </li>
-                     <li class="nav-item mx-1 shadow">
+                  <ul class="nav mx-auto my-4 align-items-center row">
+                     <div class="col p-2 d-flex">
+                        <li class="nav-item mx-1 shadow">
+                           <div class="btn-group">
+                              <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <i class="bi bi-bookshelf"></i> Shelf
+                              </button>
+                              <ul class="dropdown-menu">
+                                 <li><button type="submit" class="dropdown-item" name="status" value="Want to Read"> Want to Read</button></li>
+                                 <li><button type="submit" class="dropdown-item" name="status" value="Currently Reading"> Currently Reading</button></li>
+                                 <li><button type="submit" class="dropdown-item" name="status" value="Completed"> Completed</button></li>
+                                 <li><hr class="dropdown-divider"></li>
+                                 <li><button type="submit" class="dropdown-item" name="status" value="">All Books</button></li>
+                              </ul>
+                           </div>
+                        </li>
+                        <li class="nav-item mx-1 shadow">
+                           <div class="btn-group">
+                              <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <i class="bi bi-arrow-down-up"></i> Order By
+                              </button>
+                              <ul class="dropdown-menu">
+                                 <li><button type="submit" class="dropdown-item" name="title" value="Title">Title</button></li>
+                                 <li><button type="submit" class="dropdown-item" name="author" value="Author">Author</button></li>
+                                 <li><button type="submit" class="dropdown-item" name="dateAdded" value="Author">Date Added</button></li>
+                                 <li><button type="submit" class="dropdown-item" name="recentlyViewed" value="Author">Recently Viewed</button></li>
+                              </ul>
+                           </div>
+                        </li>
+                        <li class="nav-item mx-1 shadow">
+                           <div class="btn-group">
+                              <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <i class="bi bi-star"></i> Rating
+                              </button>
+                              <ul class="dropdown-menu text-center">
+                                 <li><button type="submit" class="dropdown-item" name="rating" value="5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>
+                                 <li><button type="submit" class="dropdown-item" name="rating" value="4"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>
+                                 <li><button type="submit" class="dropdown-item" name="rating" value="3"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>
+                                 <li><button type="submit" class="dropdown-item" name="rating" value="2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>
+                                 <li><button type="submit" class="dropdown-item" name="rating" value="1"><i class="bi bi-star-fill"></i></button></li>
+                              </ul>
+                           </div>
+                        </li>
+                     </div>
+                     <div class="col p-2 d-flex">
+                        <li class="nav-item mx-1 shadow ">
+                           <a class="btn text-white" style="background: #009B77" th:href="@{/user/add}" role="button">
+                              <i class="bi bi-plus-lg"></i>
+                           </a>
+                        </li>
+                        <li class="nav-item mx-1 shadow">
                            <a class="btn btn-outline-warning" th:href="@{/user/delete}" role="button">
                               <i class="bi bi-tools"></i>
                            </a>
-                     </li>
+                        </li>
+                     </div>
                   </ul>
                </div>
                <div th:insert="fragments :: bookshelf-grid"></div>
