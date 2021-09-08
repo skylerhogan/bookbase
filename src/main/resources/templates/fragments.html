@@ -37,7 +37,7 @@
 
 <!-- Login form -->
 <th:block th:fragment="login-form" class="card-body">
-  <form th:action="@{/security/login}" method="post" class="px-4">
+  <form th:action="@{/login}" method="post" class="px-4">
     <div th:if="${param.error}" class="alert alert-danger p-2 mb-4 mx-4 fw-bold text-center">
       <i class="bi bi-exclamation-circle-fill fs-4 pe-2" style="vertical-align: sub;"></i> Invalid
       email address or password.
