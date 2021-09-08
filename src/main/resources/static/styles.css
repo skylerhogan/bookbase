@@ -1,49 +1,8 @@
 .main-bg {
 	height: 100vh;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
 		url("/images/library.jpg");
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
 }
-
-.form-floating label {
-    color: gray;
-}
-
-header h1 {
-	letter-spacing: 1px;
-	word-spacing: 4px;
-}
-
-header .header-text-box {
-	text-transform: uppercase;
-}
-
-.opening-heading h2 {
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	margin-bottom: 30px;
-}
-
-.opening-heading h2:after {
-	display: block;
-	height: 3px;
-	background-color: #212529;
-	content: " ";
-	width: 300px;
-	margin: 25px auto;
-}
-
-.book {
-	max-height: 178px;
-}
-
-/*
-.carousel-control-prev {
-	margin-left: -10%;
-}
-
-.carousel-control-next {
-	margin-right: -10%;
-}*/
