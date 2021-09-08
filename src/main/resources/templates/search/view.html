@@ -75,9 +75,13 @@
                     <option value="5">5</option>
                 </select>
             </label>
-<!--            <label>-->
-<!--                <input th:field="${book.thumbnail}" id="thumbnail" hidden>-->
-<!--            </label>-->
+            <label>Description:
+                <input th:field="${book.description}" id="description">
+            </label>
+
+            <label>
+                <input th:field="${book.thumbnail}" id="thumbnail" hidden>
+            </label>
             <button type="submit">add book</button>
 
         </form>

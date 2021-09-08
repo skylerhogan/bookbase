@@ -30,7 +30,7 @@ public class SearchController {
     public String displaySearchForm() { return "search/search"; }
 
 
-    @PostMapping("search")
+    @PostMapping("/search")
     public String processSearchForm(Model model, String searchQuery, String searchParameter, String resultsPerPage) {
 
         String newQuery = "";
@@ -51,7 +51,9 @@ public class SearchController {
         String maxResults = "&maxResults=" + resultsPerPage;
         String searchOptions = maxResults + currentPage;
 
-        return "redirect:search/results/q=" + newQuery + searchOptions;
+        model.addAttribute("formAction", "search/");
+
+        return "redirect:results/q=" + newQuery + searchOptions;
     }
 
     @GetMapping("search/results/q={query}&maxResults={maxResults}&page={currentPage}")
@@ -61,7 +63,6 @@ public class SearchController {
 
         String searchParameter;
         String displayParameter;
-
 
         List<String> pathParameters = new ArrayList<>(Arrays.asList("intitle", "inauthor", "subject", "isbn"));
         List<String> displayParameters = new ArrayList<>(Arrays.asList("title: ", "author: ", "genre: ", "isbn: "));
@@ -89,31 +90,6 @@ public class SearchController {
         return "search/results";
     }
 
-    @PostMapping("search/results/q={currentQuery}&maxResults={maxResults}&page={currentPage}")
-    public String processSearchFormFromResultsPage(Model model, @PathVariable String currentQuery, @PathVariable int currentPage,
-                                                   String searchQuery, String searchParameter, String resultsPerPage) {
-
-        String newQuery = "";
-        String queryToPathVariable = searchQuery.toLowerCase().replace(' ', '+');
-
-        if(searchParameter == null || searchParameter.equals("all")) {
-            newQuery += queryToPathVariable;
-        } else {
-            searchParameter += ":";
-            newQuery += searchParameter + queryToPathVariable;
-        }
-
-        int pageNumber = 1;
-        String newCurrentPage = "&page=" + pageNumber;
-        if (resultsPerPage == null) {
-            resultsPerPage = "10";
-        }
-        String newMaxResults = "&maxResults=" + resultsPerPage;
-        String searchOptions = newMaxResults + newCurrentPage;
-
-        return "redirect:" + "q=" + newQuery + searchOptions;
-    }
-
     @GetMapping("search/results/view/{bookId}")
     public String displayViewBook(Model model, @PathVariable String bookId) {
         model.addAttribute("bookId", bookId);
@@ -135,8 +111,9 @@ public class SearchController {
 
     @PostMapping("search/results/view/{bookId}")
     public String processAddBook(@ModelAttribute @Valid Book newBook, Errors errors, Model model, @RequestParam String title,
-                                     @RequestParam String author, @RequestParam String isbn, @RequestParam String pages,
-                                     @RequestParam String genre, @RequestParam String status, @RequestParam String rating, @PathVariable String bookId) {
+                                 @RequestParam String author, @RequestParam String isbn, @RequestParam String pages,
+                                 @RequestParam String genre, @RequestParam String status, @RequestParam String rating,
+                                 @RequestParam String description, @RequestParam String thumbnail, @PathVariable String bookId) {
         if(errors.hasErrors()) {
             return "search/view/{bookId}";
         }
@@ -148,8 +125,8 @@ public class SearchController {
         model.addAttribute("genre", genre);
         model.addAttribute("status", status);
         model.addAttribute("rating", rating);
-//        model.addAttribute("thumbnail", thumbnail);
-
+        model.addAttribute("description", description);
+        model.addAttribute("thumbnail", thumbnail);
 
         DateFormat Date = DateFormat.getDateInstance();
         Calendar cals = Calendar.getInstance();
@@ -164,7 +141,8 @@ public class SearchController {
         newBook.setStatus(status);
         newBook.setRating(rating);
         newBook.setDateAdded(currentDate);
-//        newBook.setThumbnail(thumbnail);
+        newBook.setDescription(description);
+        newBook.setThumbnail(thumbnail);
 
         bookRepository.save(newBook);
 

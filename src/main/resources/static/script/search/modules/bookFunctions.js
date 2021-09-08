@@ -123,19 +123,25 @@ function renderAddBookButton(alreadyInBookshelf, bookShelfId) {
 
 // EXPORT FUNCTION
 function fillAddBookForm(bookObject) {
+    let descriptionText = bookObject.description;
+    descriptionText = descriptionText.replaceAll("<p>", "");
+    descriptionText = descriptionText.replaceAll("</p>", " ");
+
     let title = document.getElementById('title');
     let author = document.getElementById('author');
     let isbn = document.getElementById('isbn');
     let pages = document.getElementById('pages');
     let genre = document.getElementById('genre');
-//    let thumbnail = document.getElementById('thumbnail');
+    let description = document.getElementById('description');
+    let thumbnail = document.getElementById('thumbnail');
 
     title.value = bookObject.title;
     author.value = bookObject.author;
     isbn.value = bookObject.industryIdentifiers;
     pages.value = bookObject.pageCount;
     genre.value = bookObject.categories;
-//    thumbnail.value = bookObject.thumbnail;
+    description.value = descriptionText;
+    thumbnail.value = bookObject.thumbnail;
 }
 
 function generateTagLinks(categoriesArray) {

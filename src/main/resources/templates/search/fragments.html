@@ -8,7 +8,7 @@
 
 <!-- searchForm -->
 <div th:fragment="search-form" id="search-form-container" class="section">
-    <form method="post" id="search-form" name="search-form">
+    <form method="post" id="search-form" name="search-form" th:action="@{/user/search/}">
 
         <div class="form-section">
             <label class="form-text">

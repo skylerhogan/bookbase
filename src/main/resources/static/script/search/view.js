@@ -90,9 +90,9 @@ const renderPage = async (bookObject) => {
         </div>
     `;
 
-    let description = document.createElement('div');
-    description.id = 'description';
-    description.innerHTML = `<p>${bookObject.description}</p>`;
+    let description = document.createElement('p');
+    description.id = 'description-text';
+    description.innerHTML = `${bookObject.description}`;
     bookDescription.appendChild(description);
 
 }
