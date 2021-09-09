@@ -2,6 +2,7 @@ package com.liftoff.libraryapp.book;
 
 import com.liftoff.libraryapp.models.Book;
 import com.liftoff.libraryapp.repositories.BookRepository;
+import com.liftoff.libraryapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,9 @@ public class BookController {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("add")
     public String displayAddBookForm(Model model) {
@@ -157,6 +161,18 @@ public class BookController {
 
     @GetMapping("profile")
     public String displayUserProfile(Model model) {
+        Integer pagesRead = bookRepository.selectPagesRead();
+        Integer pagesToRead = bookRepository.selectPagesToRead();;
+        Integer totalBooks = bookRepository.selectTotalBooksInLibrary();
+        Integer totalBooksRead = bookRepository.selectTotalBooksRead();
+        String favoriteGenre = bookRepository.selectFavoriteGenre();
+        String joinDate = bookRepository.selectDateOfFirstBookAdded();
+        model.addAttribute("pagesRead", pagesRead);
+        model.addAttribute("pagesToRead", pagesToRead);
+        model.addAttribute("totalBooks", totalBooks);
+        model.addAttribute("totalBooksRead", totalBooksRead);
+        model.addAttribute("favoriteGenre", favoriteGenre);
+        model.addAttribute("joinDate", joinDate);
         return "user/profile";
     }
 

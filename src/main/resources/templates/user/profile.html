@@ -10,32 +10,74 @@
         <nav th:replace="fragments :: navigation-user"></nav>
     </header>
 
+<div class="container">
+
+    <!-- Under Construction Message -->
     <div class="container py-5 mt-5">
-        <div class="p-5 mb-4 bg-light rounded-3 shadow"  style="margin-top:5rem;">
+        <div class="p-5 mb-4 bg-light rounded-3 shadow">
             <div class="container py-5 row">
-                <div class="col col-12 col-lg-6"><h1 class="display-5 fw-bold text-dark">
+                <div class="col col-12 col-md-9"><h1 class="display-5 fw-bold text-dark">
                     Well hello.
                 </h1>
                     <p class="col-md-8 fs-4">There's not a lot going on here right now, but feel free to poke around. We're planning on adding some sweet features soon.</p>
                     <strong class="col-md-8 fs-4 text-dark"> Stay tuned.</strong></div>
-                <div class="col col-12 col-lg-6 d-flex" style="justify-content:center"><i class="bi bi-cone-striped" style="font-size:15rem; color:#FF7900; text-align:center;"></i></div>
+                <div class="col col-12 col-md-3 d-flex" style="justify-content:center"><i class="bi bi-cone-striped" style="font-size:15rem; color:#FF7900; text-align:center;"></i></div>
             </div>
         </div>
     </div>
 
-    <div class="container py-5 my-5 col col-lg-6 align-self-center">
-        <figure class="px-5 mb-4 bg-light rounded-3 shadow mx-auto">
-            <blockquote class="py-5">
-                <i class="bi bi-chat-right-quote-fill display-6"></i>
-                <p class="text-left mx-5 lead text-dark fs-3 lh-sm" id="quoteDisplay">
-                </p>
-                <figcaption class="pt-4 mt-4 border-top d-flex flex-wrap blockquote-footer">
-                    <p id="authorDisplay"></p>
-                    <cite id="bookDisplay" style="margin-left:1rem;"></cite>
-                </figcaption>
-            </blockquote>
-        </figure>
+    <div class="d-flex row">
+
+        <div class="container my-5 col col-12 col-lg-3" style="width:22rem;">
+            <div class="bg-light rounded-3 shadow">
+                <div class="container p-5 row">
+                    <div class="col">
+                        <h1 class="fs-2 fw-bold text-dark mb-3">profile <i class="bi bi-person-circle" style="float:right"></i></h1>
+                        <hr/>
+                        <ul class="p-0" >
+                            <li class="d-flex"><i class="bi bi-person-fill me-2"></i></i><p  th:text="${'Name: '}"></p></li>
+                            <li class="d-flex"><i class="bi bi-envelope-fill me-2"></i><p th:text="${'Email: '}"></p></li>
+                            <li class="d-flex"><i class="bi bi-lock-fill me-2"></i><p th:text="${'Password:' }"></p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quote Generator (requires quotes.js) -->
+        <div class="container my-5 col col-12 col-lg-3" style="width:30rem;">
+            <figure class="px-5 mb-4 bg-light rounded-3 shadow mx-auto">
+                <blockquote class="py-5">
+                    <i class="bi bi-chat-right-quote-fill display-6"></i>
+                    <p class="text-left mx-5 lead text-dark fs-4 lh-sm" id="quoteDisplay">
+                    </p>
+                    <figcaption class="pt-4 mt-4 border-top d-flex flex-wrap blockquote-footer">
+                        <p id="authorDisplay"></p>
+                        <cite id="bookDisplay" style="margin-left:1rem;"></cite>
+                    </figcaption>
+                </blockquote>
+            </figure>
+        </div>
+
+        <!-- User Stats -->
+        <div class="container my-5 col col-12 col-lg-3" style="width:30rem;">
+            <div class="bg-light rounded-3 shadow">
+                <div class="container p-5 row">
+                    <div class="col">
+                        <h1 class="fs-2 fw-bold text-dark mb-3">stats <i class="bi bi-clipboard-data" style="float:right"></i></h1>
+                        <hr/>
+                        <ul class="fs-5 p-0" >
+                            <li class="d-flex"><i class="bi bi-asterisk me-2"></i></i><p  th:text="${'Books in Library: ' + totalBooks}"></p></li>
+                            <li class="d-flex"><i class="bi bi-bookmark-check-fill me-2"></i><p  th:text="${'Books Read: ' + totalBooksRead}"></p></li>
+                            <li class="d-flex"><i class="bi bi-file-earmark-text-fill me-2"></i><p th:text="${pagesRead + ' pages down, ' + pagesToRead + ' to go.'}"></p></li>
+                            <li class="d-flex"><i class="bi bi-stars me-2"></i><p th:text="${favoriteGenre + ' is your favorite genre.'}"></p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
     <!-- Footer -->
     <section>
