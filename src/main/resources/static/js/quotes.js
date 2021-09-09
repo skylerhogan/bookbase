@@ -78,6 +78,31 @@ const quotesObject = [
     quote: 'There is nothing like looking, if you want to find something. You certainly usually find something, if you look, but it is not always quite the something you were after.',
     author: 'J.R.R. Tolkien',
     book: 'The Hobbit',
+    },
+    {
+    quote: 'Enthusiasm makes up for a host of deficiencies.',
+    author: 'Barack Obama',
+    book: 'A Promised Land',
+    },
+    {
+    quote: 'It’s the possibility of having a dream come true that makes life interesting.',
+    author: 'Paul Coelho',
+    book: 'The Alchemist',
+    },
+    {
+    quote: 'There is no greater agony than bearing an untold story inside you.',
+    author: 'Maya Angelou',
+    book: 'I Know Why The Caged Bird Sings',
+    },
+    {
+    quote: 'Open your eyes and see what you can with them before they close forever.',
+    author: 'Anthony Doerr',
+    book: 'All The Light We Cannot See',
+    },
+    {
+    quote: 'Nothing in life is as important as you think it is, while you are thinking about it.',
+    author: 'Daniel Kahneman',
+    book: 'Thinking, Fast and Slow',
     }
 ];
 

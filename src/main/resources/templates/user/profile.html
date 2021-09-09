@@ -32,9 +32,9 @@
             <div class="bg-light rounded-3 shadow">
                 <div class="container p-5 row">
                     <div class="col">
-                        <h1 class="display-5 fw-bold text-dark mb-3">profile <i class="bi bi-person-circle" style="float:right"></i></h1>
+                        <h1 class="fs-2 fw-bold text-dark mb-3">profile <i class="bi bi-person-circle" style="float:right"></i></h1>
                         <hr/>
-                        <ul class="fs-5 p-0" >
+                        <ul class="p-0" >
                             <li class="d-flex"><i class="bi bi-person-fill me-2"></i></i><p  th:text="${'Name: '}"></p></li>
                             <li class="d-flex"><i class="bi bi-envelope-fill me-2"></i><p th:text="${'Email: '}"></p></li>
                             <li class="d-flex"><i class="bi bi-lock-fill me-2"></i><p th:text="${'Password:' }"></p></li>
@@ -49,7 +49,7 @@
             <figure class="px-5 mb-4 bg-light rounded-3 shadow mx-auto">
                 <blockquote class="py-5">
                     <i class="bi bi-chat-right-quote-fill display-6"></i>
-                    <p class="text-left mx-5 lead text-dark fs-3 lh-sm" id="quoteDisplay">
+                    <p class="text-left mx-5 lead text-dark fs-4 lh-sm" id="quoteDisplay">
                     </p>
                     <figcaption class="pt-4 mt-4 border-top d-flex flex-wrap blockquote-footer">
                         <p id="authorDisplay"></p>
@@ -64,14 +64,13 @@
             <div class="bg-light rounded-3 shadow">
                 <div class="container p-5 row">
                     <div class="col">
-                        <h1 class="display-5 fw-bold text-dark mb-3">stats <i class="bi bi-clipboard-data" style="float:right"></i></h1>
+                        <h1 class="fs-2 fw-bold text-dark mb-3">stats <i class="bi bi-clipboard-data" style="float:right"></i></h1>
                         <hr/>
                         <ul class="fs-5 p-0" >
                             <li class="d-flex"><i class="bi bi-asterisk me-2"></i></i><p  th:text="${'Books in Library: ' + totalBooks}"></p></li>
                             <li class="d-flex"><i class="bi bi-bookmark-check-fill me-2"></i><p  th:text="${'Books Read: ' + totalBooksRead}"></p></li>
                             <li class="d-flex"><i class="bi bi-file-earmark-text-fill me-2"></i><p th:text="${pagesRead + ' pages down, ' + pagesToRead + ' to go.'}"></p></li>
                             <li class="d-flex"><i class="bi bi-stars me-2"></i><p th:text="${favoriteGenre + ' is your favorite genre.'}"></p></li>
-                            <li class="d-flex"><i class="bi bi-person-plus-fill me-2"></i><p th:text="${'Member since ' + joinDate}"></p></li>
                         </ul>
                     </div>
                 </div>
