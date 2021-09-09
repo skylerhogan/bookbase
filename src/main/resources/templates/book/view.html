@@ -18,22 +18,22 @@
             <div class="card mb-4 bg-light rounded-3 shadow"  style="margin-top:5rem;">
                <div class="container card-body py-5 row">
                   <div class="col col-12 col-lg-6 mb-5" align="center" style="justify-content:center">
-                     <img class="mx-auto shadow-lg" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" width="45%"  alt="cover">
+                     <img class="mx-auto shadow-lg" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" width="45%" style="max-width:10rem;"  alt="cover">
                      <p th:field="${book.description}" name="description" class="text-secondary small"></p>
                   </div>
-                  <div class="col col-12 col-lg-6">
-                     <h1 class="fs-2 fw-bold text-dark" th:text="${book.title}"></h1>
-                     <h4 th:text="${'by ' + book.author}"></h4>
+                  <div class="col col-12 col-lg-6 px-4" >
+                     <h1 class="fs-4 fw-bold text-dark" th:text="${book.title}"></h1>
+                     <h4 class="fs-5" th:text="${'by ' + book.author}"></h4>
                      <div class="col">
-                        <ul class="list-unstyled mt-3">
-                           <li th:unless="${book.description}==null" class="d-flex fs-5"><i class="bi bi-blockquote-left"></i><p th:text="${book.description}" class="text-secondary"></p></li>
-                           <li><strong th:text="${book.userReview}" class="text-dark fs-5"></strong></li>
+                        <ul class="list-unstyled my-3">
+                           <li th:if="${book.description}!='' and ${book.description}!=null"  class="d-flex fs-6"><i class="bi bi-blockquote-left"></i><p th:text="${book.description}" class="text-secondary"></p></li>
+                           <li><strong th:text="${book.userReview}" class="text-dark fs-6"></strong></li>
                            <div class="row my-3">
-                              <div class="col">
+                              <div class="col my-auto">
                                  <li class="d-flex"><i class="bi bi-stars me-2"></i><p th:text="${book.genre}" class="text-secondary"></p></li>
                                  <li class="d-flex"><i class="bi bi-file-text-fill me-2"></i><p th:text="${book.pages + ' pages'}" class="text-secondary"></p></li>
                               </div>
-                              <div class="col">
+                              <div class="col my-auto">
                                  <li class="d-flex"><i class="bi bi-book me-2"></i><p th:text="${'ISBN: ' + book.isbn}" class="text-secondary"></p></li>
                                  <li class="d-flex"><i class="bi bi-bookshelf me-2"></i><p th:text="${book.status}" class="text-secondary"></p></li>
                                  <li class="d-flex">
@@ -69,13 +69,10 @@
                   </div>
                </div>
                <div class="d-flex card-footer justify-content-between align-items-center">
-                  <small class="text-muted" th:text="${'Date Added: ' + book.dateAdded}"></small>
+                  <small class="text-muted" th:text="${'Added on ' + book.dateAdded}"></small>
                   <button class="iconbutton">
                      <a th:href="@{|/user/edit/${bookId}|}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ffc107" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                           <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                           <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                        </svg>
+                        <i class="bi bi-pencil-square" style="font-size: 2rem;"></i>
                      </a>
                   </button>
                </div>
