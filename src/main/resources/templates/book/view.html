@@ -17,8 +17,14 @@
          <div class="container py-5 my-2">
             <div class="card mb-4 bg-light rounded-3 shadow"  style="margin-top:15rem;">
                <div class="container card-body py-5 row">
+<<<<<<< HEAD
                   <div class="col col-12 col-lg-6 mb-5 align-self-center" align="center">
                      <img class="mx-auto shadow-lg" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" width="45%" style="max-width:12rem;" alt="cover">
+=======
+                  <div class="col col-12 col-lg-6 mb-5" align="center" style="justify-content:center">
+<!--                     <img class="mx-auto" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" width="45%"  alt="cover">-->
+                     <img class="mx-auto" th:src="${book.thumbnail}" width="45%"  alt="cover">
+>>>>>>> 41f12675f194336ffd87e440ef37532c14c88032
                      <p th:field="${book.description}" name="description" class="text-secondary small"></p>
                   </div>
                   <div class="col col-12 col-lg-6">

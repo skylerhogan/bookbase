@@ -34,7 +34,7 @@ body {
 .section {
     width: 100%;
     /* height: 450px; */
-    margin: 100px 0 0 0 ;
+    margin: 20px 0 0 0 ;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,45 +60,7 @@ body {
     margin: 10px;
     padding: 5px;
     cursor: pointer;
+} .form-section {
+    margin: 0 20px;
 }
 
-#results {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-} .result {
-    width: 250px;
-    border: 1px solid red;
-    /* box-shadow: -2px 2px rgba(0,0,0,0.5), 2px -2px 5px rgba(0,0,0,0.2); */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 10px;
-    margin: 10px;
-} .book {
-    max-width: 100%;
-    min-width: 60%;
-    margin: 20px 0;
-    display: flex;
-    flex: 1;
-    /* position: relative; */
-    border: 1px solid blue;
-} .book-info {
-    width: 100%;
-    /* height: 50%; */
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    font-family: Josefin Slab;
-    text-align: center;
-    border: 1px solid blue;
-    /* box-shadow: -2px 2px rgba(0,0,0,0.5), 2px -2px 5px rgba(0,0,0,0.2); */
-} .title {
-    font-size: 24px;
-    font-style: italic;
-    padding: 0 15px;
-}

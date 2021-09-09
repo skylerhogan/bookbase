@@ -3,17 +3,21 @@ package com.liftoff.libraryapp.search;
 import com.liftoff.libraryapp.models.Book;
 import com.liftoff.libraryapp.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.sql.Timestamp;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("user")
@@ -23,31 +27,66 @@ public class SearchController {
     private BookRepository bookRepository;
 
     @GetMapping("search")
-    public String displaySearchForm() {
-        return "search/search";
-    }
+    public String displaySearchForm() { return "search/search"; }
 
-    @PostMapping("search")
-    public String processSearchForm(Model model, String searchQuery, String searchParameter) {
-        String query = "";
-        searchQuery = searchQuery.toLowerCase().replace(' ', '+');
-        if (!searchParameter.equals("all")) {
-            searchParameter += ':';
-            query += "q=" + searchParameter + searchQuery;
+
+    @PostMapping("/search")
+    public String processSearchForm(Model model, String searchQuery, String searchParameter, String resultsPerPage) {
+
+        String newQuery = "";
+        String queryToPathVariable = searchQuery.toLowerCase().replace(' ', '+');
+
+        if(searchParameter == null || searchParameter.equals("all")) {
+            newQuery += queryToPathVariable;
         } else {
-            query += "q=" + searchQuery;
+            searchParameter += ":";
+            newQuery += searchParameter + queryToPathVariable;
         }
+
         int pageNumber = 1;
         String currentPage = "&page=" + pageNumber;
+        if (resultsPerPage == null) {
+            resultsPerPage = "10";
+        }
+        String maxResults = "&maxResults=" + resultsPerPage;
+        String searchOptions = maxResults + currentPage;
 
-        return "redirect:results/" + query + currentPage;
+        model.addAttribute("formAction", "search/");
+
+        return "redirect:results/q=" + newQuery + searchOptions;
     }
 
-    @GetMapping("search/results/{query}&page={currentPage}")
-    public String displaySearchResults(Model model, @PathVariable String query, @PathVariable int currentPage) {
+    @GetMapping("search/results/q={query}&maxResults={maxResults}&page={currentPage}")
+    public String displaySearchResults(Model model, @PathVariable String query, @PathVariable int currentPage, @PathVariable int maxResults) {
+        String searchQuery;
+        String displayQuery;
+
+        String searchParameter;
+        String displayParameter;
+
+        List<String> pathParameters = new ArrayList<>(Arrays.asList("intitle", "inauthor", "subject", "isbn"));
+        List<String> displayParameters = new ArrayList<>(Arrays.asList("title: ", "author: ", "genre: ", "isbn: "));
+
+        if (query.contains(":")) {
+            String[] queryArray = query.split(":", 0);
+            searchParameter = queryArray[0];
+            displayParameter = displayParameters.get(pathParameters.indexOf(queryArray[0]));
+
+            searchQuery = queryArray[1].replaceAll("[+]", " ");
+            displayQuery = displayParameter += searchQuery;
+        } else {
+            searchParameter = null;
+            searchQuery = query.replaceAll("[+]", " ");
+            displayQuery = "all: " + searchQuery;
+        }
+
+        model.addAttribute("searchParameter", searchParameter);
+        model.addAttribute("displayQuery", displayQuery);
+        model.addAttribute("maxResults", maxResults);
+        model.addAttribute("searchQuery", searchQuery);
         model.addAttribute("query", query);
         model.addAttribute("pageNumber", currentPage);
-        model.addAttribute("startIndex", (currentPage-1) * 10);
+        model.addAttribute("startIndex", (currentPage-1) * maxResults);
         return "search/results";
     }
 
@@ -55,16 +94,30 @@ public class SearchController {
     public String displayViewBook(Model model, @PathVariable String bookId) {
         model.addAttribute("bookId", bookId);
         model.addAttribute(new Book());
+
+        List<Book> allBooksInRepo = new ArrayList<>();
+        List<String> bookRepositoryIsbns;
+        List<Integer> bookRepositoryIds;
+
+        bookRepository.findAll().forEach(allBooksInRepo::add);
+        bookRepositoryIsbns = allBooksInRepo.stream().map(Book::getIsbn).collect(Collectors.toList());
+        bookRepositoryIds = allBooksInRepo.stream().map(Book::getId).collect(Collectors.toList());
+
+        model.addAttribute("bookRepositoryIds", bookRepositoryIds);
+        model.addAttribute("bookRepositoryIsbns", bookRepositoryIsbns);
+
         return "search/view";
     }
 
     @PostMapping("search/results/view/{bookId}")
     public String processAddBook(@ModelAttribute @Valid Book newBook, Errors errors, Model model, @RequestParam String title,
-                                     @RequestParam String author, @RequestParam String isbn, @RequestParam String pages,
-                                     @RequestParam String genre, @RequestParam String status, @RequestParam String rating, @PathVariable String bookId) {
+                                 @RequestParam String author, @RequestParam String isbn, @RequestParam String pages,
+                                 @RequestParam String genre, @RequestParam String status, @RequestParam String rating,
+                                 @RequestParam String description, @RequestParam String thumbnail, @PathVariable String bookId) {
         if(errors.hasErrors()) {
             return "search/view/{bookId}";
         }
+
         model.addAttribute("title", title);
         model.addAttribute("author", author);
         model.addAttribute("isbn", isbn);
@@ -72,17 +125,13 @@ public class SearchController {
         model.addAttribute("genre", genre);
         model.addAttribute("status", status);
         model.addAttribute("rating", rating);
+        model.addAttribute("description", description);
+        model.addAttribute("thumbnail", thumbnail);
 
         DateFormat Date = DateFormat.getDateInstance();
         Calendar cals = Calendar.getInstance();
         String currentDate = Date.format(cals.getTime());
         model.addAttribute("date", currentDate);
-
-        java.util.Date date = new Date();
-        Timestamp ts = new Timestamp(date.getTime());
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH::mm:ss");
-        String dateViewed = formatter.format(ts);
-        model.addAttribute("dateViewed", dateViewed);
 
         newBook.setTitle(title);
         newBook.setAuthor(author);
@@ -92,7 +141,8 @@ public class SearchController {
         newBook.setStatus(status);
         newBook.setRating(rating);
         newBook.setDateAdded(currentDate);
-        newBook.setDateViewed(dateViewed);
+        newBook.setDescription(description);
+        newBook.setThumbnail(thumbnail);
 
         bookRepository.save(newBook);
 
