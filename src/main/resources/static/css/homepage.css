@@ -1,9 +1,3 @@
-
-
-.form-floating label {
-    color: gray;
-}
-
 header h1 {
 	letter-spacing: 1px;
 	word-spacing: 4px;
@@ -29,7 +23,7 @@ header .header-text-box {
 }
 
 .book {
-	max-height: 178px;
+	max-height: 200px;
 }
 
 #reader-img {
