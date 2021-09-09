@@ -16,6 +16,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> findByStatusOrderByDateViewedDesc(String status);
 
+    List<Book> findByStatusOrderByTitle(String status);
+
     List<Book> findByRatingOrderByDateViewedDesc(String rating);
 
     List<Book> findAllByOrderByAuthor();

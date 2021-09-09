@@ -109,7 +109,10 @@ public class BookController {
 
     @RequestMapping("shelf")
     public String displayMainBookshelf(Model model) {
-        model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
+//        model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
+        model.addAttribute("currentlyReading", bookRepository.findByStatusOrderByDateViewedDesc("Currently Reading"));
+        model.addAttribute("wantToRead", bookRepository.findByStatusOrderByTitle("Want to Read"));
+        model.addAttribute("completed", bookRepository.findByStatusOrderByTitle("Completed"));
         return "book/shelf";
     }
 
@@ -122,8 +125,12 @@ public class BookController {
                                        @RequestParam (required = false) String rating) {
         if (status != "") {
             model.addAttribute("books", bookRepository.findByStatusOrderByDateViewedDesc(status));
+            model.addAttribute("listName", status);
         } else {
-            model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
+//            model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
+            model.addAttribute("currentlyReading", bookRepository.findByStatusOrderByDateViewedDesc("Currently Reading"));
+            model.addAttribute("wantToRead", bookRepository.findByStatusOrderByTitle("Want to Read"));
+            model.addAttribute("completed", bookRepository.findByStatusOrderByTitle("Completed"));
         }
 
         if (title != null) {
