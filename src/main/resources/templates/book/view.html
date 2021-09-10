@@ -14,17 +14,11 @@
 
       <!--View Book Card-->
       <section>
-         <div class="container py-5 my-2">
-            <div class="card mb-4 bg-light rounded-3 shadow"  style="margin-top:15rem;">
+         <div class="container py-5">
+            <div class="card mb-4 bg-light rounded-3 shadow"  style="margin-top:10rem;">
                <div class="container card-body py-5 row">
-<<<<<<< HEAD
                   <div class="col col-12 col-lg-6 mb-5 align-self-center" align="center">
-                     <img class="mx-auto shadow-lg" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" width="45%" style="max-width:12rem;" alt="cover">
-=======
-                  <div class="col col-12 col-lg-6 mb-5" align="center" style="justify-content:center">
-<!--                     <img class="mx-auto" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" width="45%"  alt="cover">-->
-                     <img class="mx-auto" th:src="${book.thumbnail}" width="45%"  alt="cover">
->>>>>>> 41f12675f194336ffd87e440ef37532c14c88032
+                     <img class="mx-auto shadow-lg" th:src="${book.thumbnail}" width="30%" alt="cover">
                      <p th:field="${book.description}" name="description" class="text-secondary small"></p>
                   </div>
                   <div class="col col-12 col-lg-6">
@@ -32,7 +26,7 @@
                      <h4 th:text="${'by ' + book.author}"></h4>
                      <div class="col">
                         <ul class="list-unstyled mt-3">
-                           <li th:if="${book.description}!=null and ${book.description}!=''" class="d-flex fs-5"><i class="bi bi-blockquote-left"></i><p th:text="${book.description}" class="text-secondary"></p></li>
+                           <li th:if="${book.description}!=null and ${book.description}!=''" class="d-flex"><i class="bi bi-blockquote-left me-2"></i><p th:text="${book.description}" class="text-secondary"></p></li>
                            <li><strong th:text="${book.userReview}" class="text-dark fs-5"></strong></li>
                            <div class="row my-3 mx-auto">
                               <hr/>
@@ -58,7 +52,7 @@
                                              <li class="fs-6"><a th:href="${'https://www.abebooks.com/servlet/SearchResults?tn=' + book.title}" target="_blank" class="dropdown-item" value="AbeBooks">AbeBooks</a></li>
                                              <li class="fs-6"><a th:href="${'https://www.bookdepository.com/search?searchTerm=' + book.title + '%20' + book.author}" target="_blank" class="dropdown-item" value="Book Depository">Book Depository</a></li>
                                              <li><hr/></li>
-                                             <li class="fs-6"><a th:href="${'https://www.worldcat.org/title/' + book.title}" target="_blank" class="dropdown-item" value="Book Depository">Borrow From Library</a></li>
+                                             <li class="fs-6"><a th:href="${'https://www.worldcat.org/title/' + book.title}" target="_blank" class="dropdown-item" value="Book Depository">Find a Library</a></li>
                                           </ul>
                                        </div>
                                     </li>

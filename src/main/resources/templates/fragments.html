@@ -10,10 +10,6 @@
 <!--      <link rel="stylesheet" th:href="@{/styles.css}" />-->
 <!--      <link rel="stylesheet" th:href="@{/shelf.css}" />-->
 <!--      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
-<<<<<<< HEAD
-=======
-
->>>>>>> 01aa9ac6bb2f566d3fc61fba3329edbbe3d1e627
       <title>Bookbase</title>
   </th:block>
 
@@ -75,10 +71,8 @@
     <nav
       th:fragment="navigation-user" class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-lg" style="margin-bottom:125px">
       <div class="container">
-        <a class="navbar-brand me-2" id="logo" href="http://localhost:8080">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-exclude my-1" viewBox="0 0 16 16">
-            <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z"/>
-          </svg> Bookbase</a>
+        <a class="navbar-brand me-2 fs-3" id="logo" href="http://localhost:8080">
+          Bookbase</a>
         <button class="navbar-toggler shadow-sm my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -129,7 +123,6 @@
         <div th:each="book : ${books}" class="cols-3 mx-auto">
           <div class="card bg-transparent flex-lg-row mx-auto mb-5">
             <a th:if="${#httpServletRequest.requestURI == '/user/shelf'}" th:href="@{|/user/view/${book.id}|}" class="container d-flex">
-<!--              <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'" class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover"/>-->
               <img th:src="${book.thumbnail}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'" class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover"/>
             </a>
           </div>
