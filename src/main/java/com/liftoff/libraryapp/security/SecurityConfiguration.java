@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 // **** Description *** //
 // Anything that goes through the /api/v*/registration/** endpoint, we want to allow/permit //
@@ -36,15 +37,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable() // can send post without being rejected, just temporary.
                 .authorizeRequests()
                     .antMatchers("/admin").hasRole("ADMIN")
-                    .antMatchers("/user").hasRole("USER")
+                    .antMatchers("/user/**").authenticated()
                     .antMatchers("/registration/**", "/", "/resources/**").permitAll()
 //                 .anyRequest().authenticated()
                 .and().formLogin()
-                    .loginPage("/security/login")
+                    .loginPage("/login")
                     .failureUrl("/login?error")
                     .permitAll()
                     .usernameParameter("email")
-                    .defaultSuccessUrl("/user/shelf", true);
+                    .defaultSuccessUrl("/user/shelf", true)
+                .and().logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/login?logout")
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID");
+
                 // TODO: remember me
                 // TODO: forgot password
     }

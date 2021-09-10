@@ -10,10 +10,6 @@
 <!--      <link rel="stylesheet" th:href="@{/styles.css}" />-->
 <!--      <link rel="stylesheet" th:href="@{/shelf.css}" />-->
 <!--      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
-<<<<<<< HEAD
-=======
-
->>>>>>> 01aa9ac6bb2f566d3fc61fba3329edbbe3d1e627
       <title>Bookbase</title>
   </th:block>
 
@@ -41,7 +37,7 @@
 
 <!-- Login form -->
 <th:block th:fragment="login-form" class="card-body">
-  <form th:action="@{/security/login}" method="post" class="px-4">
+  <form th:action="@{/login}" method="post" class="px-4">
     <div th:if="${param.error}" class="alert alert-danger p-2 mb-4 mx-4 fw-bold text-center">
       <i class="bi bi-exclamation-circle-fill fs-4 pe-2" style="vertical-align: sub;"></i> Invalid
       email address or password.
@@ -112,8 +108,12 @@
 
             <!-- logout nav button-->
             <li class="nav-item-btn me-1 ms-2" >
-              <a th:href="@{|/|}" class="nav-link" aria-current="page" style="color: currentColor";>
+              <a th:href="@{/logout}" class="nav-link" aria-current="page" style="color:
+              currentColor;">
                 <i class="bi bi-box-arrow-right" style="font-size:2rem;"></i>
+                <form name="logoutForm" th:action="@{/logout}" action="post" th:hidden="true">
+                  <input hidden type="submit" value="Sign Out"/>
+                </form>
               </a>
             </li>
           </ul>
@@ -129,7 +129,7 @@
         <div th:each="book : ${books}" class="cols-3 mx-auto">
           <div class="card bg-transparent flex-lg-row mx-auto mb-5">
             <a th:if="${#httpServletRequest.requestURI == '/user/shelf'}" th:href="@{|/user/view/${book.id}|}" class="container d-flex">
-              <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'" class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover"/>
+              <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'" class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover"/>
             </a>
           </div>
         </div>
