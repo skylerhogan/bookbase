@@ -158,23 +158,4 @@ public class BookController {
             return "redirect:../shelf";
         }
     }
-
-    @GetMapping("profile")
-    public String displayUserProfile(Model model) {
-        Integer pagesRead = bookRepository.selectPagesRead();
-        Integer pagesToRead = bookRepository.selectPagesToRead();;
-        Integer totalBooks = bookRepository.selectTotalBooksInLibrary();
-        Integer totalBooksRead = bookRepository.selectTotalBooksRead();
-        String favoriteGenre = bookRepository.selectFavoriteGenre();
-        String joinDate = bookRepository.selectDateOfFirstBookAdded();
-        model.addAttribute("pagesRead", pagesRead);
-        model.addAttribute("pagesToRead", pagesToRead);
-        model.addAttribute("totalBooks", totalBooks);
-        model.addAttribute("totalBooksRead", totalBooksRead);
-        model.addAttribute("favoriteGenre", favoriteGenre);
-        model.addAttribute("joinDate", joinDate);
-        return "user/profile";
-    }
-
-
 }

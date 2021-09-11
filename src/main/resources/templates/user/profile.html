@@ -29,16 +29,16 @@
 <!--    </div>-->
 
     <div class="d-flex row col" style="justify-content:space-between">
-        <div class="mt-4 col col-12 col-sm-12 col-md-6">
+        <div class="mt-4 col col-12 col-sm-12 col-xl-6">
             <div class="bg-light rounded-3 shadow">
                 <div class="container p-5 row">
                     <div class="col">
                         <h1 class="fs-2 mb-3">profile <i class="bi bi-person-circle" style="float:right; color:slategrey"></i></h1>
                         <hr/>
                         <ul class="p-0" >
-                            <li class="d-flex"><i class="bi bi-person-fill me-2" style="color:slategrey"></i></i><p  th:text="${'Name '}"></p></li>
-                            <li class="d-flex"><i class="bi bi-envelope-fill me-2" style="color:slategrey"></i><p th:text="${'Email '}"></p></li>
-                            <li class="d-flex"><i class="bi bi-lock-fill me-2" style="color:slategrey"></i><p th:text="${'Password' }"></p></li>
+                            <li class="d-flex"><i class="bi bi-person-fill me-2" style="color:slategrey"></i></i><p  th:text="${'Full Name: ' + firstName + ' ' + lastName}"></p></li>
+                            <li class="d-flex"><i class="bi bi-envelope-fill me-2" style="color:slategrey"></i><p th:text="${'Email: ' + username}"></p></li>
+                            <li class="d-flex"><i class="bi bi-lock-fill me-2" style="color:slategrey"></i><p>Password: ⚫⚫⚫⚫⚫⚫⚫</p></li>
                         </ul>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
         </div>
 
         <!-- User Stats -->
-        <div class="my-4 col col-12 col-sm-12 col-md-6">
+        <div class="my-4 col col-12 col-sm-12 col-xl-6">
             <div class="rounded-3 shadow" style="background-color:slategrey">
                 <div class="container p-5 row">
                     <div class="col text-light">
@@ -65,11 +65,11 @@
         </div>
 
         <!-- Quote Generator (requires quotes.js) -->
-        <div class="col col-6-md col-lg-12 d-flex" style="min-width:20rem;" >
-            <figure class="px-5 bg-light rounded-3 shadow" style="justify-content:center">
-                <blockquote class="py-5">
+        <div class="col mx-auto col-6-md col-lg-12" style="min-width:20rem;" >
+            <figure class="px-5 bg-light rounded-3 shadow">
+                <blockquote class="py-5 container">
                     <i class="bi bi-chat-right-quote-fill display-6" style="color:slategrey"></i>
-                    <p class="text-left mx-5 lead fs-4 lh-sm" id="quoteDisplay">
+                    <p class="text-center mx-5 lead fs-4 lh-sm" id="quoteDisplay">
                     </p>
                     <figcaption class="pt-4 mt-4 border-top d-flex flex-wrap blockquote-footer">
                         <p id="authorDisplay"></p>

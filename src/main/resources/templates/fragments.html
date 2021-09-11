@@ -88,9 +88,17 @@
               </form>
             </li>
 
+            <!--home nav button-->
+
+            <li class="nav-item-btn mx-2">
+              <a href="http://localhost:8080/" class="nav-link " style="color: currentColor">
+                <i class="bi bi-house" style="font-size:2rem"></i>
+              </a>
+            </li>
+
             <!--bookshelf nav button-->
 
-           <li th:unless="${#httpServletRequest.requestURI == '/user/shelf'}" class="nav-item-btn mx-2">
+           <li class="nav-item-btn mx-2">
               <a href="http://localhost:8080/user/shelf" class="nav-link " style="color: currentColor">
                 <i class="bi bi-grid-3x3-gap-fill" style="font-size:2rem"></i>
               </a>
@@ -98,7 +106,7 @@
 
             <!-- user profile nav button-->
 
-            <li th:unless="${#httpServletRequest.requestURI == '/user/profile'}" class="nav-item-btn mx-2">
+            <li class="nav-item-btn mx-2">
               <a th:href="@{|/user/profile|}" class="nav-link" aria-current="page" style="color: currentColor;">
                 <i class="bi bi-person-circle" style="font-size:2rem"></i>
               </a>
