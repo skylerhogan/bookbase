@@ -70,7 +70,7 @@
                         <div class="col-auto">
                            <label class="visually-hidden" th:for="genre">Genre</label>
                            <select th:field="*{book.genre}" class="form-select" id="genre" required>
-                              <option disabled value="">Genre</option>
+                              <option disabled hidden value="">Genre</option>
                               <option value="Memoir">Memoir</option>
                               <option value="Biography">Biography</option>
                               <option value="Self-Help">Self-Help</option>
@@ -89,7 +89,7 @@
                         <div class="col-auto" style="width: 60%;">
                            <label class="visually-hidden" th:for="status">Status</label>
                            <select th:field="${book.status}" class="form-select status-selector" id="status" required>
-                              <option selected value="">Shelf</option>
+                              <option disabled hidden value="">Shelf</option>
                               <option value="Want to Read">Want to Read</option>
                               <option value="Currently Reading">Currently Reading</option>
                               <option id="completed" value="Completed">Completed</option>
