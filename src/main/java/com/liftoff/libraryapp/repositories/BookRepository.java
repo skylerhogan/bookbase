@@ -1,6 +1,7 @@
 package com.liftoff.libraryapp.repositories;
 
 import com.liftoff.libraryapp.models.Book;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,9 +15,19 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> findAllByOrderByDateViewedDesc();
 
-    List<Book> findByStatusOrderByDateViewedDesc(String status);
+    List<Book> findByStatus(String status, Sort sort);
+
+    List<Book> findByRating(String rating, Sort sort);
+
+    List<Book> findByStatusAndRating(String status, String rating, Sort sort);
 
     List<Book> findByStatusOrderByTitle(String status);
+
+    List<Book> findByStatusOrderByAuthor(String status);
+
+    List<Book> findByStatusOrderByDateAddedDesc(String status);
+
+    List<Book> findByStatusOrderByDateViewedDesc(String status);
 
     List<Book> findByRatingOrderByDateViewedDesc(String rating);
 

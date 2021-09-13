@@ -4,6 +4,7 @@ import com.liftoff.libraryapp.models.Book;
 import com.liftoff.libraryapp.repositories.BookRepository;
 import com.liftoff.libraryapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -13,9 +14,7 @@ import javax.validation.Valid;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 
 @Controller
@@ -109,41 +108,45 @@ public class BookController {
 
     @RequestMapping("shelf")
     public String displayMainBookshelf(Model model) {
-//        model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
-        model.addAttribute("currentlyReading", bookRepository.findByStatusOrderByDateViewedDesc("Currently Reading"));
-        model.addAttribute("wantToRead", bookRepository.findByStatusOrderByTitle("Want to Read"));
-        model.addAttribute("completed", bookRepository.findByStatusOrderByTitle("Completed"));
+        List<List<Book>> bookLists = new ArrayList<>();
+
+        bookLists.add(bookRepository.findByStatus("Currently Reading", Sort.by("dateViewed")));
+        bookLists.add(bookRepository.findByStatus("Want to Read", Sort.by("title")));
+        bookLists.add(bookRepository.findByStatus("Completed", Sort.by("title")));
+        model.addAttribute("bookLists", bookLists);
+
         return "book/shelf";
     }
 
     @PostMapping("shelf")
     public String displayMainBookshelf(Model model, @RequestParam (required = false) String status,
-                                       @RequestParam (required = false) String title,
-                                       @RequestParam (required = false) String author,
-                                       @RequestParam (required = false) String dateAdded,
-                                       @RequestParam (required = false) String recentlyViewed,
+                                       @RequestParam (required = false, defaultValue = "title") String orderBy,
                                        @RequestParam (required = false) String rating) {
-        if (status != "") {
-            model.addAttribute("books", bookRepository.findByStatusOrderByDateViewedDesc(status));
-            model.addAttribute("listName", status);
-        } else {
-//            model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
-            model.addAttribute("currentlyReading", bookRepository.findByStatusOrderByDateViewedDesc("Currently Reading"));
-            model.addAttribute("wantToRead", bookRepository.findByStatusOrderByTitle("Want to Read"));
-            model.addAttribute("completed", bookRepository.findByStatusOrderByTitle("Completed"));
+
+        // TODO: Sort date viewed/date added by descending
+
+        List<List<Book>> bookLists = new ArrayList<>();
+
+        if (!rating.equals("")) {
+            bookLists.add(bookRepository.findByStatusAndRating("Completed", rating, Sort.by(orderBy)));
+            model.addAttribute("bookLists", bookLists);
+            return "book/shelf";
         }
 
-        if (title != null) {
-            model.addAttribute("books", bookRepository.findAllByOrderByTitle());
-        } else if (author != null) {
-            model.addAttribute("books", bookRepository.findAllByOrderByAuthor());
-        } else if (dateAdded != null) {
-            model.addAttribute("books", bookRepository.findAllByOrderByDateAddedDesc());
-        } else if (recentlyViewed != null) {
-            model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
-        } else if (rating != null) {
-            model.addAttribute("books", bookRepository.findByRatingOrderByDateViewedDesc(rating));
+        if (!status.equals("")) {
+            bookLists.add(bookRepository.findByStatus(status, Sort.by(orderBy)));
+        } else {
+            bookLists.add(bookRepository.findByStatus("Currently Reading", Sort.by(orderBy)));
+            bookLists.add(bookRepository.findByStatus("Want to Read", Sort.by(orderBy)));
+            bookLists.add(bookRepository.findByStatus("Completed", Sort.by(orderBy)));
+            //        } else {
+//            bookLists.add(bookRepository.findByStatus("Currently Reading", Sort.by("dateViewed")));
+//            bookLists.add(bookRepository.findByStatus("Want to Read", Sort.by("title")));
+//            bookLists.add(bookRepository.findByStatus("Completed", Sort.by("title")));
+//            model.addAttribute("bookLists", bookLists);
         }
+        model.addAttribute("bookLists", bookLists);
+
         return "book/shelf";
     }
 

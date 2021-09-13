@@ -12,72 +12,137 @@
       </header>
 
 <!--       Book Grid -->
-      <div class="my-auto" style="position:relative; top:200px;" >
+<!--      <div class="my-auto" style="position:relative; top:80px;" >-->
+      <div class="my-auto" style="position:relative; top:65px;">
          <div class="container">
             <form method="post" th:action="@{/user/shelf}" id="shelfForm" class="me-auto">
-               <div class="d-flex pt-5 navbar fixed-top bg-white border-bottom" style="margin-top:2rem; z-index:12;">
-                  <ul class="nav mx-auto my-4 align-items-center row">
-                     <div class="col p-2 d-flex">
-                        <li class="nav-item mx-1 shadow">
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                 <i class="bi bi-bookshelf"></i> Shelf
+<!--               <div class="d-flex pt-5 navbar fixed-top bg-white border-bottom row"-->
+               <div class="row gx-3 gy-2 align-items-center border-bottom navbar bg-white"
+                    style="margin-top:2rem; z-index:12;">
+<!--                  <ul class="nav mx-auto my-4 align-items-center row">-->
+<!--                  <ul class="nav mx-auto my-4 align-items-center row">-->
+<!--                     <div class="col p-2 d-flex">-->
+<!--                        <li class="nav-item mx-1 shadow">-->
+<!--                           <div class="btn-group">-->
+<!--                              <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                                 <i class="bi bi-bookshelf"></i> Shelf-->
+<!--                              </button>-->
+<!--                              <ul class="dropdown-menu">-->
+<!--                                 <li><button type="button" class="dropdown-item" name="status" value="Want to Read">-->
+<!--                                    Want-->
+<!--                                    to Read</button></li>-->
+<!--                                 <li><button type="button" class="dropdown-item" name="status"-->
+<!--                                             value="Currently Reading">-->
+<!--                                    Currently Reading</button></li>-->
+<!--                                 <li><button type="button" class="dropdown-item" name="status" value="Completed">-->
+<!--                                    Completed</button></li>-->
+<!--                                 <li><hr class="dropdown-divider"></li>-->
+<!--                                 <li><button type="button" class="dropdown-item" name="status" value="">All-->
+<!--                                    Books</button></li>-->
+<!--                              </ul>-->
+                              <div class="col-sm-2 mx-2 my-4">
+                                 <select class="form-select" name="status">
+                                    <option selected value="">&#128218; Shelf</option>
+                                    <option value="Want to Read">Want To Read</option>
+                                    <option value="Currently Reading">Currently Reading</option>
+                                    <option value="Completed">Completed</option>
+                                    <option value="">All Books</option>
+                                 </select>
+                              </div>
+                              <div class="col-sm-2 mx-2 my-4">
+                                 <select class="form-select" name="orderBy">
+                                    <option selected value="">&#8645; Order By</option>
+                                    <option value="Title">Title</option>
+                                    <option value="Author">Author</option>
+                                    <option value="dateAdded">Date Added</option>
+                                    <option value="dateViewed">Recently Viewed</option>
+                                 </select>
+                              </div>
+                              <div class="col-sm-2 mx-2 my-4">
+                                 <select class="form-select" name="rating">
+                                    <option selected value="">&#9733; Rating</option>
+                                    <option value="5">⭐⭐⭐⭐⭐</option>
+                                    <option value="4">⭐⭐⭐⭐</option>
+                                    <option value="3">⭐⭐⭐</option>
+                                    <option value="2">⭐⭐</option>
+                                    <option value="1">⭐</option>
+                                 </select>
+                              </div>
+                              <button class="col-sm-1 btn btn-success mx-2 my-4">
+                                 <i class="bi bi-funnel-fill fst-normal"> Filter</i>
                               </button>
-                              <ul class="dropdown-menu">
-                                 <li><button type="submit" class="dropdown-item" name="status" value="Want to Read"> Want to Read</button></li>
-                                 <li><button type="submit" class="dropdown-item" name="status" value="Currently Reading"> Currently Reading</button></li>
-                                 <li><button type="submit" class="dropdown-item" name="status" value="Completed"> Completed</button></li>
-                                 <li><hr class="dropdown-divider"></li>
-                                 <li><button type="submit" class="dropdown-item" name="status" value="">All Books</button></li>
-                              </ul>
-                           </div>
-                        </li>
-                        <li class="nav-item mx-1 shadow">
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                 <i class="bi bi-arrow-down-up"></i> Order By
-                              </button>
-                              <ul class="dropdown-menu">
-                                 <li><button type="submit" class="dropdown-item" name="title" value="Title">Title</button></li>
-                                 <li><button type="submit" class="dropdown-item" name="author" value="Author">Author</button></li>
-                                 <li><button type="submit" class="dropdown-item" name="dateAdded" value="Date Added">Date Added</button></li>
-                                 <li><button type="submit" class="dropdown-item" name="recentlyViewed" value="Recently Viewed">Recently Viewed</button></li>
-                              </ul>
-                           </div>
-                        </li>
-                        <li class="nav-item mx-1 shadow">
-                           <div class="btn-group">
-                              <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                 <i class="bi bi-star"></i> Rating
-                              </button>
-                              <ul class="dropdown-menu text-center">
-                                 <li><button type="submit" class="dropdown-item" name="rating" value="5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>
-                                 <li><button type="submit" class="dropdown-item" name="rating" value="4"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>
-                                 <li><button type="submit" class="dropdown-item" name="rating" value="3"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>
-                                 <li><button type="submit" class="dropdown-item" name="rating" value="2"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>
-                                 <li><button type="submit" class="dropdown-item" name="rating" value="1"><i class="bi bi-star-fill"></i></button></li>
-                              </ul>
-                           </div>
-                        </li>
-                     </div>
-                     <div class="col p-2 d-flex">
-                        <li class="nav-item mx-1 shadow ">
-                           <a class="btn text-white" style="background: #009B77" th:href="@{/user/add}" role="button">
-                              <i class="bi bi-plus-lg"></i>
+<!--                           </div>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item mx-1 shadow">-->
+<!--                           <div class="btn-group">-->
+<!--                              <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                                 <i class="bi bi-arrow-down-up"></i> Order By-->
+<!--                              </button>-->
+<!--                              <ul class="dropdown-menu">-->
+<!--                                 <li><button type="button" class="dropdown-item" name="title" value="Title">Title-->
+<!--                                 </button></li>-->
+<!--                                 <li><button type="button" class="dropdown-item" name="author" value="Author">Author-->
+<!--                                 </button></li>-->
+<!--                                 <li><button type="button" class="dropdown-item" name="dateAdded"-->
+<!--                                             value="Date Added">Date-->
+<!--                                    Added</button></li>-->
+<!--                                 <li><button type="button" class="dropdown-item" name="recentlyViewed"-->
+<!--                                             value="Recently Viewed">Recently Viewed</button></li>-->
+<!--                              </ul>-->
+<!--                           </div>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item mx-1 shadow">-->
+<!--                           <div class="btn-group">-->
+<!--                              <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                                 <i class="bi bi-star"></i> Rating-->
+<!--                              </button>-->
+<!--                              <ul class="dropdown-menu text-center">-->
+<!--                                 <li><button type="button" class="dropdown-item" name="rating" value="5"><i-->
+<!--                                         class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>-->
+<!--                                 <li><button type="button" class="dropdown-item" name="rating" value="4"><i-->
+<!--                                         class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>-->
+<!--                                 <li><button type="button" class="dropdown-item" name="rating" value="3"><i-->
+<!--                                         class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>-->
+<!--                                 <li><button type="button" class="dropdown-item" name="rating" value="2"><i-->
+<!--                                         class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></button></li>-->
+<!--                                 <li><button type="button" class="dropdown-item" name="rating" value="1"><i-->
+<!--                                         class="bi bi-star-fill"></i></button></li>-->
+<!--                              </ul>-->
+<!--                           </div>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item mx-1 shadow">-->
+<!--                           <button type="submit" class="btn btn-success">-->
+<!--                              <i class="bi bi-check2"> Apply Filters</i>-->
+<!--                           </button>-->
+<!--                        </li>-->
+<!--                     </div>-->
+                     <div class="col p-2 d-flex justify-content-end ">
+<!--                        <li class="nav-item mx-1 shadow ">-->
+<!--                           <a class="btn text-white mx-2" style="background: #009B77" th:href="@{/user/add}"-->
+<!--                              role="button">-->
+<!--                              <i class="bi bi-plus-lg"></i>-->
+<!--                           </a>-->
+                             <a class="btn btn-success btn-expand text-white mx-2" th:href="@{/user/add}"
+                                role="button">
+<!--                                style="background: #009B77"-->
+                                 <i class="bi bi-plus-lg"></i><span class="expand-button"> Add Book</span>
+                             </a>
+
+<!--                        </li>-->
+<!--                        <li class="nav-item mx-1 shadow">-->
+                           <a class="btn btn-outline-warning btn-expand mx-2" th:href="@{/user/delete}" role="button">
+                              <i class="bi bi-tools"></i><span class="expand-button text-dark"> Remove Books</span>
                            </a>
-                        </li>
-                        <li class="nav-item mx-1 shadow">
-                           <a class="btn btn-outline-warning" th:href="@{/user/delete}" role="button">
-                              <i class="bi bi-tools"></i>
-                           </a>
-                        </li>
+<!--                        </li>-->
                      </div>
-                  </ul>
+<!--                  </ul>-->
                </div>
-               <div th:insert="fragments :: bookshelf-grid"></div>
-               <div th:insert="fragments :: currently-reading-shelf"></div>
-               <div th:insert="fragments :: want-to-read-shelf"></div>
-               <div th:insert="fragments :: completed-shelf"></div>
+                  <div th:replace="fragments :: bookshelf-grid"></div>
+<!--                  <div th:replace="fragments :: sorted-grid"></div>-->
+<!--               <div th:insert="fragments :: currently-reading-shelf"></div>-->
+<!--               <div th:insert="fragments :: want-to-read-shelf"></div>-->
+<!--               <div th:insert="fragments :: completed-shelf"></div>-->
+
             </form>
          </div>
       </div>
