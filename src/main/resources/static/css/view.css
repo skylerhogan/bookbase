@@ -2,7 +2,9 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-} .heading {
+}
+/*
+.heading {
     font-family: Josefin Slab;
     margin: 0;
     letter-spacing: 1ex;
@@ -32,6 +34,7 @@ body {
 }
 
 .page-container {
+    margin: 100px 0;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -46,7 +49,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
 }
 
 #book-container {
@@ -57,39 +59,37 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    border: 1px solid blue;
-} .book-details {
-    display: flex;
-    flex-direction: column;
-} .column {
+}
+
+.column {
     height: 100%;
     margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 1px solid red;
-} .rating-count {
+}
+*/
+.rating-count {
     font-size: x-small;
-} #cover-and-rating {
+}
+/*
+#cover-and-rating {
     flex: 2;
 } #book-details {
     flex: 5;
 } #buttons {
     flex: 1;
-} #book-description {
-    width: 90%;
-    padding: 10px;
-    margin: 10px;
+}
+*/
+#cover-image {
+    margin-bottom: 30px;
+}
+#book-description {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
-    border: 1px solid blue;
-} #description {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
 }
 
 #add-button {
@@ -108,9 +108,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-} #add-book-form {
+}
+
+#add-book-form {
     width: 80%;
     height: 80%;
+    /*
     display: flex;
     flex-direction: column;
     background-color: rgba(255,255,255,0.1);
@@ -118,7 +121,10 @@ body {
     padding: 25px 0;
     justify-content: space-between;
     align-items: center;
-} .tag {
+    */
+}
+
+.tag {
     margin: 0 5px;
 }
 
