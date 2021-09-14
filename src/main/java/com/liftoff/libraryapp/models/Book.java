@@ -30,6 +30,8 @@ public class Book {
     private String dateViewed;
     private String description;
     private String userReview;
+    @OneToOne
+    private User user;
 
     public Integer getId() {
         return id;
@@ -39,7 +41,7 @@ public class Book {
     
     public Book(Integer id, String title, String author, String isbn,
                 String pages, String genre, String status, String rating, String dateAdded,
-                String dateViewed, String description, String userReview) {
+                String dateViewed, String description, String userReview, User user) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -52,6 +54,7 @@ public class Book {
         this.dateViewed = dateViewed;
         this.description = description;
         this.userReview = userReview;
+        this.user = user;
     }
 
     public String getTitle() {
@@ -141,6 +144,9 @@ public class Book {
     public void setUserReview(String userReview) {
         this.userReview = userReview;
     }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
     @Override
     public boolean equals(Object o) {
