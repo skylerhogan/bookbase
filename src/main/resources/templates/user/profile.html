@@ -12,7 +12,7 @@
     </header>
 
 
-<div class="container p-5 my-5">
+<div class="container p-5" style="height:100vh; margin-top:10rem;">
 
 <!--    &lt;!&ndash; Under Construction Message &ndash;&gt;-->
 <!--    <div class="py-5">-->
@@ -56,7 +56,7 @@
                             <li class="d-flex"><i class="bi bi-asterisk me-2"></i></i><p  th:text="${'Books in Library: ' + totalBooks}"></p></li>
                             <li class="d-flex"><i class="bi bi-bookmark-check-fill me-2"></i><p  th:text="${'Books Read: ' + totalBooksRead}"></p></li>
                             <li th:unless="${pagesRead}==null" class="d-flex"><i class="bi bi-file-earmark-text-fill me-2"></i><p th:text="${'You have read ' + pagesRead + ' pages.'}"></p></li>
-                            <li th:unless="${genre}==null" class="d-flex"><i class="bi bi-stars me-2"></i><p th:text="${favoriteGenre + ' is your favorite genre.'}"></p></li>
+                            <li th:unless="${favoriteGenre}==null" class="d-flex"><i class="bi bi-stars me-2"></i><p th:text="${favoriteGenre + ' is your favorite genre.'}"></p></li>
                             <li th:unless="${joinDate}==null" class="d-flex"><i class="bi bi-person-plus-fill me-2"></i><p th:text="${'Member since ' + joinDate}"></p></li>
                             <li th:if="${joinDate}==null" class="d-flex"><i class="bi bi-plus-lg me-2"></i><p>Go add some books to get started!</p></li>
                         </ul>

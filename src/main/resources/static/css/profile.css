@@ -7,3 +7,8 @@ h1 {
 #logo {
     font-family: 'Dosis', sans-serif;
 }
+
+.avatarName {
+
+    font-size: min(2vw, 22px);
+}
