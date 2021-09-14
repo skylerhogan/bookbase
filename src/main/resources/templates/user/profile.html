@@ -55,9 +55,10 @@
                         <ul class="p-0" >
                             <li class="d-flex"><i class="bi bi-asterisk me-2"></i></i><p  th:text="${'Books in Library: ' + totalBooks}"></p></li>
                             <li class="d-flex"><i class="bi bi-bookmark-check-fill me-2"></i><p  th:text="${'Books Read: ' + totalBooksRead}"></p></li>
-                            <li class="d-flex"><i class="bi bi-file-earmark-text-fill me-2"></i><p th:text="${'You have read ' + pagesRead + ' pages.'}"></p></li>
-                            <li class="d-flex"><i class="bi bi-stars me-2"></i><p th:text="${favoriteGenre + ' is your favorite genre.'}"></p></li>
-                            <li class="d-flex"><i class="bi bi-person-plus-fill me-2"></i><p th:text="${'Member since ' + joinDate}"></p></li>
+                            <li th:unless="${pagesRead}==null" class="d-flex"><i class="bi bi-file-earmark-text-fill me-2"></i><p th:text="${'You have read ' + pagesRead + ' pages.'}"></p></li>
+                            <li th:unless="${genre}==null" class="d-flex"><i class="bi bi-stars me-2"></i><p th:text="${favoriteGenre + ' is your favorite genre.'}"></p></li>
+                            <li th:unless="${joinDate}==null" class="d-flex"><i class="bi bi-person-plus-fill me-2"></i><p th:text="${'Member since ' + joinDate}"></p></li>
+                            <li th:if="${joinDate}==null" class="d-flex"><i class="bi bi-plus-lg me-2"></i><p>Go add some books to get started!</p></li>
                         </ul>
                     </div>
                 </div>
