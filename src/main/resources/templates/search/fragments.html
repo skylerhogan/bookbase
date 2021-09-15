@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" xmlns:th='http://www.thymeleaf.org/'>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<!-- searchForm -->
+<div th:fragment="search-form" id="search-form-container" class="section">
+    <form method="post" id="search-form" name="search-form" th:action="@{/user/search/}">
+
+        <div class="form-section">
+            <label class="form-text">
+                <input type="text" name="searchQuery" th:value="${searchQuery}" placeholder="Title / Author / ISBN" id="search-field" class="form-text">
+            </label>
+        </div>
+
+        <div class="form-section">
+            <label class="form-text">
+                <select name="searchParameter" class="form-text">
+                    <option th:selected="${searchParameter == null}" value="all">all</option>
+                    <option th:selected="${searchParameter == 'intitle'}" value="intitle">title</option>
+                    <option th:selected="${searchParameter == 'inauthor'}" value="inauthor">author</option>
+                    <option th:selected="${searchParameter == 'subject'}" value="subject">genre</option>
+                    <option th:selected="${searchParameter == 'isbn'}" value="isbn">isbn</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="form-section">
+            <label class="form-text">results per page:
+                <label class="form-text">
+                    <input type="radio" name="resultsPerPage" value="10" th:checked="${maxResults == 10 || maxResults == null}">10
+                </label>
+                <label class="form-text">
+                    <input selected type="radio" name="resultsPerPage" value="25" th:checked="${maxResults == 25}">25
+                </label>
+                <label class="form-text">
+                    <input selected type="radio" name="resultsPerPage" value="40" th:checked="${maxResults == 40}">40
+                </label>
+            </label>
+        </div>
+
+        <div class="form-section">
+            <input type="submit" value="search" class="form-button">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

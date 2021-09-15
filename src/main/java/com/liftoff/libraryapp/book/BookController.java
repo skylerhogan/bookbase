@@ -178,11 +178,4 @@ public class BookController {
             return "redirect:../shelf";
         }
     }
-
-    @GetMapping("profile")
-    public String displayUserProfile(Model model) {
-        return "user/profile";
-    }
-
-
 }

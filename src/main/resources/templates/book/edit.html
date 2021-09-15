@@ -13,12 +13,13 @@
 
         <!-- Edit Book Card -->
         <section>
-            <div class="container py-5 mt-5">
+            <div class="container py-5 ">
                 <form method="post" th:action="@{/user/edit}">
-                    <div class="card mb-4 bg-light rounded-3 shadow"  style="margin-top:5rem;">
+                    <div class="card mb-4 bg-light rounded-3 shadow"  style="margin-top:10rem;">
                         <div class="container card-body py-5 row form-group">
-                            <div class="col col-12 col-lg-6 mb-5" align="center" style="justify-content:center">
-                                <img class="mx-auto" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'0486832945&issn=/LC.JPG'}}" width="45%"  alt="cover">
+                            <div class="col col-12 col-lg-6 mb-5 align-self-center" align="center" style="justify-content:center">
+<!--                                <img class="mx-auto shadow-lg" th:src="${book.thumbnail}" width="30%" alt="cover">-->
+                                <img class="mx-auto shadow-lg" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" width="60%" style="max-width:15rem;" alt="cover">
                                 <p th:field="${book.description}" name="description" class="text-secondary small"></p>
                             </div>
                             <div class="col col-12 col-lg-6">
@@ -65,7 +66,7 @@
                         <div class="d-flex card-footer justify-content-between align-items-center">
                             <small class="text-muted" th:text="${'Date Added: ' + book.dateAdded}"></small>
                             <button class="iconbutton">
-                                <i class="bi bi-arrow-repeat" style="font-size: 2rem; color: #009B77"></i>
+                                <i class="bi bi-upload" style="font-size: 2rem; color: #009B77"></i>
                             </button>
                         </div>
                     </div>
