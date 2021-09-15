@@ -1,4 +1,10 @@
-import returnBookObjectFromJson from './modules/bookFunctions.js';
+import {
+    returnBookObjectFromJson,
+    returnObjectFieldsAsHtml,
+    renderAddBookButton,
+    fillAddBookForm,
+    generateTagLinks
+} from './modules/bookFunctions.js';
 
 const API_ENDPOINT = 'https://www.googleapis.com'
 const API_KEY = 'AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg'
@@ -10,20 +16,11 @@ let bookDetails = document.getElementById('book-details');
 let coverAndRating = document.getElementById('cover-and-rating');
 let bookDescription = document.getElementById('book-description');
 
-function fillAddBookForm(bookObject) {
-    let title = document.getElementById('title');
-    let author = document.getElementById('author');
-    let isbn = document.getElementById('isbn');
-    let pages = document.getElementById('pages');
-    let genre = document.getElementById('genre');
+bookIsbns = bookIsbns.replaceAll("[", "").replaceAll("]", "").replaceAll(" ", "");
+bookIsbns = bookIsbns.split(",");
 
-    title.value = bookObject.title;
-    author.value = bookObject.author;
-    isbn.value = bookObject.industryIdentifiers;
-    pages.value = bookObject.pageCount;
-    genre.value = bookObject.categories;
-
-}
+bookIds = bookIds.replaceAll("[", "").replaceAll("]", "").replaceAll(" ", "");
+bookIds = bookIds.split(",");
 
 const go = async () => {
     await printBook(bookId);
@@ -33,10 +30,23 @@ const printBook = async (bookId) => {
     await retrieveBook(bookId);
 
     let bookObject = returnBookObjectFromJson(promise[0]);
+    console.log(bookObject.categories);
+
+    let alreadyInBookshelf = false;
+    let bookShelfId = null;
+
+    for (let i = 0; i < bookIsbns.length; i++) {
+        if (bookIsbns[i] === bookObject.industryIdentifiers) {
+            alreadyInBookshelf = true;
+            bookShelfId = bookIds[i];
+        }
+    }
 
     await renderPage(bookObject);
 
     fillAddBookForm(bookObject);
+
+    renderAddBookButton(alreadyInBookshelf, bookShelfId);
 }
 
 const retrieveBook = async (bookId) => {
@@ -51,9 +61,20 @@ const renderPage = async (bookObject) => {
     let rating = document.createElement('div');
     rating.id = 'rating-details';
     rating.innerHTML = `
-        <p class="avg-rating">average rating: ${bookObject.averageRating}
-            <span class="rating-count">(${bookObject.ratingsCount})</span>
-        </p>
+//        <p class="avg-rating">average rating: ${bookObject.averageRating}
+//            <span class="rating-count">(${bookObject.ratingsCount})</span>
+//        </p>
+        <label class="rating-label"><strong>Average rating: ${bookObject.averageRating} <code>readonly</code></strong>
+          <input
+            class="rating"
+            max="5"
+            readonly
+            step="0.01"
+            style="--fill:#777;--value:${bookObject.averageRating}"
+            type="range"
+            value="${bookObject.averageRating}">
+        </label>
+
     `;
     coverAndRating.appendChild(rating);
 
@@ -64,33 +85,16 @@ const renderPage = async (bookObject) => {
             <p class="book-detail"><span style="font-weight:bold;">Pages: </span>${bookObject.pageCount}</p>
             <p class="book-detail"><span style="font-weight:bold;">Publication Date: </span>${bookObject.publishedDate}</p>
             <p class="book-detail"><span style="font-weight:bold;">ISBN: </span>${bookObject.industryIdentifiers}</p>
-            <p class="book-detail"><span style="font-weight:bold;">Genre: </span>${bookObject.categories}</p>
+            <p class="book-detail"><span style="font-weight:bold;">Genre: </span>${bookObject.genre}</p>
+            <p class="book-detail"><span style="font-weight:bold;">Tags: </span>${generateTagLinks(bookObject.tags)}</p>
         </div>
     `;
 
-    bookDescription.innerHTML = `
-        <h3>description</h3>
-        <div id="description">
-            <p>${bookObject.description}</p>
-        </div>
-    `;
+    let description = document.createElement('p');
+    description.id = 'description-text';
+    description.innerHTML = `${bookObject.description}`;
+    bookDescription.appendChild(description);
+
 }
 
-
-window.addEventListener('load', () => {
-    go();
-
-    const addButton = document.getElementById('add-button');
-    let addBookForm = document.getElementById('add-book-form-container');
-
-    addButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        addBookForm.classList.add('active')
-    })
-
-    addBookForm.addEventListener('click', e => {
-      if (e.target !== e.currentTarget) return
-      addBookForm.classList.remove('active')
-    })
-
-});
+window.addEventListener('load', go);

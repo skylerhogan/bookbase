@@ -1,16 +1,25 @@
 package com.liftoff.libraryapp.book;
 
 import com.liftoff.libraryapp.models.Book;
+import com.liftoff.libraryapp.models.MyUserDetailsService;
+import com.liftoff.libraryapp.models.User;
 import com.liftoff.libraryapp.repositories.BookRepository;
 import com.liftoff.libraryapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -27,15 +36,19 @@ public class BookController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
+
     @GetMapping("add")
     public String displayAddBookForm(Model model) {
         model.addAttribute(new Book());
+
         return "book/add";
     }
 
     @PostMapping("add")
     public String processAddBookForm(@ModelAttribute @Valid Book newBook,
-                                    Errors errors, Model model, @RequestParam String title, @RequestParam String author, @RequestParam String isbn,
+                                     Errors errors, Model model, @RequestParam String title, @RequestParam String author, @RequestParam String isbn,
                                      @RequestParam String pages, @RequestParam String genre, @RequestParam String status, @RequestParam String rating,
                                      @RequestParam String description, @RequestParam String userReview) {
         if (errors.hasErrors()) {
@@ -49,6 +62,13 @@ public class BookController {
 
         newBook.setDateAdded(currentDate);
 
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)principal).getUsername();
+        User user = (User) myUserDetailsService.loadUserByUsername(username);
+
+        newBook.setUser(user);
+
+        newBook.setDateAdded(currentDate);
         bookRepository.save(newBook);
 
         return "redirect:shelf";
@@ -168,23 +188,4 @@ public class BookController {
             return "redirect:../shelf";
         }
     }
-
-    @GetMapping("profile")
-    public String displayUserProfile(Model model) {
-        Integer pagesRead = bookRepository.selectPagesRead();
-        Integer pagesToRead = bookRepository.selectPagesToRead();;
-        Integer totalBooks = bookRepository.selectTotalBooksInLibrary();
-        Integer totalBooksRead = bookRepository.selectTotalBooksRead();
-        String favoriteGenre = bookRepository.selectFavoriteGenre();
-        String joinDate = bookRepository.selectDateOfFirstBookAdded();
-        model.addAttribute("pagesRead", pagesRead);
-        model.addAttribute("pagesToRead", pagesToRead);
-        model.addAttribute("totalBooks", totalBooks);
-        model.addAttribute("totalBooksRead", totalBooksRead);
-        model.addAttribute("favoriteGenre", favoriteGenre);
-        model.addAttribute("joinDate", joinDate);
-        return "user/profile";
-    }
-
-
 }

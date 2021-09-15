@@ -30,11 +30,13 @@
             <div id="book-details" class="column"></div>
             <div id="buttons" class="column">
                 <div>
-                    <button id="add-button">Add Book</button>
+                    <span id="add-button"></span>
                 </div>
             </div>
         </div>
-        <div id="book-description"></div>
+        <div id="book-description">
+            <h3>description</h3>
+        </div>
     </div>
 
     <div id="add-book-form-container">
@@ -65,7 +67,7 @@
             </label>
             <label>Rating:
                 <select th:field="${book.rating}" id="rating">
-                    <option selected value="">Select One</option>
+                    <<option selected value="">Select One</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -76,13 +78,20 @@
             <label>Description:
                 <input th:field="${book.description}" id="description">
             </label>
-            <button type="submit">Add Book</button>
+
+            <label>
+                <input th:field="${book.thumbnail}" id="thumbnail" hidden>
+            </label>
+            <button type="submit">add book</button>
+
         </form>
     </div>
 
 </div>
 <script>
-    let bookId = '[[${bookId}]]'
+    const bookId = '[[${bookId}]]';
+    let bookIsbns = '[[${bookRepositoryIsbns}]]';
+    let bookIds = '[[${bookRepositoryIds}]]';
 </script>
 <script type="module" th:src="@{/script/search/view.js}" th:inline="javascript"></script>
 

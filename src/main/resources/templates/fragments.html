@@ -71,10 +71,8 @@
     <nav
       th:fragment="navigation-user" class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-lg" style="margin-bottom:125px">
       <div class="container">
-        <a class="navbar-brand me-2" id="logo" href="http://localhost:8080">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-exclude my-1" viewBox="0 0 16 16">
-            <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z"/>
-          </svg> Bookbase</a>
+        <a class="navbar-brand me-2 fs-3" id="logo" href="http://localhost:8080">
+          Bookbase</a>
         <button class="navbar-toggler shadow-sm my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -84,15 +82,23 @@
             <!--nav search bar-->
 
             <li class="nav-item mx-1 nav-search">
-              <form method="POST" th:action="@{search/}" class="nav-link my-1">
+              <form method="POST" th:action="@{/user/search/}" class="nav-link my-1">
                 <input class="form-control shadow-sm" name="searchQuery" type="search" placeholder="Title / Author / ISBN" aria-label="Search" />
                 <input class="form-control" name="searchParameter" type="hidden" value="all" aria-label="Search" />
               </form>
             </li>
 
+            <!--home nav button-->
+
+            <li class="nav-item-btn mx-2">
+              <a href="http://localhost:8080/" class="nav-link " style="color: currentColor">
+                <i class="bi bi-house" style="font-size:2rem"></i>
+              </a>
+            </li>
+
             <!--bookshelf nav button-->
 
-           <li th:unless="${#httpServletRequest.requestURI == '/user/shelf'}" class="nav-item-btn mx-2">
+           <li class="nav-item-btn mx-2">
               <a href="http://localhost:8080/user/shelf" class="nav-link " style="color: currentColor">
                 <i class="bi bi-grid-3x3-gap-fill" style="font-size:2rem"></i>
               </a>
@@ -100,7 +106,7 @@
 
             <!-- user profile nav button-->
 
-            <li th:unless="${#httpServletRequest.requestURI == '/user/profile'}" class="nav-item-btn mx-2">
+            <li class="nav-item-btn mx-2">
               <a th:href="@{|/user/profile|}" class="nav-link" aria-current="page" style="color: currentColor;">
                 <i class="bi bi-person-circle" style="font-size:2rem"></i>
               </a>

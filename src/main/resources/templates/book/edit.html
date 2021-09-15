@@ -13,12 +13,13 @@
 
         <!-- Edit Book Card -->
         <section>
-            <div class="container py-5 my-2">
+            <div class="container py-5 ">
                 <form method="post" th:action="@{/user/edit}">
-                    <div class="card mb-4 bg-light rounded-3 shadow"  style="margin-top:15rem;">
+                    <div class="card mb-4 bg-light rounded-3 shadow"  style="margin-top:10rem;">
                         <div class="container card-body py-5 row form-group">
-                            <div class="col col-12 col-lg-6 mb-5" align="center" style="justify-content:center">
-                                <img class="mx-auto shadow-lg" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" width="45%" style="max-width:12rem;" alt="cover">
+                            <div class="col col-12 col-lg-6 mb-5 align-self-center" align="center" style="justify-content:center">
+<!--                                <img class="mx-auto shadow-lg" th:src="${book.thumbnail}" width="30%" alt="cover">-->
+                                <img class="mx-auto shadow-lg" th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" width="60%" style="max-width:15rem;" alt="cover">
                                 <p th:field="${book.description}" name="description" class="text-secondary small"></p>
                             </div>
                             <div class="col col-12 col-lg-6">

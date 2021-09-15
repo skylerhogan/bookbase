@@ -21,23 +21,7 @@
 
     </div>
 
-    <div id="search-form-container" class="section">
-        <form method="post" id="search-form" name="search-form">
-            <label class="form-text">
-                <input type="text" name="searchQuery" placeholder="search . . ." id="search-field" class="form-text">
-            </label>
-            <label class="form-text">
-                <select name="searchParameter" class="form-text">
-                    <option value="all">all</option>
-                    <option value="intitle">title</option>
-                    <option value="inauthor">author</option>
-                    <option value="subject">genre</option>
-                    <option value="isbn">isbn</option>
-                </select>
-            </label>
-            <input type="submit" value="search" class="form-button">
-        </form>
-    </div>
+    <div th:replace="search/fragments :: search-form"></div>
 
 </div>
 

@@ -84,7 +84,7 @@ public class RegistrationService {
 
         myUserDetailsService.enableUser(
                 confirmationToken.getUser().getEmail());
-        return "confirmed";
+        return "security/login";
     }
 
     private String buildEmail(String name, String link) {

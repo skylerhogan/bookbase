@@ -1,4 +1,6 @@
 package com.liftoff.libraryapp.models;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -28,8 +30,17 @@ public class Book {
     private String rating;
     private String dateAdded;
     private String dateViewed;
+
+    @Column(length = 1000)
     private String description;
+
+    @Column(length = 999)
+    @Length(max = 999)
+    private String thumbnail;
+
     private String userReview;
+    @OneToOne
+    private User user;
 
     public Integer getId() {
         return id;
@@ -39,7 +50,7 @@ public class Book {
     
     public Book(Integer id, String title, String author, String isbn,
                 String pages, String genre, String status, String rating, String dateAdded,
-                String dateViewed, String description, String userReview) {
+                String dateViewed, String description, String userReview, String thumbnail, User user) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -51,7 +62,9 @@ public class Book {
         this.dateAdded = dateAdded;
         this.dateViewed = dateViewed;
         this.description = description;
-        this.userReview = userReview;
+        this.userReview = userReview;        
+        this.thumbnail = thumbnail;
+        this.user = user;
     }
 
     public String getTitle() {
@@ -140,6 +153,19 @@ public class Book {
 
     public void setUserReview(String userReview) {
         this.userReview = userReview;
+    }
+
+
+    public User getUser() { return user; }
+  
+    public void setUser(User user) { this.user = user; }
+  
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     @Override
