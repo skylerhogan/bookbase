@@ -53,11 +53,18 @@ const updateCover = async(id, isbn, url) => {
         let data = await response.json();
 
         let img = await data.items[0].volumeInfo.imageLinks.thumbnail;
+
+        let googleId = await data.items[0].id;
+
+        let baseLink = /*[[@{}]]*/'';
+        let linkName = `user/search/results/view/${googleId}`;
+        let viewLink = baseLink + linkName;
+
         img = img.replace(/^http:\/\//i, 'https://');   // replaces HTTP links with secure HTTPS versions
 
         let carouselBooks = document.getElementsByClassName("carousel-book");
         let currentId = carouselBooks[id].id;
-        document.getElementById(currentId).innerHTML += `<a href="${url}" target="_blank"><img class="book" src=${img}></img></a>`;
+        document.getElementById(currentId).innerHTML += `<a href="${viewLink}" target="_blank"><img class="book" src=${img}></img></a>`;
     } catch(err) {
         console.error(err);
     }

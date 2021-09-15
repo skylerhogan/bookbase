@@ -31,17 +31,17 @@
                     </div>
                 </div>
             </div>
-            <div id="book-description" class="container pb-5"></div>
+            <div id="book-description" class="container pb-5 px-5"></div>
         </div>
     </div>
 </section>
 
 <section>
 
-    <div id="add-book-form-container" class="container py-5 mt-5">
+    <div id="add-book-form-container" class="py-5 mt-5">
 
         <form id="add-book-form" method="post">
-            <div class="card mb-4 bg-light rounded-3 shadow">
+            <div class="card bg-light rounded-3 shadow">
                 <div class="container card-body py-5 row form-group">
 
                     <div class="col col-12 col-lg-3 mb-5" align="center" style="justify-content:center;align-items:center;">
@@ -80,8 +80,7 @@
                         <div class="input-group">
                             <label class="input-group-text my-1" for="status">Status</label>
                             <select th:field="${book.status}" id="status" class="form-select shadow-sm my-1">
-                                <option selected value="">Select one</option>
-                                <option value="Want to Read">Want to Read</option>
+                                <option selected value="Want to Read">Want to Read</option>
                                 <option value="Currently Reading">Currently Reading</option>
                                 <option value="Completed">Completed</option>
                             </select>

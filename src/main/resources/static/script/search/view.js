@@ -20,8 +20,14 @@ bookIsbns = bookIsbns.split(",");
 
 bookIds = bookIds.replaceAll("[", "").replaceAll("]", "").replaceAll(" ", "");
 bookIds = bookIds.split(",");
+let bookShelfId = null;
+
+let backButton = document.getElementById('back-button');
 
 const go = async () => {
+    if (window.history.length < 2) {
+        backButton.style.display = 'none';
+    }
     await printBook(bookId);
 }
 
@@ -30,15 +36,7 @@ const printBook = async (bookId) => {
 
     let bookObject = returnBookObjectFromJson(promise[0]);
 
-    let alreadyInBookshelf = false;
-    let bookShelfId = null;
-
-    for (let i = 0; i < bookIsbns.length; i++) {
-        if (bookIsbns[i] === bookObject.industryIdentifiers) {
-            alreadyInBookshelf = true;
-            bookShelfId = bookIds[i];
-        }
-    }
+    let alreadyInBookshelf = await checkBookshelf(bookObject.industryIdentifiers, bookIsbns);
 
     await renderPage(bookObject);
 
@@ -106,6 +104,14 @@ const renderPage = async (bookObject) => {
     bookDescription.appendChild(descriptionHeading);
     bookDescription.appendChild(description);
 
+}
+
+const checkBookshelf = async (isbn, shelfIsbns) => {
+    if (shelfIsbns.includes(isbn)) {
+        bookShelfId = bookIds[shelfIsbns.indexOf(isbn)];
+        return true;
+    }
+    return false;
 }
 
 window.addEventListener('load', go);
