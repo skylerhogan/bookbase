@@ -1,0 +1,39 @@
+header h1 {
+	letter-spacing: 1px;
+	word-spacing: 4px;
+}
+
+header .header-text-box {
+	text-transform: uppercase;
+}
+
+.opening-heading h2 {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-bottom: 30px;
+}
+
+.opening-heading h2:after {
+	display: block;
+	height: 3px;
+	background-color: #212529;
+	content: " ";
+	width: 300px;
+	margin: 25px auto;
+}
+
+.book {
+	max-height: 200px;
+}
+
+#reader-img {
+	filter: hue-rotate(-20deg);
+}
+
+/*.carousel-control-prev {
+	margin-left: -10%;
+}
+
+.carousel-control-next {
+	margin-right: -10%;
+}*/

@@ -39,6 +39,8 @@ public class Book {
     private String thumbnail;
 
     private String userReview;
+    @OneToOne
+    private User user;
 
     public Integer getId() {
         return id;
@@ -48,7 +50,7 @@ public class Book {
     
     public Book(Integer id, String title, String author, String isbn,
                 String pages, String genre, String status, String rating, String dateAdded,
-                String dateViewed, String description, String userReview, String thumbnail) {
+                String dateViewed, String description, String userReview, String thumbnail, User user) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -60,8 +62,9 @@ public class Book {
         this.dateAdded = dateAdded;
         this.dateViewed = dateViewed;
         this.description = description;
-        this.userReview = userReview;
+        this.userReview = userReview;        
         this.thumbnail = thumbnail;
+        this.user = user;
     }
 
     public String getTitle() {
@@ -152,6 +155,11 @@ public class Book {
         this.userReview = userReview;
     }
 
+
+    public User getUser() { return user; }
+  
+    public void setUser(User user) { this.user = user; }
+  
     public String getThumbnail() {
         return thumbnail;
     }
