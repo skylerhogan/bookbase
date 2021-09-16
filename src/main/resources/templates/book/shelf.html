@@ -40,25 +40,25 @@
 <!--                                 <li><button type="button" class="dropdown-item" name="status" value="">All-->
 <!--                                    Books</button></li>-->
 <!--                              </ul>-->
-                              <div class="col-sm-2 mx-2 my-4">
+                              <div class="col-sm-2 my-md-4">
                                  <select class="form-select" name="status">
                                     <option selected value="">&#128218; Shelf</option>
-                                    <option value="Want to Read">Want To Read</option>
-                                    <option value="Currently Reading">Currently Reading</option>
-                                    <option value="Completed">Completed</option>
                                     <option value="">All Books</option>
+                                    <option value="Completed">Completed</option>
+                                    <option value="Currently Reading">Currently Reading</option>
+                                    <option value="Want to Read">Want To Read</option>
                                  </select>
                               </div>
-                              <div class="col-sm-2 mx-2 my-4">
+                              <div class="col-sm-2 my-md-4">
                                  <select class="form-select" name="orderBy">
                                     <option selected value="">&#8645; Order By</option>
-                                    <option value="Title">Title</option>
                                     <option value="Author">Author</option>
                                     <option value="dateAdded">Date Added</option>
-                                    <option value="dateViewed">Recently Viewed</option>
+                                    <option value="dateViewed">Last Viewed</option>
+                                    <option value="Title">Title</option>
                                  </select>
                               </div>
-                              <div class="col-sm-2 mx-2 my-4">
+                              <div class="col-sm-2 my-md-4">
                                  <select class="form-select" name="rating">
                                     <option selected value="">&#9733; Rating</option>
                                     <option value="5">⭐⭐⭐⭐⭐</option>
@@ -68,7 +68,7 @@
                                     <option value="1">⭐</option>
                                  </select>
                               </div>
-                              <button class="col-sm-1 btn btn-success mx-2 my-4">
+                              <button class="col-sm-1 btn btn-primary ms-2 my-md-4">
                                  <i class="bi bi-funnel-fill fst-normal"> Filter</i>
                               </button>
 <!--                           </div>-->
@@ -130,19 +130,14 @@
 
 <!--                        </li>-->
 <!--                        <li class="nav-item mx-1 shadow">-->
-                           <a class="btn btn-outline-warning btn-expand mx-2" th:href="@{/user/delete}" role="button">
-                              <i class="bi bi-tools"></i><span class="expand-button text-dark"> Remove Books</span>
+                           <a class="btn btn-danger btn-expand mx-2" th:href="@{/user/delete}" role="button">
+                              <i class="bi bi-x-lg"></i><span class="expand-button"> Remove Books</span>
                            </a>
 <!--                        </li>-->
                      </div>
 <!--                  </ul>-->
                </div>
-                  <div th:replace="fragments :: bookshelf-grid"></div>
-<!--                  <div th:replace="fragments :: sorted-grid"></div>-->
-<!--               <div th:insert="fragments :: currently-reading-shelf"></div>-->
-<!--               <div th:insert="fragments :: want-to-read-shelf"></div>-->
-<!--               <div th:insert="fragments :: completed-shelf"></div>-->
-
+              <div th:replace="fragments :: bookshelf-grid"></div>
             </form>
          </div>
       </div>

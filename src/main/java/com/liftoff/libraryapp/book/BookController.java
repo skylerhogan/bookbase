@@ -76,7 +76,13 @@ public class BookController {
 
     @GetMapping("delete")
     public String displayDeleteBooksForm(Model model) {
-        model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
+        List<List<Book>> bookLists = new ArrayList<>();
+
+        bookLists.add(bookRepository.findByStatus("Currently Reading", Sort.by("dateViewed")));
+        bookLists.add(bookRepository.findByStatus("Want to Read", Sort.by("title")));
+        bookLists.add(bookRepository.findByStatus("Completed", Sort.by("title")));
+        model.addAttribute("bookLists", bookLists);
+
         return "book/delete";
     }
 

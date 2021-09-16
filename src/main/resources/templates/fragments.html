@@ -47,7 +47,7 @@
       been logged out.
     </div>
     <div class="form-floating mb-3">
-      <input name="email" type="email" id="email" class="form-control" placeholder="Email Address"/>
+      <input name="email" type="email" id="email" class="form-control" placeholder="Email Address" autofocus/>
       <label for="email">Email Address</label>
     </div>
     <div class="form-floating mb-3">
@@ -128,7 +128,6 @@
     </nav>
 
 
-<!--bookshelf grid-->
 
 <!--    <div th:fragment="bookshelf-grid" th:if="${books != null and !books.isEmpty()}">-->
 <!--      <h2 class="pt-4" th:text="${listName}"></h2>-->
@@ -184,20 +183,23 @@
 <!--  </div>-->
 <!--</div>-->
 
+<!--bookshelf grid-->
 <div th:each="list : ${bookLists}" th:fragment="bookshelf-grid" th:if="${bookLists != null and !bookLists.isEmpty()}">
-  <h2 class="pt-4" th:text="${list[0].status}"></h2>
-  <div>
-    <div class="row row-cols-2 row-cols-xs-2 row-cols-md-3 row-cols-lg-5 my-5">
-      <div class="cols-3 mx-auto justify-content-center d-flex" th:each="book : ${list}">
-        <div class="card bg-transparent flex-lg-row mx-auto mb-5 ">
-          <a th:if="${#httpServletRequest.requestURI == '/user/shelf'}" th:href="@{|/user/view/${book.id}|}">
-            <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'" class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover"/>
-          </a>
+  <div th:if="${!list.isEmpty()}">
+    <h2 class="pt-4" th:text="${list[0].status}"></h2>
+    <div>
+      <div class="row row-cols-2 row-cols-xs-2 row-cols-md-3 row-cols-lg-5 my-5">
+        <div class="cols-3 mx-auto justify-content-center d-flex" th:each="book : ${list}">
+          <div class="card bg-transparent flex-lg-row mx-auto mb-5 ">
+            <a th:if="${#httpServletRequest.requestURI == '/user/shelf'}" th:href="@{|/user/view/${book.id}|}">
+              <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'" class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover"/>
+            </a>
+          </div>
         </div>
       </div>
     </div>
+    <hr>
   </div>
-  <hr>
 </div>
 
 <!--form to manually add books to database-->

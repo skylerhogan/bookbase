@@ -42,21 +42,29 @@
                             </li>
                         </ul>
                     </div>
-                <div class="row row-cols-2 row-cols-xs-2 row-cols-md-3 row-cols-lg-5 my-5">
-                    <div th:each="book : ${books}" class="cols-3 mx-auto">
-                        <div class="card bg-transparent flex-lg-row mx-auto mb-5" >
-                            <label class="container d-flex books">
-<!--                                <img th:src="${book.thumbnail}" class="mx-auto shadow-lg" z-index="1" width="135" height="200" alt="cover" th:field="${book.id}"/>-->
-                                <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" class="mx-auto shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover" th:field="${book.id}"/>
-                                <input id="deleteCheckbox" type="checkbox" name="bookIds" th:value="${book.id}">
-                            </label>
+                <!-- Book grid -->
+                <div th:each="list : ${bookLists}" th:fragment="bookshelf-grid" th:if="${bookLists != null and !bookLists.isEmpty()}">
+                    <div th:if="${!list.isEmpty()}">
+                        <h2 class="pt-4" th:text="${list[0].status}"></h2>
+                        <div>
+                            <div class="row row-cols-2 row-cols-xs-2 row-cols-md-3 row-cols-lg-5 my-5">
+                                <div class="cols-3 mx-auto justify-content-center d-flex" th:each="book : ${list}">
+                                    <div class="card bg-transparent flex-lg-row mx-auto mb-5 ">
+                                        <label class="container d-flex books">
+                                            <img
+                                                    th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" class="mx-auto shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover" style="cursor: pointer;" th:field="${book.id}"/>
+                                            <input id="deleteCheckbox" type="checkbox" name="bookIds" th:value="${book.id}">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <hr>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-
 
     <!-- Footer -->
     <section>
