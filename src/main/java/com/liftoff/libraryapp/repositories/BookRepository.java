@@ -14,9 +14,9 @@ import java.util.List;
 @Transactional
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-    List<Book> findByUserIdAndStatus(Long userId, String status, Sort sort); /* WIP */
+    List<Book> findByUserIdAndStatus(Long userId, String status, Sort sort);
 
-    List<Book> findByUserIdAndStatusAndRating(Long userId, String status, String rating, Sort sort); /* WIP */
+    List<Book> findByUserIdAndStatusAndRating(Long userId, String status, String rating, Sort sort);
 
     @Query(value = "SELECT SUM(pages) FROM Book WHERE STATUS = 'Completed'", nativeQuery = true)
     Integer selectPagesRead();
