@@ -1,6 +1,7 @@
 package com.liftoff.libraryapp.repositories;
 
 import com.liftoff.libraryapp.models.Book;
+import com.liftoff.libraryapp.models.User;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,29 +14,9 @@ import java.util.List;
 @Transactional
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-    List<Book> findAllByOrderByDateViewedDesc();
+    List<Book> findByUserIdAndStatus(Long userId, String status, Sort sort); /* WIP */
 
-    List<Book> findByStatus(String status, Sort sort);
-
-    List<Book> findByRating(String rating, Sort sort);
-
-    List<Book> findByStatusAndRating(String status, String rating, Sort sort);
-
-    List<Book> findByStatusOrderByTitle(String status);
-
-    List<Book> findByStatusOrderByAuthor(String status);
-
-    List<Book> findByStatusOrderByDateAddedDesc(String status);
-
-    List<Book> findByStatusOrderByDateViewedDesc(String status);
-
-    List<Book> findByRatingOrderByDateViewedDesc(String rating);
-
-    List<Book> findAllByOrderByAuthor();
-
-    List<Book> findAllByOrderByTitle();
-
-    List<Book> findAllByOrderByDateAddedDesc();
+    List<Book> findByUserIdAndStatusAndRating(Long userId, String status, String rating, Sort sort); /* WIP */
 
     @Query(value = "SELECT SUM(pages) FROM Book WHERE STATUS = 'Completed'", nativeQuery = true)
     Integer selectPagesRead();

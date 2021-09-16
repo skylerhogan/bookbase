@@ -76,11 +76,15 @@ public class BookController {
 
     @GetMapping("delete")
     public String displayDeleteBooksForm(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)principal).getUsername();
+        User user = (User) myUserDetailsService.loadUserByUsername(username);
+
         List<List<Book>> bookLists = new ArrayList<>();
 
-        bookLists.add(bookRepository.findByStatus("Currently Reading", Sort.by("dateViewed")));
-        bookLists.add(bookRepository.findByStatus("Want to Read", Sort.by("title")));
-        bookLists.add(bookRepository.findByStatus("Completed", Sort.by("title")));
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading", Sort.by("dateViewed")));
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Want to Read", Sort.by("title")));
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Completed", Sort.by("title")));
         model.addAttribute("bookLists", bookLists);
 
         return "book/delete";
@@ -134,11 +138,15 @@ public class BookController {
 
     @RequestMapping("shelf")
     public String displayMainBookshelf(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)principal).getUsername();
+        User user = (User) myUserDetailsService.loadUserByUsername(username);
+
         List<List<Book>> bookLists = new ArrayList<>();
 
-        bookLists.add(bookRepository.findByStatus("Currently Reading", Sort.by("dateViewed")));
-        bookLists.add(bookRepository.findByStatus("Want to Read", Sort.by("title")));
-        bookLists.add(bookRepository.findByStatus("Completed", Sort.by("title")));
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading", Sort.by("dateViewed")));
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Want to Read", Sort.by("title")));
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Completed", Sort.by("title")));
         model.addAttribute("bookLists", bookLists);
 
         return "book/shelf";
@@ -149,27 +157,44 @@ public class BookController {
                                        @RequestParam (required = false, defaultValue = "title") String orderBy,
                                        @RequestParam (required = false) String rating) {
 
-        // TODO: Sort date viewed/date added by descending
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)principal).getUsername();
+        User user = (User) myUserDetailsService.loadUserByUsername(username);
 
         List<List<Book>> bookLists = new ArrayList<>();
 
         if (!rating.equals("")) {
-            bookLists.add(bookRepository.findByStatusAndRating("Completed", rating, Sort.by(orderBy)));
+            if (orderBy.equals("dateViewed") || orderBy.equals("dateAdded")) {
+                bookLists.add(bookRepository.findByUserIdAndStatusAndRating(user.getId(), "Completed", rating,
+                        Sort.by(orderBy).descending()));
+            } else {
+                bookLists.add(bookRepository.findByUserIdAndStatusAndRating(user.getId(), "Completed", rating,
+                        Sort.by(orderBy)));
+            }
+
             model.addAttribute("bookLists", bookLists);
             return "book/shelf";
         }
 
         if (!status.equals("")) {
-            bookLists.add(bookRepository.findByStatus(status, Sort.by(orderBy)));
+            if (orderBy.equals("dateViewed") || orderBy.equals("dateAdded")) {
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), status, Sort.by(orderBy).descending()));
+            } else {
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), status, Sort.by(orderBy)));
+            }
         } else {
-            bookLists.add(bookRepository.findByStatus("Currently Reading", Sort.by(orderBy)));
-            bookLists.add(bookRepository.findByStatus("Want to Read", Sort.by(orderBy)));
-            bookLists.add(bookRepository.findByStatus("Completed", Sort.by(orderBy)));
-            //        } else {
-//            bookLists.add(bookRepository.findByStatus("Currently Reading", Sort.by("dateViewed")));
-//            bookLists.add(bookRepository.findByStatus("Want to Read", Sort.by("title")));
-//            bookLists.add(bookRepository.findByStatus("Completed", Sort.by("title")));
-//            model.addAttribute("bookLists", bookLists);
+            if (orderBy.equals("dateViewed") || orderBy.equals("dateAdded")) {
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading",
+                        Sort.by(orderBy).descending()));
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Want to Read",
+                        Sort.by(orderBy).descending()));
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Completed",
+                        Sort.by(orderBy).descending()));
+            } else {
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading", Sort.by(orderBy)));
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Want to Read", Sort.by(orderBy)));
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Completed", Sort.by(orderBy)));
+            }
         }
         model.addAttribute("bookLists", bookLists);
 
