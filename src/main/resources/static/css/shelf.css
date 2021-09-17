@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap');
 
-html, body {
+/*html, body {
   height: 100%;
-}
+}*/
 /*body {
   display: flex;
   flex-direction: column;
@@ -116,7 +116,8 @@ html, body {
 }
 
 #starRating {
-    visibility: hidden;
+    /*visibility: hidden;*/
+    display: none;
 }
 
 #deleteCheckbox {

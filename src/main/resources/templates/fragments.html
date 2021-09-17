@@ -128,7 +128,8 @@
     </nav>
 
 <!--bookshelf grid-->
-<div th:each="list : ${bookLists}" th:fragment="bookshelf-grid" th:if="${bookLists != null and !bookLists.isEmpty()}">
+<div th:each="list : ${bookLists}" th:fragment="bookshelf-grid"
+     th:if="${bookLists != null and !bookLists.isEmpty()}">
   <div th:if="${!list.isEmpty()}">
     <h2 class="pt-4" th:text="${list[0].status}"></h2>
     <div>
@@ -220,29 +221,77 @@
 
 <!--footer fragment-->
 
-<div th:fragment="footer">
-  <div>
-    <div>
-      <footer id="footer" class="border-top bg-light">
-        <div class="container d-flex flex-wrap justify-content-between align-items-center py-3">
-          <p class="col-md-4 mb-0 text-muted">&nbsp;&copy; 2021, All Rights Reserved</p>
-          <a id="footer-logo" href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-exclude" viewBox="0 0 16 16">
-              <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z"/>
-            </svg>
-          </a>
-          <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a th:href="@{|/|}" class="nav-link px-2 text-muted">Home</a></li>
-            <li class="nav-item"><a th:href="@{|/user/shelf|}" class="nav-link px-2 text-muted">Shelves</a></li>
-            <li class="nav-item"><a th:href="@{|/user/search|}" class="nav-link px-2 text-muted">Find a Book</a></li>
-            <li class="nav-item"><a th:href="@{|/user/profile|}" class="nav-link px-2 text-muted">Profile</a></li>
-            <li class="nav-item"><a th:href="@{|/user/about|}" class="nav-link px-2 text-muted">About</a></li>
-          </ul>
-        </div>
-      </footer>
-    </div>
-  </div>
-</div>
+<!--<div th:fragment="footer">-->
+<!--  <div>-->
+<!--    <div>-->
+<!--      <footer id="footer" class="footer mt-auto border-top bg-light">-->
+<!--        <div class="container d-flex flex-wrap justify-content-between align-items-center py-3">-->
+<!--          <p class="col-md-4 mb-0 text-muted">&nbsp;&copy; 2021, All Rights Reserved</p>-->
+<!--          <a id="footer-logo" href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
+<!--            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-exclude" viewBox="0 0 16 16">-->
+<!--              <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z"/>-->
+<!--            </svg>-->
+<!--          </a>-->
+<!--          <ul class="nav col-md-4 justify-content-end">-->
+<!--            <li class="nav-item"><a th:href="@{|/|}" class="nav-link px-2 text-muted">Home</a></li>-->
+<!--            <li class="nav-item"><a th:href="@{|/user/shelf|}" class="nav-link px-2 text-muted">Shelves</a></li>-->
+<!--            <li class="nav-item"><a th:href="@{|/user/search|}" class="nav-link px-2 text-muted">Find a Book</a></li>-->
+<!--            <li class="nav-item"><a th:href="@{|/user/profile|}" class="nav-link px-2 text-muted">Profile</a></li>-->
+<!--            <li class="nav-item"><a th:href="@{|/user/about|}" class="nav-link px-2 text-muted">About</a></li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </footer>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
-  </body>
+<!--  <footer th:fragment="footer" id="footer" class="footer mt-auto border-top bg-light">-->
+<!--    <div class="container d-flex flex-wrap justify-content-between align-items-center py-3">-->
+<!--      <p class="mb-0 text-muted">&nbsp;&copy; 2021, All Rights Reserved</p>-->
+      <!-- <a id="footer-logo" href="/"
+          class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+              class="bi bi-exclude" viewBox="0 0 16 16">
+              <path
+                  d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z" />
+          </svg>
+      </a> -->
+<!--      <div class="h1 col d-flex align-items-center justify-content-center my-auto">-->
+<!--        <a class="link-dark text-decoration-none" href="/">-->
+<!--          <i class="bi bi-exclude"></i>-->
+<!--        </a>-->
+<!--      </div>-->
+<!--      <ul class="nav justify-content-end">-->
+<!--        <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>-->
+<!--        <li class="nav-item"><a th:href="@{|/user/shelf|}" class="nav-link px-2 text-muted">Shelves</a></li>-->
+<!--        <li class="nav-item"><a th:href="@{|/user/search|}" class="nav-link px-2 text-muted">Find a Book</a></li>-->
+<!--        <li class="nav-item"><a th:href="@{|/user/profile|}" class="nav-link px-2 text-muted">Profile</a></li>-->
+<!--        <li class="nav-item"><a th:href="@{|/user/about|}" class="nav-link px-2 text-muted">About</a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </footer>-->
+
+
+<!-- Footer -->
+<footer th:fragment="footer" class="footer d-flex flex-wrap justify-content-between align-items-center py-3 mt-auto px-5 border-top">
+  <p class="col-md-4 mb-0 text-muted">&copy; 2021, All Rights Reserved</p>
+
+  <div class="h1 col-md-4 d-flex align-items-center justify-content-center my-auto">
+    <a class="link-dark text-decoration-none" href="/">
+      <i class="bi bi-exclude"></i>
+    </a>
+  </div>
+
+  <ul class="nav col-md-4 justify-content-end">
+    <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+    <li class="nav-item"><a th:href="@{|/user/shelf|}" class="nav-link px-2 text-muted">Shelves</a></li>
+    <li class="nav-item"><a th:href="@{|/user/search|}" class="nav-link px-2 text-muted">Find a Book</a></li>
+    <li class="nav-item"><a th:href="@{|/user/profile|}" class="nav-link px-2 text-muted">Profile</a></li>
+    <li class="nav-item"><a th:href="@{|/user/about|}" class="nav-link px-2 text-muted">About</a>
+  </ul>
+</footer>
+
+</body>
+
 </html>
