@@ -4,6 +4,7 @@ import com.liftoff.libraryapp.models.Book;
 import com.liftoff.libraryapp.models.MyUserDetailsService;
 import com.liftoff.libraryapp.models.User;
 import com.liftoff.libraryapp.repositories.BookRepository;
+import com.mysql.cj.jdbc.Blob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
@@ -65,13 +66,12 @@ public class SearchController {
     @GetMapping("search/results/q={query}&maxResults={maxResults}&page={currentPage}")
     public String displaySearchResults(Model model, @PathVariable String query, @PathVariable int currentPage, @PathVariable int maxResults) {
         String searchQuery;
-        String displayQuery;
 
         String searchParameter;
         String displayParameter;
 
         List<String> pathParameters = new ArrayList<>(Arrays.asList("intitle", "inauthor", "subject", "isbn"));
-        List<String> displayParameters = new ArrayList<>(Arrays.asList("title: ", "author: ", "genre: ", "isbn: "));
+        List<String> displayParameters = new ArrayList<>(Arrays.asList("title", "author", "genre", "isbn"));
 
         if (query.contains(":")) {
             String[] queryArray = query.split(":", 0);
@@ -79,15 +79,14 @@ public class SearchController {
             displayParameter = displayParameters.get(pathParameters.indexOf(queryArray[0]));
 
             searchQuery = queryArray[1].replaceAll("[+]", " ");
-            displayQuery = displayParameter += searchQuery;
         } else {
             searchParameter = null;
+            displayParameter = "all";
             searchQuery = query.replaceAll("[+]", " ");
-            displayQuery = "all: " + searchQuery;
         }
 
         model.addAttribute("searchParameter", searchParameter);
-        model.addAttribute("displayQuery", displayQuery);
+        model.addAttribute("displayParameter", displayParameter);
         model.addAttribute("maxResults", maxResults);
         model.addAttribute("searchQuery", searchQuery);
         model.addAttribute("query", query);

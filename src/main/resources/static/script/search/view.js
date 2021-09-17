@@ -11,7 +11,6 @@ const API_KEY = 'AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg'
 
 let promise = [];
 
-let bookCover = document.getElementById('book-cover');
 let bookDetails = document.getElementById('book-details');
 let coverAndRating = document.getElementById('cover-and-rating');
 let bookDescription = document.getElementById('book-description');
@@ -21,8 +20,14 @@ bookIsbns = bookIsbns.split(",");
 
 bookIds = bookIds.replaceAll("[", "").replaceAll("]", "").replaceAll(" ", "");
 bookIds = bookIds.split(",");
+let bookShelfId = null;
+
+let backButton = document.getElementById('back-button');
 
 const go = async () => {
+    if (window.history.length < 2) {
+        backButton.style.display = 'none';
+    }
     await printBook(bookId);
 }
 
@@ -30,17 +35,8 @@ const printBook = async (bookId) => {
     await retrieveBook(bookId);
 
     let bookObject = returnBookObjectFromJson(promise[0]);
-    console.log(bookObject.categories);
 
-    let alreadyInBookshelf = false;
-    let bookShelfId = null;
-
-    for (let i = 0; i < bookIsbns.length; i++) {
-        if (bookIsbns[i] === bookObject.industryIdentifiers) {
-            alreadyInBookshelf = true;
-            bookShelfId = bookIds[i];
-        }
-    }
+    let alreadyInBookshelf = await checkBookshelf(bookObject.industryIdentifiers, bookIsbns);
 
     await renderPage(bookObject);
 
@@ -56,21 +52,24 @@ const retrieveBook = async (bookId) => {
 }
 
 const renderPage = async (bookObject) => {
-    bookCover.src = bookObject.thumbnail;
+
+    let coverImage = document.createElement('img');
+    coverImage.id = 'cover-image';
+    coverImage.src = bookObject.thumbnail;
+    coverImage.alt = `cover for ${bookObject.title}`;
+
+    coverAndRating.appendChild(coverImage);
 
     let rating = document.createElement('div');
     rating.id = 'rating-details';
     rating.innerHTML = `
-//        <p class="avg-rating">average rating: ${bookObject.averageRating}
-//            <span class="rating-count">(${bookObject.ratingsCount})</span>
-//        </p>
-        <label class="rating-label"><strong>Average rating: ${bookObject.averageRating} <code>readonly</code></strong>
+        <label class="rating-label"><strong>Average rating: ${bookObject.averageRating} <span class="rating-count">(${bookObject.ratingsCount})</span></strong>
           <input
             class="rating"
             max="5"
             readonly
             step="0.01"
-            style="--fill:#777;--value:${bookObject.averageRating}"
+            style="--fill:gold;--value:${bookObject.averageRating}"
             type="range"
             value="${bookObject.averageRating}">
         </label>
@@ -79,22 +78,40 @@ const renderPage = async (bookObject) => {
     coverAndRating.appendChild(rating);
 
     bookDetails.innerHTML = `
-        <div class="book-details">
-            <p class="book-detail"><span style="font-weight:bold;">Title: </span>${bookObject.title}</p>
-            <p class="book-detail"><span style="font-weight:bold;">Author: </span>${bookObject.author}</p>
-            <p class="book-detail"><span style="font-weight:bold;">Pages: </span>${bookObject.pageCount}</p>
-            <p class="book-detail"><span style="font-weight:bold;">Publication Date: </span>${bookObject.publishedDate}</p>
-            <p class="book-detail"><span style="font-weight:bold;">ISBN: </span>${bookObject.industryIdentifiers}</p>
-            <p class="book-detail"><span style="font-weight:bold;">Genre: </span>${bookObject.genre}</p>
-            <p class="book-detail"><span style="font-weight:bold;">Tags: </span>${generateTagLinks(bookObject.tags)}</p>
-        </div>
+         <h1 class="display-6 fw-bold text-dark">${bookObject.title}</h1>
+         <h4>by ${bookObject.author}</h4>
+         <div class="row" style="margin-top: 2rem;">
+            <div class="col"
+                 <p><span style="font-weight:bold;">Pages: </span>${bookObject.pageCount}</p>
+                 <p><span style="font-weight:bold;">Genre: </span>${bookObject.genre}</p>
+            </div>
+            <div class="col">
+                <p><span style="font-weight:bold;">Publication Date: </span>${bookObject.publishedDate}</p>
+                <p><span style="font-weight:bold;">ISBN: </span>${bookObject.industryIdentifiers}</p>
+            </div>
+         </div>
+         <p class="book-detail" style="margin-top: 1rem;"><span style="font-weight:bold;">Tags: </span>${generateTagLinks(bookObject.tags)}</p>
     `;
+
+    let descriptionHeading = document.createElement('h3');
+    descriptionHeading.id = 'description-heading';
+    descriptionHeading.innerHTML = 'Description';
 
     let description = document.createElement('p');
     description.id = 'description-text';
     description.innerHTML = `${bookObject.description}`;
+
+    bookDescription.appendChild(descriptionHeading);
     bookDescription.appendChild(description);
 
+}
+
+const checkBookshelf = async (isbn, shelfIsbns) => {
+    if (shelfIsbns.includes(isbn)) {
+        bookShelfId = bookIds[shelfIsbns.indexOf(isbn)];
+        return true;
+    }
+    return false;
 }
 
 window.addEventListener('load', go);

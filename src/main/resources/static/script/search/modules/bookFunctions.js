@@ -1,9 +1,20 @@
+const getImageOrFallback = (path, fallback) => {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.src = path;
+    img.onload = () => resolve(path);
+    img.onerror = () => resolve(fallback);
+  });
+};
+
 function getThumbnail(jsonItem) {
     let basePath = /*[[@{}]]*/'';
     let fileName = '/images/not-found.png';
     let filePath = basePath + fileName;
 
+    let isbn = getIsbn(jsonItem);
     let thumbnail = "";
+
     if(jsonItem.volumeInfo.imageLinks === undefined) {
         thumbnail = filePath;
     } else {
@@ -48,17 +59,22 @@ function getAllCategories(jsonItem) {
 
 }
 
-// EXPORT FUNCTION
-function returnBookObjectFromJson(jsonItem) {
-
+function getIsbn(jsonItem) {
     let isbn = '';
     if (jsonItem.volumeInfo.industryIdentifiers === undefined) {
         isbn = 'not found';
     } else if(Array.isArray(jsonItem.volumeInfo.industryIdentifiers) && jsonItem.volumeInfo.industryIdentifiers.length > 1) {
-        isbn = jsonItem.volumeInfo.industryIdentifiers[0].identifier;
+        isbn = jsonItem.volumeInfo.industryIdentifiers[1].identifier;
     } else {
         isbn = jsonItem.volumeInfo.industryIdentifiers[0].identifier;
     }
+    return isbn;
+}
+
+// EXPORT FUNCTION
+function returnBookObjectFromJson(jsonItem) {
+
+    let tags = getAllCategories(jsonItem);
 
     let bookObject = {
         googleId: jsonItem.id,
@@ -66,11 +82,11 @@ function returnBookObjectFromJson(jsonItem) {
         author: jsonItem.volumeInfo.authors,
         description: jsonItem.volumeInfo.description,
         thumbnail: getThumbnail(jsonItem),
-        genre: jsonItem.volumeInfo.mainCategory,
-        tags: getAllCategories(jsonItem),
+        genre: tags[0],
+        tags: tags,
         pageCount: jsonItem.volumeInfo.pageCount,
         publishedDate: jsonItem.volumeInfo.publishedDate,
-        industryIdentifiers: isbn,
+        industryIdentifiers: getIsbn(jsonItem),
         averageRating: jsonItem.volumeInfo.averageRating,
         ratingsCount: jsonItem.volumeInfo.ratingsCount
     }
@@ -84,15 +100,19 @@ function returnObjectFieldsAsHtml(object) {
     let linkName = `view/${object.googleId}`;
     let viewLink = baseLink + linkName;
     return `
-        <div class="book-cover">
-            <a href="${viewLink}" class="viewLink">
-                <img class="book" src="${object.thumbnail}">
-            </a>
+        <div class="card-img-top book-cover">
+            <div class="cover-image">
+                <a href="${viewLink}" class="view-link">
+                    <img class="img-fluid book" src="${object.thumbnail}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'">
+                </a>
+            </div>
         </div>
-        <div class="book-info">
-            <p class="title">${object.title}</p>
-            <p class="author">${object.author}</p>
+        <div class="card-body book-info">
+            <p class="fs-5 title">${object.title}</p>
+            <p class="fs-6 author">${object.author}</p>
+            <a href="${viewLink}" class="btn btn-primary view-book-button">View Book</a>
         </div>
+
     `;
 }
 
@@ -104,11 +124,11 @@ function renderAddBookButton(alreadyInBookshelf, bookShelfId) {
     if(alreadyInBookshelf === true) {
         addButton.innerHTML = `
             <a href="/user/view/${bookShelfId}">
-                <button>view in bookshelf</button>
+                <button class="btn btn-success">view in bookshelf</button>
             </a>
         `;
     } else {
-        addButton.innerHTML = `<button>add book</button>`
+        addButton.innerHTML = `<button class="btn btn-success">add book</button>`
         addButton.addEventListener('click', (event) => {
             event.preventDefault();
             addBookForm.classList.add('active')
@@ -124,8 +144,7 @@ function renderAddBookButton(alreadyInBookshelf, bookShelfId) {
 // EXPORT FUNCTION
 function fillAddBookForm(bookObject) {
     let descriptionText = bookObject.description;
-    descriptionText = descriptionText.replaceAll("<p>", "");
-    descriptionText = descriptionText.replaceAll("</p>", " ");
+    descriptionText = descriptionText.replaceAll(/<\/?[^>]+(>|$)/g, "");
 
     let title = document.getElementById('title');
     let author = document.getElementById('author');
@@ -134,14 +153,16 @@ function fillAddBookForm(bookObject) {
     let genre = document.getElementById('genre');
     let description = document.getElementById('description');
     let thumbnail = document.getElementById('thumbnail');
+    let formThumbnail = document.getElementById('form-thumbnail');
 
     title.value = bookObject.title;
     author.value = bookObject.author;
     isbn.value = bookObject.industryIdentifiers;
     pages.value = bookObject.pageCount;
-    genre.value = bookObject.categories;
+    genre.value = bookObject.genre;
     description.value = descriptionText;
     thumbnail.value = bookObject.thumbnail;
+    formThumbnail.src = bookObject.thumbnail;
 }
 
 function generateTagLinks(categoriesArray) {

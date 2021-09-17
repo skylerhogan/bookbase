@@ -31,7 +31,7 @@ public class Book {
     private String dateAdded;
     private String dateViewed;
 
-    @Column(length = 1000)
+    @Column(length = 65555)
     private String description;
 
     @Column(length = 999)

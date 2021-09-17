@@ -50,11 +50,27 @@ const createCarouselContent = () => {
 
 const updateCover = (id, isbn, url) => {
     try {
-        let img = `https://www.syndetics.com/index.aspx?isbn=${isbn}/LC.JPG`;
+//        let img = `https://www.syndetics.com/index.aspx?isbn=${isbn}/LC.JPG`;
+//        let carouselBooks = document.getElementsByClassName("carousel-book");
+//        let currentId = carouselBooks[id].id;
+//
+//        document.getElementById(currentId).innerHTML += `<a href="${url}" target="_blank"><img class="book" src=${img}></img></a>`;
+        let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg`);
+        let data = await response.json();
+
+        let img = await data.items[0].volumeInfo.imageLinks.thumbnail;
+
+        let googleId = await data.items[0].id;
+
+        let baseLink = /*[[@{}]]*/'';
+        let linkName = `user/search/results/view/${googleId}`;
+        let viewLink = baseLink + linkName;
+
+        img = img.replace(/^http:\/\//i, 'https://');   // replaces HTTP links with secure HTTPS versions
+
         let carouselBooks = document.getElementsByClassName("carousel-book");
         let currentId = carouselBooks[id].id;
-
-        document.getElementById(currentId).innerHTML += `<a href="${url}" target="_blank"><img class="book" src=${img}></img></a>`;
+        document.getElementById(currentId).innerHTML += `<a href="${viewLink}" target="_blank"><img class="book" src=${img}></img></a>`;
     } catch(err) {
         console.error(err);
     }
