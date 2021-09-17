@@ -36,15 +36,11 @@ const printBook = async (bookId) => {
     await retrieveBook(bookId);
 
     let bookObject = returnBookObjectFromJson(promise[0]);
-
     let alreadyInBookshelf = await checkBookshelf(bookObject.industryIdentifiers, bookIsbns);
 
     await renderPage(bookObject);
-
-    fillAddBookForm(bookObject);
-
+    await fillAddBookForm(bookObject);
     renderAddBookButton(alreadyInBookshelf, bookShelfId);
-
     renderBuyButton(bookObject);
 }
 
@@ -56,22 +52,19 @@ const retrieveBook = async (bookId) => {
 
 const renderPage = async (bookObject) => {
 
-    let coverImage = document.createElement('img');
-    coverImage.id = 'cover-image';
-    coverImage.src = bookObject.thumbnail2;
-    coverImage.onerror = `this.onerror = null; this.src="${bookObject.thumbnail}"`
+    let coverImageContainer = document.createElement('div');
 
-//    <img
-//        class="img-fluid book"
-//        src="${object.thumbnail2}"
-//        onerror='this.onerror = null; this.src="${object.thumbnail}"'
-//        onmouseover="this.style.opacity='50%'"
-//        onmouseout="this.style.opacity='100%'"
-//    >
+    coverImageContainer.innerHTML = `
+        <img
+            id="cover-image"
+            class="img-fluid book mb-5"
+            src="${bookObject.thumbnail2}"
+            alt="cover for ${bookObject.title}"
+            onerror='this.onerror = null; this.src="${bookObject.thumbnail};"'
+        >
+    `;
 
-    coverImage.alt = `cover for ${bookObject.title}`;
-
-    coverAndRating.appendChild(coverImage);
+    coverAndRating.appendChild(coverImageContainer);
 
     let rating = document.createElement('div');
     rating.id = 'rating-details';
@@ -124,6 +117,7 @@ const renderPage = async (bookObject) => {
 
 }
 
+// function to determine whether to display "add book" or "view in bookshelf" button
 const checkBookshelf = async (isbn, shelfIsbns) => {
     if (shelfIsbns.includes(isbn)) {
         bookShelfId = bookIds[shelfIsbns.indexOf(isbn)];

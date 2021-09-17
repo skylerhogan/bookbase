@@ -104,6 +104,7 @@ function returnObjectFieldsAsHtml(object) {
                     <img
                         class="img-fluid book"
                         src="${object.thumbnail2}"
+                        alt="cover for ${object.title}"
                         onerror='this.onerror = null; this.src="${object.thumbnail}"'
                         onmouseover="this.style.opacity='50%'"
                         onmouseout="this.style.opacity='100%'"
@@ -195,8 +196,18 @@ function fillAddBookForm(bookObject) {
     pages.value = bookObject.pageCount;
     genre.value = bookObject.genre;
     description.value = descriptionText;
-    thumbnail.value = bookObject.thumbnail;
-    formThumbnail.src = bookObject.thumbnail;
+
+    thumbnail.value = bookObject.thumbnail2;
+
+    formThumbnail.innerHTML = `
+        <img
+            id="form-thumbnail"
+            class="img-fluid"
+            src="${bookObject.thumbnail2}"
+            alt="cover for ${bookObject.title}"
+            onerror='this.onerror = null; this.src="${bookObject.thumbnail}"; thumbnail.value="${bookObject.thumbnail}"'
+        >
+    `;
 }
 
 function generateTagLinks(categoriesArray) {
