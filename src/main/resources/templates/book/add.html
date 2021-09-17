@@ -70,29 +70,31 @@
                         <div class="col-auto">
                            <label class="visually-hidden" th:for="genre">Genre</label>
                            <select th:field="*{book.genre}" class="form-select" id="genre" required>
-                              <option disabled value="">Genre</option>
-                              <option value="Memoir">Memoir</option>
+                              <option selected value="">Genre</option>
                               <option value="Biography">Biography</option>
-                              <option value="Self-Help">Self-Help</option>
-                              <option value="Religion and Spirituality">Religion and Spirituality</option>
-                              <option value="Health and Fitness">Health and Fitness</option>
-                              <option value="Politics and Social Sciences">Politics and Social Sciences</option>
                               <option value="Business and Money">Business and Money</option>
-                              <option value="Tech">Tech</option>
-                              <option value="Sci-Fi and Fantasy">Sci-Fi and Fantasy</option>
+                              <option value="Fiction and Literature">Fiction and Literature</option>
+                              <option value="Health and Fitness">Health and Fitness</option>
+                              <option value="History">History</option>
+                              <option value="Memoir">Memoir</option>
                               <option value="Mystery, Thriller, and Suspense">Mystery, Thriller, and Suspense</option>
-                              <option value="Romance">Romance</option>
-                              <option value="Fiction (General)">Fiction (General)</option>
                               <option value="Non-Fiction (Other)">Non-Fiction (Other)</option>
+                              <option value="Politics and Social Sciences">Politics and Social Sciences</option>
+                              <option value="Religion and Spirituality">Religion and Spirituality</option>
+                              <option value="Romance">Romance</option>
+                              <option value="Science">Science</option>
+                              <option value="Sci-Fi and Fantasy">Sci-Fi and Fantasy</option>
+                              <option value="Self-Help">Self-Help</option>
+                              <option value="Technology">Technology</option>
                            </select>
                         </div>
                         <div class="col-auto" style="width: 60%;">
                            <label class="visually-hidden" th:for="status">Status</label>
                            <select th:field="${book.status}" class="form-select status-selector" id="status" required>
                               <option selected value="">Shelf</option>
-                              <option value="Want to Read">Want to Read</option>
-                              <option value="Currently Reading">Currently Reading</option>
                               <option id="completed" value="Completed">Completed</option>
+                              <option value="Currently Reading">Currently Reading</option>
+                              <option value="Want to Read">Want to Read</option>
                            </select>
                         </div>
                         <div class="col-auto" style="width: 50%;">

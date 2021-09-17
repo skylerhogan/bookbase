@@ -47,7 +47,7 @@
       been logged out.
     </div>
     <div class="form-floating mb-3">
-      <input name="email" type="email" id="email" class="form-control" placeholder="Email Address"/>
+      <input name="email" type="email" id="email" class="form-control" placeholder="Email Address" autofocus/>
       <label for="email">Email Address</label>
     </div>
     <div class="form-floating mb-3">
@@ -127,22 +127,24 @@
       </div>
     </nav>
 
-
 <!--bookshelf grid-->
-
-    <div th:fragment="bookshelf-grid">
+<div th:each="list : ${bookLists}" th:fragment="bookshelf-grid" th:if="${bookLists != null and !bookLists.isEmpty()}">
+  <div th:if="${!list.isEmpty()}">
+    <h2 class="pt-4" th:text="${list[0].status}"></h2>
+    <div>
       <div class="row row-cols-2 row-cols-xs-2 row-cols-md-3 row-cols-lg-5 my-5">
-        <div th:each="book : ${books}" class="cols-3 mx-auto">
-          <div class="card bg-transparent flex-lg-row mx-auto mb-5">
-            <a th:if="${#httpServletRequest.requestURI == '/user/shelf'}" th:href="@{|/user/view/${book.id}|}" class="container d-flex">
-              <img th:src="${book.thumbnail}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'" class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover"/>
-<!--              <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'" class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover"/>-->
+        <div class="cols-3 mx-auto justify-content-center d-flex" th:each="book : ${list}">
+          <div class="card bg-transparent flex-lg-row mx-auto mb-5 ">
+            <a th:if="${#httpServletRequest.requestURI == '/user/shelf'}" th:href="@{|/user/view/${book.id}|}">
+              <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'" class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover"/>
             </a>
           </div>
         </div>
       </div>
     </div>
-
+    <hr>
+  </div>
+</div>
 
 <!--form to manually add books to database-->
 <div th:fragment="add-book" class="card mx-auto bg-dark card-shadow" style="width: 26rem; height: 22rem; margin-top:15rem;">
@@ -180,28 +182,30 @@
         <label class="visually-hidden" th:for="genre">Genre</label>
         <select th:field="*{book.genre}" class="form-select" id="genre" required>
           <option selected value="">Genre</option>
-          <option value="Memoir">Memoir</option>
           <option value="Biography">Biography</option>
-          <option value="Self-Help">Self-Help</option>
-          <option value="Religion and Spirituality">Religion and Spirituality</option>
-          <option value="Health and Fitness">Health and Fitness</option>
-          <option value="Politics and Social Sciences">Politics and Social Sciences</option>
           <option value="Business and Money">Business and Money</option>
-          <option value="Tech">Tech</option>
-          <option value="Sci-Fi and Fantasy">Sci-Fi and Fantasy</option>
+          <option value="Fiction and Literature">Fiction and Literature</option>
+          <option value="Health and Fitness">Health and Fitness</option>
+          <option value="History">History</option>
+          <option value="Memoir">Memoir</option>
           <option value="Mystery, Thriller, and Suspense">Mystery, Thriller, and Suspense</option>
-          <option value="Romance">Romance</option>
-          <option value="Fiction (General)">Fiction (General)</option>
           <option value="Non-Fiction (Other)">Non-Fiction (Other)</option>
+          <option value="Politics and Social Sciences">Politics and Social Sciences</option>
+          <option value="Religion and Spirituality">Religion and Spirituality</option>
+          <option value="Romance">Romance</option>
+          <option value="Science">Science</option>
+          <option value="Sci-Fi and Fantasy">Sci-Fi and Fantasy</option>
+          <option value="Self-Help">Self-Help</option>
+          <option value="Technology">Technology</option>
         </select>
       </div>
       <div class="col-auto">
         <label class="visually-hidden" th:for="status">Status</label>
         <select th:field="${book.status}" class="form-select status-selector" id="status" required>
           <option selected value="">Shelf</option>
-          <option value="Want to Read">Want to Read</option>
-          <option value="Currently Reading">Currently Reading</option>
           <option id="completed" value="Completed">Completed</option>
+          <option value="Currently Reading">Currently Reading</option>
+          <option value="Want to Read">Want to Read</option>
         </select>
       </div>
       <div>

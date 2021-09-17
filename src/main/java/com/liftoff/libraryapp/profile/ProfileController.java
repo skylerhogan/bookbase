@@ -29,20 +29,6 @@ public class ProfileController {
         @GetMapping("profile")
         public String displayUserProfile(Model model) {
 
-            /* library stats */
-            Integer pagesRead = bookRepository.selectPagesRead();
-            Integer pagesToRead = bookRepository.selectPagesToRead();;
-            Integer totalBooks = bookRepository.selectTotalBooksInLibrary();
-            Integer totalBooksRead = bookRepository.selectTotalBooksRead();
-            String favoriteGenre = bookRepository.selectFavoriteGenre();
-            String joinDate = bookRepository.selectDateOfFirstBookAdded();
-            model.addAttribute("pagesRead", pagesRead);
-            model.addAttribute("pagesToRead", pagesToRead);
-            model.addAttribute("totalBooks", totalBooks);
-            model.addAttribute("totalBooksRead", totalBooksRead);
-            model.addAttribute("favoriteGenre", favoriteGenre);
-            model.addAttribute("joinDate", joinDate);
-
             /* get user details */
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             String username = ((UserDetails)principal).getUsername();
@@ -53,6 +39,20 @@ public class ProfileController {
             model.addAttribute("firstName", firstName);
             model.addAttribute("lastName", lastName);
             model.addAttribute("username", username);
+
+            /* library stats */
+            Integer pagesRead = bookRepository.selectPagesRead(user.getId());
+            Integer pagesToRead = bookRepository.selectPagesToRead(user.getId());;
+            Integer totalBooks = bookRepository.selectTotalBooksInLibrary(user.getId());
+            Integer totalBooksRead = bookRepository.selectTotalBooksRead(user.getId());
+            String favoriteGenre = bookRepository.selectFavoriteGenre(user.getId());
+            String joinDate = bookRepository.selectDateOfFirstBookAdded(user.getId());
+            model.addAttribute("pagesRead", pagesRead);
+            model.addAttribute("pagesToRead", pagesToRead);
+            model.addAttribute("totalBooks", totalBooks);
+            model.addAttribute("totalBooksRead", totalBooksRead);
+            model.addAttribute("favoriteGenre", favoriteGenre);
+            model.addAttribute("joinDate", joinDate);
 
             return "user/profile";
         }
