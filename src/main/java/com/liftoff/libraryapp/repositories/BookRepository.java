@@ -37,8 +37,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     String selectFavoriteGenre(@Param("userId") Long userId);
 
     @Query(value= "SELECT DATE_ADDED FROM BOOK WHERE user_id = :userId GROUP BY DATE_ADDED ORDER BY DATE_ADDED ASC " +
-            "LIMIT 1", nativeQuery =
-            true)
+            "LIMIT 1", nativeQuery = true)
     String selectDateOfFirstBookAdded(@Param("userId") Long userId);
 
 
