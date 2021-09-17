@@ -3,10 +3,10 @@
 html, body {
   height: 100%;
 }
-body {
+/*body {
   display: flex;
   flex-direction: column;
-}
+}*/
 
 #logo {
     font-family: 'Dosis', sans-serif;
@@ -137,4 +137,19 @@ textarea {
 
 .nav-item {
     border-radius: 5px;
+}
+
+.btn-expand span {
+  max-width: 0;
+  -webkit-transition: max-width 0.5s, padding 0.4s;
+  transition: max-width 0.5s, padding 0.4s;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.btn-expand:hover span {
+  padding-left: 5px;
+  max-width: 7rem;
 }

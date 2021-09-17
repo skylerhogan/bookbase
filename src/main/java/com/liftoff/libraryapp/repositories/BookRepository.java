@@ -1,8 +1,11 @@
 package com.liftoff.libraryapp.repositories;
 
 import com.liftoff.libraryapp.models.Book;
+import com.liftoff.libraryapp.models.User;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
@@ -12,35 +15,30 @@ import java.util.List;
 @Transactional
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-    List<Book> findAllByOrderByDateViewedDesc();
+    List<Book> findByUserIdAndStatus(Long userId, String status, Sort sort);
 
-    List<Book> findByStatusOrderByDateViewedDesc(String status);
+    List<Book> findByUserIdAndStatusAndRating(Long userId, String status, String rating, Sort sort);
 
-    List<Book> findByRatingOrderByDateViewedDesc(String rating);
+    @Query(value = "SELECT SUM(pages) FROM Book WHERE STATUS = 'Completed' AND user_id = :userId", nativeQuery = true)
+    Integer selectPagesRead(@Param("userId") Long userId);
 
-    List<Book> findAllByOrderByAuthor();
+    @Query(value = "SELECT SUM(pages) FROM Book WHERE STATUS = 'Want to Read' OR STATUS = 'Currently Reading' AND " +
+            "user_id = :userId", nativeQuery = true)
+    Integer selectPagesToRead(@Param("userId") Long userId);
 
-    List<Book> findAllByOrderByTitle();
+    @Query(value = "SELECT COUNT(*) FROM Book WHERE user_id = :userId", nativeQuery = true)
+    Integer selectTotalBooksInLibrary(@Param("userId") Long userId);
 
-    List<Book> findAllByOrderByDateAddedDesc();
+    @Query(value = "SELECT COUNT(*) FROM Book WHERE STATUS = 'Completed' AND user_id = :userId", nativeQuery = true)
+    Integer selectTotalBooksRead(@Param("userId") Long userId);
 
-    @Query(value = "SELECT SUM(pages) FROM Book WHERE STATUS = 'Completed'", nativeQuery = true)
-    Integer selectPagesRead();
+    @Query(value= "SELECT GENRE FROM BOOK WHERE user_id = :userId GROUP BY GENRE ORDER BY COUNT(*) DESC LIMIT 1",
+            nativeQuery = true)
+    String selectFavoriteGenre(@Param("userId") Long userId);
 
-    @Query(value = "SELECT SUM(pages) FROM Book WHERE STATUS = 'Want to Read' OR STATUS = 'Currently Reading'", nativeQuery = true)
-    Integer selectPagesToRead();
-
-    @Query(value = "SELECT COUNT(*) FROM Book", nativeQuery = true)
-    Integer selectTotalBooksInLibrary();
-
-    @Query(value = "SELECT COUNT(*) FROM Book WHERE STATUS = 'Completed'", nativeQuery = true)
-    Integer selectTotalBooksRead();
-
-    @Query(value= "SELECT GENRE FROM BOOK GROUP BY GENRE ORDER BY COUNT(*) DESC LIMIT 1", nativeQuery = true)
-    String selectFavoriteGenre();
-
-    @Query(value= "SELECT DATE_ADDED FROM BOOK GROUP BY DATE_ADDED ORDER BY DATE_ADDED ASC LIMIT 1", nativeQuery = true)
-    String selectDateOfFirstBookAdded();
+    @Query(value= "SELECT DATE_ADDED FROM BOOK WHERE user_id = :userId GROUP BY DATE_ADDED ORDER BY DATE_ADDED ASC " +
+            "LIMIT 1", nativeQuery = true)
+    String selectDateOfFirstBookAdded(@Param("userId") Long userId);
 
 
 
