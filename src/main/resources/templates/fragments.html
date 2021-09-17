@@ -120,6 +120,14 @@
               </a>
             </li>
 
+            <!-- about us nav button-->
+
+            <li class="nav-item-btn mx-2">
+              <a th:href="@{|/user/about|}" class="nav-link" aria-current="page" style="color: currentColor;">
+                <i class="bi bi-info-circle-fill" style="font-size:2rem"></i>
+              </a>
+            </li>
+
             <!-- logout nav button-->
             <li class="nav-item-btn me-1 ms-2" >
               <a th:href="@{/logout}" class="nav-link" aria-current="page" style="color:
@@ -229,7 +237,7 @@
     <div>
       <footer id="footer" class="border-top bg-light">
         <div class="container d-flex flex-wrap justify-content-between align-items-center py-3">
-          <p class="col-md-4 mb-0 text-muted">&nbsp;&copy; 2021, All Rights Reserved</p>
+          <p id="copyright" class="col-md-4 mb-0 text-muted">&nbsp;&copy; 2021, All Rights Reserved</p>
           <a id="footer-logo" href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-exclude" viewBox="0 0 16 16">
               <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z"/>
