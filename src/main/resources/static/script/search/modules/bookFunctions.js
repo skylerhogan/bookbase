@@ -3,7 +3,6 @@ function getThumbnail(jsonItem) {
     let fileName = '/images/not-found.png';
     let filePath = basePath + fileName;
 
-    let isbn = getIsbn(jsonItem);
     let thumbnail = "";
 
     if(jsonItem.volumeInfo.imageLinks === undefined) {
@@ -178,8 +177,12 @@ function renderBuyButton(bookObject) {
 
 // EXPORT FUNCTION
 function fillAddBookForm(bookObject) {
-    let descriptionText = bookObject.description;
-    descriptionText = descriptionText.replaceAll(/<\/?[^>]+(>|$)/g, "");
+    let descriptionText = "";
+    if (bookObject.description != undefined) {
+        descriptionText = bookObject.description;
+        descriptionText = descriptionText.replaceAll(/<\/?[^>]+(>|$)/g, "");
+    }
+
 
     let title = document.getElementById('title');
     let author = document.getElementById('author');

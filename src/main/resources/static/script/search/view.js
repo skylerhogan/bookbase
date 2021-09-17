@@ -60,7 +60,7 @@ const renderPage = async (bookObject) => {
             class="img-fluid book mb-5"
             src="${bookObject.thumbnail2}"
             alt="cover for ${bookObject.title}"
-            onerror='this.onerror = null; this.src="${bookObject.thumbnail};"'
+            onerror='this.onerror = null; this.src="${bookObject.thumbnail}"'
         >
     `;
 
@@ -110,7 +110,12 @@ const renderPage = async (bookObject) => {
 
     let description = document.createElement('p');
     description.id = 'description-text';
-    description.innerHTML = `${bookObject.description}`;
+    if(bookObject.description != undefined) {
+        description.innerHTML = `${bookObject.description}`;
+    } else {
+        description.innerHTML = 'No description available';
+    }
+
 
     bookDescription.appendChild(descriptionHeading);
     bookDescription.appendChild(description);
