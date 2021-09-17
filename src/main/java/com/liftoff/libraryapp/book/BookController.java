@@ -1,21 +1,29 @@
 package com.liftoff.libraryapp.book;
 
 import com.liftoff.libraryapp.models.Book;
+import com.liftoff.libraryapp.models.MyUserDetailsService;
+import com.liftoff.libraryapp.models.User;
 import com.liftoff.libraryapp.repositories.BookRepository;
 import com.liftoff.libraryapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 
 @Controller
@@ -28,15 +36,19 @@ public class BookController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
+
     @GetMapping("add")
     public String displayAddBookForm(Model model) {
         model.addAttribute(new Book());
+
         return "book/add";
     }
 
     @PostMapping("add")
     public String processAddBookForm(@ModelAttribute @Valid Book newBook,
-                                    Errors errors, Model model, @RequestParam String title, @RequestParam String author, @RequestParam String isbn,
+                                     Errors errors, Model model, @RequestParam String title, @RequestParam String author, @RequestParam String isbn,
                                      @RequestParam String pages, @RequestParam String genre, @RequestParam String status, @RequestParam String rating,
                                      @RequestParam String description, @RequestParam String userReview) {
         if (errors.hasErrors()) {
@@ -50,6 +62,13 @@ public class BookController {
 
         newBook.setDateAdded(currentDate);
 
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)principal).getUsername();
+        User user = (User) myUserDetailsService.loadUserByUsername(username);
+
+        newBook.setUser(user);
+
+        newBook.setDateAdded(currentDate);
         bookRepository.save(newBook);
 
         return "redirect:shelf";
@@ -57,7 +76,17 @@ public class BookController {
 
     @GetMapping("delete")
     public String displayDeleteBooksForm(Model model) {
-        model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)principal).getUsername();
+        User user = (User) myUserDetailsService.loadUserByUsername(username);
+
+        List<List<Book>> bookLists = new ArrayList<>();
+
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading", Sort.by("dateViewed")));
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Want to Read", Sort.by("title")));
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Completed", Sort.by("title")));
+        model.addAttribute("bookLists", bookLists);
+
         return "book/delete";
     }
 
@@ -109,34 +138,66 @@ public class BookController {
 
     @RequestMapping("shelf")
     public String displayMainBookshelf(Model model) {
-        model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)principal).getUsername();
+        User user = (User) myUserDetailsService.loadUserByUsername(username);
+
+        List<List<Book>> bookLists = new ArrayList<>();
+
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading", Sort.by("dateViewed")));
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Want to Read", Sort.by("title")));
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Completed", Sort.by("title")));
+        model.addAttribute("bookLists", bookLists);
+
         return "book/shelf";
     }
 
     @PostMapping("shelf")
     public String displayMainBookshelf(Model model, @RequestParam (required = false) String status,
-                                       @RequestParam (required = false) String title,
-                                       @RequestParam (required = false) String author,
-                                       @RequestParam (required = false) String dateAdded,
-                                       @RequestParam (required = false) String recentlyViewed,
+                                       @RequestParam (required = false, defaultValue = "title") String orderBy,
                                        @RequestParam (required = false) String rating) {
-        if (status != "") {
-            model.addAttribute("books", bookRepository.findByStatusOrderByDateViewedDesc(status));
-        } else {
-            model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)principal).getUsername();
+        User user = (User) myUserDetailsService.loadUserByUsername(username);
+
+        List<List<Book>> bookLists = new ArrayList<>();
+
+        if (!rating.equals("")) {
+            if (orderBy.equals("dateViewed") || orderBy.equals("dateAdded")) {
+                bookLists.add(bookRepository.findByUserIdAndStatusAndRating(user.getId(), "Completed", rating,
+                        Sort.by(orderBy).descending()));
+            } else {
+                bookLists.add(bookRepository.findByUserIdAndStatusAndRating(user.getId(), "Completed", rating,
+                        Sort.by(orderBy)));
+            }
+
+            model.addAttribute("bookLists", bookLists);
+            return "book/shelf";
         }
 
-        if (title != null) {
-            model.addAttribute("books", bookRepository.findAllByOrderByTitle());
-        } else if (author != null) {
-            model.addAttribute("books", bookRepository.findAllByOrderByAuthor());
-        } else if (dateAdded != null) {
-            model.addAttribute("books", bookRepository.findAllByOrderByDateAddedDesc());
-        } else if (recentlyViewed != null) {
-            model.addAttribute("books", bookRepository.findAllByOrderByDateViewedDesc());
-        } else if (rating != null) {
-            model.addAttribute("books", bookRepository.findByRatingOrderByDateViewedDesc(rating));
+        if (!status.equals("")) {
+            if (orderBy.equals("dateViewed") || orderBy.equals("dateAdded")) {
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), status, Sort.by(orderBy).descending()));
+            } else {
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), status, Sort.by(orderBy)));
+            }
+        } else {
+            if (orderBy.equals("dateViewed") || orderBy.equals("dateAdded")) {
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading",
+                        Sort.by(orderBy).descending()));
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Want to Read",
+                        Sort.by(orderBy).descending()));
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Completed",
+                        Sort.by(orderBy).descending()));
+            } else {
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading", Sort.by(orderBy)));
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Want to Read", Sort.by(orderBy)));
+                bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Completed", Sort.by(orderBy)));
+            }
         }
+        model.addAttribute("bookLists", bookLists);
+
         return "book/shelf";
     }
 

@@ -1,9 +1,13 @@
 package com.liftoff.libraryapp.search;
 
 import com.liftoff.libraryapp.models.Book;
+import com.liftoff.libraryapp.models.MyUserDetailsService;
+import com.liftoff.libraryapp.models.User;
 import com.liftoff.libraryapp.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,9 +30,11 @@ public class SearchController {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
+
     @GetMapping("search")
     public String displaySearchForm() { return "search/search"; }
-
 
     @PostMapping("/search")
     public String processSearchForm(Model model, String searchQuery, String searchParameter, String resultsPerPage) {
@@ -133,6 +139,10 @@ public class SearchController {
         String currentDate = Date.format(cals.getTime());
         model.addAttribute("date", currentDate);
 
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)principal).getUsername();
+        User user = (User) myUserDetailsService.loadUserByUsername(username);
+
         newBook.setTitle(title);
         newBook.setAuthor(author);
         newBook.setIsbn(isbn);
@@ -143,6 +153,7 @@ public class SearchController {
         newBook.setDateAdded(currentDate);
         newBook.setDescription(description);
         newBook.setThumbnail(thumbnail);
+        newBook.setUser(user);
 
         bookRepository.save(newBook);
 
