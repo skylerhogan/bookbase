@@ -1,3 +1,9 @@
+body {
+    flex-direction: column!important;
+    min-height: 100vh!important;
+    display: flex!important;
+}
+
 .main-bg {
 	height: 100vh;
 	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),

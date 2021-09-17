@@ -4,7 +4,7 @@
    <th:block th:replace="fragments :: head"></th:block>
    <link rel="stylesheet" th:href="@{/css/shelf.css}" />
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body>
 
    <!--User Navbar-->
    <header>
@@ -14,28 +14,35 @@
    <!--Form to add books to database-->
    <div style="padding-top: 65px;">
       <div class="container py-5 my-auto">
-         <div class="p-5 bg-light rounded-3 shadow text-center">
-            <div class="container-fluid pt-4 row">
-               <div class="col mb-5 text-dark ms-5 align-self-center" align="left" style="min-width:20rem;">
-                  <h1 class="display-5 fw-bold">
-                     Hi! 👋
-                  </h1>
-                  <p class="col-md-12 fs-4 text-secondary">You can either add a book on your own or search for one below.</p>
-                  <p><strong class="col-md-12 fs-4"> Let's get to it!</strong></p>
+         <div class="px-xs-3 px-sm-5 py-5 bg-light rounded-3 shadow text-center">
+            <div class="container-fluid pt-4 row ">
+               <div class="col my-lg-5 mx-md-3 text-dark" align="left" style="min-width:20rem;">
+                  <h1 class="display-5 fw-bold">Hi! 👋</h1>
+                  <p class="fs-4 text-secondary">You can either add a book on your own or search for one below.</p>
+                  <p><strong class="fs-4"> Let's get to it!</strong></p>
                   <div class="my-5 mx-auto" style="max-width:20rem;">
+                     <!-- Search bar -->
                      <form method="POST" th:action="@{search/}" class="d-flex">
-                        <input class="form-control shadow" name="searchQuery" type="search" placeholder="Title / Author / ISBN" aria-label="Search" required />
-                        <input class="form-control" name="searchParameter" type="hidden" value="all" aria-label="Search" />
-                        <button class="iconbutton mx-3 me-auto" type="submit" value="Search" aria-label="Search">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                           </svg>
-                        </button>
+                        <div class="input-group mb-3">
+                           <input class="form-control shadow" name="searchQuery" type="search"
+                                  placeholder="Title / Author / ISBN" aria-label="Search" aria-describedby="button-addon" required >
+                           <input class="form-control" name="searchParameter" type="hidden" value="all" aria-label="Search" />
+                           <button class="btn btn-secondary shadow" type="submit" value="Search"
+                                   aria-label="Search"
+                                   id="button-addon"><i class="fs-5 bi bi-search"></i></button>
+                        </div>
+<!--                        <input class="form-control shadow" name="searchQuery" type="search" placeholder="Title / Author / ISBN" aria-label="Search" required />-->
+<!--                        <input class="form-control" name="searchParameter" type="hidden" value="all" aria-label="Search" />-->
+<!--                        <button class="iconbutton mx-3 me-auto" type="submit" value="Search" aria-label="Search">-->
+<!--                           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">-->
+<!--                              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>-->
+<!--                           </svg>-->
+<!--                        </button>-->
                      </form>
                   </div>
                </div>
                <div class="col">
-                  <div class="card mx-auto bg-light shadow" style="width: 26rem;">
+                  <div class="card mx-auto bg-light shadow" style="min-width: 24rem; max-width: 30rem;">
                      <div class="card-body">
                         <form method="post" class="row align-items-center gy-2 gx-3">
                            <div class="col-auto mt-3" style="width: 100%;">
