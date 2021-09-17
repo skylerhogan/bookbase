@@ -2,6 +2,7 @@ import {
     returnBookObjectFromJson,
     returnObjectFieldsAsHtml,
     renderAddBookButton,
+    renderBuyButton,
     fillAddBookForm,
     generateTagLinks
 } from './modules/bookFunctions.js';
@@ -43,6 +44,8 @@ const printBook = async (bookId) => {
     fillAddBookForm(bookObject);
 
     renderAddBookButton(alreadyInBookshelf, bookShelfId);
+
+    renderBuyButton(bookObject);
 }
 
 const retrieveBook = async (bookId) => {
@@ -55,13 +58,26 @@ const renderPage = async (bookObject) => {
 
     let coverImage = document.createElement('img');
     coverImage.id = 'cover-image';
-    coverImage.src = bookObject.thumbnail;
+    coverImage.src = bookObject.thumbnail2;
+    coverImage.onerror = `this.onerror = null; this.src="${bookObject.thumbnail}"`
+
+//    <img
+//        class="img-fluid book"
+//        src="${object.thumbnail2}"
+//        onerror='this.onerror = null; this.src="${object.thumbnail}"'
+//        onmouseover="this.style.opacity='50%'"
+//        onmouseout="this.style.opacity='100%'"
+//    >
+
     coverImage.alt = `cover for ${bookObject.title}`;
 
     coverAndRating.appendChild(coverImage);
 
     let rating = document.createElement('div');
     rating.id = 'rating-details';
+
+    if (bookObject.averageRating != undefined) {
+
     rating.innerHTML = `
         <label class="rating-label"><strong>Average rating: ${bookObject.averageRating} <span class="rating-count">(${bookObject.ratingsCount})</span></strong>
           <input
@@ -69,12 +85,14 @@ const renderPage = async (bookObject) => {
             max="5"
             readonly
             step="0.01"
-            style="--fill:gold;--value:${bookObject.averageRating}"
+            style="--fill:gray;--value:${bookObject.averageRating}"
             type="range"
             value="${bookObject.averageRating}">
         </label>
-
     `;
+    } else {
+        rating.innerHTML = `<label class="rating-label">No ratings</label>`
+    }
     coverAndRating.appendChild(rating);
 
     bookDetails.innerHTML = `

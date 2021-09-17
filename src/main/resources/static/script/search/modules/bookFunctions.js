@@ -1,12 +1,3 @@
-const getImageOrFallback = (path, fallback) => {
-  return new Promise(resolve => {
-    const img = new Image();
-    img.src = path;
-    img.onload = () => resolve(path);
-    img.onerror = () => resolve(fallback);
-  });
-};
-
 function getThumbnail(jsonItem) {
     let basePath = /*[[@{}]]*/'';
     let fileName = '/images/not-found.png';
@@ -22,6 +13,10 @@ function getThumbnail(jsonItem) {
     }
 
     return thumbnail;
+}
+
+function getHighResThumb(jsonItem) {
+    return 'https://www.syndetics.com/index.aspx?isbn='+getIsbn(jsonItem)+'/LC.JPG';
 }
 
 function getAllCategories(jsonItem) {
@@ -82,13 +77,16 @@ function returnBookObjectFromJson(jsonItem) {
         author: jsonItem.volumeInfo.authors,
         description: jsonItem.volumeInfo.description,
         thumbnail: getThumbnail(jsonItem),
+        thumbnail2: 'https://www.syndetics.com/index.aspx?isbn='+getIsbn(jsonItem)+'/LC.JPG',
         genre: tags[0],
         tags: tags,
         pageCount: jsonItem.volumeInfo.pageCount,
         publishedDate: jsonItem.volumeInfo.publishedDate,
         industryIdentifiers: getIsbn(jsonItem),
         averageRating: jsonItem.volumeInfo.averageRating,
-        ratingsCount: jsonItem.volumeInfo.ratingsCount
+        ratingsCount: jsonItem.volumeInfo.ratingsCount,
+        isEmbeddable: jsonItem.accessInfo.embeddable,
+        webReaderLink: jsonItem.accessInfo.webReaderLink
     }
     return bookObject;
 }
@@ -103,7 +101,13 @@ function returnObjectFieldsAsHtml(object) {
         <div class="card-img-top book-cover">
             <div class="cover-image">
                 <a href="${viewLink}" class="view-link">
-                    <img class="img-fluid book" src="${object.thumbnail}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'">
+                    <img
+                        class="img-fluid book"
+                        src="${object.thumbnail2}"
+                        onerror='this.onerror = null; this.src="${object.thumbnail}"'
+                        onmouseover="this.style.opacity='50%'"
+                        onmouseout="this.style.opacity='100%'"
+                    >
                 </a>
             </div>
         </div>
@@ -124,11 +128,11 @@ function renderAddBookButton(alreadyInBookshelf, bookShelfId) {
     if(alreadyInBookshelf === true) {
         addButton.innerHTML = `
             <a href="/user/view/${bookShelfId}">
-                <button class="btn btn-success">view in bookshelf</button>
+                <button class="btn btn-primary mb-5" style="width:100%;">view in bookshelf</button>
             </a>
         `;
     } else {
-        addButton.innerHTML = `<button class="btn btn-success">add book</button>`
+        addButton.innerHTML = `<button class="btn btn-primary mb-5" style="width:100%;">add book</button>`
         addButton.addEventListener('click', (event) => {
             event.preventDefault();
             addBookForm.classList.add('active')
@@ -139,6 +143,36 @@ function renderAddBookButton(alreadyInBookshelf, bookShelfId) {
             addBookForm.classList.remove('active')
         })
     }
+}
+
+// EXPORT FUNCTION
+function renderBuyButton(bookObject) {
+    let buttonsContainer = document.getElementById('buttons');
+    let previewButton = document.getElementById('previewButton')
+
+    let buyButton = document.createElement('div');
+    buyButton.className = 'btn-group';
+    buyButton.classList.add('mb-5');
+    buyButton.style.width = '100%'
+
+    let searchTitle = bookObject.title.replaceAll(/[\W_]\s+/g, "");
+
+    buyButton.innerHTML = `
+        <button type="button" class="btn btn-sm btn-secondary dropdown-toggle fs-6" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-cart4 me-2"></i> Buy
+        </button>
+        <ul class="dropdown-menu">
+            <li class="fs-6"><a href="${'https://www.amazon.com/s?k=' + searchTitle}" target="_blank" class="dropdown-item" value="Amazon">Amazon</a></li>
+            <li class="fs-6"><a href="${'https://www.audible.com/search?keywords=' + searchTitle}" target="_blank" class="dropdown-item" value="Audible">Audible</a></li>
+            <li class="fs-6"><a href="${'https://www.barnesandnoble.com/s/' + searchTitle}" target="_blank" class="dropdown-item" value="B&N">Barnes & Noble</a></li>
+            <li class="fs-6"><a href="${'https://www.abebooks.com/servlet/SearchResults?tn=' + searchTitle}" target="_blank" class="dropdown-item" value="AbeBooks">AbeBooks</a></li>
+            <li class="fs-6"><a href="${'https://www.bookdepository.com/search?searchTerm=' + searchTitle + '%20' + bookObject.author}" target="_blank" class="dropdown-item" value="Book Depository">Book Depository</a></li>
+            <li><hr/></li>
+            <li class="fs-6"><a href="${'https://www.worldcat.org/title/' + searchTitle}" target="_blank" class="dropdown-item" value="Book Depository">Find a Library</a></li>
+        </ul>
+    `;
+
+    buttonsContainer.insertBefore(buyButton, previewButton);
 }
 
 // EXPORT FUNCTION
@@ -192,6 +226,7 @@ export {
     returnBookObjectFromJson,
     returnObjectFieldsAsHtml,
     renderAddBookButton,
+    renderBuyButton,
     fillAddBookForm,
     generateTagLinks
 }
