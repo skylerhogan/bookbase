@@ -44,9 +44,9 @@
                     <div class="card-body">
                         <p class="lead fw-normal pt-3 ps-4">Browse current bestsellers by genre:</p>
                         <label class="visually-hidden" th:for="genre">Genre</label>
-                        <form action="" class="px-5">
+                        <form action="POST" th:action="@{/home}" class="px-5">
                             <div class="input-group">
-                                <select class="form-select" id="genre" required>
+                                <select class="form-select" name="genre" id="genre" required>
                                     <option selected value="">Genre</option>
                                     <option value="advice-how-to-and-miscellaneous">Advice, How-To & Miscellaneous</option>
                                     <option value="business-books">Business</option>
@@ -62,6 +62,11 @@
                                 <button type="submit" class="btn btn-primary">View Bestsellers</button>
                             </div>
                         </form>
+
+                        <div class="">
+                            <p class="lead text-dark" th:if="${genre}" th:text="${genre}" th:classappend="${genre}"></p>
+                        </div>
+
                     </div>
                 </div>
             </div>

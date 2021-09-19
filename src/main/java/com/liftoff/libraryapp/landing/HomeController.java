@@ -11,8 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -45,5 +44,22 @@ public class HomeController {
             return "home";
         }
         return "index";
+    }
+
+    @GetMapping("home")
+    public String processBestsellersForm(Model model, @RequestParam String genre) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails)principal).getUsername();
+        User user = (User) myUserDetailsService.loadUserByUsername(username);
+        String name = user.getFirstName();
+        model.addAttribute("name", name);
+
+        List<List<Book>> recentBooks = new ArrayList<>();
+
+        recentBooks.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading", Sort.by("dateViewed").descending()));
+        model.addAttribute("recentBooks", recentBooks);
+
+        model.addAttribute("genre", genre);
+        return "home";
     }
 }
