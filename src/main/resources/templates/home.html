@@ -4,7 +4,7 @@
     <th:block th:replace="fragments :: head"></th:block>
     <link rel="stylesheet" th:href="@{/styles.css}" />
     <link rel="stylesheet" th:href="@{/css/homepage.css}" />
-    <script defer th:src="@{/js/bestsellers.js}"></script>
+<!--    <script defer th:src="@{/js/bestsellers.js}"></script>-->
 </head>
 
 <body>
@@ -13,94 +13,67 @@
 <nav th:replace="fragments :: navigation-user"></nav>
 
 <!-- Header/showcase -->
-<header class="main-bg text-light text-center text-sm-start d-flex align-items-center justify-content-center">
+<header class="main-bg vh-75 pb-5" style="padding-top:120px;">
     <div class="container">
-        <div class="row align-items-center gx-5">
-            <div class="col-xl-6">
-                <div class="card bg-light text-dark d-none d-xl-grid">
+        <div class="row align-items-stretch g-5">
+            <div class="col-lg-6">
+                <div class="card bg-light text-dark d-xl-grid h-100">
                     <div class="card-body">
-                        <p class="lead fw-normal py-3 ps-4">Already have an account? Log in:</p>
-                        <th:block th:replace="fragments :: login-form"></th:block>
+                        <p class="lead fw-normal pt-3 ps-4" th:text="${'Welcome back, ' + name + '!'}"></p>
+                        <div th:each="list : ${recentBooks}" th:if="${!list.isEmpty()}">
+                                <p class="lead ps-4 pb-3">Pick up where you left off:</p>
+                                <div class="row row-cols-2 my-2">
+                                    <div class="cols-3 d-flex justify-content-start"
+                                         th:each="book,iterStat : ${list}"
+                                         th:classappend="${list.size() == 1 ? 'mx-auto' : ''}">
+                                        <div th:if="${iterStat.index < 4 && iterStat.index != null}"
+                                             class="card bg-transparent flex-lg-row mx-auto mb-5">
+                                            <a th:href="@{|/user/view/${book.id}|}">
+                                                <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'" class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-xl-6 header-text-box">
-                <h1 class="fw-bolder text-sm-center text-lg-end">Bookbase</h1>
-                <h3 class="fw-light text-sm-center text-lg-end">Manage Your Own Personal Library</h3>
+            <div class="col-lg-6">
+                <div class="card bg-light text-dark d-xl-grid h-100">
+                    <div class="card-body">
+                        <p class="lead fw-normal pt-3 ps-4">Browse current bestsellers by genre:</p>
+                        <label class="visually-hidden" th:for="genre">Genre</label>
+                        <form action="" class="px-5">
+                            <div class="input-group">
+                                <select class="form-select" id="genre" required>
+                                    <option selected value="">Genre</option>
+                                    <option value="advice-how-to-and-miscellaneous">Advice, How-To & Miscellaneous</option>
+                                    <option value="business-books">Business</option>
+                                    <option value="childrens-middle-grade-hardcover">Children's Middle Grade</option>
+                                    <option value="picture-books">Children’s Picture Books</option>
+                                    <option value="series-books">Children’s Series</option>
+                                    <option value="combined-print-and-e-book-fiction">Fiction</option>
+                                    <option value="graphic-books-and-manga">Graphic Books and Manga</option>
+                                    <option value="mass-market-monthly">Mass Market</option>
+                                    <option value="combined-print-and-e-book-nonfiction">Nonfiction</option>
+                                    <option value="young-adult-hardcover">Young Adult</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary">View Bestsellers</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Feature Cards -->
-<section id="features" class="bg-secondary bg-opacity-25 p-5">
-    <div class="container">
-        <div class="row opening-heading">
-            <h2 class="text-dark fw-normal text-center">Features</h2>
-        </div>
-        <div class="row g-5">
-            <div class="col-md-6 col-xxl-3 d-flex">
-                <div class="card bg-light pb-3">
-                    <div class="card-body flex-fill text-center">
-                        <div class="h1 mb-3">
-                            <i class="bi bi-book"></i>
-                        </div>
-                        <h3 class="card-title mb-3">Manage Your Personal Library</h3>
-                        <p class="card-text px-3">Keep an ongoing list of books you've read, are currently
-                            reading, and want to read in the future.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xxl-3 d-flex">
-                <div class="card bg-light pb-3">
-                    <div class="card-body flex-fill text-center">
-                        <div class="h1 mb-3">
-                            <i class="bi bi-bookmark"></i>
-                        </div>
-                        <h3 class="card-title mb-3">Create Digital Bookmarks</h3>
-                        <p class="card-text px-3">Save all of your favorite quotes, passages, and ideas in
-                            one convenient place.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xxl-3 d-flex">
-                <div class="card bg-light pb-3">
-                    <div class="card-body flex-fill text-center">
-                        <div class="h1 mb-3">
-                            <i class="bi bi-search"></i>
-                        </div>
-                        <h3 class="card-title mb-3">Browse Millions of Titles</h3>
-                        <p class="card-text px-3">Use the integrated Google Books search to find and
-                            add titles to your own library.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xxl-3 d-flex">
-                <div class="card bg-light pb-3">
-                    <div class="card-body flex-fill text-center">
-                        <div class="h1 mb-3">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-half"></i>
-                        </div>
-                        <h3 class="card-title mb-3">Rate, Review, and Favorite</h3>
-                        <p class="card-text px-3">Share your thoughts with other readers and optionally
-                            set reminders to revisit your favorite books.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Carousel -->
 <section id="carousel" class="bg-light p-5 d-none d-lg-block">
     <div class="container">
-        <p class="fw-normal lead text-dark pb-4">Choose from millions of books to add to your library, including
-            these bestsellers:</p>
+        <p class="fw-normal lead text-dark pb-4">Looking for something new to read? Browse these
+            bestsellers:</p>
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner"></div>
         </div>
