@@ -17,7 +17,7 @@
 
 <!-- Navbar (guest) -->
 <nav th:fragment="navigation-guest" class="navbar navbar-expand bg-light navbar-light fixed-top">
-  <div class="container">
+  <div class="container-fluid px-5">
     <a class="navbar-brand" href="/">Bookbase</a>
 
 <!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">-->
@@ -26,8 +26,8 @@
 
     <div class="collapse navbar-collapse" id="navmenu">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item px-3"><a href="/login" class="btn btn-outline-primary px-3 py-2">Log In</a></li>
-        <li class="nav-item px-3"><a href="/registration" class="btn btn-primary text-light px-3 py-2">Create
+        <li class="nav-item "><a href="/login" class="btn btn-outline-primary px-xs-3 px-md-4 py-2">Log In</a></li>
+        <li class="nav-item ps-3"><a href="/registration" class="btn btn-primary text-light px-xs-3 px-md-4 py-2">Create
           account</a>
         </li>
       </ul>
@@ -55,13 +55,13 @@
              placeholder="Password">
       <label for="password">Password</label>
     </div>
-    <div class="text-end pe-2">
-      <input type="checkbox" id="checkbox" name="remember-me">
-      <label for="checkbox">Remember me</label>
-    </div>
+<!--    <div class="text-end pe-2">-->
+<!--      <input type="checkbox" id="checkbox" name="remember-me">-->
+<!--      <label for="checkbox">Remember me</label>-->
+<!--    </div>-->
     <div>
-      <a class="my-3 float-start" href="#" style="text-decoration:none;">Forgot
-        password?</a>
+<!--      <a class="my-3 float-start" href="#" style="text-decoration:none;">Forgot-->
+<!--        password?</a>-->
       <button type="submit" class="btn btn-primary w-25 my-3 float-end">Log In</button>
     </div>
   </form>
@@ -70,7 +70,7 @@
     <!-- Navbar(logged-in user pages) -->
     <nav
       th:fragment="navigation-user" class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-lg" style="margin-bottom:125px">
-      <div class="container">
+      <div class="container-fluid px-5">
         <a class="navbar-brand me-2 fs-3" id="logo" href="http://localhost:8080">
           Bookbase</a>
         <button class="navbar-toggler shadow-sm my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">

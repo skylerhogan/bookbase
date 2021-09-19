@@ -26,10 +26,6 @@ header .header-text-box {
 	max-height: 200px;
 }
 
-#reader-img {
-	filter: hue-rotate(-20deg);
-}
-
 /*.carousel-control-prev {
 	margin-left: -10%;
 }

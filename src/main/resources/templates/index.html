@@ -13,7 +13,7 @@
 <nav th:replace="fragments :: navigation-guest"></nav>
 
 <!-- Header/showcase -->
-<header class="main-bg text-light text-center text-sm-start d-flex align-items-center justify-content-center">
+<header class="main-bg vh-100 text-light text-center text-sm-start d-flex align-items-center justify-content-center">
   <div class="container">
     <div class="row align-items-center gx-5">
       <div class="col-xl-6">
@@ -108,13 +108,13 @@
 </section>
 
 <!-- Register -->
-<section class="bg-dark p-5">
+<section class="bg-dark py-5">
   <div class="container">
     <div class="row align-items-center justify-content-between text-light">
       <div class="col-md">
         <img id="reader-img" th:src="@{/images/book_lover.svg}" class="img-fluid" />
       </div>
-      <div class="col-md p-5 text-center my-3">
+      <div class="col-md text-center p-4 mt-3">
         <h2>Want to manage your own library?</h2>
         <p class="lead my-3">Register for a free account today to get started.</p>
         <a href="/registration" class="btn btn-primary my-3 px-4 py-2">Create account</a>
@@ -125,7 +125,7 @@
 
 <!-- Guest footer (WIP) -->
 <footer class="border-top bg-light">
-  <div class="container d-flex flex-wrap justify-content-between align-items-center py-3">
+  <div class="container-fluid d-flex flex-wrap justify-content-between align-items-center px-5 py-3">
     <p class="mb-0 text-muted">&nbsp;&copy; 2021, All Rights Reserved</p>
     <!-- <a id="footer-logo" href="/"
         class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
