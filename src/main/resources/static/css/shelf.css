@@ -104,19 +104,38 @@
         width: 100%;
     }
 
+    .btn-expand span {
+        display: none;
+    }
+}
+
+@media (min-width: 767.98px) {
+    .btn-expand span {
+        max-width: 0;
+        -webkit-transition: max-width 0.5s, padding 0.4s;
+        transition: max-width 0.5s, padding 0.4s;
+        display: inline-block;
+        vertical-align: top;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .btn-expand:hover span {
+        padding-left: 5px;
+        max-width: 7rem;
+    }
 }
 
 #close-view-corner-button {
     position: absolute;
-      top:-1rem;
-      right:-1rem;
-      z-index: 9;
-      background-color: whitesmoke;
-      border-radius: 50%;
+    top:-1rem;
+    right:-1rem;
+    z-index: 9;
+    background-color: whitesmoke;
+    border-radius: 50%;
 }
 
 #starRating {
-    /*visibility: hidden;*/
     display: none;
 }
 
@@ -138,19 +157,4 @@ textarea {
 
 .nav-item {
     border-radius: 5px;
-}
-
-.btn-expand span {
-  max-width: 0;
-  -webkit-transition: max-width 0.5s, padding 0.4s;
-  transition: max-width 0.5s, padding 0.4s;
-  display: inline-block;
-  vertical-align: top;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.btn-expand:hover span {
-  padding-left: 5px;
-  max-width: 7rem;
 }

@@ -23,7 +23,7 @@
             <!-- TODO: responsive filter bar -->
             <div class="row gx-3 gy-2 align-items-center border-bottom navbar bg-white"
                  style="margin-top:2rem; z-index:12;">
-                <div class="col-sm-2 my-md-4">
+                <div class="col-md-4 col-xl-2 my-xl-4">
                     <select class="form-select" name="status">
                         <option selected value="">&#128218; Shelf</option>
                         <option value="">All Books</option>
@@ -32,7 +32,7 @@
                         <option value="Want to Read">Want To Read</option>
                     </select>
                 </div>
-                <div class="col-sm-2 my-md-4">
+                <div class="col-md-4 col-xl-2 my-xl-4">
                     <select class="form-select" name="orderBy">
                         <option selected value="">&#8645; Order By</option>
                         <option value="Author">Author</option>
@@ -41,7 +41,7 @@
                         <option value="Title">Title</option>
                     </select>
                 </div>
-                <div class="col-sm-2 my-md-4">
+                <div class="col-md-4 col-xl-2 my-xl-4">
                     <select class="form-select" name="rating">
                         <option selected value="">&#9733; Rating</option>
                         <option value="5">⭐⭐⭐⭐⭐</option>
@@ -51,15 +51,17 @@
                         <option value="1">⭐</option>
                     </select>
                 </div>
-                <button class="col-xs-6 col-sm-1 btn btn-primary ms-2 my-md-4">
+                <button class="col-xs-6 col-md-2 col-xl-1 btn btn-primary ms-2 my-xl-4" style="max-width: 25%;">
                     <i class="bi bi-funnel-fill fst-normal"> Filter</i>
                 </button>
-                <div class="col p-2 d-flex justify-content-end ">
+                <div class="col p-2 d-flex justify-content-end">
                     <a class="btn btn-success btn-expand text-white mx-2" th:href="@{/user/add}" role="button">
-                        <i class="bi bi-plus-lg"></i><span class="expand-button"> Add Book</span>
+                        <i class="bi bi-plus-lg"></i><span class="expand-button d-xs-none d-md-inline-block"> Add
+                        Book</span>
                     </a>
-                    <a class="btn btn-danger btn-expand mx-2" th:href="@{/user/delete}" role="button">
-                        <i class="bi bi-x-lg"></i><span class="expand-button"> Remove Books</span>
+                    <a class="btn btn-danger btn-expand ms-2" th:href="@{/user/delete}" role="button">
+                        <i class="bi bi-x-lg"></i><span class="expand-button d-xs-none d-md-inline-block"> Remove
+                        Books</span>
                     </a>
                 </div>
             </div>
