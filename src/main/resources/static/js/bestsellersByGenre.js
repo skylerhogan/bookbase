@@ -3,19 +3,19 @@ const genre = document.getElementsByClassName("bestsellers-list")[0].id;
 
 let nytRequest = `https://api.nytimes.com/svc/books/v3/lists.json?list-name=${genre}&api-key=${nytKey}`;
 
-const printBestSellerList = async() => {
+const printBestSellers = async() => {
     try {
         let bestSellerList = await fetch(nytRequest).then(response => response.json());
 
-        await updateBestSellers(bestSellerList);
+        await generateBestSellersList(bestSellerList);
     } catch(err) {
         console.error(err);
     }
 }
 
-printBestSellerList();
+printBestSellers();
 
-const updateBestSellers = async(nytBestSellers) => {
+const generateBestSellersList = async(nytBestSellers) => {
     for (const book of nytBestSellers.results) {
         let isbn = book.book_details[0].primary_isbn10;
         let title = book.book_details[0].title;
