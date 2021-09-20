@@ -34,7 +34,7 @@ header .header-text-box {
 }
 
 .scroll::-webkit-scrollbar {
-    width: 0.5vw;
+    width: .5vw;
 }
 
 .scroll::-webkit-scrollbar-thumb {
