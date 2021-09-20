@@ -108,15 +108,11 @@ const quotesObject = [
 
 function newQuote() {
     let randomNumber = Math.floor(Math.random() * (quotesObject.length));
-    // let quote = document.getElementById('quoteDisplay').innerHTML = quotesObject[randomNumber].quote;
-    // let author = document.getElementById('authorDisplay').innerHTML = quotesObject[randomNumber].author;
-    // let book = document.getElementById('bookDisplay').innerHTML = quotesObject[randomNumber].book;
 
     let container = document.getElementById("blockquote-container");
     let quote = quotesObject[randomNumber].quote;
     let author = quotesObject[randomNumber].author;
     let book = quotesObject[randomNumber].book;
-
 
     container.innerHTML += `
         <div class="row pt-4">
