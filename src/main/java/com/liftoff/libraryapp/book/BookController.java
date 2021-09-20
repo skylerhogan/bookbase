@@ -144,7 +144,8 @@ public class BookController {
 
         List<List<Book>> bookLists = new ArrayList<>();
 
-        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading", Sort.by("dateViewed")));
+        bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading",
+                Sort.by("dateViewed").descending()));
         bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Want to Read", Sort.by("title")));
         bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Completed", Sort.by("title")));
         model.addAttribute("bookLists", bookLists);
