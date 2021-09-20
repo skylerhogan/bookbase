@@ -61,6 +61,7 @@ public class BookController {
         model.addAttribute("date", currentDate);
 
         newBook.setDateAdded(currentDate);
+        newBook.setThumbnail("https://www.syndetics.com/index.aspx?isbn="+ isbn +"/LC.JPG");
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = ((UserDetails)principal).getUsername();
