@@ -4,8 +4,9 @@
     <th:block th:replace="fragments :: head"></th:block>
     <link rel="stylesheet" th:href="@{/styles.css}" />
     <link rel="stylesheet" th:href="@{/css/homepage.css}" />
-    <script defer th:src="@{/js/bestsellers.js}"></script>
+<!--    <script defer th:src="@{/js/bestsellers.js}"></script>-->
     <script defer th:src="@{/js/bestsellersByGenre.js}"></script>
+    <script defer th:src="@{/js/quotes.js}"></script>
 </head>
 
 <body>
@@ -17,34 +18,57 @@
 <header class="main-bg vh-75 pb-5" style="padding-top:120px;">
     <div class="container">
         <div class="row g-5">
-            <div class="col-lg-6">
+            <div class="col-xl-6">
                 <div class="card bg-light text-dark h-100">
                     <div class="card-body">
                         <p class="lead fw-normal pt-3 ps-4" th:text="${'Welcome back, ' + name + '!'}"></p>
                         <div th:each="list : ${recentBooks}" th:if="${!list.isEmpty()}">
-                                <p class="lead ps-4 pb-3">Pick up where you left off:</p>
-                                <div class="row row-cols-2 my-2">
-                                    <div class="cols-3 d-flex"
-                                         th:each="book,iterStat : ${list}"
-                                         th:classappend="${list.size() == 1 ? 'mx-auto' : ''}">
-                                        <div th:if="${iterStat.index < 4 && iterStat.index != null}"
-                                             class="card bg-transparent flex-lg-row mx-auto mb-5">
-                                            <a th:href="@{|/user/view/${book.id}|}">
-                                                <img
-                                                     th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}"
-                                                     onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'"
-                                                     class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2"
-                                                     width="135" height="200" alt="cover"/>
-                                            </a>
-                                        </div>
+                            <p class="lead ps-4 pb-2">Pick up where you left off:</p>
+                            <div class="row row-cols-2 my-2">
+                                <div class="cols-3 d-flex"
+                                     th:each="book,iterStat : ${list}"
+                                     th:classappend="${list.size() == 1 ? 'mx-auto' : ''}">
+                                    <div th:if="${iterStat.index < 4 && iterStat.index != null}"
+                                         class="card bg-transparent flex-lg-row mx-auto mb-5">
+                                        <a th:href="@{|/user/view/${book.id}|}">
+                                            <img
+                                                 th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}"
+                                                 onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'"
+                                                 class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2"
+                                                 width="135" height="200" alt="cover"/>
+                                        </a>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div th:if="${recentBooks[0].size() <= 2}" class="px-4 pb-3">
+                            <p class="lead pb-2">Food for Thought</p>
+                            <div class="mx-auto" >
+                                <figure class="bg-light rounded-3 shadow">
+                                    <blockquote class="py-3 container" id="blockquote-container">
+
+<!--                                        <span class="col d-inline-block">-->
+<!--                                            <i class="bi bi-chat-right-quote-fill display-6"-->
+<!--                                           style="color:slategrey"></i>-->
+<!--                                        </span>-->
+<!--                                        <p class="col d-inline-block text-center mx-5 lead fs-4 lh-sm"-->
+<!--                                           id="quoteDisplay">-->
+
+<!--                                        </p>-->
+<!--                                        <figcaption-->
+<!--                                                class="ps-3 pt-4 mt-4 border-top d-flex flex-wrap blockquote-footer">-->
+<!--                                            <p id="authorDisplay"></p>-->
+<!--                                            <cite id="bookDisplay" class="ms-1"></cite>-->
+<!--                                        </figcaption>-->
+                                    </blockquote>
+                                </figure>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-xl-6">
                 <div class="card text-dark h-100 bg-light">
                     <div class="card-body">
                         <p class="lead fw-normal pt-3 ps-4">Browse current bestsellers by genre:</p>
