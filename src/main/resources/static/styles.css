@@ -52,6 +52,6 @@ a {
     color:#6C63FF;
 }
 
-a:hover {
+a:not(.btn):hover {
     color:#6C63FF !important;
 }

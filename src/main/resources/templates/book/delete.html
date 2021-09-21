@@ -8,65 +8,64 @@
 <body style="background:white">
 
     <!-- User Navbar -->
-    <header>
+    <header id="delete-header">
         <nav th:replace="fragments :: navigation-user"></nav>
     </header>
 
     <!-- Delete Book Form -->
-<!--    <div class="my-auto " style="position:relative; top:200px;">-->
-    <div style="padding-top:65px;">
-        <div class="container">
-            <form method="post" th:action="@{/user/delete}" id="deleteForm" class="me-auto">
-<!--                <div class="d-flex pt-5 navbar fixed-top bg-white border-bottom" style="margin-top:2rem; z-index:12;">-->
-                <div class="row align-items-center border-bottom navbar bg-white"
-                     style="margin-top:2rem; z-index:12;">
+    <div class="container">
+        <form method="post" th:action="@{/user/delete}" id="deleteForm" class="me-auto">
+            <div id="form-buttons" class="row align-items-center border-bottom navbar bg-white sticky-top"
+                 style="padding-top:5rem; z-index:12;">
 
-                    <div class="col d-flex justify-content-center my-4">
-                        <a class="btn btn-outline-secondary mx-2" style="min-width:5rem;" th:href="@{/user/shelf}"
-                           role="button">
-                            <i class="bi bi-arrow-left"></i>
-                        </a>
-                        <button type="button" value="Delete" id="deleteButton" class="btn btn-danger mx-2"
-                                style="min-width:5rem;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
-                    </div>
+                <!-- Form buttons -->
+                <div class="col d-flex justify-content-center my-4">
+                    <a class="btn btn-outline-secondary mx-2" style="min-width:5rem;"
+                       th:href="@{/user/shelf}"
+                       role="button">
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <button type="button" value="Delete" id="deleteButton" class="btn btn-danger mx-2"
+                            style="min-width:5rem;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+                </div>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog modal-dialog-centered" style="margin-top:2rem; z-index:1;">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    Are you sure you want to remove the selected book(s)?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No way!</button>
-                                    <button type="button" class="btn btn-danger" onclick="deleteBooks()">✌️</button>
-                                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog modal-dialog-centered" style="margin-top:2rem; z-index:1;">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                Are you sure you want to remove the selected book(s)?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No way!</button>
+                                <button type="button" class="btn btn-danger" onclick="deleteBooks()">✌️</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Book grid -->
-                <div th:each="list : ${bookLists}" th:fragment="bookshelf-grid" th:if="${bookLists != null and !bookLists.isEmpty()}">
-                    <div th:if="${!list.isEmpty()}">
-                        <h2 class="pt-4" th:text="${list[0].status}"></h2>
-                        <div>
-                            <div class="row row-cols-2 row-cols-xs-2 row-cols-md-3 row-cols-lg-5 my-5">
-                                <div class="cols-3 mx-auto justify-content-center d-flex" th:each="book : ${list}">
-                                    <div class="card bg-transparent flex-lg-row mx-auto mb-5 ">
-                                        <label class="container d-flex books">
-                                            <img
-                                                    th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" class="mx-auto shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover" style="cursor: pointer;" th:field="${book.id}"/>
-                                            <input id="deleteCheckbox" type="checkbox" name="bookIds" th:value="${book.id}">
-                                        </label>
-                                    </div>
+            </div>
+            <!-- Book grid -->
+                <div th:each="list : ${bookLists}" th:fragment="bookshelf-grid"
+                 th:if="${bookLists != null and !bookLists.isEmpty()}">
+                <div th:if="${!list.isEmpty()}">
+                    <h2 class="pt-4" th:text="${list[0].status}"></h2>
+                    <div>
+                        <div class="row row-cols-2 row-cols-xs-2 row-cols-md-3 row-cols-lg-5 my-5">
+                            <div class="cols-3 mx-auto justify-content-center d-flex" th:each="book : ${list}">
+                                <div class="card bg-transparent flex-lg-row mx-auto mb-5 ">
+                                    <label class="container d-flex books">
+                                        <img
+                                                th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" class="mx-auto shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover" style="cursor: pointer;" th:field="${book.id}"/>
+                                        <input id="deleteCheckbox" type="checkbox" name="bookIds" th:value="${book.id}">
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                        <hr>
                     </div>
+                    <hr>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 
     <!-- Footer -->
