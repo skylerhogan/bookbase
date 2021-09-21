@@ -30,7 +30,7 @@ const generateBestSellersList = async(nytBestSellers) => {
             <div id="${bookRank}" class="row bestsellerEntry py-3 ps-4 gap-5 gap-md-0">
                 <p class="col-3 me-3"><img src="${cover}" class="book" id="cover-${bookRank}">
                 <div class="col">
-                    <h4>${bookRank}. <a href="${url}" target="_blank">${title}</a></h4>
+                    <h4>#${bookRank} - <a href="${url}" target="_blank">${title}</a></h4>
                     <h6>By ${author}</h6>
                     <p>${description}</p>
                 </div>

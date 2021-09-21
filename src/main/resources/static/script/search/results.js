@@ -6,18 +6,15 @@ import {
 let promises = [];
 let totalResults = 0;
 
-const API_ENDPOINT = `https://www.googleapis.com`;
-const API_KEY = `AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg`;
+const API_ENDPOINT = "https://www.googleapis.com";
+const API_KEY = "AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg";
 
 let results = document.getElementById('results');
-let pageNumbersContainer = document.querySelector('.page-numbers-container');
+let pageNumbersContainer = document.getElementById('page-numbers-container');
 let pageNumbers = document.querySelectorAll('page-number');
 
 const go = async () => {
     await printBooks(query, startIndex, maxResults);
-    console.log(query);
-//    console.log(searchQuery);
-//    console.log(searchParameter);
 }
 
 const printBooks = async (query, startIndex, maxResults) => {
@@ -33,7 +30,9 @@ const printBooks = async (query, startIndex, maxResults) => {
     books.forEach(book => {
         book = returnBookObjectFromJson(book);
         let result = document.createElement('div');
+        result.classList.add('card');
         result.classList.add('result');
+        result.classList.add('bg-light');
         result.innerHTML = returnObjectFieldsAsHtml(book);
         results.appendChild(result);
     })
@@ -45,7 +44,6 @@ const printBooks = async (query, startIndex, maxResults) => {
 
 const retrieveBooks = async (query, startIndex, maxResults) => {
     promises = [];
-    console.log(query);
     let response = await fetch(`${API_ENDPOINT}/books/v1/volumes?q=${query}&startIndex=${startIndex}&maxResults=${maxResults}&orderBy=relevance&key=${API_KEY}`);
     promises.push(await response.json());
 

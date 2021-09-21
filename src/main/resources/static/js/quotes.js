@@ -117,7 +117,7 @@ function newQuote() {
     container.innerHTML += `
         <div class="row pt-4">
             <div class="col-1">    
-                <i class="bi bi-chat-right-quote-fill display-6 me-3" style="color:slategrey"></i>
+                <i class="bi bi-chat-right-quote-fill display-6 me-3" style="color:#6C63FF"></i>
             </div>
             <div class="col-11">
                 <p class="col d-inline-block mx-4 lead fs-4 lh-sm" id="quoteDisplay">${quote}</p>
@@ -125,7 +125,7 @@ function newQuote() {
         </div>
         <figcaption class="ps-3 pt-4 mt-4 border-top d-flex flex-wrap blockquote-footer">
             <p id="authorDisplay">${author}, </p>
-            <cite id="bookDisplay" class="ms-1">${book}</cite>
+            <cite id="bookDisplay" class="ms-1" style="color:#6C63FF">${book}</cite>
         </figcaption>`;
 }
 

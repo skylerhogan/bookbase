@@ -54,6 +54,8 @@ public class ProfileController {
             model.addAttribute("favoriteGenre", favoriteGenre);
             model.addAttribute("joinDate", joinDate);
 
+            model.addAttribute("title", "My Profile | Bookbase");
+
             return "user/profile";
         }
     }

@@ -42,6 +42,7 @@ public class BookController {
     @GetMapping("add")
     public String displayAddBookForm(Model model) {
         model.addAttribute(new Book());
+        model.addAttribute("title", "Add Book | Bookbase");
 
         return "book/add";
     }
@@ -86,6 +87,7 @@ public class BookController {
         bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Want to Read", Sort.by("title")));
         bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Completed", Sort.by("title")));
         model.addAttribute("bookLists", bookLists);
+        model.addAttribute("title", "Remove Books | Bookbase");
 
         return "book/delete";
     }
@@ -106,6 +108,7 @@ public class BookController {
         if (optBook.isPresent()) {
             Book book = (Book) optBook.get();
             model.addAttribute("book", book);
+            model.addAttribute("title", "Edit - " + book.getTitle() + " | Bookbase");
             return "book/edit";
         } else {
             return "redirect:../";
@@ -150,6 +153,8 @@ public class BookController {
         bookLists.add(bookRepository.findByUserIdAndStatus(user.getId(), "Completed", Sort.by("title")));
         model.addAttribute("bookLists", bookLists);
 
+        model.addAttribute("title", "My Shelves | Bookbase");
+
         return "book/shelf";
     }
 
@@ -157,6 +162,8 @@ public class BookController {
     public String displayMainBookshelf(Model model, @RequestParam (required = false) String status,
                                        @RequestParam (required = false, defaultValue = "title") String orderBy,
                                        @RequestParam (required = false) String rating) {
+
+        model.addAttribute("title", "My Shelves | Bookbase");
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = ((UserDetails)principal).getUsername();
@@ -215,6 +222,9 @@ public class BookController {
             model.addAttribute("dateViewed", dateViewed);
             book.setDateViewed(dateViewed);
             bookRepository.save(book);
+
+            model.addAttribute("title", book.getTitle() + " | Bookbase");
+
             return "book/view";
         } else {
             return "redirect:../shelf";

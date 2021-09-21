@@ -56,12 +56,10 @@
                 </button>
                 <div class="col p-2 d-flex justify-content-end">
                     <a class="btn btn-success btn-expand text-white mx-2" th:href="@{/user/add}" role="button">
-                        <i class="bi bi-plus-lg"></i><span class="expand-button d-xs-none d-md-inline-block"> Add
-                        Book</span>
+                        <i class="bi bi-plus-lg text-light"></i><span class="expand-button d-xs-none d-md-inline-block text-light">Add Book</span>
                     </a>
                     <a class="btn btn-danger btn-expand ms-2" th:href="@{/user/delete}" role="button">
-                        <i class="bi bi-x-lg"></i><span class="expand-button d-xs-none d-md-inline-block"> Remove
-                        Books</span>
+                        <i class="bi bi-x-lg text-light"></i><span class="expand-button d-xs-none d-md-inline-block text-light">Remove Books</span>
                     </a>
                 </div>
             </div>
@@ -72,7 +70,7 @@
 </div>
 
 <!-- Footer -->
-<footer th:replace="fragments :: footer"></footer>
+<footer th:replace="fragments :: footer-user"></footer>
 
 </body>
 

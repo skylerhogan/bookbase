@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&family=Montserrat:wght@300;500&display=swap');
+
 body {
     flex-direction: column!important;
     min-height: 100vh!important;
@@ -21,4 +23,35 @@ body {
 
 .form-floating label {
     color: gray;
+}
+
+body {
+    font-family: 'Montserrat', cursive;
+    font-weight: lighter;
+    color: #182E4C;
+}
+
+h1,h2,h3,h4,h5 {
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: 700;
+}
+
+.logo {
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: 300;
+}
+
+.base {
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color:#6C63FF;
+}
+
+a:hover {
+    color:#6C63FF !important;
 }

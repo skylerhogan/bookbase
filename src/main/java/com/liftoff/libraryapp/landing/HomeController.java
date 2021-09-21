@@ -28,6 +28,7 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String displayHomePage(Model model, Principal currentUser) {
+
         if (currentUser != null) {
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             String username = ((UserDetails)principal).getUsername();
@@ -40,9 +41,11 @@ public class HomeController {
             recentBooks.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading", Sort.by("dateViewed").descending()));
             model.addAttribute("recentBooks", recentBooks);
 
+            model.addAttribute("title", "Home | Bookbase");
 
             return "home";
         }
+        model.addAttribute("title", "Bookbase - Manage Your Own Personal Library");
         return "index";
     }
 

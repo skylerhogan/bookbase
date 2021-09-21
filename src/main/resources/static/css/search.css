@@ -7,27 +7,9 @@ body {
     margin: 0;
     letter-spacing: 1ex;
     color: white;
-} .nav-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 10px;
-    background-color: rgba(64,110,88,1);
-    box-shadow: 0px 2px rgba(0,0,0,0.5);
-    z-index: 5;
-} .nav-item {
-    height: 50px;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    margin: 0 5px;
-} .nav-link {
-    cursor: pointer;
-    text-decoration: none;
-    border-radius: 5px;
-} .nav-link:hover {
-    box-shadow: inset 1px -1px 5px rgba(0,0,0,0.5);
-} #page-heading {
+}
+
+#page-heading {
     pointer-events: none;
 }
 
@@ -39,20 +21,16 @@ body {
     flex-direction: column;
     align-items: center;
 } #search-form {
-    box-shadow: -2px 2px rgba(0,0,0,0.5), 2px -2px 5px rgba(0,0,0,0.2);
-    /* background-color: green; */
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    /* height: 200px; */
     padding: 20px;
 } #search-field {
     margin: 10px;
 } .form-text {
     font-family: Josefin Slab;
     font-size: 18px;
-    /* letter-spacing: 0.5ex; */
 } .form-button {
     font-family: Josefin Slab;
     font-size: 18px;

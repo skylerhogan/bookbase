@@ -24,6 +24,7 @@ public class RegistrationController {
     @GetMapping
     public String showRegistration(Model model) {
         model.addAttribute("request", new RegistrationRequest());
+        model.addAttribute("title", "Sign Up | Bookbase");
 
         return "security/signup_form";
     }
