@@ -1,6 +1,13 @@
 /*html, body {
   height: 100%;
 }*/
+
+#form-buttons {
+    width: 100vw;
+    margin-left: calc(-1 * (100vw - 100%) /2);
+
+}
+
 .book-container {
     min-width: 135px;
     max-width: 135px;
