@@ -50,17 +50,18 @@ const createCarouselContent = () => {
 
 const updateCover = async(id, isbn, url) => {
     try {
-        let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyBgv6o7-VshWl4Jj4l1vow-a141KzvG7j8`);
-        let data = await response.json();
-
-        let bookId = await data.items[0].id;
-        
-        let img = `https://www.syndetics.com/index.aspx?isbn=${isbn}/LC.JPG`;
         let bookUrl = url;
+        let bookId = '';
+
+        let img = `https://www.syndetics.com/index.aspx?isbn=${isbn}/LC.JPG`;
         let carouselBooks = document.getElementsByClassName("carousel-book");
         let currentId = carouselBooks[id].id;
 
         if (document.getElementById("carousel-user") != null) {
+            let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg`);
+            let data = await response.json();
+            bookId = await data.items[0].id;
+
             bookUrl = `user/search/results/view/${bookId}`;
         }
 

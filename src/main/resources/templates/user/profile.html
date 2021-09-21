@@ -6,11 +6,9 @@
     <link rel="stylesheet" th:href="@{/css/profile.css}" />
 </head>
 <body>
-    <!-- User Navbar -->
-    <header class="container-fluid">
-        <nav th:replace="fragments :: navigation-user"></nav>
-    </header>
 
+<!-- User Navbar -->
+<nav th:replace="fragments :: navigation-user"></nav>
 
 <div class="container p-5 my-5">
 
@@ -67,23 +65,14 @@
         <!-- Quote Generator (requires quotes.js) -->
         <div class="col mx-auto col-6-md col-lg-12" style="min-width:20rem;" >
             <figure class="px-xs-3 px-md-5 bg-light rounded-3 shadow">
-                <blockquote class="py-5 container" id="blockquote-container">
-<!--                    <i class="bi bi-chat-right-quote-fill display-6" style="color:slategrey"></i>-->
-<!--                    <p class="text-center mx-5 lead fs-4 lh-sm" id="quoteDisplay">-->
-<!--                    </p>-->
-<!--                    <figcaption class="pt-4 mt-4 border-top d-flex flex-wrap blockquote-footer">-->
-<!--                        <p id="authorDisplay"></p>-->
-<!--                        <cite id="bookDisplay" class="ms-1"></cite>-->
-<!--                    </figcaption>-->
-                </blockquote>
+                <blockquote class="py-5 container" id="blockquote-container"></blockquote>
             </figure>
         </div>
     </div>
 </div>
 
-    <!-- Footer -->
-    <section class="container-fluid">
-        <div th:replace="fragments :: footer"></div>
-    </section>
+<!-- Footer -->
+<footer th:replace="fragments :: footer"></footer>
+
 </body>
 </html>

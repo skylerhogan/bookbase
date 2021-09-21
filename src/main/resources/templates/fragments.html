@@ -143,7 +143,13 @@
         <div class="cols-3 mx-auto justify-content-center d-flex" th:each="book : ${list}">
           <div class="card bg-transparent flex-lg-row mx-auto mb-5">
             <a th:if="${#httpServletRequest.requestURI == '/user/shelf'}" th:href="@{|/user/view/${book.id}|}">
-              <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" onmouseover="this.style.opacity='50%'" onmouseout="this.style.opacity='100%'" class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover"/>
+<!--              <img th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}"-->
+              <img th:src="${book.thumbnail}"
+                onerror="this.onerror = null; this.src='/images/not-found.png'"
+                onmouseover="this.style.opacity='50%'"
+                onmouseout="this.style.opacity='100%'"
+                class="mx-auto bookcover shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover"
+              />
             </a>
           </div>
         </div>
