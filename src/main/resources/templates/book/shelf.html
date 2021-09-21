@@ -74,6 +74,26 @@
 <!-- Footer -->
 <footer th:replace="fragments :: footer-user"></footer>
 
+<script>
+    let bookContainers = document.querySelectorAll('.book-container');
+
+    bookContainers.forEach(container => {
+        let coverImage = container.lastElementChild;
+        container.addEventListener('mouseover', () => {
+            if(!container.classList.contains('open')) {
+                container.classList.add('open');
+                coverImage.style.opacity = '50%';
+            }
+        })
+        container.addEventListener('mouseout', () => {
+            if(container.classList.contains('open')) {
+                container.classList.remove('open');
+                coverImage.style.opacity = '100%';
+            }
+        })
+    })
+</script>
+
 </body>
 
 </html>

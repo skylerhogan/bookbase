@@ -55,7 +55,12 @@
                                 <div class="card bg-transparent flex-lg-row mx-auto mb-5 ">
                                     <label class="container d-flex books">
                                         <img
-                                                th:src="@{${'https://www.syndetics.com/index.aspx?isbn='+book.isbn+'/LC.JPG'}}" class="mx-auto shadow-lg" z-index="1" margin-top="-2" width="135" height="200" alt="cover" style="cursor: pointer;" th:field="${book.id}"/>
+                                            th:src="${book.thumbnail}"
+                                            onerror="this.onerror = null; this.src='/images/not-found.png'"
+                                            class="mx-auto shadow-lg"
+                                            z-index="1" margin-top="-2" width="135" height="200" alt="cover" style="cursor: pointer;"
+                                            th:field="${book.id}"
+                                        />
                                         <input id="deleteCheckbox" type="checkbox" name="bookIds" th:value="${book.id}">
                                     </label>
                                 </div>

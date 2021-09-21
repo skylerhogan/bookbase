@@ -19,16 +19,26 @@
 
     <div class="container py-5 mt-5">
 
-        <input id="back-button" class="btn btn-secondary" value="back to search" action="action" type="button" onclick="history.go(-1);" style="margin-bottom: 20px;" />
+<!--        <input id="back-button" class="btn btn-secondary" value="back to search" action="action" type="button" onclick="history.go(-1);" style="margin-bottom: 20px;" />-->
 
         <div class="card mb-4 bg-light rounded-3 shadow">
             <div id="book-container" class="container card-body pt-5 row">
-                <div id="cover-and-rating" class="col col-12 col-lg-4 mb-5" align="center" style="justify-content:center"></div>
+                <div id="cover-and-rating" class="col col-12 col-lg-3 mb-5" align="center" style="justify-content:center"></div>
                 <div id="book-details" class="col col-12 col-lg-6 mb-5"></div>
-                <div id="buttons" class="col col-12 col-lg-2 mb-5" align="center" style="justify-content:center">
+                <div id="buttons" class="col col-12 col-lg-3 mb-5" align="center" style="justify-content:center">
                     <div>
                         <span id="add-button"></span>
                     </div>
+
+                    <div id="previewButton" class="mb-5">
+                        <script src="//books.google.com/books/previewlib.js"></script>
+                        <script>
+                            let previewId = '[[${bookId}]]';
+                            GBS_insertPreviewButtonPopup(previewId);
+                        </script>
+                        <span id="__GBS_Button0" style="cursor:pointer;"></span>
+                    </div>
+
                 </div>
             </div>
             <div id="book-description" class="container pb-5 px-5"></div>
@@ -44,10 +54,8 @@
             <div class="card bg-light rounded-3 shadow">
                 <div class="container card-body py-5 row form-group">
 
-                    <div class="col col-12 col-lg-3 mb-5" align="center" style="justify-content:center;align-items:center;">
-                        <div>
-                            <img id="form-thumbnail">
-                        </div>
+                    <div class="col col-12 col-lg-3 mb-5 align-self-center" align="center" style="justify-content:center;align-items:center;">
+                        <div id="form-thumbnail"></div>
                     </div>
 
                     <div class="col col-12 col-lg-5 mb-5" align="center" style="justify-content:center">
@@ -132,6 +140,9 @@
     let bookIds = '[[${bookRepositoryIds}]]';
 </script>
 <script type="module" th:src="@{/script/search/view.js}" th:inline="javascript"></script>
+
+<script type="text/javascript" src="//books.google.com/books/previewlib.js"></script>
+
 
 </body>
 </html>

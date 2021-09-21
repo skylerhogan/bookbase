@@ -8,9 +8,41 @@
 
 }
 
-.bookcover {
+.book-container {
     min-width: 135px;
     max-width: 135px;
+    box-sizing: content-box;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex: 1;
+    cursor: pointer;
+} .book-container > * {
+    margin: 0;
+    width: 100%;
+    transition: transform 0.5s;
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.book-container > *:first-child { transform: translateY(100%); }
+.book-container.open > *:first-child { transform: translateY(0%);}
+
+.bookcover {
+    width:100%;
+    position: relative;
+} .book-info {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 5;
+    flex-direction: column;
+} .book-info > * {
+    color: #182E4C;
+    text-align: center;
+} .title {
+    font-style: italic;
 }
 
 .card-shadow {

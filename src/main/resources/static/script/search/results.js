@@ -8,6 +8,7 @@ let totalResults = 0;
 
 const API_ENDPOINT = "https://www.googleapis.com";
 const API_KEY = "AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg";
+//const API_KEY = "AIzaSyDCaZHgbjWrCjgUI1LBgw3e3-U_P6ua4kI"
 
 let results = document.getElementById('results');
 let pageNumbersContainer = document.getElementById('page-numbers-container');

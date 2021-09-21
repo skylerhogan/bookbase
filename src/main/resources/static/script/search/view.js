@@ -2,6 +2,7 @@ import {
     returnBookObjectFromJson,
     returnObjectFieldsAsHtml,
     renderAddBookButton,
+    renderBuyButton,
     fillAddBookForm,
     generateTagLinks
 } from './modules/bookFunctions.js';
@@ -22,12 +23,9 @@ bookIds = bookIds.replaceAll("[", "").replaceAll("]", "").replaceAll(" ", "");
 bookIds = bookIds.split(",");
 let bookShelfId = null;
 
-let backButton = document.getElementById('back-button');
+//let backButton = document.getElementById('back-button');
 
 const go = async () => {
-    if (window.history.length < 2) {
-        backButton.style.display = 'none';
-    }
     await printBook(bookId);
 }
 
@@ -35,14 +33,12 @@ const printBook = async (bookId) => {
     await retrieveBook(bookId);
 
     let bookObject = returnBookObjectFromJson(promise[0]);
-
     let alreadyInBookshelf = await checkBookshelf(bookObject.industryIdentifiers, bookIsbns);
 
     await renderPage(bookObject);
-
-    fillAddBookForm(bookObject);
-
+    await fillAddBookForm(bookObject);
     renderAddBookButton(alreadyInBookshelf, bookShelfId);
+    renderBuyButton(bookObject);
 }
 
 const retrieveBook = async (bookId) => {
@@ -53,59 +49,76 @@ const retrieveBook = async (bookId) => {
 
 const renderPage = async (bookObject) => {
 
-    let coverImage = document.createElement('img');
-    coverImage.id = 'cover-image';
-    coverImage.src = bookObject.thumbnail;
-    coverImage.alt = `cover for ${bookObject.title}`;
+    let coverImageContainer = document.createElement('div');
 
-    coverAndRating.appendChild(coverImage);
+    coverImageContainer.innerHTML = `
+        <img
+            id="cover-image"
+            class="img-fluid book mb-5"
+            src="${bookObject.thumbnail2}"
+            alt="cover for ${bookObject.title}"
+            onerror='this.onerror = null; this.src="${bookObject.thumbnail}"'
+        >
+    `;
+
+    coverAndRating.appendChild(coverImageContainer);
 
     let rating = document.createElement('div');
     rating.id = 'rating-details';
+
+    if (bookObject.averageRating != undefined) {
+
     rating.innerHTML = `
-        <label class="rating-label"><strong>Average rating: ${bookObject.averageRating} <span class="rating-count">(${bookObject.ratingsCount})</span></strong>
+        <label class="rating-label">Average rating: ${bookObject.averageRating} <span class="rating-count">(${bookObject.ratingsCount})</span>
           <input
             class="rating"
             max="5"
             readonly
             step="0.01"
-            style="--fill:gold;--value:${bookObject.averageRating}"
+            style="--fill:gray;--value:${bookObject.averageRating}"
             type="range"
             value="${bookObject.averageRating}">
         </label>
-
     `;
+    } else {
+        rating.innerHTML = `<label class="rating-label">No ratings</label>`
+    }
     coverAndRating.appendChild(rating);
 
     bookDetails.innerHTML = `
          <h1 class="display-6 fw-bold text-dark">${bookObject.title}</h1>
          <h4>by ${bookObject.author}</h4>
          <div class="row" style="margin-top: 2rem;">
-            <div class="col"
-                 <p><span style="font-weight:bold;">Pages: </span>${bookObject.pageCount}</p>
-                 <p><span style="font-weight:bold;">Genre: </span>${bookObject.genre}</p>
+            <div class="col">
+                 <p>Pages: ${bookObject.pageCount}</p>
+                 <p>Genre: ${bookObject.genre}</p>
             </div>
             <div class="col">
-                <p><span style="font-weight:bold;">Publication Date: </span>${bookObject.publishedDate}</p>
-                <p><span style="font-weight:bold;">ISBN: </span>${bookObject.industryIdentifiers}</p>
+                <p>Publication Date: ${bookObject.publishedDate}</p>
+                <p>ISBN: ${bookObject.industryIdentifiers}</p>
             </div>
          </div>
-         <p class="book-detail" style="margin-top: 1rem;"><span style="font-weight:bold;">Tags: </span>${generateTagLinks(bookObject.tags)}</p>
+         <p class="book-detail" style="margin-top: 1rem;">Tags: ${generateTagLinks(bookObject.tags)}</p>
     `;
 
-    let descriptionHeading = document.createElement('h3');
+    let descriptionHeading = document.createElement('h4');
     descriptionHeading.id = 'description-heading';
     descriptionHeading.innerHTML = 'Description';
 
     let description = document.createElement('p');
     description.id = 'description-text';
-    description.innerHTML = `${bookObject.description}`;
+    if(bookObject.description != undefined) {
+        description.innerHTML = `${bookObject.description}`;
+    } else {
+        description.innerHTML = 'No description available';
+    }
 
     bookDescription.appendChild(descriptionHeading);
     bookDescription.appendChild(description);
 
 }
 
+// function to determine whether to display "add book" or "view in bookshelf" button
 const checkBookshelf = async (isbn, shelfIsbns) => {
     if (shelfIsbns.includes(isbn)) {
         bookShelfId = bookIds[shelfIsbns.indexOf(isbn)];
