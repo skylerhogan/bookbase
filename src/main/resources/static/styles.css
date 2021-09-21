@@ -7,7 +7,7 @@ body {
 .main-bg {
 	/*background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
 		url("/images/library.jpg");*/
-    background-image: url("/images/test-bg.svg");
+    background-image: url("/images/background.svg");
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -15,7 +15,7 @@ body {
 
 @media (max-width: 767.98px) {
     .main-bg {
-        background-image: url("/images/test-mobile-bg.svg");
+        background-image: url("/images/mobile-background.svg");
     }
 }
 
