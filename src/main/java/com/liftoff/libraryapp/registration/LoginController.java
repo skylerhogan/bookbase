@@ -9,7 +9,7 @@ public class LoginController {
 
     @GetMapping("login")
     public String displayLoginForm(Model model) {
-        model.addAttribute("title", "Log In");
+        model.addAttribute("title", "Log In | Bookbase");
         return "security/login";
     }
 

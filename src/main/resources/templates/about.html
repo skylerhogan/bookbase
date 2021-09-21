@@ -5,10 +5,13 @@
     <link rel="stylesheet" th:href="@{/css/about.css}" />
 </head>
 <body>
-<!-- User Navbar -->
-<header class="container-fluid">
+
+<th:block sec:authorize="isAuthenticated()">
     <nav th:replace="fragments :: navigation-user"></nav>
-</header>
+</th:block>
+<th:block sec:authorize="isAnonymous()">
+    <nav th:replace="fragments :: navigation-guest"></nav>
+</th:block>
 
 <section id="div" class="p-5">
     <div class="container">
@@ -55,7 +58,14 @@
                             <hr/>
                             <ul class="p-0" style="font-size:.85rem;">
                                 <li class="d-flex"><p>Favorite Genre: Psychology/Self-Help</p></li>
-                                <li class="d-flex">Currently Reading:&nbsp<a th:href="@{|/user/search/results/view/T8XTswEACAAJ|}">The Gulag Archipelago</a></li>
+                                <li class="d-flex">Currently Reading:&nbsp
+                                    <th:block sec:authorize="isAuthenticated()">
+                                        <a th:href="@{|/user/search/results/view/T8XTswEACAAJ|}">The Gulag Archipelago</a>
+                                    </th:block>
+                                    <th:block sec:authorize="isAnonymous()">
+                                        <a href="https://amazon.com/dp/1784871516/">The Gulag Archipelago</a>
+                                    </th:block>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -75,7 +85,14 @@
                             <hr/>
                             <ul class="p-0 bio" style="font-size:.85rem;">
                                 <li class="d-flex"><p>Favorite Genre: Mystery</p></li>
-                                <li class="d-flex">Currently Reading:&nbsp<a th:href="@{|/user/search/results/view/GrYsEAAAQBAJ|}">Project Hail Mary</a></li>
+                                <li class="d-flex">Currently Reading:&nbsp
+                                    <th:block sec:authorize="isAuthenticated()">
+                                        <a th:href="@{|/user/search/results/view/GrYsEAAAQBAJ|}">Project Hail Mary</a>
+                                    </th:block>
+                                    <th:block sec:authorize="isAnonymous()">
+                                        <a href="https://amazon.com/dp/0593135202/">Project Hail Mary</a>
+                                    </th:block>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -95,7 +112,14 @@
                             <hr/>
                             <ul class="p-0" style="font-size:.85rem;">
                                 <li class="d-flex"><p>Favorite Genre: Fantasy</p></li>
-                                <li class="d-flex">Currently Reading:&nbsp<a th:href="@{|/user/search/results/view/ft2NDAAAQBAJ|}">Norse Mythology</a></li>
+                                <li class="d-flex">Currently Reading:&nbsp
+                                    <th:block sec:authorize="isAuthenticated()">
+                                        <a th:href="@{|/user/search/results/view/ft2NDAAAQBAJ|}">Norse Mythology</a>
+                                    </th:block>
+                                    <th:block sec:authorize="isAnonymous()">
+                                        <a href="https://amazon.com/dp/0393356183/">Norse Mythology</a>
+                                    </th:block>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -115,7 +139,14 @@
                             <hr/>
                             <ul class="p-0" style="font-size:.85rem;">
                                 <li class="d-flex"><p>Favorite Genre: History</p></li>
-                                <li class="d-flex">Currently Reading:&nbsp<a th:href="@{|/user/search/results/view/S7jrDwAAQBAJ|}">Klara and the Sun</a></li>
+                                <li class="d-flex">Currently Reading:&nbsp
+                                    <th:block sec:authorize="isAuthenticated()">
+                                        <a th:href="@{|/user/search/results/view/S7jrDwAAQBAJ|}">Klara and the Sun</a>
+                                    </th:block>
+                                    <th:block sec:authorize="isAnonymous()">
+                                        <a href="https://amazon.com/dp/059331817X/">Klara and the Sun</a>
+                                    </th:block>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -126,8 +157,12 @@
 </section>
 
 <!-- Footer -->
-<section>
-    <div th:replace="fragments :: footer"></div>
-</section>
+<th:block sec:authorize="isAuthenticated()">
+    <nav th:replace="fragments :: footer-user"></nav>
+</th:block>
+<th:block sec:authorize="isAnonymous()">
+    <nav th:replace="fragments :: footer-guest"></nav>
+</th:block>
+
 </body>
 </html>

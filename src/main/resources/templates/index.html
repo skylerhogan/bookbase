@@ -13,7 +13,7 @@
 <nav th:replace="fragments :: navigation-guest"></nav>
 
 <!-- Header/showcase -->
-<header class="main-bg text-light text-center text-sm-start d-flex align-items-center justify-content-center">
+<header class="main-bg vh-100 text-light text-center text-sm-start d-flex align-items-center justify-content-center">
   <div class="container">
     <div class="row align-items-center gx-5">
       <div class="col-xl-6">
@@ -102,19 +102,19 @@
     <p class="fw-normal lead text-dark pb-4">Choose from millions of books to add to your library, including
       these bestsellers:</p>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner"></div>
+      <div class="carousel-inner" id="carousel-guest"></div>
     </div>
   </div>
 </section>
 
 <!-- Register -->
-<section class="bg-dark p-5">
+<section class="bg-dark py-5">
   <div class="container">
     <div class="row align-items-center justify-content-between text-light">
       <div class="col-md">
         <img id="reader-img" th:src="@{/images/book_lover.svg}" class="img-fluid" />
       </div>
-      <div class="col-md p-5 text-center my-3">
+      <div class="col-md text-center p-4 mt-3">
         <h2>Want to manage your own library?</h2>
         <p class="lead my-3">Register for a free account today to get started.</p>
         <a href="/registration" class="btn btn-primary my-3 px-4 py-2">Create account</a>
@@ -123,30 +123,8 @@
   </div>
 </section>
 
-<!-- Guest footer (WIP) -->
-<footer class="border-top bg-light">
-  <div class="container d-flex flex-wrap justify-content-between align-items-center py-3">
-    <p class="mb-0 text-muted">&nbsp;&copy; 2021, All Rights Reserved</p>
-    <!-- <a id="footer-logo" href="/"
-        class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-            class="bi bi-exclude" viewBox="0 0 16 16">
-            <path
-                d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm12 2H5a1 1 0 0 0-1 1v7h7a1 1 0 0 0 1-1V4z" />
-        </svg>
-    </a> -->
-    <div class="h1 col d-flex align-items-center justify-content-center my-auto">
-      <a class="link-dark text-decoration-none" href="/">
-        <i class="bi bi-exclude"></i>
-      </a>
-    </div>
-    <ul class="nav justify-content-end">
-      <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a th:href="@{|/user/about|}" class="nav-link px-2 text-muted">About</a>
-      </li>
-    </ul>
-  </div>
-</footer>
+<!-- Footer -->
+<footer th:replace="fragments :: footer-guest"></footer>
 
 </body>
 

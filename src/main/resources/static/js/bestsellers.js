@@ -48,29 +48,24 @@ const createCarouselContent = () => {
     }
 }
 
-const updateCover = (id, isbn, url) => {
+const updateCover = async(id, isbn, url) => {
     try {
-//        let img = `https://www.syndetics.com/index.aspx?isbn=${isbn}/LC.JPG`;
-//        let carouselBooks = document.getElementsByClassName("carousel-book");
-//        let currentId = carouselBooks[id].id;
-//
-//        document.getElementById(currentId).innerHTML += `<a href="${url}" target="_blank"><img class="book" src=${img}></img></a>`;
-        let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg`);
-        let data = await response.json();
+        let bookUrl = url;
+        let bookId = '';
 
-        let img = await data.items[0].volumeInfo.imageLinks.thumbnail;
-
-        let googleId = await data.items[0].id;
-
-        let baseLink = /*[[@{}]]*/'';
-        let linkName = `user/search/results/view/${googleId}`;
-        let viewLink = baseLink + linkName;
-
-        img = img.replace(/^http:\/\//i, 'https://');   // replaces HTTP links with secure HTTPS versions
-
+        let img = `https://www.syndetics.com/index.aspx?isbn=${isbn}/LC.JPG`;
         let carouselBooks = document.getElementsByClassName("carousel-book");
         let currentId = carouselBooks[id].id;
-        document.getElementById(currentId).innerHTML += `<a href="${viewLink}" target="_blank"><img class="book" src=${img}></img></a>`;
+
+        if (document.getElementById("carousel-user") != null) {
+            let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg`);
+            let data = await response.json();
+            bookId = await data.items[0].id;
+
+            bookUrl = `user/search/results/view/${bookId}`;
+        }
+
+        document.getElementById(currentId).innerHTML += `<a href="${bookUrl}" target="_blank"><img class="book" src=${img}></img></a>`;
     } catch(err) {
         console.error(err);
     }

@@ -101,16 +101,32 @@ const quotesObject = [
     },
     {
     quote: 'Nothing in life is as important as you think it is, while you are thinking about it.',
-    author: 'Daniel Kahneman',
+    author: 'Daniel Kahnem',
     book: 'Thinking, Fast and Slow',
     }
 ];
 
 function newQuote() {
     let randomNumber = Math.floor(Math.random() * (quotesObject.length));
-    document.getElementById('quoteDisplay').innerHTML = quotesObject[randomNumber].quote;
-    document.getElementById('authorDisplay').innerHTML = quotesObject[randomNumber].author;
-    document.getElementById('bookDisplay').innerHTML = quotesObject[randomNumber].book;
+
+    let container = document.getElementById("blockquote-container");
+    let quote = quotesObject[randomNumber].quote;
+    let author = quotesObject[randomNumber].author;
+    let book = quotesObject[randomNumber].book;
+
+    container.innerHTML += `
+        <div class="row pt-4">
+            <div class="col-1">    
+                <i class="bi bi-chat-right-quote-fill display-6 me-3" style="color:#6C63FF"></i>
+            </div>
+            <div class="col-11">
+                <p class="col d-inline-block mx-4 lead fs-4 lh-sm" id="quoteDisplay">${quote}</p>
+            </div>
+        </div>
+        <figcaption class="ps-3 pt-4 mt-4 border-top d-flex flex-wrap blockquote-footer">
+            <p id="authorDisplay">${author}, </p>
+            <cite id="bookDisplay" class="ms-1" style="color:#6C63FF">${book}</cite>
+        </figcaption>`;
 }
 
 document.addEventListener("DOMContentLoaded", function() {
