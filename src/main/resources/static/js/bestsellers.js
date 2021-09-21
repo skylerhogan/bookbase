@@ -33,8 +33,8 @@ const createCarouselContent = () => {
 
     for (let i = 0; i < 5; i++) {
         carousel.innerHTML += `
-        <div class="carousel-item" data-bs-interval="5000">
-            <div class="row align-items-center justify-content-evenly carousel-row" id="carousel-row-${i}">
+        <div class="carousel-item" data-bs-interval="8000">
+            <div class="row align-items-center carousel-row" id="carousel-row-${i}">
             </div>
         </div>`;
 
@@ -42,29 +42,30 @@ const createCarouselContent = () => {
         let carouselRows = document.getElementsByClassName("carousel-row");
 
         for (let j = 0; j < 6; j++) {
-            carouselRows[i].innerHTML += `<div class="col-md-1 carousel-book" id="carousel-book-${j+i*6}"></div>`;
+            carouselRows[i].innerHTML += `<div class="col-md-2 d-flex justify-content-center carousel-book"
+            id="carousel-book-${j+i*6}"></div>`;
         }
     }
 }
 
 const updateCover = async(id, isbn, url) => {
     try {
-        let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg`);
-        let data = await response.json();
+        let bookUrl = url;
+        let bookId = '';
 
-        let img = await data.items[0].volumeInfo.imageLinks.thumbnail;
-
-        let googleId = await data.items[0].id;
-
-        let baseLink = /*[[@{}]]*/'';
-        let linkName = `user/search/results/view/${googleId}`;
-        let viewLink = baseLink + linkName;
-
-        img = img.replace(/^http:\/\//i, 'https://');   // replaces HTTP links with secure HTTPS versions
-
+        let img = `https://www.syndetics.com/index.aspx?isbn=${isbn}/LC.JPG`;
         let carouselBooks = document.getElementsByClassName("carousel-book");
         let currentId = carouselBooks[id].id;
-        document.getElementById(currentId).innerHTML += `<a href="${viewLink}" target="_blank"><img class="book" src=${img}></img></a>`;
+
+        if (document.getElementById("carousel-user") != null) {
+            let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg`);
+            let data = await response.json();
+            bookId = await data.items[0].id;
+
+            bookUrl = `user/search/results/view/${bookId}`;
+        }
+
+        document.getElementById(currentId).innerHTML += `<a href="${bookUrl}" target="_blank"><img class="book" src=${img}></img></a>`;
     } catch(err) {
         console.error(err);
     }

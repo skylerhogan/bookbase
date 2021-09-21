@@ -62,7 +62,8 @@
 
                         <div class="input-group">
                             <label class="input-group-text my-1" for="title">Title</label>
-                            <input type="text" th:field="${book.title}" id="title" class="form-control shadow-sm my-1" placeholder="Title"/>
+                            <input type="text" th:field="${book.title}" name="title" id="title"
+                                   class="form-control shadow-sm my-1" placeholder="Title"/>
                         </div>
 
                         <div class="input-group">
@@ -131,9 +132,7 @@
 
 </section>
 
-<section>
-    <div th:replace="fragments :: footer"></div>
-</section>
+<footer th:replace="fragments :: footer-user"></footer>
 
 <script>
     const bookId = '[[${bookId}]]';

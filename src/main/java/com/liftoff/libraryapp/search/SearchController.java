@@ -35,7 +35,10 @@ public class SearchController {
     private MyUserDetailsService myUserDetailsService;
 
     @GetMapping("search")
-    public String displaySearchForm() { return "search/search"; }
+    public String displaySearchForm(Model model) {
+        model.addAttribute("title", "Search | Bookbase");
+        return "search/search";
+    }
 
     @PostMapping("/search")
     public String processSearchForm(Model model, String searchQuery, String searchParameter, String resultsPerPage) {
@@ -92,6 +95,9 @@ public class SearchController {
         model.addAttribute("query", query);
         model.addAttribute("pageNumber", currentPage);
         model.addAttribute("startIndex", (currentPage-1) * maxResults);
+
+        model.addAttribute("title", "Search: " + query + " | Bookbase");
+
         return "search/results";
     }
 
@@ -110,6 +116,8 @@ public class SearchController {
 
         model.addAttribute("bookRepositoryIds", bookRepositoryIds);
         model.addAttribute("bookRepositoryIsbns", bookRepositoryIsbns);
+
+        model.addAttribute("title", "Search Result | Bookbase");
 
         return "search/view";
     }

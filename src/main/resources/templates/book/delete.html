@@ -13,35 +13,38 @@
     </header>
 
     <!-- Delete Book Form -->
-    <div class="my-auto " style="position:relative; top:200px;">
+<!--    <div class="my-auto " style="position:relative; top:200px;">-->
+    <div style="padding-top:65px;">
         <div class="container">
             <form method="post" th:action="@{/user/delete}" id="deleteForm" class="me-auto">
-                <div class="d-flex pt-5 navbar fixed-top bg-white border-bottom" style="margin-top:2rem; z-index:12;">
-                        <ul class="nav my-4 p-2 mx-auto">
-                            <li class="nav-item mx-1">
-                                <a class="btn btn-outline-secondary" style="min-width:5rem;" th:href="@{/user/shelf}" role="button">
-                                    <i class="bi bi-arrow-left"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item mx-1">
-                                <button type="button" value="Delete" id="deleteButton" class="btn btn-danger" style="min-width:5rem;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog modal-dialog-centered" style="margin-top:2rem; z-index:1;">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                Are you sure you want to remove the selected book(s)?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No way!</button>
-                                                <button type="button" class="btn btn-danger" onclick="deleteBooks()">✌️</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+<!--                <div class="d-flex pt-5 navbar fixed-top bg-white border-bottom" style="margin-top:2rem; z-index:12;">-->
+                <div class="row align-items-center border-bottom navbar bg-white"
+                     style="margin-top:2rem; z-index:12;">
+
+                    <div class="col d-flex justify-content-center my-4">
+                        <a class="btn btn-outline-secondary mx-2" style="min-width:5rem;" th:href="@{/user/shelf}"
+                           role="button">
+                            <i class="bi bi-arrow-left"></i>
+                        </a>
+                        <button type="button" value="Delete" id="deleteButton" class="btn btn-danger mx-2"
+                                style="min-width:5rem;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
                     </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="false" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog modal-dialog-centered" style="margin-top:2rem; z-index:1;">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    Are you sure you want to remove the selected book(s)?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No way!</button>
+                                    <button type="button" class="btn btn-danger" onclick="deleteBooks()">✌️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Book grid -->
                 <div th:each="list : ${bookLists}" th:fragment="bookshelf-grid" th:if="${bookLists != null and !bookLists.isEmpty()}">
                     <div th:if="${!list.isEmpty()}">
@@ -72,9 +75,7 @@
     </div>
 
     <!-- Footer -->
-    <section>
-        <div th:insert="fragments :: footer"></div>
-    </section>
+    <footer th:replace="fragments :: footer-user"></footer>
 
 </body>
 </html>

@@ -38,13 +38,13 @@
                               <hr/>
                               <div class="col my-2">
                                  <ul>
-                                    <li class="d-flex"><i class="bi bi-stars me-2"></i><p th:text="${book.genre}" class="text-secondary"></p></li>
-                                    <li class="d-flex"><i class="bi bi-file-text-fill me-2"></i><p th:text="${book.pages + ' pages'}" class="text-secondary"></p></li>
+                                    <li th:unless="${book.genre}==null" class="d-flex"><i class="bi bi-stars me-2"></i><p th:text="${book.genre}" class="text-secondary"></p></li>
+                                    <li th:unless="${book.pages}==null" class="d-flex"><i class="bi bi-file-text-fill me-2"></i><p th:text="${book.pages + ' pages'}" class="text-secondary"></p></li>
                                  </ul>
                               </div>
                               <div class="col my-2">
                                  <ul class="list-unstyled">
-                                    <li class="d-flex"><i class="bi bi-book me-2"></i><p th:text="${'ISBN: ' + book.isbn}" class="text-secondary"></p></li>
+                                    <li th:unless="${book.isbn}==null" class="d-flex"><i class="bi bi-book me-2"></i><p th:text="${'ISBN: ' + book.isbn}" class="text-secondary"></p></li>
                                     <li class="d-flex"><i class="bi bi-bookshelf me-2"></i><p th:text="${book.status}" class="text-secondary"></p></li>
                                     <li class="d-flex">
                                        <div th:if="${book.status} == 'Want to Read'" class="btn-group">
@@ -94,8 +94,6 @@
       </section>
 
       <!--Footer-->
-      <section>
-         <div th:replace="fragments :: footer"></div>
-      </section>
+      <footer th:replace="fragments :: footer-user"></footer>
    </body>
 </html>
