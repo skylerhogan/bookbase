@@ -1,15 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap');
-
 html, body {
   height: 100%;
-}
-/*body {
-  display: flex;
-  flex-direction: column;
-}*/
-
-#logo {
-    font-family: 'Dosis', sans-serif;
 }
 
 .bookcover {
@@ -93,7 +83,6 @@ html, body {
 }
 
 #footer-logo {
-    font-family: 'Dosis', sans-serif;
     font-size: 2rem;
     font-weight: 300;
 }

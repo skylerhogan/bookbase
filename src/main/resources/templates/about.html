@@ -10,15 +10,15 @@
     <nav th:replace="fragments :: navigation-user"></nav>
 </header>
 
-<section class="bg-dark p-5">
+<section id="div" class="p-5">
     <div class="container">
         <div class="row align-items-center justify-content-between text-light" style="height:100vh;">
             <div class="col-md my-5" style="vertical-align: middle;">
                 <h1 class="fs-4 my-3">We know just how hard it is to find time to read these days.</h1>
                 <p>It's even more difficult to keep track of books you've read and those you want to read in the future. Here at Bookbase we want to help you rediscover the joy of reading by making your library easier to manage than ever before. </p>
-                <span class="display-4"><h1 style="color:#6c63ff;">Bookbase</h1></span><h4 class="my-2"> Your library in the digital age.</h4>
+                <span class="display-4"><h1 style="color:#6c63ff;" class="fw-light base my-3">BOOK<span class="fw-bold">BASE</span></h1></span><h4 class="my-2"> Your library in the digital age.</h4>
             </div>
-            <div class="col-md" style="vertical-align: middle;">
+            <div class="col-md p-4" style="vertical-align: middle;">
                 <img th:src="@{/images/reading_time.svg}" class="img-fluid" />
             </div>
         </div>
@@ -48,14 +48,14 @@
                             <img th:src="@{/images/ryan.svg}" class="img-fluid mb-3" style="max-height:200px;"/>
                         </div>
                         <div class="col-12 col-md-7" >
-                            <h3 class="my-2 text-center">ryan mosser
+                            <h5 class="my-2 text-center">ryan mossor
                                 <a href="https://www.linkedin.com/in/ryanmossor/" class="btn p-1"><i class="bi bi-linkedin"></i></a>
                                 <a href="https://github.com/ryanmossor" class="btn p-1"><i class="bi bi-github"></i></a>
-                            </h3>
+                            </h5>
                             <hr/>
-                            <ul class="p-0" style="font-size:1rem;">
+                            <ul class="p-0" style="font-size:.85rem;">
                                 <li class="d-flex"><p>Favorite Genre: Psychology/Self-Help</p></li>
-                                <li class="d-flex">Currently Reading:<a th:href="@{|/user/search/results/view/T8XTswEACAAJ|}">&nbspThe Gulag Archipelago</a></li>
+                                <li class="d-flex">Currently Reading:&nbsp<a th:href="@{|/user/search/results/view/T8XTswEACAAJ|}">The Gulag Archipelago</a></li>
                             </ul>
                         </div>
                     </div>
@@ -68,14 +68,14 @@
                             <img th:src="@{/images/raleigh.svg}" class="img-fluid mb-3" style="max-height:200px;"/>
                         </div>
                         <div class="col-12 col-md-7" >
-                            <h3 class="my-2 text-center">raleigh moore
+                            <h5 class="my-2 text-center">raleigh moore
                                 <a href="https://www.linkedin.com/in/raleigh-ct-moore/" class="btn p-1"><i class="bi bi-linkedin"></i></a>
                                 <a href="https://github.com/raleigh-ct" class="btn p-1"><i class="bi bi-github"></i></a>
-                            </h3>
+                            </h5>
                             <hr/>
-                            <ul class="p-0 bio" style="font-size:1rem;">
+                            <ul class="p-0 bio" style="font-size:.85rem;">
                                 <li class="d-flex"><p>Favorite Genre: Mystery</p></li>
-                                <li class="d-flex">Currently Reading:<a th:href="@{|/user/search/results/view/GrYsEAAAQBAJ|}">&nbspProject Hail Mary</a></li>
+                                <li class="d-flex">Currently Reading:&nbsp<a th:href="@{|/user/search/results/view/GrYsEAAAQBAJ|}">Project Hail Mary</a></li>
                             </ul>
                         </div>
                     </div>
@@ -88,14 +88,14 @@
                             <img th:src="@{/images/scott.svg}" class="img-fluid mb-3" style="max-height:200px;"/>
                         </div>
                         <div class="col-12 col-md-7" >
-                            <h3 class="my-2 text-center">scott mcdonald
+                            <h5 class="my-2 text-center">scott mcdonald
                                 <a href="https://www.linkedin.com/in/scott-mcdonald-0303/" class="btn p-1"><i class="bi bi-linkedin"></i></a>
                                 <a href="https://github.com/scottmcdonald1" class="btn p-1"><i class="bi bi-github"></i></a>
-                            </h3>
+                            </h5>
                             <hr/>
-                            <ul class="p-0" style="font-size:1rem;">
+                            <ul class="p-0" style="font-size:.85rem;">
                                 <li class="d-flex"><p>Favorite Genre: Fantasy</p></li>
-                                <li class="d-flex">Currently Reading:<a th:href="@{|/user/search/results/view/ft2NDAAAQBAJ|}">&nbspNorse Mythology</a></li>
+                                <li class="d-flex">Currently Reading:&nbsp<a th:href="@{|/user/search/results/view/ft2NDAAAQBAJ|}">Norse Mythology</a></li>
                             </ul>
                         </div>
                     </div>
@@ -108,14 +108,14 @@
                             <img th:src="@{/images/skyler.svg}" class="img-fluid mb-3" style="max-height:200px;"/>
                         </div>
                         <div class="col-12 col-md-7" >
-                            <h3 class="my-2 text-center">skyler hogan
+                            <h5 class="my-2 text-center">skyler hogan
                                 <a href="https://www.linkedin.com/in/skylerhogan/" class="btn p-1"><i class="bi bi-linkedin"></i></a>
                                 <a href="https://github.com/skylerhogan" class="btn p-1"><i class="bi bi-github"></i></a>
-                            </h3>
+                            </h5>
                             <hr/>
-                            <ul class="p-0" style="font-size:1rem;">
+                            <ul class="p-0" style="font-size:.85rem;">
                                 <li class="d-flex"><p>Favorite Genre: History</p></li>
-                                <li class="d-flex">Currently Reading:<a th:href="@{|/user/search/results/view/S7jrDwAAQBAJ|}">&nbspKlara and the Sun</a></li>
+                                <li class="d-flex">Currently Reading:&nbsp<a th:href="@{|/user/search/results/view/S7jrDwAAQBAJ|}">Klara and the Sun</a></li>
                             </ul>
                         </div>
                     </div>

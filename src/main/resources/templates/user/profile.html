@@ -38,7 +38,7 @@
                         <ul class="p-0" >
                             <li class="d-flex"><i class="bi bi-person-fill me-2" style="color:#6c63ff"></i></i><p  th:text="${'Name: ' + firstName + ' ' + lastName}"></p></li>
                             <li class="d-flex"><i class="bi bi-envelope-fill me-2" style="color:#6c63ff"></i><p th:text="${'Email: ' + username}"></p></li>
-                            <li class="d-flex"><i class="bi bi-lock-fill me-2" style="color:#6c63ff"></i><p>Password: <span style="color:#6C63FF">⚫⚫⚫⚫⚫⚫⚫</span></p></li>
+                            <li class="d-flex"><i class="bi bi-lock-fill me-2" style="color:#6c63ff"></i><p>Password: <span style="color:#6C63FF"><i class="bi bi-dot"><i class="bi bi-dot"></i><i class="bi bi-dot"></i><i class="bi bi-dot"></i><i class="bi bi-dot"></i><i class="bi bi-dot"></i><i class="bi bi-dot"></i></i></span></p></li>
                         </ul>
                     </div>
                 </div>
@@ -67,14 +67,14 @@
 
         <!-- Quote Generator (requires quotes.js) -->
         <div class="col mx-auto col-6-md col-lg-12" style="min-width:20rem;" >
-            <figure class="px-5 bg-light rounded-3 shadow">
-                <blockquote class="py-5 container">
+            <figure class="px-5 rounded-3 shadow" style="background-color:#182E4C;">
+                <blockquote class="py-5 container text-light">
                     <i class="bi bi-chat-right-quote-fill display-6" style="color:#6C63FF"></i>
                     <p class="text-center mx-5 lead fs-4 lh-sm" id="quoteDisplay">
                     </p>
-                    <figcaption class="pt-4 mt-4 border-top d-flex flex-wrap blockquote-footer">
+                    <figcaption class="pt-4 mt-4 border-top d-flex flex-wrap blockquote-footer text-light" >
                         <p id="authorDisplay"></p>
-                        <cite id="bookDisplay" style="margin-left:1rem;"></cite>
+                        <cite id="bookDisplay" class="fw-bold" style="margin-left:1rem; color:#6C63FF"></cite>
                     </figcaption>
                 </blockquote>
             </figure>
