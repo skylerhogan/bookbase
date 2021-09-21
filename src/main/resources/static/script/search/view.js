@@ -113,7 +113,6 @@ const renderPage = async (bookObject) => {
         description.innerHTML = 'No description available';
     }
 
-
     bookDescription.appendChild(descriptionHeading);
     bookDescription.appendChild(description);
 
