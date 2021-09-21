@@ -128,11 +128,11 @@ function renderAddBookButton(alreadyInBookshelf, bookShelfId) {
     if(alreadyInBookshelf === true) {
         addButton.innerHTML = `
             <a href="/user/view/${bookShelfId}">
-                <button class="btn btn-primary mb-5" style="width:100%;">view in bookshelf</button>
+                <button class="btn btn-primary mb-5">view on shelf</button>
             </a>
         `;
     } else {
-        addButton.innerHTML = `<button class="btn btn-primary mb-5" style="width:100%;">add book</button>`
+        addButton.innerHTML = `<button class="btn btn-primary mb-5">add book</button>`
         addButton.addEventListener('click', (event) => {
             event.preventDefault();
             addBookForm.classList.add('active')
@@ -153,7 +153,7 @@ function renderBuyButton(bookObject) {
     let buyButton = document.createElement('div');
     buyButton.className = 'btn-group';
     buyButton.classList.add('mb-5');
-    buyButton.style.width = '100%'
+//    buyButton.style.width = '100px'
 
     let searchTitle = bookObject.title.replaceAll(/[\W_]\s+/g, "");
 

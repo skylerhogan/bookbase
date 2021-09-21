@@ -23,12 +23,9 @@ bookIds = bookIds.replaceAll("[", "").replaceAll("]", "").replaceAll(" ", "");
 bookIds = bookIds.split(",");
 let bookShelfId = null;
 
-let backButton = document.getElementById('back-button');
+//let backButton = document.getElementById('back-button');
 
 const go = async () => {
-    if (window.history.length < 2) {
-        backButton.style.display = 'none';
-    }
     await printBook(bookId);
 }
 
@@ -72,7 +69,7 @@ const renderPage = async (bookObject) => {
     if (bookObject.averageRating != undefined) {
 
     rating.innerHTML = `
-        <label class="rating-label"><strong>Average rating: ${bookObject.averageRating} <span class="rating-count">(${bookObject.ratingsCount})</span></strong>
+        <label class="rating-label">Average rating: ${bookObject.averageRating} <span class="rating-count">(${bookObject.ratingsCount})</span>
           <input
             class="rating"
             max="5"
@@ -92,19 +89,19 @@ const renderPage = async (bookObject) => {
          <h1 class="display-6 fw-bold text-dark">${bookObject.title}</h1>
          <h4>by ${bookObject.author}</h4>
          <div class="row" style="margin-top: 2rem;">
-            <div class="col"
-                 <p><span style="font-weight:bold;">Pages: </span>${bookObject.pageCount}</p>
-                 <p><span style="font-weight:bold;">Genre: </span>${bookObject.genre}</p>
+            <div class="col">
+                 <p>Pages: ${bookObject.pageCount}</p>
+                 <p>Genre: ${bookObject.genre}</p>
             </div>
             <div class="col">
-                <p><span style="font-weight:bold;">Publication Date: </span>${bookObject.publishedDate}</p>
-                <p><span style="font-weight:bold;">ISBN: </span>${bookObject.industryIdentifiers}</p>
+                <p>Publication Date: ${bookObject.publishedDate}</p>
+                <p>ISBN: ${bookObject.industryIdentifiers}</p>
             </div>
          </div>
-         <p class="book-detail" style="margin-top: 1rem;"><span style="font-weight:bold;">Tags: </span>${generateTagLinks(bookObject.tags)}</p>
+         <p class="book-detail" style="margin-top: 1rem;">Tags: ${generateTagLinks(bookObject.tags)}</p>
     `;
 
-    let descriptionHeading = document.createElement('h3');
+    let descriptionHeading = document.createElement('h4');
     descriptionHeading.id = 'description-heading';
     descriptionHeading.innerHTML = 'Description';
 
