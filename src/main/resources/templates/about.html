@@ -5,10 +5,7 @@
     <link rel="stylesheet" th:href="@{/css/about.css}" />
 </head>
 <body>
-<!-- User Navbar -->
-<!--<header class="container-fluid">-->
-<!--    <nav th:replace="fragments :: navigation-user"></nav>-->
-<!--</header>-->
+
 <th:block sec:authorize="isAuthenticated()">
     <nav th:replace="fragments :: navigation-user"></nav>
 </th:block>
@@ -160,7 +157,12 @@
 </section>
 
 <!-- Footer -->
-<footer th:replace="fragments :: footer-user"></footer>
+<th:block sec:authorize="isAuthenticated()">
+    <nav th:replace="fragments :: footer-user"></nav>
+</th:block>
+<th:block sec:authorize="isAnonymous()">
+    <nav th:replace="fragments :: footer-guest"></nav>
+</th:block>
 
 </body>
 </html>
