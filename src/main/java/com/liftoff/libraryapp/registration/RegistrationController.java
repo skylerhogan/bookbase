@@ -36,7 +36,8 @@ public class RegistrationController {
 
     @GetMapping
     @RequestMapping("/confirm_email")
-    public String showEmailConfirm() {
+    public String showEmailConfirm(Model model) {
+        model.addAttribute("title", "Registration Complete | Bookbase");
         return "/security/confirm_email";
     }
     @PostMapping
@@ -44,6 +45,7 @@ public class RegistrationController {
 
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             model.addAttribute("userTakenError", "That email address is taken. Try another.");
+            model.addAttribute("title", "Sign Up | Bookbase");
             return "security/signup_form";
         }
 
