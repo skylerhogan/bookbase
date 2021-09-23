@@ -4,9 +4,16 @@ plugins {
 	id 'java'
 }
 
+apply plugin: 'java'
+
+jar {
+	manifest {
+		attributes 'Main-Class': 'com.liftoff.libraryapp.LibraryApp'
+	}
+}
+
 group = 'com.liftoff'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '16'
 
 repositories {
 	mavenCentral()
