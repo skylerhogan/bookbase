@@ -49,13 +49,14 @@
 <footer th:replace="fragments :: footer-user"></footer>
 
 <script>
-        const query = '[[${query}]]';
-        const searchQuery = '[[${searchQuery}]]';
-        const searchParameter = '[[${searchParameter}]]';
-        let maxResults = '[[${maxResults}]]';
-        let currentPage = '[[${currentPage}]]';
-        let startIndex = '[[${startIndex}]]';
-        const API_KEY = '[[${apiKey}]]';
+    const API_KEY = '[[${googleKey}]]';
+
+    const query = '[[${query}]]';
+    const searchQuery = '[[${searchQuery}]]';
+    const searchParameter = '[[${searchParameter}]]';
+    let maxResults = '[[${maxResults}]]';
+    let currentPage = '[[${currentPage}]]';
+    let startIndex = '[[${startIndex}]]';
 </script>
 
 <script type="module" th:src="@{/script/search/results.js}" th:inline="javascript"></script>

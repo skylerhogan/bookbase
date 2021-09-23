@@ -35,8 +35,8 @@ public class SearchController {
     @Autowired
     private MyUserDetailsService myUserDetailsService;
 
-    @Value("${apiKey}")
-    private String apiKey;
+    @Value("${googleKey}")
+    private String googleKey;
 
     @GetMapping("search")
     public String displaySearchForm(Model model) {
@@ -99,7 +99,7 @@ public class SearchController {
         model.addAttribute("query", query);
         model.addAttribute("pageNumber", currentPage);
         model.addAttribute("startIndex", (currentPage-1) * maxResults);
-        model.addAttribute("apiKey", apiKey);
+        model.addAttribute("googleKey", googleKey);
 
         model.addAttribute("title", "Search: " + query + " | Bookbase");
 
@@ -123,7 +123,7 @@ public class SearchController {
         model.addAttribute("bookRepositoryIsbns", bookRepositoryIsbns);
 
         model.addAttribute("title", "Search Result | Bookbase");
-        model.addAttribute("apiKey", apiKey);
+        model.addAttribute("googleKey", googleKey);
 
         return "search/view";
     }
