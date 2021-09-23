@@ -58,7 +58,7 @@ const updateCover = async(id, isbn, url) => {
         let currentId = carouselBooks[id].id;
 
         if (document.getElementById("carousel-user") != null) {
-            let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyDk87M-Tr5KQMeR2ZlCIjQ2nEsqiAo-uMg`);
+            let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyCqhSRjhDB0_STP1_G8EAsgLI1IbJHhdno`);
             let data = await response.json();
             bookId = await data.items[0].id;
 
