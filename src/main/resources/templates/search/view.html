@@ -135,6 +135,8 @@
 <footer th:replace="fragments :: footer-user"></footer>
 
 <script>
+    const API_KEY = '[[${apiKey}]]';
+
     const bookId = '[[${bookId}]]';
     let bookIsbns = '[[${bookRepositoryIsbns}]]';
     let bookIds = '[[${bookRepositoryIds}]]';
