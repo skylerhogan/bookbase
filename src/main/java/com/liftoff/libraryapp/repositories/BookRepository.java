@@ -1,7 +1,6 @@
 package com.liftoff.libraryapp.repositories;
 
 import com.liftoff.libraryapp.models.Book;
-import com.liftoff.libraryapp.models.User;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,24 +18,24 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> findByUserIdAndStatusAndRating(Long userId, String status, String rating, Sort sort);
 
-    @Query(value = "SELECT SUM(pages) FROM Book WHERE STATUS = 'Completed' AND user_id = :userId", nativeQuery = true)
+    @Query(value = "SELECT SUM(pages) FROM book WHERE STATUS = 'Completed' AND user_id = :userId", nativeQuery = true)
     Integer selectPagesRead(@Param("userId") Long userId);
 
-    @Query(value = "SELECT SUM(pages) FROM Book WHERE STATUS = 'Want to Read' OR STATUS = 'Currently Reading' AND " +
+    @Query(value = "SELECT SUM(pages) FROM book WHERE STATUS = 'Want to Read' OR STATUS = 'Currently Reading' AND " +
             "user_id = :userId", nativeQuery = true)
     Integer selectPagesToRead(@Param("userId") Long userId);
 
-    @Query(value = "SELECT COUNT(*) FROM Book WHERE user_id = :userId", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM book WHERE user_id = :userId", nativeQuery = true)
     Integer selectTotalBooksInLibrary(@Param("userId") Long userId);
 
-    @Query(value = "SELECT COUNT(*) FROM Book WHERE STATUS = 'Completed' AND user_id = :userId", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM book WHERE STATUS = 'Completed' AND user_id = :userId", nativeQuery = true)
     Integer selectTotalBooksRead(@Param("userId") Long userId);
 
-    @Query(value= "SELECT GENRE FROM BOOK WHERE user_id = :userId GROUP BY GENRE ORDER BY COUNT(*) DESC LIMIT 1",
+    @Query(value= "SELECT GENRE FROM book WHERE user_id = :userId GROUP BY GENRE ORDER BY COUNT(*) DESC LIMIT 1",
             nativeQuery = true)
     String selectFavoriteGenre(@Param("userId") Long userId);
 
-    @Query(value= "SELECT DATE_ADDED FROM BOOK WHERE user_id = :userId GROUP BY DATE_ADDED ORDER BY DATE_ADDED ASC " +
+    @Query(value= "SELECT DATE_ADDED FROM book WHERE user_id = :userId GROUP BY DATE_ADDED ORDER BY DATE_ADDED ASC " +
             "LIMIT 1", nativeQuery = true)
     String selectDateOfFirstBookAdded(@Param("userId") Long userId);
 
