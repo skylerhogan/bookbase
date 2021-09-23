@@ -6,7 +6,7 @@ body {
 }
 
 #team {
-    background: url(/images/blurry-gradient-haikei.svg);
+    background: url(/images/wave-haikei.svg);
     background-repeat: no-repeat;
     background-size: cover;
     }
@@ -44,8 +44,10 @@ a:hover {
     font-weight: 700;
 }
 
-#div {
-    background: url(/images/layered-steps-haikei.svg);
+#meetDiv {
+    background: url(/images/wave2-haikei.svg);
     background-repeat: no-repeat;
     background-size: cover;
+    padding:10rem;
+
 }
