@@ -4,11 +4,12 @@ body {
     flex-direction: column!important;
     min-height: 100vh!important;
     display: flex!important;
+    font-family: 'Montserrat', cursive;
+    font-weight: lighter;
+    color: #182E4C;
 }
 
 .main-bg {
-	/*background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-		url("/images/library.jpg");*/
     background-image: url("/images/background.svg");
 	background-size: cover;
 	background-position: center;
@@ -25,18 +26,12 @@ body {
     color: gray;
 }
 
-body {
-    font-family: 'Montserrat', cursive;
-    font-weight: lighter;
-    color: #182E4C;
-}
-
 h1,h2,h3,h4,h5 {
     font-family: 'Comfortaa', sans-serif;
     font-weight: 700;
 }
 
-.logo {
+.logo, #logo {
     font-family: 'Comfortaa', sans-serif;
     font-weight: 300;
 }
@@ -52,6 +47,6 @@ a {
     color:#6C63FF;
 }
 
-a:not(.btn):hover {
+a:not(.btn, .currently-reading):hover {
     color:#6C63FF !important;
 }
