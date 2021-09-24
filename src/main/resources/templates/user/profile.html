@@ -46,35 +46,35 @@
 
         <!-- User Stats -->
         <div class="my-4 col col-12 col-sm-12 col-xl-6">
-            <div class="bg-light rounded-3 shadow">
+            <div class="rounded-3 text-light shadow" style="background-color:#6C63FF;">
                 <div class="container p-5 row">
                     <div class="col">
                         <h1 class="fs-2 fw-bold mb-3">stats
-                            <i class="bi bi-clipboard-data" style="float:right; color:#6C63FF"></i></h1>
+                            <i class="bi bi-clipboard-data" style="float:right;"></i></h1>
                         <hr/>
                         <ul class="p-0" >
                             <li class="d-flex">
-                                <i class="bi bi-asterisk me-2" style="color:#6c63ff"></i>
+                                <i class="bi bi-asterisk me-2"></i>
                                 <p th:text="${'Books in Library: ' + totalBooks}"></p>
                             </li>
                             <li class="d-flex">
-                                <i class="bi bi-bookmark-check-fill me-2" style="color:#6c63ff"></i>
+                                <i class="bi bi-bookmark-check-fill me-2"></i>
                                 <p th:text="${'Books Read: ' + totalBooksRead}"></p>
                             </li>
                             <li th:unless="${pagesRead}==null" class="d-flex">
-                                <i class="bi bi-file-earmark-text-fill me-2" style="color:#6c63ff"></i>
+                                <i class="bi bi-file-earmark-text-fill me-2"></i>
                                 <p th:text="${'You have read ' + pagesRead + ' pages.'}"></p>
                             </li>
                             <li th:unless="${favoriteGenre}==null" class="d-flex">
-                                <i class="bi bi-stars me-2" style="color:#6c63ff"></i>
+                                <i class="bi bi-stars me-2"></i>
                                 <p th:text="${favoriteGenre + ' is your favorite genre.'}"></p>
                             </li>
                             <li th:unless="${joinDate}==null" class="d-flex">
-                                <i class="bi bi-person-plus-fill me-2" style="color:#6c63ff"></i>
+                                <i class="bi bi-person-plus-fill me-2"></i>
                                 <p th:text="${'Member since ' + joinDate}"></p>
                             </li>
                             <li th:if="${joinDate}==null" class="d-flex">
-                                <i class="bi bi-plus-lg me-2" style="color:#6c63ff"></i>
+                                <i class="bi bi-plus-lg me-2"></i>
                                 <p>Go add some books to get started!</p>
                             </li>
                         </ul>
