@@ -6,20 +6,18 @@
     <link rel="stylesheet" th:href="@{/css/shelf.css}" />
 </head>
 
-<body>
+<body class="preload">
 
 <!-- User Navbar -->
 <header>
     <nav th:replace="fragments :: navigation-user"></nav>
 </header>
 
-<!--       Book Grid -->
-<!--      <div class="my-auto" style="position:relative; top:80px;" >-->
+<!-- Book Grid -->
 <div class="sticky-lg-top" style="padding-top:65px;">
     <div class="container-fluid border-bottom" style="position: relative; top:-20px;">
         <div class="container">
             <form method="post" th:action="@{/user/shelf}" id="shelfForm" class="me-auto">
-                <!--               <div class="d-flex pt-5 navbar fixed-top bg-white border-bottom row"-->
                 <div class="row gx-3 gy-2 align-items-center navbar bg-white"
                      style="margin-top:2rem; z-index:12;">
                     <div class="col-md-4 col-xl-2 my-xl-4">
@@ -67,14 +65,18 @@
     </div>
 </div>
 
-    <div class="container">
-        <div th:replace="fragments :: bookshelf-grid"></div>
-    </div>
+<div class="container">
+    <div th:replace="fragments :: bookshelf-grid"></div>
+</div>
 
 <!-- Footer -->
 <footer th:replace="fragments :: footer-user"></footer>
 
 <script>
+    window.addEventListener('load', (event) => {
+        document.body.classList.remove("preload");
+    });
+
     let bookContainers = document.querySelectorAll('.book-container');
 
     bookContainers.forEach(container => {
