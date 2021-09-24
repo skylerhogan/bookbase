@@ -1,24 +1,7 @@
-HELP.md
+build
 .gradle
-build/
-build 2/
-bin/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**
-!**/src/test/**
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
 .idea
-*.iws
+out
 *.iml
 *.ipr
 out/
@@ -33,3 +16,6 @@ out/
 ### VS Code ###
 .vscode/
 
+*.iws
+.DS_Store
+.classpath

@@ -72,7 +72,7 @@
       th:fragment="navigation-user" class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-lg" style="margin-bottom:125px">
       <div class="container-fluid px-5">
         <a title="Home" class="logo navbar-brand me-2 fs-3" style="color:#182E4C;" id="logo"
-           href="http://localhost:8080">
+           th:href="@{|/|}">
           BOOK<span class="base">BASE</span></a>
         <button class="navbar-toggler shadow-sm my-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -98,7 +98,7 @@
             <!--home nav button-->
 
             <li class="nav-item-btn mx-2">
-              <a title="Home" href="http://localhost:8080/" class="nav-link " style="color: #182E4C;">
+              <a title="Home" th:href="@{|/|}" class="nav-link " style="color: #182E4C;">
                 <i class="bi bi-house" style="font-size:2rem"></i>
               </a>
             </li>
@@ -106,7 +106,7 @@
             <!--bookshelf nav button-->
 
            <li class="nav-item-btn mx-2">
-              <a title="My shelves" href="http://localhost:8080/user/shelf" class="nav-link " style="color: #182E4C;">
+              <a title="My shelves" th:href="@{|/user/shelf|}" class="nav-link " style="color: #182E4C;">
                 <i class="bi bi-grid-3x3-gap-fill" style="font-size:2rem"></i>
               </a>
             </li>
@@ -114,7 +114,7 @@
             <!--search nav button-->
 
             <li class="nav-item-btn mx-2">
-              <a title="Search" href="http://localhost:8080/user/search" class="nav-link " style="color: #182E4C;">
+              <a title="Search" th:href="@{|/user/search|}" class="nav-link " style="color: #182E4C;">
                 <i class="bi bi-search" style="font-size:2rem"></i>
               </a>
             </li>
