@@ -6,6 +6,7 @@ import com.liftoff.libraryapp.models.User;
 import com.liftoff.libraryapp.repositories.BookRepository;
 import com.mysql.cj.jdbc.Blob;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,6 +34,9 @@ public class SearchController {
 
     @Autowired
     private MyUserDetailsService myUserDetailsService;
+
+    @Value("${googleKey}")
+    private String googleKey;
 
     @GetMapping("search")
     public String displaySearchForm(Model model) {
@@ -95,6 +99,7 @@ public class SearchController {
         model.addAttribute("query", query);
         model.addAttribute("pageNumber", currentPage);
         model.addAttribute("startIndex", (currentPage-1) * maxResults);
+        model.addAttribute("googleKey", googleKey);
 
         model.addAttribute("title", "Search: " + query + " | Bookbase");
 
@@ -118,6 +123,7 @@ public class SearchController {
         model.addAttribute("bookRepositoryIsbns", bookRepositoryIsbns);
 
         model.addAttribute("title", "Search Result | Bookbase");
+        model.addAttribute("googleKey", googleKey);
 
         return "search/view";
     }

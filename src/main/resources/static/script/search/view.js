@@ -8,7 +8,6 @@ import {
 } from './modules/bookFunctions.js';
 
 const API_ENDPOINT = 'https://www.googleapis.com'
-const API_KEY = 'AIzaSyCqhSRjhDB0_STP1_G8EAsgLI1IbJHhdno'
 
 let promise = [];
 
@@ -22,8 +21,6 @@ bookIsbns = bookIsbns.split(",");
 bookIds = bookIds.replaceAll("[", "").replaceAll("]", "").replaceAll(" ", "");
 bookIds = bookIds.split(",");
 let bookShelfId = null;
-
-//let backButton = document.getElementById('back-button');
 
 const go = async () => {
     await printBook(bookId);

@@ -1,8 +1,12 @@
+let nytFictionRequest = `https://api.nytimes.com/svc/books/v3/lists.json?list-name=combined-print-and-e-book-fiction&api-key=${nytKey}`;
+let nytNonfictionRequest = `https://api.nytimes.com/svc/books/v3/lists.json?list-name=combined-print-and-e-book-nonfiction&api-key=${nytKey}`
+
 const printCarousel = async() => {
     try {
+
         let bestSellerLists = await Promise.all([
-        fetch('https://api.nytimes.com/svc/books/v3/lists.json?list-name=combined-print-and-e-book-fiction&api-key=xUl556gGXqPKARPggVztexuH1B80EvGJ').then(response => response.json()),
-        fetch('https://api.nytimes.com/svc/books/v3/lists.json?list-name=combined-print-and-e-book-nonfiction&api-key=xUl556gGXqPKARPggVztexuH1B80EvGJ').then(response => response.json())
+        fetch(nytFictionRequest).then(response => response.json()),
+        fetch(nytNonfictionRequest).then(response => response.json())
         ]);
 
         updateBestSellers(bestSellerLists);
@@ -58,7 +62,9 @@ const updateCover = async(id, isbn, url) => {
         let currentId = carouselBooks[id].id;
 
         if (document.getElementById("carousel-user") != null) {
-            let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyCqhSRjhDB0_STP1_G8EAsgLI1IbJHhdno`);
+
+            let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=${googleKey}`);
+
             let data = await response.json();
             bookId = await data.items[0].id;
 

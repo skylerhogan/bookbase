@@ -4,6 +4,18 @@ build
 out
 *.iml
 *.ipr
+out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
 *.iws
 .DS_Store
 .classpath

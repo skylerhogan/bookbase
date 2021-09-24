@@ -1,4 +1,3 @@
-const nytKey = "xUl556gGXqPKARPggVztexuH1B80EvGJ";
 const genre = document.getElementsByClassName("bestsellers-list")[0].id;
 
 let nytRequest = `https://api.nytimes.com/svc/books/v3/lists.json?list-name=${genre}&api-key=${nytKey}`;
@@ -42,7 +41,8 @@ const generateBestSellersList = async(nytBestSellers) => {
 
 const generateUrl = async(isbn) => {
     try {
-        let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyCqhSRjhDB0_STP1_G8EAsgLI1IbJHhdno`);
+        let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=${googleKey}`);
+
         let data = await response.json();
 
         let id = await data.items[0].id;

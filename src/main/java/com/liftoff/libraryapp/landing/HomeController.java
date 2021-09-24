@@ -6,6 +6,7 @@ import com.liftoff.libraryapp.models.MyUserDetailsService;
 import com.liftoff.libraryapp.models.User;
 import com.liftoff.libraryapp.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +27,12 @@ public class HomeController {
     @Autowired
     private MyUserDetailsService myUserDetailsService;
 
+    @Value("${googleKey}")
+    private String googleKey;
+
+    @Value("${nytKey}")
+    private String nytKey;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String displayHomePage(Model model, Principal currentUser) {
 
@@ -42,10 +49,15 @@ public class HomeController {
             model.addAttribute("recentBooks", recentBooks);
 
             model.addAttribute("title", "Home | Bookbase");
+            model.addAttribute("googleKey", googleKey);
+            model.addAttribute("nytKey", nytKey);
 
             return "home";
         }
         model.addAttribute("title", "Bookbase - Manage Your Own Personal Library");
+        model.addAttribute("googleKey", googleKey);
+        model.addAttribute("nytKey", nytKey);
+
         return "index";
     }
 
