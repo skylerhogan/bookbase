@@ -42,6 +42,7 @@ const generateBestSellersList = async(nytBestSellers) => {
 const generateUrl = async(isbn) => {
     try {
         let response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=${googleKey}`);
+
         let data = await response.json();
 
         let id = await data.items[0].id;
