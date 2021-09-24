@@ -15,6 +15,7 @@
 <!-- Navbar (guest) -->
 <nav th:fragment="navigation-guest" class="logo navbar navbar-expand bg-light navbar-light fixed-top">
   <div class="container-fluid px-5">
+    <img th:src="@{/images/bookbase_logo.svg}" class="img-fluid me-2" style="max-height:40px" />
     <a title="Home" class="logo navbar-brand me-2 fs-3" style="color:#182E4C;"
        href="/">BOOK<span class="base">BASE</span></a>
 
@@ -71,6 +72,7 @@
     <nav
       th:fragment="navigation-user" class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-lg" style="margin-bottom:125px">
       <div class="container-fluid px-5">
+        <img th:src="@{/images/bookbase_logo.svg}" class="img-fluid me-2" style="max-height:40px" />
         <a title="Home" class="logo navbar-brand me-2 fs-3" style="color:#182E4C;" id="logo"
            th:href="@{|/|}">
           BOOK<span class="base">BASE</span></a>
@@ -263,7 +265,7 @@
 
   <div class="h1 col-md-4 d-flex align-items-center justify-content-center my-auto">
     <a class="link-dark text-decoration-none" href="/">
-      <i class="bi bi-exclude"></i>
+      <img th:src="@{/images/bookbase_logo.svg}" class="img-fluid" style="max-height:40px" />
     </a>
   </div>
 
@@ -280,7 +282,7 @@
 
   <div class="h1 col-md-4 d-flex align-items-center justify-content-center my-auto">
     <a class="link-dark text-decoration-none" href="/">
-      <i class="bi bi-exclude"></i>
+      <img th:src="@{/images/bookbase_logo.svg}" class="img-fluid" style="max-height:40px" />
     </a>
   </div>
 
