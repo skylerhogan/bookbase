@@ -8,13 +8,18 @@
 
 <!-- searchForm -->
 <div th:fragment="search-form" id="search-form-container">
-    <form method="post" id="search-form" name="search-form" th:action="@{/user/search/}" class="row gy-2 gx-3 align-items-center">
+    <form method="post" id="search-form" name="search-form" th:action="@{/user/search/}" class="row gy-2 gx-3">
 
         <div class="col-auto">
             <div class="input-group">
                 <label class="input-group-text" for="searchQuery">Search</label>
                 <input type="text" name="searchQuery" id="searchQuery" class="form-control shadow-sm" th:value="${searchQuery}" placeholder="Title / Author / ISBN"/>
             </div>
+            <img
+                src="https://books.google.com/googlebooks/images/poweredby.png"
+                width="62" height="30" align="absbottom"
+                style="position: relative; top: 6px; margin:0; border: 0; padding: 0; padding-left: 8px"
+            >
         </div>
 
         <div class="col-auto">
