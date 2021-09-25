@@ -99,8 +99,13 @@
 <!-- Carousel -->
 <section id="carousel" class="bg-light p-5 d-none d-lg-block">
   <div class="container">
-    <p class="fw-normal lead text-dark pb-4">Choose from millions of books to add to your library, including
-      these bestsellers:</p>
+
+    <p class="fw-normal lead text-dark pb-4">
+      <a href="https://developer.nytimes.com/">
+        <img th:src="@{/images/poweredby_nytimes_30a.png}" alt="NYT API"/>
+      </a>Choose from millions of books to add to your library, including
+      these bestsellers:
+    </p>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner" id="carousel-guest"></div>
     </div>
