@@ -73,6 +73,8 @@ public class HomeController {
 
         recentBooks.add(bookRepository.findByUserIdAndStatus(user.getId(), "Currently Reading", Sort.by("dateViewed").descending()));
         model.addAttribute("recentBooks", recentBooks);
+        model.addAttribute("googleKey", googleKey);
+        model.addAttribute("nytKey", nytKey);
 
         model.addAttribute("genre", genre);
         return "home";
