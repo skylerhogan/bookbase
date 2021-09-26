@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" th:href="@{/css/view.css}">
 
+    <script type="text/javascript" src="//books.google.com/books/previewlib.js"></script>
+
 </head>
 <body>
 
@@ -31,7 +33,6 @@
                     </div>
 
                     <div id="previewButton" class="mb-5">
-                        <script src="//books.google.com/books/previewlib.js"></script>
                         <script>
                             let previewId = '[[${bookId}]]';
                             GBS_insertPreviewButtonPopup(previewId);
@@ -141,10 +142,8 @@
     let bookIsbns = '[[${bookRepositoryIsbns}]]';
     let bookIds = '[[${bookRepositoryIds}]]';
 </script>
+
 <script type="module" th:src="@{/script/search/view.js}" th:inline="javascript"></script>
-
-<script type="text/javascript" src="//books.google.com/books/previewlib.js"></script>
-
 
 </body>
 </html>
