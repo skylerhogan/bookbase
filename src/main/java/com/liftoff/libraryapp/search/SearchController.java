@@ -49,6 +49,10 @@ public class SearchController {
     public String processSearchForm(Model model, String searchQuery, String searchParameter, String resultsPerPage) {
 
         String newQuery = "";
+        if (searchQuery.contains("/")) {
+            searchQuery = searchQuery.replaceAll("/", "");
+            searchQuery = searchQuery.replaceAll("  ", " ");
+        }
         String queryToPathVariable = searchQuery.toLowerCase().replace(' ', '+');
 
         if(searchParameter == null || searchParameter.equals("all")) {
