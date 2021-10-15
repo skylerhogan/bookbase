@@ -50,3 +50,7 @@ a {
 a:not(.btn, .currently-reading):hover {
     color:#6C63FF !important;
 }
+
+footer {
+background-color: white;
+}
