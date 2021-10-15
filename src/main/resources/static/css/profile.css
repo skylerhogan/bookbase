@@ -33,3 +33,7 @@ a {
 a:hover {
     color:#6C63FF !important;
 }
+
+.profile {
+font-size: calc(10px + .5vw);
+}

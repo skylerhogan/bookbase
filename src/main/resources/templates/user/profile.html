@@ -10,7 +10,7 @@
 <!-- User Navbar -->
 <nav th:replace="fragments :: navigation-user"></nav>
 
-<section class="container p-5" style="margin-top:5rem; margin-bottom:3rem;">
+<section class="container py-5 profile" style="margin-top:5rem; margin-bottom:3rem;">
     <div class="d-flex row col" style="justify-content:space-between">
         <div class="mt-4 col col-12 col-sm-12 col-xl-6">
             <div class="bg-light rounded-3 shadow">
@@ -20,9 +20,9 @@
                         <hr/>
                         <ul class="p-0" >
                             <li class="d-flex"><i class="bi bi-person-fill me-2"  style="color:#6c63ff"></i></i><p
-                                    th:text="${'Name: ' + firstName + ' ' + lastName}"></p></li>
-                            <li class="d-flex"><i class="bi bi-envelope-fill me-2" style="color:#6c63ff"></i><p th:text="${'Email: ' + username}"></p></li>
-                            <li class="d-flex"><i class="bi bi-lock-fill me-2" style="color:#6c63ff"></i><p>Password: <span style="color:#6C63FF"><i class="bi bi-dot"><i class="bi bi-dot"></i><i class="bi bi-dot"></i><i class="bi bi-dot"></i><i class="bi bi-dot"></i><i class="bi bi-dot"></i><i class="bi bi-dot"></i></i></span></p></li>
+                                    th:text="${firstName + ' ' + lastName}"></p></li>
+                            <li class="d-flex"><i class="bi bi-envelope-fill me-2" style="color:#6c63ff"></i><p th:text="${username}"></p></li>
+                            <li class="d-flex"><i class="bi bi-lock-fill me-2" style="color:#6c63ff"></i><p><span style="color:#6C63FF"><i class="bi bi-dot"><i class="bi bi-dot"></i><i class="bi bi-dot"></i><i class="bi bi-dot"></i><i class="bi bi-dot"></i><i class="bi bi-dot"></i><i class="bi bi-dot"></i></i></span></p></li>
                         </ul>
                     </div>
                 </div>
@@ -30,9 +30,9 @@
         </div>
 
         <!-- User Stats -->
-        <div class="my-4 col col-12 col-sm-12 col-xl-6">
+        <div class="my-4 col col-12 col-sm-12 col-xl-6 profile">
             <div class="rounded-3 text-light shadow" style="background-color:#6C63FF;">
-                <div class="container p-5 row">
+                <div class="container py-5 row">
                     <div class="col">
                         <h1 class="fs-2 fw-bold mb-3">stats
                             <i class="bi bi-clipboard-data" style="float:right;"></i></h1>
