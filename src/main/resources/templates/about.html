@@ -21,21 +21,21 @@
                 <p>It's even more difficult to keep track of books you've read and those you want to read in the future. Here at Bookbase we want to help you rediscover the joy of reading by making your library easier to manage than ever before. </p>
                 <span class="display-4"><h1 style="color:#6c63ff;" class="fw-light base my-3">BOOK<span class="fw-bold">BASE</span></h1></span><h4 class="my-2"> Your library in the digital age.</h4>
             </div>
-            <div class="col-md p-4" style="vertical-align: middle;">
-                <img th:src="@{/images/reading_time.svg}" class="img-fluid" />
+            <div class="col-md p-5 my-5 d-none d-lg-block" style="vertical-align: middle;">
+                <img th:src="@{/images/reading_time.svg}" class="img-fluid" style=""/>
             </div>
         </div>
     </div>
 </section>
 
-<section class="bg-light" style="padding:10rem;">
-    <div class="container">
+<section class="p-5 bg-light">
+    <div class="container my-5 mx-auto">
         <div class="row align-items-center">
-            <div class="col-md" style="vertical-align: middle;">
+            <div class="col-sm" style="vertical-align: middle;">
                 <img th:src="@{/images/good_team.svg}" class="img-fluid" />
             </div>
-            <div class="col-md text-center m-0">
-                <h1 class="mx-auto" style="max-width:15rem;">meet the team</h1><a href="#team"><i class="bi bi-arrow-down display-4"></i></a>
+            <div class="col-sm text-center m-0 justify-content-center">
+                <h1 class="mx-auto my-2" style="max-width:15rem;">meet the team</h1><a href="#team"><i class="bi bi-arrow-down display-4"></i></a>
             </div>
         </div>
     </div>
@@ -60,16 +60,18 @@
                             <hr/>
                             <ul class="p-0" style="font-size:.85rem;">
                                 <li class="d-flex"><p>Favorite Genre: Psychology/Self-Help</p></li>
-                                <li class="d-flex">Currently Reading:&nbsp
-                                    <th:block sec:authorize="isAuthenticated()">
-                                        <a class="currently-reading" target="_blank"
-                                           th:href="@{|/user/search/results/view/T8XTswEACAAJ|}">The Gulag Archipelago
-                                        </a>
-                                    </th:block>
-                                    <th:block sec:authorize="isAnonymous()">
-                                        <a class="currently-reading" target="_blank"
-                                           href="https://amazon.com/dp/1784871516/">The Gulag Archipelago</a>
-                                    </th:block>
+                                <li class="d-flex">
+                                    <p>Currently Reading:&nbsp
+                                        <th:block sec:authorize="isAuthenticated()">
+                                            <a class="currently-reading" target="_blank"
+                                               th:href="@{|/user/search/results/view/T8XTswEACAAJ|}">The Gulag Archipelago
+                                            </a>
+                                        </th:block>
+                                        <th:block sec:authorize="isAnonymous()">
+                                            <a class="currently-reading" target="_blank"
+                                               href="https://amazon.com/dp/1784871516/">The Gulag Archipelago</a>
+                                        </th:block>
+                                    </p>
                                 </li>
                             </ul>
                         </div>
@@ -92,15 +94,17 @@
                             <hr/>
                             <ul class="p-0 bio" style="font-size:.85rem;">
                                 <li class="d-flex"><p>Favorite Genre: Mystery</p></li>
-                                <li class="d-flex">Currently Reading:&nbsp
-                                    <th:block sec:authorize="isAuthenticated()">
-                                        <a class="currently-reading" target="_blank"
-                                           th:href="@{|/user/search/results/view/GrYsEAAAQBAJ|}">Project Hail Mary</a>
-                                    </th:block>
-                                    <th:block sec:authorize="isAnonymous()">
-                                        <a class="currently-reading" target="_blank"
-                                           href="https://amazon.com/dp/0593135202/">Project Hail Mary</a>
-                                    </th:block>
+                                <li class="d-flex">
+                                    <p>Currently Reading:&nbsp
+                                        <th:block sec:authorize="isAuthenticated()">
+                                            <a class="currently-reading" target="_blank"
+                                               th:href="@{|/user/search/results/view/GrYsEAAAQBAJ|}">Project Hail Mary</a>
+                                        </th:block>
+                                        <th:block sec:authorize="isAnonymous()">
+                                            <a class="currently-reading" target="_blank"
+                                               href="https://amazon.com/dp/0593135202/">Project Hail Mary</a>
+                                        </th:block>
+                                    </p>
                                 </li>
                             </ul>
                         </div>
@@ -123,15 +127,17 @@
                             <hr/>
                             <ul class="p-0" style="font-size:.85rem;">
                                 <li class="d-flex"><p>Favorite Genre: Fantasy</p></li>
-                                <li class="d-flex">Currently Reading:&nbsp
-                                    <th:block sec:authorize="isAuthenticated()">
-                                        <a class="currently-reading" target="_blank"
-                                           th:href="@{|/user/search/results/view/ft2NDAAAQBAJ|}">Norse Mythology</a>
-                                    </th:block>
-                                    <th:block sec:authorize="isAnonymous()">
-                                        <a class="currently-reading" target="_blank"
-                                           href="https://amazon.com/dp/0393356183/">Norse Mythology</a>
-                                    </th:block>
+                                <li class="d-flex">
+                                    <p>Currently Reading:&nbsp
+                                        <th:block sec:authorize="isAuthenticated()">
+                                            <a class="currently-reading" target="_blank"
+                                               th:href="@{|/user/search/results/view/ft2NDAAAQBAJ|}">Norse Mythology</a>
+                                        </th:block>
+                                        <th:block sec:authorize="isAnonymous()">
+                                            <a class="currently-reading" target="_blank"
+                                               href="https://amazon.com/dp/0393356183/">Norse Mythology</a>
+                                        </th:block>
+                                    </p>
                                 </li>
                             </ul>
                         </div>
@@ -154,15 +160,17 @@
                             <hr/>
                             <ul class="p-0" style="font-size:.85rem;">
                                 <li class="d-flex"><p>Favorite Genre: History</p></li>
-                                <li class="d-flex">Currently Reading:&nbsp
-                                    <th:block sec:authorize="isAuthenticated()">
-                                        <a class="currently-reading" target="_blank"
-                                           th:href="@{|/user/search/results/view/S7jrDwAAQBAJ|}">Klara and the Sun</a>
-                                    </th:block>
-                                    <th:block sec:authorize="isAnonymous()">
-                                        <a class="currently-reading" target="_blank"
-                                           href="https://amazon.com/dp/059331817X/">Klara and the Sun</a>
-                                    </th:block>
+                                <li class="d-flex">
+                                    <p>Currently Reading:&nbsp
+                                        <th:block sec:authorize="isAuthenticated()">
+                                            <a class="currently-reading" target="_blank"
+                                               th:href="@{|/user/search/results/view/S7jrDwAAQBAJ|}">Klara and the Sun</a>
+                                        </th:block>
+                                        <th:block sec:authorize="isAnonymous()">
+                                            <a class="currently-reading" target="_blank"
+                                               href="https://amazon.com/dp/059331817X/">Klara and the Sun</a>
+                                        </th:block>
+                                    </p>
                                 </li>
                             </ul>
                         </div>
